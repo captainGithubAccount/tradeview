@@ -28,6 +28,7 @@ import com.captain.tradingfinal.`fun`.KExtend
  */
 
 
+
 fun main(){
     isDebug = true
     mProfitInTheOppositeDirection = false// false 表示顺势， true 表示逆势
