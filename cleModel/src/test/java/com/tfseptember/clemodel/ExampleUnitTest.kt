@@ -1,4 +1,4 @@
-package com.location.notimodel
+package com.tfseptember.clemodel
 
 import org.junit.Test
 
