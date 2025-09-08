@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.location.notimodel"
+    namespace = "com.tfseptember.clemodel"
     compileSdk = 35
 
     defaultConfig {

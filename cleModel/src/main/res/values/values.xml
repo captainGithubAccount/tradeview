@@ -5,6 +5,6 @@
     <string name="blueten_clean">Clean</string>
     <string name="blueten_device">Device</string>
     <!-- todo 修改-->
-    <string name="blueten_provider_auth" translatable="false">com.location.notimodel.BlueTenUserProvider</string>
-    <string name="blueten_user_type" translatable="false">com.location.notimodel.UserTypeBlueTen</string>
+    <string name="blueten_provider_auth" translatable="false">com.tfseptember.clemodel.BlueTenUserProvider</string>
+    <string name="blueten_user_type" translatable="false">com.tfseptember.clemodel.UserTypeBlueTen</string>
 </resources>
