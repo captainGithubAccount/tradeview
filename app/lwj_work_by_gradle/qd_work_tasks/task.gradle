@@ -40,10 +40,11 @@ task renameClassInModule(){
 }
 
 /**
- * todo  --- 替换指定模块下的指定前缀的类名 ========  保活  ===============
+ * todo  --- 替换指定模块下的指定前缀 ========  保活  ===============
  * */
 task replaceNameClassInModule(){
     doLast {
+//        修改java和res目录下的前缀
         replaceNameClassInModule("notiModel", "BlueTen")
     }
 }
