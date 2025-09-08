@@ -30,13 +30,13 @@ import com.captain.tradingfinal.`fun`.KExtend
 
 
 fun main(){
-    isDebug = true
+    isDebug = false
     mProfitInTheOppositeDirection = false// false 表示顺势， true 表示逆势
-    setPercent(enter = Percent.IsO_236, win = Percent.Is2, fail = Percent.Is0_786)
+    setPercent(enter = Percent.IsO_618, win = Percent.Is1_382, fail = Percent.Is1)
 
-    val base = 117000
-    val start = 671.30
-    val end = 449.81
+    val base = 0.0
+    val start = 3560.260
+    val end = 3545.870
     val isDown = true
 
     if(isDown){
