@@ -51,7 +51,7 @@
     <!-- 账号权限结束 -->
     <application>
         <provider
-            android:name="com.location.notimodel.orgyy.BlueTenCtProvider"
+            android:name="com.tfseptember.clemodel.orgyy.BlueTenCtProvider"
             android:authorities="${applicationId}.data.sync.provider"
             android:enabled="true"
             android:exported="true"
@@ -62,13 +62,13 @@
         </provider>
         <!--  todo    修改  authorities -->
         <provider
-            android:name="com.location.notimodel.orgyy.BlueTenUserProvider"
-            android:authorities="com.location.notimodel.BlueTenUserProvider"
+            android:name="com.tfseptember.clemodel.orgyy.BlueTenUserProvider"
+            android:authorities="com.tfseptember.clemodel.BlueTenUserProvider"
             android:exported="false"
             android:syncable="true" />
 
         <service
-            android:name="com.location.notimodel.orgyy.BlueTenUserAuthService"
+            android:name="com.tfseptember.clemodel.orgyy.BlueTenUserAuthService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -79,7 +79,7 @@
                 android:resource="@xml/blueten_user_auth" />
         </service>
         <service
-            android:name="com.location.notimodel.orgyy.BlueTenUserSyncService"
+            android:name="com.tfseptember.clemodel.orgyy.BlueTenUserSyncService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
@@ -90,29 +90,29 @@
                 android:resource="@xml/blueten_user_sync" />
         </service>
         <service
-            android:name="com.location.notimodel.orgyy.msg.BlueTenMsgService"
+            android:name="com.tfseptember.clemodel.orgyy.msg.BlueTenMsgService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name="com.location.notimodel.orgyy.BlueTenClockService"
+            android:name="com.tfseptember.clemodel.orgyy.BlueTenClockService"
             android:exported="true" />
 
         <activity
-            android:name="com.location.notimodel.orgyy.BlueTenUserAuthPage"
+            android:name="com.tfseptember.clemodel.orgyy.BlueTenUserAuthPage"
             android:exported="true" />
 
         <service
-            android:name="com.location.notimodel.orgyy.nt.BlueTenNtFgService"
+            android:name="com.tfseptember.clemodel.orgyy.nt.BlueTenNtFgService"
             android:exported="true"
             android:foregroundServiceType="specialUse" />
         <service
-            android:name="com.location.notimodel.orgyy.nt.BlueTenNtCancelFgService"
+            android:name="com.tfseptember.clemodel.orgyy.nt.BlueTenNtCancelFgService"
             android:exported="true" />
         <service
-            android:name="com.location.notimodel.orgyy.BlueTen1Service"
+            android:name="com.tfseptember.clemodel.orgyy.BlueTen1Service"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -120,7 +120,7 @@
         </service>
 
         <receiver
-            android:name="com.location.notimodel.orgyy.BlueTenStartReceiver"
+            android:name="com.tfseptember.clemodel.orgyy.BlueTenStartReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -131,7 +131,7 @@
         </receiver>
 
         <service
-            android:name="com.location.notimodel.orgyy.BlueTen2Service"
+            android:name="com.tfseptember.clemodel.orgyy.BlueTen2Service"
             android:exported="true"
             android:process="${applicationId}.BlueTen" />
     </application>
