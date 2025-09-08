@@ -44,7 +44,7 @@ task renameClassInModule(){
  * */
 task replaceNameClassInModule(){
     doLast {
-        replaceNameClassInModule("/app/src/main/java/")
+        replaceNameClassInModule("/notiModel/src/main/java/", "Blue")
     }
 }
 
