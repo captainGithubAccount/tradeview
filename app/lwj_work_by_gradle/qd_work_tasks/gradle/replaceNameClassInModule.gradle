@@ -19,6 +19,7 @@ private def replaceNameClassInModule(String suffix, String modelName, String old
 //    def root_dir = project(moduleName).projectDir.absolutePath + "/src/main/java/com/juyi/battery/infinite/master/aapter/"
     def root_dir = System.getProperty("user.dir") + "/${modelName}/src/main/java/"
     def files = fileTree(root_dir).include("**/*$suffix")
+    files = files.sort { -it.name.length() }
     files.each { itemsFile ->
         def noSuffixName = (itemsFile.name).split("\\.")[0]
         //BKAQIBeanatxx
