@@ -48,7 +48,16 @@ private def replaceNameClassInModule(String suffix, String dir, String replaceNa
             }
 
             println("TAG-->>startName:"+startName + "\tendName:" +endName )
+            renameNameInModule(startName, endName)
         }
+    }
+}
+
+def renameNameInModule(String oldName, String newName){
+    //之所以要三个是防止脚本过于耗时
+    def root_dir = System.getProperty("user.dir") /*+ "/notiModel/src/main/java/"*/
+    fileTree(root_dir).each {itemsFile ->
+        fileReader(itemsFile.getPath(), oldName, newName)
     }
 }
 
