@@ -1,0 +1,123 @@
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/fun/base.gradle'
+
+
+/**
+ * author: lwj 
+ * create time: 2024-6-12
+ * */
+
+ext.replaceNameClassInModule = {dir->
+    replaceNameClassInModule('.java', dir)
+    replaceNameClassInModule('.kt', dir)
+}
+
+private def replaceNameClassInModule(String suffix, String dir) {
+    isNeedRefreshCache = true
+//    def moduleName = ":app"
+//    def root_dir = project(moduleName).projectDir.absolutePath + "/src/main/java/com/juyi/battery/infinite/master/aapter/"
+    def root_dir = System.getProperty("user.dir") + dir
+    def files = fileTree(root_dir).include("**/*$suffix")
+    files.each { itemsFile ->
+        def noSuffixName = (itemsFile.name).split("\\.")[0]
+        //BKAQIBeanatxx
+        def isContinue = noSuffixName != 'App'
+                && noSuffixName != 'Utils'
+                && !itemsFile.name.contains('ActivityManager')
+                && !itemsFile.name.contains('CommonListFragment')
+                && !itemsFile.name.contains('arView')
+                && !itemsFile.name.contains('View')
+                && !itemsFile.name.contains('FileUtil')
+                && !itemsFile.name.contains('Title')
+                && !itemsFile.name.contains('TopTip')
+                && !itemsFile.name.contains('BaseApp')
+                && !itemsFile.name.contains('Clean')
+                && !itemsFile.name.contains('ToastBuilder')
+                && !itemsFile.name.endsWith('App')
+        if (isContinue &&  (itemsFile.name.endsWith('.java') || itemsFile.name.endsWith('.kt'))) {
+            println("TAG-->>name-->>>:  " + itemsFile.name)
+//                    def randomStringPath2 = randomString(5)
+//            def randomStringPath2 = randomWord()//这里不用randomWord()是因为已经跑过了一次修改类名+layout名的脚本，用了这里的单词了已经
+            def randomStringPath2 = randomIdWord()
+            def startName = noSuffixName
+            randomStringPath2 = randomStringPath2[0].toUpperCase() + randomStringPath2[1..-1]
+            def endName = ""
+            if (itemsFile.name.contains('Activity')) {
+                if (itemsFile.name.contains('Base') || itemsFile.name.contains('Final') || itemsFile.name.contains('Common')) {
+                    endName = "${randomStringPath2}${startName}"
+                } else {
+                    endName = "${randomStringPath2}Activity"
+                }
+            } else if (itemsFile.name.contains('Fragment')) {
+                if (itemsFile.name.contains('Base') || itemsFile.name.contains('Final') || itemsFile.name.contains('Common')) {
+                    endName = "${randomStringPath2}${startName}"
+                } else {
+                    if (itemsFile.name.contains('DialogFragment')) {
+                        endName = "${randomStringPath2}DialogFragment"
+                    } else {
+                        endName = "${randomStringPath2}Fragment"
+                    }
+                }
+            } else if (itemsFile.name.contains('Bean')) {
+                endName = "${randomStringPath2}Bean"
+            } else if (itemsFile.name.contains('Type')) {
+                endName = "${randomStringPath2}Type"
+            } /*else if (itemsFile.name.contains('View') && !itemsFile.name.contains('TopTip') && !itemsFile.name.contains('Title') && !itemsFile.name.contains('Anim')) {
+//                endName = "${randomStringPath2}View"
+            } */else if (itemsFile.name.contains('Ad')) {
+                endName = "${randomStringPath2}Ad"
+            } else if (itemsFile.name.contains('Utils')) {
+                endName = "${randomStringPath2}Utils"
+            }else if (itemsFile.name.contains('Tool')) {
+                endName = "${randomStringPath2}Tool"
+            } else if (itemsFile.name.contains('Data')) {
+                endName = "${randomStringPath2}Data"
+            } else if (itemsFile.name.contains('Util')) {
+                endName = "${randomStringPath2}Util"
+            } else if (itemsFile.name.contains('Type')) {
+                endName = "${randomStringPath2}Type"
+            } else if (itemsFile.name.contains('Size')) {
+                endName = "${randomStringPath2}Size"
+            } else if (itemsFile.name.contains('Enum')) {
+                endName = "${randomStringPath2}Enum"
+            } else if (itemsFile.name.contains('Client')) {
+                endName = "${randomStringPath2}Client"
+            } else if (itemsFile.name.contains('Api')) {
+                endName = "${randomStringPath2}Api"
+            } else if (itemsFile.name.contains('Receiver')) {
+                endName = "${randomStringPath2}Receiver"
+            } else if (itemsFile.name.contains('Phone')) {
+                endName = "${randomStringPath2}Phone"
+            }else if (itemsFile.name.contains('Class')) {
+                endName = "${randomStringPath2}Class"
+            }else if (itemsFile.name.contains('PopupWindowView')) {
+                endName = "${randomStringPath2}PopupWindowView"
+            }else{
+                endName = randomStringPath2
+            }
+
+            itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+            println("TAG-->>startName:"+startName + "\tendName:" +endName )
+            renameNameInModule(startName, endName)
+        }
+    }
+}
+
+def renameNameInModule(String oldName, String newName){
+    //之所以要三个是防止脚本过于耗时
+    def root_dir = System.getProperty("user.dir") + "/admob/src/main/java/"
+    def root_dir2 = System.getProperty("user.dir") +  "/app/src/main/java/"
+    def root_dir3 = System.getProperty("user.dir") +  "/base/src/main/java/"
+    fileTree(root_dir).each {itemsFile ->
+        fileReader(itemsFile.getPath(), oldName, newName)
+    }
+    fileTree(root_dir2).each {itemsFile ->
+        fileReader(itemsFile.getPath(), oldName, newName)
+    }
+    fileTree(root_dir3).each {itemsFile ->
+        fileReader(itemsFile.getPath(), oldName, newName)
+    }
+}
+
+
+

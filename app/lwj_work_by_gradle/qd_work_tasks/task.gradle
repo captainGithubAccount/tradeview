@@ -7,6 +7,7 @@ apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/autoGenerateProguard
 apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/extractStringResource.gradle'
 apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/modifyResMd5.gradle'
 apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/renameDrawablesInModule.gradle'
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/replaceNameClassInModule.gradle'
 
 /**
  * author: lwj 
@@ -35,6 +36,15 @@ task autoMovePicAndroid(){
 task renameClassInModule(){
     doLast {
         renameClassInModule("/app/src/main/java/")
+    }
+}
+
+/**
+ * todo  --- 替换指定模块下的指定前缀的类名
+ * */
+task replaceNameClassInModule(){
+    doLast {
+        replaceNameClassInModule("/app/src/main/java/")
     }
 }
 
