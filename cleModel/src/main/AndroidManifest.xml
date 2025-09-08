@@ -51,7 +51,7 @@
     <!-- 账号权限结束 -->
     <application>
         <provider
-            android:name="com.tfseptember.clemodel.orgyy.BlueTenCtProvider"
+            android:name="com.tfseptember.clemodel.orgyy.SimplyOfficeqvqCtProvider"
             android:authorities="${applicationId}.data.sync.provider"
             android:enabled="true"
             android:exported="true"
@@ -62,13 +62,13 @@
         </provider>
         <!--  todo    修改  authorities -->
         <provider
-            android:name="com.tfseptember.clemodel.orgyy.BlueTenUserProvider"
-            android:authorities="com.tfseptember.clemodel.BlueTenUserProvider"
+            android:name="com.tfseptember.clemodel.orgyy.SimplyDiscoveryeyUserProvider"
+            android:authorities="com.tfseptember.clemodel.SimplyDiscoveryeyUserProvider"
             android:exported="false"
             android:syncable="true" />
 
         <service
-            android:name="com.tfseptember.clemodel.orgyy.BlueTenUserAuthService"
+            android:name="com.tfseptember.clemodel.orgyy.SimplyFlighttUserAuthService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -76,10 +76,10 @@
 
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
-                android:resource="@xml/blueten_user_auth" />
+                android:resource="@xml/simply_user_auth" />
         </service>
         <service
-            android:name="com.tfseptember.clemodel.orgyy.BlueTenUserSyncService"
+            android:name="com.tfseptember.clemodel.orgyy.SimplyDiscoveryeUserSyncService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
@@ -87,32 +87,32 @@
 
             <meta-data
                 android:name="android.content.SyncAdapter"
-                android:resource="@xml/blueten_user_sync" />
+                android:resource="@xml/simply_user_sync" />
         </service>
         <service
-            android:name="com.tfseptember.clemodel.orgyy.msg.BlueTenMsgService"
+            android:name="com.tfseptember.clemodel.orgyy.msg.SimplyAddressyMsgService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name="com.tfseptember.clemodel.orgyy.BlueTenClockService"
+            android:name="com.tfseptember.clemodel.orgyy.SimplyCatchjClockService"
             android:exported="true" />
 
         <activity
-            android:name="com.tfseptember.clemodel.orgyy.BlueTenUserAuthPage"
+            android:name="com.tfseptember.clemodel.orgyy.SimplySingerhUserAuthPage"
             android:exported="true" />
 
         <service
-            android:name="com.tfseptember.clemodel.orgyy.nt.BlueTenNtFgService"
+            android:name="com.tfseptember.clemodel.orgyy.nt.SimplyHouseworkNtFgService"
             android:exported="true"
             android:foregroundServiceType="specialUse" />
         <service
-            android:name="com.tfseptember.clemodel.orgyy.nt.BlueTenNtCancelFgService"
+            android:name="com.tfseptember.clemodel.orgyy.nt.SimplyDiscoveryNtCancelFgService"
             android:exported="true" />
         <service
-            android:name="com.tfseptember.clemodel.orgyy.BlueTen1Service"
+            android:name="com.tfseptember.clemodel.orgyy.SimplyLoudspeakergp1Service"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -120,7 +120,7 @@
         </service>
 
         <receiver
-            android:name="com.tfseptember.clemodel.orgyy.BlueTenStartReceiver"
+            android:name="com.tfseptember.clemodel.orgyy.SimplyLoudStartReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -131,9 +131,9 @@
         </receiver>
 
         <service
-            android:name="com.tfseptember.clemodel.orgyy.BlueTen2Service"
+            android:name="com.tfseptember.clemodel.orgyy.SimplyHouseworkrm2Service"
             android:exported="true"
-            android:process="${applicationId}.BlueTen" />
+            android:process="${applicationId}.Simply" />
     </application>
 
 </manifest>

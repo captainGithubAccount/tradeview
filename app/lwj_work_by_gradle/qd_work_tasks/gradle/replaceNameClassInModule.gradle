@@ -97,8 +97,8 @@ private def modifyDrawableRes(File drawableDir, String modelName, String oldQz, 
         if (file.isFile()) {
             def startName = getBaseFileName(file.absolutePath)
             def endName = extractAndRenameFile(startName, oldQz, newQz)
-            println "文件名start: $startName"  // 输出: blueten_battery_big
-            println "文件名end: $endName"  // 输出: blueten_battery_big
+            println "文件名start: $startName"
+            println "文件名end: $endName"
             file.renameTo(new File(file.absolutePath.replace(startName, endName)))
 
             def oldName = "R.drawable."+file.name.substring(0, file.name.lastIndexOf('.'))
@@ -119,8 +119,8 @@ private def modifyLayoutRes(File drawableDir, String modelName, String oldQz, St
         if (file.isFile()) {
             def startName = getBaseFileName(file.absolutePath)
             def endName = extractAndRenameFile(startName, oldQz, newQz)
-            println "文件名start: $startName"  // 输出: blueten_battery_big
-            println "文件名end: $endName"  // 输出: blueten_battery_big
+            println "文件名start: $startName"
+            println "文件名end: $endName"
             file.renameTo(new File(file.absolutePath.replace(startName, endName)))
 
             def oldName = "R.layout."+file.name.substring(0, file.name.lastIndexOf('.'))
@@ -142,8 +142,8 @@ private def modifyMipmapRes(File drawableDir, String modelName, String oldQz, St
         if (file.isFile()) {
             def startName = getBaseFileName(file.absolutePath)
             def endName = extractAndRenameFile(startName, oldQz, newQz)
-            println "文件名start: $startName"  // 输出: blueten_battery_big
-            println "文件名end: $endName"  // 输出: blueten_battery_big
+            println "文件名start: $startName"
+            println "文件名end: $endName"
             file.renameTo(new File(file.absolutePath.replace(startName, endName)))
 
             def oldName = "R.mipmap."+file.name.substring(0, file.name.lastIndexOf('.'))
@@ -165,8 +165,8 @@ private def modifyXmlRes(File drawableDir, String modelName, String oldQz, Strin
         if (file.isFile()) {
             def startName = getBaseFileName(file.absolutePath)
             def endName = extractAndRenameFile(startName, oldQz, newQz)
-            println "文件名start: $startName"  // 输出: blueten_battery_big
-            println "文件名end: $endName"  // 输出: blueten_battery_big
+            println "文件名start: $startName"
+            println "文件名end: $endName"
             file.renameTo(new File(file.absolutePath.replace(startName, endName)))
 
             def oldName = "R.xml."+file.name.substring(0, file.name.lastIndexOf('.'))
