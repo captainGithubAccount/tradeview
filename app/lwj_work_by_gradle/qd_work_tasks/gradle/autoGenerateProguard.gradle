@@ -1,0 +1,28 @@
+//apply from: '../app/lwj_work_by_gradle/qd_work_tasks/fun/base.gradle'
+
+ext.deleteFile = {
+    deleteFile()
+}
+ext.copyFile = {
+    copyFile()
+}
+
+private def deleteFile(){
+    //删除proguard-keys.txt
+    def path = System.getProperty("user.dir") + "/app/proguard-keys.txt"
+    def file = new File(path)
+    if(file.isFile() && file.exists()){
+        delete(path)
+    }
+}
+
+private def copyFile(){
+    def moduleName = ":app"
+    String originProguiardDir = project(moduleName).projectDir.path + "/lwj_work_by_gradle/testpy/"
+    String proguiardTargetDir = System.getProperty("user.dir") + "/app"
+    copy (){
+        from originProguiardDir
+        into proguiardTargetDir
+        include '**/*.txt'
+    }
+}

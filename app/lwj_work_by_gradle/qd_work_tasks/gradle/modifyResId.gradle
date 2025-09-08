@@ -1,0 +1,164 @@
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/fun/base.gradle'
+
+// 在项目的根目录下的build.gradle文件中配置项目支持的插件
+buildscript {
+    ext.kotlin_version = "1.6.0"
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+import java.util.regex.Pattern
+import org.apache.commons.io.FileUtils
+
+/**
+ * author: lwj 
+ * create time: 2024-5-28
+ * */
+ext.modifyResId = {
+    modifyResId()
+}
+
+
+
+private def modifyResId(){
+    isNeedRefreshIdCache = true
+    File layoutDir = file('src/main/res/layout') // 指定布局文件所在目录
+    File[] layoutFiles = layoutDir.listFiles({ file, filename -> filename.endsWith('.xml') } as FilenameFilter)
+//    String idPrefix = "new_id_" // 新的ID前缀
+    layoutFiles.each { File file ->
+//        println("TAG-->>\t"+file.name)
+        if(file.name.contains('activity') || file.name.contains('fragment')){
+            def counter = 1
+            def idPrefix = randomIdWord()
+            findAndModifyId('android:id="@id/([^"]+)"', file, idPrefix, counter)
+            findAndModifyId('android:id="@\\+id/([^"]+)"', file, idPrefix, counter)
+        }else{
+            println("TAG-->>Error:-----file is："+file.name)
+        }
+    }
+}
+
+private def findAndModifyId(String regex, File file, String idPrefix, int counter){
+    def strReplace = [:]
+//    def strReplace = new HashMap<>();
+//    TreeMap<String, Integer> strReplace = new TreeMap<>(
+//            (key1, key2) -> Integer.compare(key2.length(), key1.length())
+//    )
+    println()
+    def content = FileUtils.readFileToString(file, 'UTF-8')
+    def pattern = Pattern.compile(regex)
+    def matcher = pattern.matcher(content)
+    StringBuffer sb = new StringBuffer()
+//    List<String> names = new ArrayList<>()
+    while (matcher.find()) {
+//        names.add(matcher.group(1));
+        String resOldId = matcher.group(1)
+        def resNewId = idPrefix + counter++
+        matcher.appendReplacement(sb, "android:id=\"@+id/$resNewId\"")
+        strReplace.put(resOldId, resNewId)
+
+    }
+//    Collections.sort(names, new Comparator<String>() {
+//        @Override
+//        public int compare(String o1, String o2) {
+//            return Integer.compare(o2.length(), o1.length());
+//        }
+//    });
+//
+//    names.forEach {
+//        def resOldId = it
+//
+//    }
+
+    matcher.appendTail(sb)
+    FileUtils.writeStringToFile(file, sb.toString(), 'UTF-8')
+//    def sortedStrReplace = strReplace.sort { a, b ->
+//        b.name.length() <=> a.key.length()
+//    }.collectEntries()
+    // 按key名称长度降序排列Map
+    def sortedStrReplace = strReplace.sort { a, b ->
+        b.key.length() <=> a.key.length()
+    }
+    sortedStrReplace.forEach {key, value ->
+        println()
+        println()
+        println("fileReader ID in $file.name: $key -> $value")
+        fileReader(file.path, key, value)
+        def codeOldId = getCamelCase(key).uncapitalize()
+        def codeNewId = getCamelCase(value).uncapitalize()
+        println("TAG-->>resOldId："+key + "\t\tresNewId："+value)
+        println("TAG-->>codeOldId："+codeOldId + "\t\tcodeNewId："+codeNewId)
+
+        def noSuffixName = (file.name).split("\\.")[0]
+        if(file.name.contains('activity')){
+            String fileName = ""
+            String[] parts = noSuffixName.split('_')
+            for(int i=1; i< parts.size(); i++){
+                fileName += parts[i].capitalize()
+            }
+            fileName += "Activity"
+            println("TAG-->>fileName ddd--: "+fileName)
+            def root_dir = System.getProperty("user.dir") + "/app/src/main/java/"
+            def files = fileTree(root_dir).include("**/*${fileName}.kt")/*.sort { a, b -> b.name.length() <=> a.name.length() }*/
+            files.each { itemsFile ->
+//                fileReader(itemsFile.getPath(), codeOldId, codeNewId)
+//                fileReader(itemsFile.getPath(), key, value)
+                fileReader(itemsFile.getPath(), "$codeOldId.", "$codeNewId.")
+                fileReader(itemsFile.getPath(), "id.$codeOldId", "id.$codeNewId")
+                fileReader(itemsFile.getPath(), "binding.$codeOldId.", "binding.$codeNewId.")
+
+                fileReader(itemsFile.getPath(), "$key.", "$value.")
+                fileReader(itemsFile.getPath(), "id.$key", "id.$value")
+                fileReader(itemsFile.getPath(), "binding.$key.", "binding.$value.")
+                fileReader(itemsFile.getPath(), key, value)
+
+            }
+
+//            files.each { itemsFile ->
+//                fileReader(itemsFile.getPath(), key, value)
+//            }
+        }else if(file.name.contains('fragment')){
+
+            String fileName = ""
+            String[] parts = noSuffixName.split('_')
+            for(int i=1; i< parts.length; i++){
+                fileName += parts[i].capitalize()
+            }
+            fileName += "Fragment"
+            println("TAG-->>fileName ddd--: "+fileName)
+            def root_dir = System.getProperty("user.dir") + "/app/src/main/java/"
+            def files = fileTree(root_dir).include("**/*${fileName}.kt")/*.sort { a, b -> b.name.length() <=> a.name.length() }*/
+            files.each { itemsFile ->
+//                fileReader(itemsFile.getPath(), codeOldId, codeNewId)
+//                fileReader(itemsFile.getPath(), key, value)
+                fileReader(itemsFile.getPath(), "$codeOldId.", "$codeNewId.")
+                fileReader(itemsFile.getPath(), "id.$codeOldId", "id.$codeNewId")
+                fileReader(itemsFile.getPath(), "binding.$codeOldId.", "binding.$codeNewId.")
+
+                fileReader(itemsFile.getPath(), "$key.", "$value.")
+                fileReader(itemsFile.getPath(), "id.$key", "id.$value")
+                fileReader(itemsFile.getPath(), "binding.$key.", "binding.$value.")
+                fileReader(itemsFile.getPath(), key, value)
+
+            }
+
+//            files.each { itemsFile ->
+//                fileReader(itemsFile.getPath(), key, value)
+//            }
+        }
+    }
+}
+
+
+
+
+
+
+
+

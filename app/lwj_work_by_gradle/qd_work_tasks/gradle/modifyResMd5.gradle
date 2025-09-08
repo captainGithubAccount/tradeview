@@ -1,0 +1,72 @@
+ext.modifyResMd5 = { module->
+    modifyResMd5(module)
+}
+
+
+//替换drawable和layout下面的文件名
+private def modifyResMd5(String module){
+    def layoutDir = file("${projectDir}/src/main/res/layout")
+    def drawableDir = file("${projectDir}/src/main/res/drawable")
+    def mipmapDir = file("${projectDir}/src/main/res/mipmap-xxhdpi")
+    def javaDir = file("${projectDir}/src/main/java")
+    def random = new Random()
+
+
+    def mipmapxxxhDir2 = file("${System.getProperty("user.dir")}/" + module + "/src/main/res/mipmap-xxxhdpi")
+    def mipmapxxhDir2 = file("${System.getProperty("user.dir")}/" + module + "/src/main/res/mipmap-xxhdpi")
+    def mipmapxhDir2 = file("${System.getProperty("user.dir")}/" + module + "/src/main/res/mipmap-xhdpi")
+    def mipmaphDir2 = file("${System.getProperty("user.dir")}/" + module + "/src/main/res/mipmap-hdpi")
+    def mipmapmDir2 = file("${System.getProperty("user.dir")}/" + module + "/src/main/res/mipmap-mdpi")
+
+
+    def moduleDir = file("${System.getProperty("user.dir")}/" + module + "/src/main/")
+    def pngFiles = fileTree(moduleDir).include("**/*.png")
+    def webpFiles = fileTree(moduleDir).include("**/*.webp")
+    def jpgFiles = fileTree(moduleDir).include("**/*.jpg")
+    pngFiles.each {itemsFile->
+        modifyMD5Files(itemsFile)
+    }
+    webpFiles.each {itemsFile->
+        modifyMD5Files(itemsFile)
+    }
+    jpgFiles.each {itemsFile->
+        modifyMD5Files(itemsFile)
+    }
+
+
+}
+
+def modifyMD5Files(File file) {
+    if (file.isFile() && !file.name.endsWith(".xml") && !file.name.equals("ic_launcher.png")) {
+        String fileName = file.getName().toLowerCase();
+        modifyMD5File(file)
+    }
+}
+
+def modifyMD5File(File file) {
+    try {
+        String content = UUID.randomUUID().toString();
+        FileWriter writer = new FileWriter(file, true); // true 表示追加写入
+        writer.write(content);
+        writer.close();
+        println("Modified content of file: " + file.getName());
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+//-------
+
+def modifyMD5Files2(File directory) {
+    File[] files = directory.listFiles()
+    if (files == null) {
+        return
+    }
+
+    for (File file : files) {
+        if (file.isFile() && !file.name.endsWith(".xml")&& !file.name.equals("icon.png")) {
+            String fileName = file.getName().toLowerCase();
+            modifyMD5File(file)
+        }
+    }
+}

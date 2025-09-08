@@ -1,0 +1,188 @@
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/fun/base.gradle'
+
+/**
+ * author: lwj
+ * create time: 2024-7-22
+ * */
+
+//相同文本的处理
+
+// 在项目的根目录下的build.gradle文件中配置项目支持的插件
+buildscript {
+    ext.kotlin_version = "1.6.0"
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+import java.util.regex.Pattern
+import org.apache.commons.io.FileUtils
+import com.android.build.gradle.tasks.ProcessAndroidResources
+
+
+ext.extractStringResource = { dir->
+    extractStringResource(dir)
+}
+
+//renameClassInModule("app")
+private def extractStringResource(String dir){
+    isNeedRefreshIdCache = true
+
+    def root_dir = System.getProperty("user.dir") +"/"+ dir
+    def res_dir = root_dir + "/src/main/res"
+    println("TAG-->>res_dir:-----："+res_dir + "/layout")
+
+    File layoutDir = file(res_dir+ "/layout") // 指定布局文件所在目录
+    File[] layoutFiles = layoutDir.listFiles({ file, filename -> filename.endsWith('.xml') } as FilenameFilter)
+    layoutFiles.each { File file ->
+        if(true){
+            def counter = 1
+            def idPrefix = randomIdWord()
+            findAndExtractString('android:text="([^"]+)"', file, idPrefix, counter, 0, res_dir)
+            findAndExtractString('android:hint="([^"]+)"', file, idPrefix, 99, 1, res_dir)
+        }else{
+            println("TAG-->>Error:-----file is："+file.name)
+        }
+    }
+}
+
+private def findAndExtractString(String regex, File file, String idPrefix, int counter, int type, String res_dir){
+    def strReplace = [:]
+    println()
+    def content = FileUtils.readFileToString(file, 'UTF-8')
+    def pattern = Pattern.compile(regex)
+    def matcher = pattern.matcher(content)
+    StringBuffer sb = new StringBuffer()
+
+    //匹配，和替换xml里面的
+    while (matcher.find()) {
+        String resOldId = matcher.group(1)
+
+        //strReplace.get(resOldId) == null  防止相同文本再次被替换
+        if(strReplace.get(resOldId) == null && !resOldId.contains("@string/")){
+            def newString = idPrefix + counter++
+            def valueResult = "@string/str_$newString"
+            if (type == 0) {
+                matcher.appendReplacement(sb, "android:text=\"$valueResult\"")
+            } else if (type == 1) {
+                matcher.appendReplacement(sb, "android:hint=\"$valueResult\"")
+            }
+            strReplace.put(resOldId, newString)
+            println("fileReader============ $file.name: $resOldId -> $newString")
+        }
+
+
+
+
+
+    }
+
+    matcher.appendTail(sb)
+    FileUtils.writeStringToFile(file, sb.toString(), 'UTF-8')
+
+    //替换
+    strReplace.forEach {key, value ->
+        println()
+        println()
+        println("fileReader ID in $file.name: $key -> $value")
+        def codeOldString =  ""
+        if(type == 0){
+            codeOldString = "android:text=$key"
+        }else if(type == 1){
+            codeOldString = "android:hint=$key"
+        }
+
+        def codeNewString ="@string/str_$value"
+
+
+            println("TAG-->>-------------- ")
+            fileReader(file.path, codeOldString, codeNewString)
+            println("TAG-->>resOldId："+key + "\t\tresNewId："+value)
+            println("TAG-->>codeOldId："+codeOldString + "\t\tcodeNewId："+codeNewString)
+
+
+
+    }
+//    String layoutTip = "<!--$file.name-->"
+    String layoutTip = "<!--\n$file.name\n-->"
+    addToStrings(strReplace, res_dir, layoutTip)
+}
+
+
+
+private def addToStrings(HashMap<String, String> strReplace, String res_dir, String tip){
+    def stringsDir = "$res_dir/values/strings.xml"
+    addContentToStringsXml(strReplace, stringsDir, tip)
+
+}
+
+private def addContentToStringsXml(HashMap<String, String> strReplace, String stringsDir, String tip){
+//    addCommentToStringsXml(stringsDir, tip)
+    File resValuesFile = file(stringsDir)
+    def xml = new XmlParser().parse(resValuesFile)
+    strReplace.each { key, value ->
+        def codeNewString ="str_$value"
+        println("addContentToStringsXml in: $key -> $value")
+        def entry = xml.string.find { it.@name == codeNewString }
+
+        if (entry) {
+            println("true in:")
+            entry['@name'] = codeNewString
+//            entry.setValue(codeNewString)
+            entry.setValue(key)
+        } else {
+            println("false in:")
+            xml.appendNode("string", ['name': codeNewString], key)
+        }
+    }
+
+    // 将注释添加到strings.xml的顶部
+
+    // 格式化XML并写回文件
+    def writer = new StringWriter()
+    new XmlNodePrinter(new PrintWriter(writer)).print(xml)
+
+
+    def result = writer.toString().replaceAll(">\\s+", ">")
+                            .replaceAll("\\s+<", "<")
+                            .replaceAll("<string name", "\n\t<string name")
+                            .replaceAll("</resources>", "\n</resources>")
+
+
+    resValuesFile.text =result
+}
+
+private def addCommentToStringsXml(String res_dir, String tip){
+
+
+    def xmlFile = file(res_dir)
+    def xml = new XmlParser().parse(xmlFile)
+//    def lines = xmlFile.readLines()
+//    def lastIndex = lines.size() - 1
+
+    // 创建注释节点
+//    String a = tip
+//    def comment = xml.comment(tip)
+    xml.appendNode("a", tip)
+
+    // 将注释添加到strings.xml的顶部
+//    xml.appendNode(comment)
+
+    // 格式化XML并写回文件
+    def writer = new StringWriter()
+    new XmlNodePrinter(new PrintWriter(writer)).print(xml)
+    xmlFile.text = writer.toString()
+}
+
+
+
+
+
+
+
+

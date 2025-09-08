@@ -1,0 +1,161 @@
+import java.security.SecureRandom
+import java.util.regex.Pattern
+import java.util.Comparator
+//import static java.util.stream.Collectors.*;
+//import static java.util.stream.Collectors.toMap;
+//import static java.util.stream.Collectors.toSet;
+
+ext{
+//    words = [
+//            "apple", "banana"
+//    ]
+
+    words = [
+            "accident", "careful", "difficulty", "flag", "horse", "lock", "nut", "rain",
+            "silk", "thirty", "accidental", "carrot", "flat", "hospital", "lonely",
+            "rainy", "simple", "though", "ache", "carry", "dirty",
+            "flatten", "hotel", "loser", "offer", "simply", "thousand"
+    ]
+
+    idWords = [
+            "across", "catch", "discover", "flight", "house", "loud", "office", "rather",
+            "singer", "through", "address", "cause", "discovery", "floor", "housework",
+            "loudspeaker"
+    ]
+
+    isNeedRefreshCache = true
+    isNeedRefreshIdCache = true
+}
+
+public def randomWord() {
+    if(isNeedRefreshCache){//每次转移文件都刷新一下缓存
+        words = [
+                "accident", "careful", "difficulty", "flag", "horse", "lock", "nut", "rain",
+                "silk", "thirty", "accidental", "carrot", "flat", "hospital", "lonely",
+                "rainy", "simple", "though", "ache", "carry", "dirty",
+                "flatten", "hotel", "loser", "offer", "simply", "thousand"
+        ]
+        isNeedRefreshCache = false
+    }
+    def random = new Random()
+    def index = random.nextInt(words.size())
+    def word = words[index]
+    words[index] = word + randomString(1)
+    words.each {
+//        print("\t" + it)
+    }
+    return word
+}
+
+public def randomIdWord() {
+    if(isNeedRefreshIdCache){//每次转移文件都刷新一下缓存
+        idWords = [
+                "across", "catch", "discover", "flight", "house", "loud", "office", "rather",
+                "singer", "through", "address", "cause", "discovery", "floor", "housework",
+                "loudspeaker"
+        ]
+        isNeedRefreshIdCache = false
+    }
+    def random = new Random()
+    def index = random.nextInt(idWords.size())
+    def word = idWords[index]
+    idWords[index] = word + randomString(1)
+    idWords.each {
+//        print("\t" + it)
+    }
+    return word
+}
+
+
+ext.randomIdWord = {
+    randomIdWord()
+}
+ext.randomWord = {
+    randomWord()
+}
+ext.fileReader = {path, name, modifyName->
+    fileReader(path, name, modifyName)
+}
+
+ext.randomString = {length->
+    randomString(length)
+}
+
+ext.getCamelCase = {input->
+    getCamelCase(input)
+}
+
+ext.renameName = {input, newName->
+    renameName(input, newName)
+}
+
+
+def renameName(String oldName, String newName){
+    def root_dir = System.getProperty("user.dir") + "/app/src/main/"
+    def files = fileTree(root_dir)
+    files.each {itemsFile ->
+        fileReader(itemsFile.getPath(), oldName, newName)
+    }
+}
+
+
+
+String getCamelCase(String input) {
+    input.split('_')
+            .collect { it.capitalize() }
+            .join('')
+}
+
+
+//**************************************  base  *************************************
+
+// 定义生成随机字符串的函数
+def randomString(int length) {
+// 首先定义一个随机数生成器
+    SecureRandom secureRandom = new SecureRandom()
+    // 使用可打印的 ASCII 字符作为生成字符串的字符集合
+    String characters = ('abcdefghijklmnopqrstuvwxyz')//ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    // 用 StringBuilder 保存生成的字符串
+    StringBuilder sb = new StringBuilder()
+
+    // 循环生成指定长度的随机字符串
+    for (int i = 0; i < length; i++) {
+        // 从字符集合中随机选择一个字符
+        int randomIndex = secureRandom.nextInt(characters.length())
+        char randomChar = characters.charAt(randomIndex)
+        // 将选择的字符添加到字符串中
+        sb.append(randomChar)
+    }
+
+    // 返回生成的随机字符串
+    return sb.toString()
+}
+
+
+
+
+
+def fileReader(path, name, modifyName) {
+    def readerString = ""
+    def hasReplace = false
+
+    file(path).withReader('UTF-8') { reader ->
+        reader.eachLine {
+            if (it.find(name)) {
+                it = it.replace(name, modifyName)
+                hasReplace = true
+            }
+            readerString <<= it
+            readerString << '\n'
+        }
+
+        if (hasReplace) {
+            file(path).withWriter('UTF-8') {
+                within ->
+                    within.append(readerString)
+            }
+        }
+        return readerString
+    }
+}
+

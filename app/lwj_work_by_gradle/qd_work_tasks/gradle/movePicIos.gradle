@@ -1,0 +1,240 @@
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/fun/base.gradle'
+
+import java.security.SecureRandom
+/**
+ * author: lwj 
+ * create time: 2024-5-28
+ * */
+
+
+ext.movePicIos = {str1, str2 ->
+    movePic(str1, str2)
+}
+ext.deleteSourceFiles = {
+    deleteSourceFiles()
+
+}
+
+
+//ext {
+//    counter = 1
+//}
+
+
+
+
+private def deleteSourceFiles() {
+    def root_dir = System.getProperty("user.dir") + "/app/lwj_work_by_gradle/"
+    def files = fileTree(root_dir)//获取所有的文件
+    files.each { itemsFile ->
+        if(itemsFile.name.endsWith('.png')){
+            delete(itemsFile.path)
+        }
+    }
+}
+
+/**
+ * @Param str1: 前缀
+ * @Param str2: 区分不同页面
+ * */
+private def movePic(String str1, String str2) {
+    isNeedRefreshCache = true
+    def str = str1+"_"+str2+"_"
+    def root_dir = System.getProperty("user.dir") + "/app/lwj_work_by_gradle/"
+    def files = fileTree(root_dir).include("**/*.png").sort()
+//    def files = fileTree(root_dir).include("**/*.png").sort{
+//        a.name <=> b.name
+//    }
+    def name = ""
+    def resultName2x = ""
+    def resultName3x = ""
+    files.each { itemsFile ->
+//        println("TAG-->>name foreach-->>>:  "+itemsFile.name)
+//        println("TAG-->>name path-->>>:  "+itemsFile.absolutePath)
+
+        def isCanCopy = false
+
+        println()
+        println()
+        def noSuffixName = (itemsFile.name).split("\\.")[0]
+        name = noSuffixName
+        println("TAG-->>@1x 1 -->>>:  "+name)
+
+        def name2x = noSuffixName + "@2x"
+        def path2x = itemsFile.absolutePath.replace(name + ".png", name2x + ".png")
+        def file2x = new File(path2x)
+        if(file2x.exists() && file2x.isFile()){
+            resultName2x = name2x
+            println("TAG-->>@2x 1 -->>>:  "+resultName2x)
+            isCanCopy = true
+
+//            def inputString = "这是一个(示例)字符串"
+//            def parts = inputString.tokenize('(')
+//            println "切割后的部分："
+//            parts.each { part ->
+//                println " - " + part
+//            }
+        }else{
+            if(noSuffixName.contains('(')){
+                def noSuffixName2x = (noSuffixName).split("\\(")
+//                println("TAG-->>name2x-->>>:  "+noSuffixName2x[0] + "\t" +noSuffixName2x[1])
+                name2x = noSuffixName2x[0] + "@2x" + "(" + noSuffixName2x[1]
+
+//                println("TAG-->>name2xdd-->>>:  "+name2x)
+                path2x = itemsFile.absolutePath.replace(name + ".png", name2x + ".png")
+                file2x = new File(path2x)
+                if(file2x.exists() && file2x.isFile()){
+                    resultName2x = name2x
+                    println("TAG-->>@2x 2 -->>>:  "+resultName2x)
+                    isCanCopy = true
+                }
+            }
+        }
+
+        def name3x = noSuffixName + "@3x"
+        def path3x = itemsFile.absolutePath.replace(name + ".png", name3x + ".png")
+        def file3x = new File(path3x)
+        if(file3x.exists() && file3x.isFile()){
+            resultName3x = name3x
+            println("TAG-->>@3x 1 -->>>:  "+resultName3x)
+            isCanCopy = true
+        }else{
+            if(noSuffixName.contains('(')){
+                def noSuffixName3x = (noSuffixName).split("\\(")
+                name3x = noSuffixName3x[0] + "@3x" + "(" + noSuffixName3x[1]
+                path3x = itemsFile.absolutePath.replace(name + ".png", name3x + ".png")
+                file3x = new File(path3x)
+                if(file3x.exists() && file3x.isFile()){
+//                    name3x = noSuffixName3x[0] + "@3x" + "\\(" + noSuffixName3x[1]
+//                    name3x = name3x.split("\\)")[0] + "\\)"
+                    resultName3x = name3x
+                    println("TAG-->>@3x 2 -->>>:  "+resultName3x)
+                    isCanCopy = true
+                }
+            }
+        }
+
+
+//        def randomStringPath = randomString(5)//防止无意义的字母被谷歌关联
+        def randomStringPath = randomWord()
+        def startName = noSuffixName
+        def endName = str+randomStringPath
+
+//        itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+        if(isCanCopy){
+
+            if(name.contains('(')){
+                def replaceName = ""
+                replaceName = name.replace('(','')
+                if(name.contains(')')){
+                    replaceName = replaceName.replace(')','')
+                }
+                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(name, replaceName)))
+                println("TAG-->>name1 -->>>:  "+replaceName + "\t" + endName)
+                copyAndRenameFile(1, replaceName, endName)
+            }else{
+                copyAndRenameFile(1, name, endName)
+            }
+
+
+
+            if(resultName2x != ""){
+                if(resultName2x.contains('(')){
+                    def replaceName2x = ""
+                    replaceName2x = resultName2x.replace('(','')
+                    if(resultName2x.contains(')')){
+                        replaceName2x = replaceName2x.replace(')','')
+                    }
+                    file2x.renameTo(new File(file2x.absolutePath.replace(resultName2x, replaceName2x)))
+                    println("TAG-->>name2 -->>>:  "+replaceName2x + "\t" + endName)
+                    copyAndRenameFile(2, replaceName2x, endName)
+
+                }else{
+                    copyAndRenameFile(2, resultName2x, endName)
+                }
+//            file2x.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+
+            }
+
+            if(resultName3x != ""){
+                if(resultName3x.contains('(')){
+                    def replaceName3x = ""
+                    replaceName3x = resultName3x.replace('(','')
+                    if(resultName3x.contains(')')){
+                        replaceName3x = replaceName3x.replace(')','')
+                    }
+
+                    file3x.renameTo(new File(file3x.absolutePath.replace(resultName3x, replaceName3x)))
+                    println("TAG-->>name3 -->>>:  "+replaceName3x + "\t" + endName)
+                    copyAndRenameFile(3, replaceName3x, endName)
+                }else{
+                    copyAndRenameFile(3, resultName3x, endName)
+                }
+
+//            file3x.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+            }
+        }
+
+    }
+}
+
+private def copyAndRenameFile(int type, String oldName, String newName){
+
+    println("TAG-->>move -->>>:  "+type + "\t" + oldName + "\t" + newName)
+    def moduleName = ":app"
+    String originFilesDir = project(moduleName).projectDir.path + "/lwj_work_by_gradle/ui/"
+    String targetDir = ""
+    if(type == 1){
+        targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-hdpi"
+    }else if(type == 2){
+        targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-xxhdpi"
+    }else if(type == 3){
+        targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-xxxhdpi"
+    }
+    def newOldName1 = ""
+    def newOldName2 = ""
+    if(oldName.contains('(')){
+        newOldName1 = oldName.split("\\(")[0]
+        if(oldName.contains(')')){
+            newOldName2 = newOldName1.split("\\)")[0]
+        }
+    }
+
+//    if(newOldName1 != "" && newOldName2 != ""){
+//        copy (){
+//            from originFilesDir
+//            into targetDir
+////        exclude 'qd_work_tasks'
+////        exclude 'testpy'
+//            include '**/*'+oldName+'.png'
+//            rename newOldName1+'\\('+ newOldName2 + '\\)' +'.png', newName+'.png' // 重命名文件
+//        }
+//    }else{
+        copy (){
+            from originFilesDir
+            into targetDir
+//        exclude 'qd_work_tasks'
+//        exclude 'testpy'
+            include '**/*'+oldName+'.png'
+            rename oldName+'.png', newName+'.png' // 重命名文件
+        }
+//    }
+
+
+//    if(type == 1){
+//
+//    }else if(type == 2){
+//        resultName2x = ""
+//    }else if(type == 3){
+//        resultName3x = ""
+//    }
+}
+
+
+
+
+
+
+

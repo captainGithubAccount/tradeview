@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
+apply from: 'lwj_work_by_gradle/qd_work_tasks/task.gradle'
+
 android {
     namespace 'com.captain.tradingfinal'
     compileSdk 35

@@ -1,0 +1,121 @@
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/movePicIos.gradle'
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/movePicAndroid.gradle'
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/renameClassInModule.gradle'
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/renameClassAndLayout.gradle'
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/modifyResId.gradle'
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/autoGenerateProguard.gradle'
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/extractStringResource.gradle'
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/modifyResMd5.gradle'
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/renameDrawablesInModule.gradle'
+
+/**
+ * author: lwj 
+ * create time: 2024-4-19
+ * */
+
+//------------------------------------------
+
+/***
+ * todo --- ui 移动脚本 android
+ * */
+task autoMovePicAndroid(){
+    doLast {
+//        movePicAndroid("ic", "launcher")
+        movePicAndroid("tf_may", "ty_may_mine")
+        deleteSourceFiles()
+//        def dirsToCheck = file('src').listFiles({ File dir, String name -> new File(dir, name).isDirectory() } as FileFilter)
+
+    }
+}
+
+
+/**
+ * todo  --- 修改指定模块下的类名
+ * */
+task renameClassInModule(){
+    doLast {
+        renameClassInModule("/base/src/main/java/")
+    }
+}
+
+
+
+/**
+ * todo --- 修改类名和layout
+ * */
+task renameClassFiles(){
+    doLast {
+        renameClassFiles("/app/src/main/java/com/tfmayclean/test/")
+    }
+}
+
+/**
+ * todo --- 修改资源id
+ * */
+task modifyId(){
+    doLast {
+        modifyResId()
+    }
+}
+
+
+/**
+ * todo --- 抽离xml里面的常量字符串为string里面对应的内容
+ * */
+task extractStringResource(){
+    doLast {
+        extractStringResource("app")
+    }
+}
+
+
+//-------------------- support--------------------
+task proguard(type: Exec){
+    workingDir './lwj_work_by_gradle/testpy/'
+    commandLine "python3", "proguard_dict.py"
+}
+
+/**
+ * todo --- 混淆
+ * */
+task renameAndProguard(dependsOn: [proguard]){
+    doLast {
+        deleteFile()
+        copyFile()
+    }
+}
+
+
+
+/***
+ * todo --- ui 移动脚本 ios
+ * */
+task autoMovePicIos(){
+    doLast {
+        movePicIos("g7", "device_info")
+        deleteSourceFiles()
+    }
+}
+
+/***
+ * todo --- 修改模块里面的图片md5
+ * */
+task modifyResMd5(){
+    doLast {
+        modifyResMd5("base")
+    }
+}
+
+/***
+ * todo --- 修改模块里面的drawable 里面的文件名
+ * */
+task renameDrawablesInModule(){
+    doLast {
+        renameDrawablesInModule("base")
+    }
+}
+
+
+
+
+

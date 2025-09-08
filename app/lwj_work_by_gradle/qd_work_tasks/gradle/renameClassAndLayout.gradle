@@ -1,0 +1,171 @@
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/fun/base.gradle'
+ext.renameClassFiles = {dir->
+    renameClassFiles('.java', dir)
+    renameClassFiles('.kt', dir)
+}
+
+
+public def renameClassFiles(String suffix, String dir) {
+    isNeedRefreshCache = true
+//    def moduleName = ":app"
+//    def root_dir = project(moduleName).projectDir.absolutePath + "/src/main/java/com/juyi/battery/infinite/master/aapter/"
+    def root_dir = System.getProperty("user.dir") + dir
+//    def root_dir = System.getProperty("user.dir") + "/app/src/main/java/com/wcleanb/clean/phone/base/"
+    def root_dir2 = System.getProperty("user.dir") + "/app/src/main/res/"
+    def files = fileTree(root_dir).include("**/*$suffix")
+    files.each { itemsFile ->
+        def noSuffixName = (itemsFile.name).split("\\.")[0]
+        def layoutName = getLayoutNameFromClassName(noSuffixName)
+        def xmlFiles = fileTree(root_dir2).include("**/*${layoutName}.xml")
+        def randomStringPath = ""
+        println("TAG-->>xmlFiles.isEmpty():\t\t"+xmlFiles.isEmpty())
+        if(!xmlFiles.isEmpty()){
+            if ((itemsFile.name.contains('Activity') || itemsFile.name.contains('Fragment')) && !itemsFile.name.contains('ActivitysManager')) {
+                randomStringPath = randomWord().capitalize()//capitalize()首字母大写  uncapitalize()首字母小写
+                def startName = noSuffixName
+//                randomStringPath = randomStringPath[0].toUpperCase() + randomStringPath[1..-1]//首字母大写，其他小写
+                def endName = ""
+                if(itemsFile.name.contains('Activity')){
+                    if(itemsFile.name.contains('Base') || itemsFile.name.contains('Final') || itemsFile.name.contains('Common')){
+                        endName = "${randomStringPath}${startName}"
+                    }else{
+                        endName = "${randomStringPath}Activity"
+                    }
+
+                    renameName(startName, endName)
+                    itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+                    xmlFiles.each { xmlFile ->
+                        renameName(layoutName, "activity_"+randomStringPath.uncapitalize())
+                        xmlFile.renameTo(new File(xmlFile.absolutePath.replace(layoutName, "activity_"+randomStringPath.uncapitalize())))
+                    }
+
+                    renameName(getClassNameFromLayoutName(layoutName)+"Binding","Activity"+ randomStringPath + "Binding")
+                    println("TAG-->>layoutName--->: "+layoutName + "\t" + startName + "\t" + endName)
+
+                }else if(itemsFile.name.contains('Fragment')){
+                    if(itemsFile.name.contains('Base') || itemsFile.name.contains('Final') || itemsFile.name.contains('Common')){
+                        endName = "${randomStringPath}${startName}"
+                    }else{
+                        if(itemsFile.name.contains('DialogFragment')){
+                            endName = "${randomStringPath}DialogFragment"
+                        }else{
+                            endName = "${randomStringPath}Fragment"
+                        }
+                    }
+
+                    renameName(startName, endName)
+                    itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+                    xmlFiles.each { xmlFile ->
+                        renameName(layoutName, "fragment_"+randomStringPath.uncapitalize())
+                        xmlFile.renameTo(new File(xmlFile.absolutePath.replace(layoutName, "fragment_"+randomStringPath.uncapitalize())))
+                    }
+
+                    renameName(getClassNameFromLayoutName(layoutName)+"Binding","Fragment"+ randomStringPath + "Binding")
+                    println("TAG-->>layoutName--->: "+layoutName + "\t" + startName + "\t" + endName)
+                }
+
+
+
+            }
+
+        }else{
+            //BKAQIBeanatxx
+            if (/*"AA".equals(flagStr) && */itemsFile.name.endsWith('.java') || itemsFile.name.endsWith('.kt') ) {
+                println("TAG-->>name-->>>:  "+itemsFile.name)
+                if (!itemsFile.name.contains('ActivitysManager') && (itemsFile.name.contains('Activity') || itemsFile.name.contains('Fragment') /*|| itemsFile.name.contains('Utils') || itemsFile.name.contains('Util') || itemsFile.name.contains('Helper')*/)) {
+                    def randomStringPath2 = randomString(5)
+                    def startName = noSuffixName
+                    randomStringPath2 = randomStringPath2[0].toUpperCase() + randomStringPath2[1..-1]
+                    def endName = ""
+                    if(itemsFile.name.contains('Activity')){
+                        if(itemsFile.name.contains('Base') || itemsFile.name.contains('Final') || itemsFile.name.contains('Common')){
+                            endName = "${randomStringPath2}${startName}"
+                        }else{
+                            endName = "${randomStringPath2}Activity"
+                        }
+                    }else if(itemsFile.name.contains('Fragment')){
+                        if(itemsFile.name.contains('Base') || itemsFile.name.contains('Final') || itemsFile.name.contains('Common')){
+                            endName = "${randomStringPath2}${startName}"
+                        }else{
+                            if(itemsFile.name.contains('DialogFragment')){
+                                endName = "${randomStringPath2}DialogFragment"
+                            }else{
+                                endName = "${randomStringPath2}Fragment"
+                            }
+                        }
+                    }
+
+                    renameName(startName, endName)
+                    if(itemsFile.name.contains('Activity')){
+                        renameName(getClassNameFromLayoutName(layoutName)+"Binding","Activity"+ randomStringPath + "Binding")
+                    }else if(itemsFile.name.contains('Fragment')){
+                        renameName(getClassNameFromLayoutName(layoutName)+"Binding","Fragment"+ randomStringPath + "Binding")
+                    }
+                }
+            }
+        }
+    }
+}
+
+private def getClassNameFromLayoutName(String layoutName){
+    if(layoutName.contains('activity')){
+        String className = ""
+        String[] parts = layoutName.split('_')
+        for(int i=1; i< parts.size(); i++){
+            className += parts[i].capitalize()
+        }
+        className = "Activity" + className
+        println("TAG-->>class form layout:\t\t"+className)
+        return className
+    }else if(layoutName.contains('fragment')){
+        String className = ""
+        String[] parts = layoutName.split('_')
+        for(int i=1; i< parts.size(); i++){
+            className += parts[i].capitalize()
+        }
+        className = "Fragment" + className
+        println("TAG-->>class form layout:\t\t"+className)
+        return className
+    }
+}
+
+private def getLayoutNameFromClassName(String className1){
+    def className = className1
+//    List<String> splittedList2 = className.collect { it.toUpperCase()?it.toString():'' }.join(' ').split(' ')
+
+    String layoutName = ""
+
+    if(className1.contains('Activity')){
+        layoutName = className
+                .collect { ch -> ch == ch.toUpperCase() ? "_${ch.toLowerCase()}" : ch.toLowerCase() }
+                .join()
+                .replaceFirst("_", "")
+                .replace("_activity", "")
+        layoutName = "activity_"+layoutName
+
+    }else if(className1.contains('Fragment')){
+        layoutName = className
+                .collect { ch -> ch == ch.toUpperCase() ? "_${ch.toLowerCase()}" : ch.toLowerCase() }
+                .join()
+                .replaceFirst("_", "")
+                .replace("_fragment", "")
+        layoutName = "fragment_"+layoutName
+
+    }
+    // 移除空字符串
+//    List<String> splittedList2 = splittedList.findAll { it != '' }
+
+
+//    String layoutName = ""
+//    for(int i =0; i< splittedList2.size(); i++){
+//        if(i != splittedList2.size()){
+//            println("TAG-->> layout name:--->" + "splittedList2"+splittedList2[i])
+//            layoutName += splittedList2[i].uncapitalize()
+//        }
+//        layoutName + "_"
+//    }
+    println("TAG-->> layout name:--->" + ""+layoutName)
+    return layoutName
+}

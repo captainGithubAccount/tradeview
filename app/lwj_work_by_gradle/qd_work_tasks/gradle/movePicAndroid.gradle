@@ -1,0 +1,322 @@
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/fun/base.gradle'
+import java.security.SecureRandom
+
+/**
+ * author: lwj 
+ * create time: 2024-6-12
+ * */
+
+
+ext.movePicAndroid = {str1, str2 ->
+    movePic(str1, str2)
+}
+ext.deleteSourceFiles = {
+    deleteSourceFiles()
+}
+
+
+private def deleteSourceFiles() {
+    def root_dir = System.getProperty("user.dir") + "/app/lwj_work_by_gradle/ui/"
+    def files = fileTree(root_dir).include('**/*')//获取所有的文件
+    files.each { itemsFile ->
+//        if(itemsFile.name.endsWith('.png')){
+//            delete(itemsFile.path)
+//        }
+        delete(itemsFile.path)
+    }
+
+    def files2 = file(root_dir)
+    files2.eachDir {dir ->
+        dir.delete()
+    }
+}
+
+//private def movePic2(String str1, String str2) {
+//    fileTree(dir: 'res', includes: ['**/mipmap/**/*.png']).each { File file ->
+//        println "Found PNG file: ${file.path}"
+//    }
+//}
+
+/**
+ * @Param str1: 前缀
+ * @Param str2: 区分不同页面
+ * */
+private def movePic(String str1, String str2) {
+    isNeedRefreshCache = true
+    def str = str1+"_"+str2+"_"
+    def root_dir = System.getProperty("user.dir") + "/app/lwj_work_by_gradle/ui/"
+
+
+    def files = fileTree(root_dir).include("**/mipmap-hdpi/*.png").sort()
+
+    def name = ""
+    def resultNameH = ""
+    def resultNameM = ""
+    def resultName1x = ""
+    def resultName2x = ""
+    def resultName3x = ""
+    files.each { itemsFile ->
+        def isCanCopy = false
+        println()
+        println()
+        def noSuffixName = (itemsFile.name).split("\\.")[0]
+        name = noSuffixName
+        resultNameH = itemsFile.absolutePath
+        println("TAG-->>@1x -->>>:  "+name)
+
+
+        def pathmx = itemsFile.absolutePath.replace("mipmap-hdpi", "mipmap-mdpi")
+        def filemx = new File(pathmx)
+        if(filemx.exists() && filemx.isFile()){
+            resultNameM = pathmx
+            println("TAG-->>@mx 1 -->>>:  "+resultNameM)
+            isCanCopy = true
+        }
+
+        def path1x = itemsFile.absolutePath.replace("mipmap-hdpi", "mipmap-xhdpi")
+        def file1x = new File(path1x)
+        if(file1x.exists() && file1x.isFile()){
+            resultName1x = path1x
+            println("TAG-->>@1x 1 -->>>:  "+resultName1x)
+            isCanCopy = true
+        }
+
+
+        def path2x = itemsFile.absolutePath.replace("mipmap-hdpi", "mipmap-xxhdpi")
+        def file2x = new File(path2x)
+        if(file2x.exists() && file2x.isFile()){
+            resultName2x = path2x
+            println("TAG-->>@2x 1 -->>>:  "+resultName2x)
+            isCanCopy = true
+        }
+
+//        ==========
+        def path3x = itemsFile.absolutePath.replace("mipmap-hdpi", "mipmap-xxxhdpi")
+        def file3x = new File(path3x)
+        if(file3x.exists() && file3x.isFile()){
+            resultName3x = path3x
+            println("TAG-->>@3x 1 -->>>:  "+resultName3x)
+            isCanCopy = true
+        }
+        println()
+        println()
+
+        def randomStringPath = randomWord()
+        def startName = noSuffixName
+        def endName = str+randomStringPath
+
+        if(isCanCopy){
+//            if (name.contains('(')) {
+//                name = name.replace('(', '')
+//            }
+
+
+            if(resultNameH.contains('mipmap-hdpi')) {
+                if (name.contains('(')) {
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace('(', '')
+                    replaceName = replaceName.replace(' ', '')
+                    if (name.contains(')')) {
+                        replaceName = replaceName.replace(')', '')
+                    }
+
+                    itemsFile.renameTo(new File(resultNameH.replace(name, replaceName)))
+                    println("TAG-->>name1 -->>>:  " + replaceName + "\t" + endName)
+//                    copyAndRenameFile(1, replaceName, endName)
+                } else {
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace(' ', '')
+                    itemsFile.renameTo(new File(resultNameH.replace(name, replaceName)))
+                    println("TAG-->>name1re -->>>:  " + name + "\t" + endName)
+//                    copyAndRenameFile(1, replaceName, endName)
+                }
+
+            }
+
+            if(resultNameM.contains('mipmap-mdpi')) {
+                if (name.contains('(')) {
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace('(', '')
+                    replaceName = replaceName.replace(' ', '')
+                    if (name.contains(')')) {
+                        replaceName = replaceName.replace(')', '')
+                    }
+
+                    filemx.renameTo(new File(resultNameM.replace(name, replaceName)))
+                    println("TAG-->>namem -->>>:  " + replaceName + "\t" + endName)
+//                    copyAndRenameFile(4, replaceName, endName)
+                } else {
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace(' ', '')
+                    filemx.renameTo(new File(resultNameM.replace(name, replaceName)))
+                    println("TAG-->>namemre -->>>:  " + name + "\t" + endName)
+//                    copyAndRenameFile(4, replaceName, endName)
+                }
+
+            }
+
+            if(resultName1x.contains('mipmap-xhdpi')) {
+                if (name.contains('(')) {
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace('(', '')
+                    replaceName = replaceName.replace(' ', '')
+                    if (name.contains(')')) {
+                        replaceName = replaceName.replace(')', '')
+                    }
+
+                    file1x.renameTo(new File(resultName1x.replace(name, replaceName)))
+                    println("TAG-->>name1x -->>>:  " + replaceName + "\t" + endName)
+//                    copyAndRenameFile(5, replaceName, endName)
+                } else {
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace(' ', '')
+                    file1x.renameTo(new File(resultName1x.replace(name, replaceName)))
+                    println("TAG-->>name1xre -->>>:  " + name + "\t" + endName)
+//                    copyAndRenameFile(5, replaceName, endName)
+                }
+
+            }
+
+
+            if(resultName2x.contains('mipmap-xxhdpi')){
+                if(name.contains('(')){
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace('(', '')
+                    replaceName = replaceName.replace(' ', '')
+                    if(name.contains(')')){
+                        replaceName = replaceName.replace(')','')
+                    }
+
+                    file2x.renameTo(new File(resultName2x.replace(name, replaceName)))
+                    println("TAG-->>name2 -->>>:  "+replaceName + "\t" + endName)
+                    copyAndRenameFile(2, replaceName, endName)
+
+                }else{
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace(' ', '')
+                    file2x.renameTo(new File(resultName2x.replace(name, replaceName)))
+                    println("TAG-->>name2re -->>>:  " + name + "\t" + endName)
+                    copyAndRenameFile(2, replaceName, endName)
+                }
+//            file2x.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+
+            }
+
+            if(resultName3x != ""){
+                if(name.contains('(')){
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace('(', '')
+                    replaceName = replaceName.replace(' ', '')
+                    if(name.contains(')')){
+                        replaceName = replaceName.replace(')','')
+                    }
+
+                    file3x.renameTo(new File(resultName3x.replace(name, replaceName)))
+                    println("TAG-->>name3 -->>>:  "+replaceName + "\t" + endName)
+//                    copyAndRenameFile(3, replaceName, endName)
+                }else{
+                    def replaceName = ""
+                    replaceName = name
+                    replaceName = replaceName.replace(' ', '')
+                    file3x.renameTo(new File(resultName3x.replace(name, replaceName)))
+                    println("TAG-->>name3re -->>>:  " + name + "\t" + endName)
+//                    copyAndRenameFile(3, replaceName, endName)
+                }
+
+//            file3x.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+            }
+        }
+
+    }
+}
+
+private def copyAndRenameFile(int type, String oldName, String newName){
+
+    println("TAG-->>move -->>>:  "+type + "\t" + oldName + "\t" + newName)
+    def moduleName = ":app"
+
+    if(type == 1){
+        String originFilesDir = project(moduleName).projectDir.path + "/lwj_work_by_gradle/ui/mipmap-hdpi/"
+        String targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-hdpi"
+        copy (){
+            from originFilesDir
+            into targetDir
+//            exclude '**/mipmap-xxhdpi/'
+//            exclude '**/mipmap-xxxhdpi/'
+//            include '**/mipmap-hdpi/*'+oldName+'.png'
+//            eachFile { fileCopyDetails ->
+//                fileCopyDetails.path = fileCopyDetails.name
+//            }
+            include '**/*'+oldName+'.png'
+            rename oldName+'.png', newName+'.png' // 重命名文件
+        }
+    }else if(type == 2){
+        String originFilesDir = project(moduleName).projectDir.path + "/lwj_work_by_gradle/ui/mipmap-xxhdpi/"
+        String targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-xxhdpi"
+        copy (){
+            from originFilesDir
+            into targetDir
+//            eachFile { fileCopyDetails ->
+//                fileCopyDetails.path = fileCopyDetails.name
+//            }
+
+//            include '**/mipmap-xxhdpi/*'+oldName+'.png'
+            include '**/*'+oldName+'.png'
+            rename oldName+'.png', newName+'.png' // 重命名文件
+        }
+    }else if(type == 3){
+        String originFilesDir = project(moduleName).projectDir.path + "/lwj_work_by_gradle/ui/mipmap-xxxhdpi/"
+        String targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-xxxhdpi"
+        copy (){
+            from originFilesDir
+            into targetDir
+//            eachFile { fileCopyDetails ->
+//                fileCopyDetails.path = fileCopyDetails.name
+//            }
+
+//            include '**/mipmap-xxxhdpi/*'+oldName+'.png'
+            include '**/*'+oldName+'.png'
+            rename oldName+'.png', newName+'.png' // 重命名文件
+        }
+    }else if(type == 4){//mdpi
+        String originFilesDir = project(moduleName).projectDir.path + "/lwj_work_by_gradle/ui/mipmap-mdpi/"
+        String targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-mdpi"
+        copy (){
+            from originFilesDir
+            into targetDir
+//            eachFile { fileCopyDetails ->
+//                fileCopyDetails.path = fileCopyDetails.name
+//            }
+
+//            include '**/mipmap-xxxhdpi/*'+oldName+'.png'
+            include '**/*'+oldName+'.png'
+            rename oldName+'.png', newName+'.png' // 重命名文件
+        }
+    }else if(type == 5){//xh
+        String originFilesDir = project(moduleName).projectDir.path + "/lwj_work_by_gradle/ui/mipmap-xhdpi/"
+        String targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-xhdpi"
+        copy (){
+            from originFilesDir
+            into targetDir
+//            eachFile { fileCopyDetails ->
+//                fileCopyDetails.path = fileCopyDetails.name
+//            }
+
+//            include '**/mipmap-xxxhdpi/*'+oldName+'.png'
+            include '**/*'+oldName+'.png'
+            rename oldName+'.png', newName+'.png' // 重命名文件
+        }
+    }
+}
+

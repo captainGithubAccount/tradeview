@@ -1,0 +1,49 @@
+apply from: '../app/lwj_work_by_gradle/qd_work_tasks/fun/base.gradle'
+
+ext.renameDrawablesInModule = { module->
+    renameDrawablesInModule(module)
+}
+
+//替换drawable和layout下面的文件名
+private def renameDrawablesInModule(String module) {
+    def javaDir = file("${projectDir}/src/main/java")
+    def root = file("${System.getProperty("user.dir")}/" + module + "/src/main/")
+    root.eachDirRecurse {dir->
+        def drawableDir = new File(dir, 'drawable')
+        if (drawableDir.exists() && drawableDir.isDirectory()) {
+            // 将drawable文件夹内的文件复制到输出目录
+            modifyRes(drawableDir)
+        }
+    }
+
+}
+
+private def modifyRes(File drawableDir){
+    drawableDir.eachFile { file ->
+        if (file.isFile()) {
+            var randomWord = randomWord() + "_" +randomIdWord()
+            def newDrawableFileName = randomWord+"${file.name.substring(file.name.lastIndexOf('.'))}"
+            def newDrawableFile = new File(drawableDir, newDrawableFileName)
+            file.renameTo(newDrawableFile)
+
+            def oldName = "R.drawable."+file.name.substring(0, file.name.lastIndexOf('.'))
+            def newName = "R.drawable."+randomWord
+            def oldName2 = "@drawable/"+file.name.substring(0, file.name.lastIndexOf('.'))
+            def newName2 = "@drawable/"+randomWord
+
+            def root_dir = System.getProperty("user.dir") +  "/app/src/main/"
+            def root_dir2 = System.getProperty("user.dir") +  "/base/src/main/"
+
+            fileTree(root_dir).each {itemsFile ->
+                fileReader(itemsFile.getPath(), oldName, newName)
+                fileReader(itemsFile.getPath(), oldName2, newName2)
+            }
+            fileTree(root_dir2).each {itemsFile ->
+                fileReader(itemsFile.getPath(), oldName, newName)
+                fileReader(itemsFile.getPath(), oldName2, newName2)
+            }
+
+
+        }
+    }
+}
