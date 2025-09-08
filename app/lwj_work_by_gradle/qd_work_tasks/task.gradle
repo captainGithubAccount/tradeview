@@ -45,7 +45,7 @@ task renameClassInModule(){
 task replaceNameClassInModule(){
     doLast {
 //        修改java和res目录下的前缀
-        replaceNameClassInModule("notiModel", "BlueTen")
+        replaceNameClassInModule("cleModel", "BlueTen")
     }
 }
 
