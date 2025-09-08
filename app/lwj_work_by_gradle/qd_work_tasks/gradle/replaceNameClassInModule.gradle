@@ -82,7 +82,7 @@ private def renameAllXmlNameInModule(String module, String modelName, String old
 private def modifyDrawableRes(File drawableDir, String modelName, String oldQz, String newQz){
     drawableDir.eachFile { file ->
         if (file.isFile()) {
-            def startName = getBaseFileName(itemsFile.absolutePath)
+            def startName = getBaseFileName(file.absolutePath)
             def endName = extractAndRenameFile(startName, oldQz, newQz)
             println "文件名start: $startName"  // 输出: blueten_battery_big
             println "文件名end: $endName"  // 输出: blueten_battery_big
