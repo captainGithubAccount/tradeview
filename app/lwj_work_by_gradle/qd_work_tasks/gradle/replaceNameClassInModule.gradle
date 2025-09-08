@@ -70,13 +70,18 @@ private def renameAllXmlNameInModule(String module, String modelName, String old
         if (drawableDir.exists() && drawableDir.isDirectory()) {
             // 将drawable文件夹内的文件复制到输出目录
             modifyDrawableRes(drawableDir, modelName, oldQz, newQz)
+        }
 
+        def layoutDir = new File(dir, 'layout')
+        if (layoutDir.exists() && layoutDir.isDirectory()) {
+            // 将drawable文件夹内的文件复制到输出目录
+            modifyLayoutRes(layoutDir, modelName, oldQz, newQz)
+        }
 
-            def layoutDir = new File(dir, 'layout')
-            if (layoutDir.exists() && layoutDir.isDirectory()) {
-                // 将drawable文件夹内的文件复制到输出目录
-                modifyLayoutRes(layoutDir, modelName, oldQz, newQz)
-            }
+        def mipmapDir = new File(dir, 'mipmap-xxhdpi')
+        if (mipmapDir.exists() && mipmapDir.isDirectory()) {
+            // 将drawable文件夹内的文件复制到输出目录
+            modifyMipmapRes(mipmapDir, modelName, oldQz, newQz)
         }
     }
 }
@@ -116,6 +121,29 @@ private def modifyLayoutRes(File drawableDir, String modelName, String oldQz, St
             def newName = "R.layout."+endName
             def oldName2 = "@layout/"+file.name.substring(0, file.name.lastIndexOf('.'))
             def newName2 = "@layout/"+endName
+
+            def root_dir = System.getProperty("user.dir") +  "/${modelName}/src/main/"
+            fileTree(root_dir).each {itemsFile ->
+                fileReader(itemsFile.getPath(), oldName, newName)
+                fileReader(itemsFile.getPath(), oldName2, newName2)
+            }
+        }
+    }
+}
+
+private def modifyMipmapRes(File drawableDir, String modelName, String oldQz, String newQz){
+    drawableDir.eachFile { file ->
+        if (file.isFile()) {
+            def startName = getBaseFileName(file.absolutePath)
+            def endName = extractAndRenameFile(startName, oldQz, newQz)
+            println "文件名start: $startName"  // 输出: blueten_battery_big
+            println "文件名end: $endName"  // 输出: blueten_battery_big
+            file.renameTo(new File(file.absolutePath.replace(startName, endName)))
+
+            def oldName = "R.mipmap."+file.name.substring(0, file.name.lastIndexOf('.'))
+            def newName = "R.mipmap."+endName
+            def oldName2 = "@mipmap/"+file.name.substring(0, file.name.lastIndexOf('.'))
+            def newName2 = "@mipmap/"+endName
 
             def root_dir = System.getProperty("user.dir") +  "/${modelName}/src/main/"
             fileTree(root_dir).each {itemsFile ->
