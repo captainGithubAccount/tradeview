@@ -13,6 +13,8 @@ ext.replaceNameClassInModule = {dir, replaceNameString->
 
 private def replaceNameClassInModule(String suffix, String dir, String replaceNameString) {
     isNeedRefreshCache = true
+    def word = randomWord()
+    word = word[0].toUpperCase() + word[1..-1]
 //    def moduleName = ":app"
 //    def root_dir = project(moduleName).projectDir.absolutePath + "/src/main/java/com/juyi/battery/infinite/master/aapter/"
     def root_dir = System.getProperty("user.dir") + dir
@@ -32,7 +34,7 @@ private def replaceNameClassInModule(String suffix, String dir, String replaceNa
             randomStringPath2 = randomStringPath2[0].toUpperCase() + randomStringPath2[1..-1]
             def endName = ""
             if (itemsFile.name.contains(replaceNameString)) {
-                endName = randomStringPath2
+                endName = word + randomStringPath2
                 itemsFile.renameTo(new File(itemsFile.absolutePath.replace("Blue", endName)))
             }else if (itemsFile.name.contains('Firebase') && itemsFile.name.contains('Manager')) {
                 endName = "Firebase${randomStringPath2}Manager"
@@ -41,7 +43,7 @@ private def replaceNameClassInModule(String suffix, String dir, String replaceNa
                 endName = "Firebase${randomStringPath2}Utils"
                 itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
             }else{
-                endName = randomStringPath2
+                endName = word + randomStringPath2
                 itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
             }
 
