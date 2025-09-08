@@ -1,0 +1,625 @@
+
+// 在项目的根目录下的build.gradle文件中配置项目支持的插件
+buildscript {
+    ext.kotlin_version = "1.6.0"
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+import java.security.SecureRandom
+import org.apache.commons.io.FileUtils
+import java.util.regex.Pattern
+import java.util.Comparator
+//import static java.util.stream.Collectors.*;
+//import static java.util.stream.Collectors.toMap;
+//import static java.util.stream.Collectors.toSet;
+
+
+/**
+ * author: lwj 
+ * create time: 2024-5-28
+ * */
+
+ext.renameClassFiles = {
+    renameClassFiles('.java')
+    renameClassFiles('.kt')
+}
+ext.movePic = {str1, str2 ->
+    movePic(str1, str2)
+}
+ext.deleteSourceFiles = {
+    deleteSourceFiles()
+
+}
+ext.modifyResId = {
+    modifyResId()
+}
+ext.deleteFile = {
+    deleteFile()
+}
+ext.copyFile = {
+    copyFile()
+}
+
+//ext {
+//    counter = 1
+//}
+
+private def renameClassFiles(String suffix) {
+    isNeedRefreshCache = true
+//    def moduleName = ":app"
+//    def root_dir = project(moduleName).projectDir.absolutePath + "/src/main/java/com/juyi/battery/infinite/master/aapter/"
+    def root_dir = System.getProperty("user.dir") + "/app/src/main/java/com/wcleanb/clean/phone/"
+    def root_dir2 = System.getProperty("user.dir") + "/app/src/main/res/"
+    def files = fileTree(root_dir).include("**/*$suffix")
+    files.each { itemsFile ->
+        def noSuffixName = (itemsFile.name).split("\\.")[0]
+        def layoutName = getLayoutNameFromClassName(noSuffixName)
+        def xmlFiles = fileTree(root_dir2).include("**/*${layoutName}.xml")
+        def randomStringPath = ""
+        println("TAG-->>xmlFiles.isEmpty():\t\t"+xmlFiles.isEmpty())
+        if(!xmlFiles.isEmpty()){
+            if ((itemsFile.name.contains('Activity') || itemsFile.name.contains('Fragment')) && !itemsFile.name.contains('ActivitysManager')) {
+                randomStringPath = randomWord().capitalize()//capitalize()首字母大写  uncapitalize()首字母小写
+                def startName = noSuffixName
+//                randomStringPath = randomStringPath[0].toUpperCase() + randomStringPath[1..-1]//首字母大写，其他小写
+                def endName = "${randomStringPath}Activity"
+                renameName(startName, endName)
+                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+                xmlFiles.each { xmlFile ->
+                    renameName(layoutName, "activity_"+randomStringPath.uncapitalize())
+                    xmlFile.renameTo(new File(xmlFile.absolutePath.replace(layoutName, "activity_"+randomStringPath.uncapitalize())))
+                }
+                renameName(getClassNameFromLayoutName(layoutName)+"Binding","Activity"+ randomStringPath + "Binding")
+            }
+
+        }else{
+            //BKAQIBeanatxx
+            if (/*"AA".equals(flagStr) && */itemsFile.name.endsWith('.java') || itemsFile.name.endsWith('.kt') ) {
+                println("TAG-->>name-->>>:  "+itemsFile.name)
+                if (!itemsFile.name.contains('ActivitysManager') && (itemsFile.name.contains('Activity') || itemsFile.name.contains('Fragment') /*|| itemsFile.name.contains('Utils') || itemsFile.name.contains('Util') || itemsFile.name.contains('Helper')*/)) {
+                    def randomStringPath2 = randomString(5)
+                    def startName = noSuffixName
+                    randomStringPath2 = randomStringPath2[0].toUpperCase() + randomStringPath2[1..-1]
+                    def endName = "${randomStringPath2}Activity"
+                    renameName(startName, endName)
+                    itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+                }
+            }
+        }
+    }
+}
+
+private def getClassNameFromLayoutName(String layoutName){
+    if(layoutName.contains('activity')){
+        String className = ""
+        String[] parts = layoutName.split('_')
+        for(int i=1; i< parts.size(); i++){
+            className += parts[i].capitalize()
+        }
+        className = "Activity" + className
+        println("TAG-->>class form layout:\t\t"+className)
+        return className
+    }else if(layoutName.contains('fragment')){
+        String className = ""
+        String[] parts = layoutName.split('_')
+        for(int i=1; i< parts.size(); i++){
+            className += parts[i].capitalize()
+        }
+        className = "Fragment" + className
+        return className
+    }
+}
+
+private def getLayoutNameFromClassName(String className1){
+    def className = className1
+//    List<String> splittedList2 = className.collect { it.toUpperCase()?it.toString():'' }.join(' ').split(' ')
+
+    String layoutName = className
+            .collect { ch -> ch == ch.toUpperCase() ? "_${ch.toLowerCase()}" : ch.toLowerCase() }
+            .join()
+            .replaceFirst("_", "")
+            .replace("_activity", "")
+    // 移除空字符串
+//    List<String> splittedList2 = splittedList.findAll { it != '' }
+
+
+//    String layoutName = ""
+//    for(int i =0; i< splittedList2.size(); i++){
+//        if(i != splittedList2.size()){
+//            println("TAG-->> layout name:--->" + "splittedList2"+splittedList2[i])
+//            layoutName += splittedList2[i].uncapitalize()
+//        }
+//        layoutName + "_"
+//    }
+    println("TAG-->> layout name:--->" + "activity_"+layoutName)
+    return "activity_"+layoutName
+}
+
+private def renameName(String oldName, String newName){
+    def root_dir = System.getProperty("user.dir") + "/app/src/main/"
+    def files = fileTree(root_dir)
+    files.each {itemsFile ->
+        fileReader(itemsFile.getPath(), oldName, newName)
+    }
+}
+
+
+private def findAndModifyId(String regex, File file, String idPrefix, int counter){
+    def strReplace = [:]
+//    def strReplace = new HashMap<>();
+//    TreeMap<String, Integer> strReplace = new TreeMap<>(
+//            (key1, key2) -> Integer.compare(key2.length(), key1.length())
+//    )
+    println()
+    def content = FileUtils.readFileToString(file, 'UTF-8')
+    def pattern = Pattern.compile(regex)
+    def matcher = pattern.matcher(content)
+    StringBuffer sb = new StringBuffer()
+//    List<String> names = new ArrayList<>()
+    while (matcher.find()) {
+//        names.add(matcher.group(1));
+        String resOldId = matcher.group(1)
+        def resNewId = idPrefix + counter++
+        matcher.appendReplacement(sb, "android:id=\"@+id/$resNewId\"")
+        strReplace.put(resOldId, resNewId)
+
+    }
+//    Collections.sort(names, new Comparator<String>() {
+//        @Override
+//        public int compare(String o1, String o2) {
+//            return Integer.compare(o2.length(), o1.length());
+//        }
+//    });
+//
+//    names.forEach {
+//        def resOldId = it
+//
+//    }
+
+    matcher.appendTail(sb)
+    FileUtils.writeStringToFile(file, sb.toString(), 'UTF-8')
+//    def sortedStrReplace = strReplace.sort { a, b ->
+//        b.name.length() <=> a.key.length()
+//    }.collectEntries()
+    // 按key名称长度降序排列Map
+    def sortedStrReplace = strReplace.sort { a, b ->
+        b.key.length() <=> a.key.length()
+    }
+    sortedStrReplace.forEach {key, value ->
+        println()
+        println()
+        println("fileReader ID in $file.name: $key -> $value")
+        fileReader(file.path, key, value)
+        def codeOldId = getCamelCase(key).uncapitalize()
+        def codeNewId = getCamelCase(value).uncapitalize()
+        println("TAG-->>resOldId："+key + "\t\tresNewId："+value)
+        println("TAG-->>codeOldId："+codeOldId + "\t\tcodeNewId："+codeNewId)
+
+        def noSuffixName = (file.name).split("\\.")[0]
+        if(file.name.contains('activity')){
+            String fileName = ""
+            String[] parts = noSuffixName.split('_')
+            for(int i=1; i< parts.size(); i++){
+                fileName += parts[i].capitalize()
+            }
+            fileName += "Activity"
+            println("TAG-->>fileName ddd--: "+fileName)
+            def root_dir = System.getProperty("user.dir") + "/app/src/main/java/"
+            def files = fileTree(root_dir).include("**/*${fileName}.kt")/*.sort { a, b -> b.name.length() <=> a.name.length() }*/
+            files.each { itemsFile ->
+//                fileReader(itemsFile.getPath(), codeOldId, codeNewId)
+//                fileReader(itemsFile.getPath(), key, value)
+                fileReader(itemsFile.getPath(), "$codeOldId.", "$codeNewId.")
+                fileReader(itemsFile.getPath(), "id.$codeOldId", "id.$codeNewId")
+                fileReader(itemsFile.getPath(), "binding.$codeOldId.", "binding.$codeNewId.")
+
+                fileReader(itemsFile.getPath(), "$key.", "$value.")
+                fileReader(itemsFile.getPath(), "id.$key", "id.$value")
+                fileReader(itemsFile.getPath(), "binding.$key.", "binding.$value.")
+                fileReader(itemsFile.getPath(), key, value)
+
+            }
+
+//            files.each { itemsFile ->
+//                fileReader(itemsFile.getPath(), key, value)
+//            }
+        }else if(file.name.contains('fragment')){
+
+            String fileName = ""
+            String[] parts = noSuffixName.split('_')
+            for(int i=1; i< parts.length; i++){
+                fileName += parts[i].capitalize()
+            }
+            fileName += "Fragment"
+            println("TAG-->>fileName ddd--: "+fileName)
+            def root_dir = System.getProperty("user.dir") + "/app/src/main/java/"
+            def files = fileTree(root_dir).include("**/*${fileName}.kt")/*.sort { a, b -> b.name.length() <=> a.name.length() }*/
+            files.each { itemsFile ->
+//                fileReader(itemsFile.getPath(), codeOldId, codeNewId)
+//                fileReader(itemsFile.getPath(), key, value)
+                fileReader(itemsFile.getPath(), "$codeOldId.", "$codeNewId.")
+                fileReader(itemsFile.getPath(), "id.$codeOldId", "id.$codeNewId")
+                fileReader(itemsFile.getPath(), "binding.$codeOldId.", "binding.$codeNewId.")
+
+                fileReader(itemsFile.getPath(), "$key.", "$value.")
+                fileReader(itemsFile.getPath(), "id.$key", "id.$value")
+                fileReader(itemsFile.getPath(), "binding.$key.", "binding.$value.")
+                fileReader(itemsFile.getPath(), key, value)
+
+            }
+
+//            files.each { itemsFile ->
+//                fileReader(itemsFile.getPath(), key, value)
+//            }
+        }
+    }
+}
+
+private def modifyResId(){
+    isNeedRefreshIdCache = true
+    File layoutDir = file('src/main/res/layout') // 指定布局文件所在目录
+    File[] layoutFiles = layoutDir.listFiles({ file, filename -> filename.endsWith('.xml') } as FilenameFilter)
+//    String idPrefix = "new_id_" // 新的ID前缀
+    layoutFiles.each { File file ->
+//        println("TAG-->>\t"+file.name)
+        if(file.name.contains('activity') || file.name.contains('fragment')){
+            def counter = 1
+            def idPrefix = randomIdWord()
+            findAndModifyId('android:id="@id/([^"]+)"', file, idPrefix, counter)
+            findAndModifyId('android:id="@\\+id/([^"]+)"', file, idPrefix, counter)
+        }else{
+            println("TAG-->>Error:-----file is："+file.name)
+        }
+    }
+}
+
+
+String getCamelCase(String input) {
+    input.split('_')
+            .collect { it.capitalize() }
+            .join('')
+}
+
+private def deleteFile(){
+    //删除proguard-keys.txt
+    def path = System.getProperty("user.dir") + "/app/proguard-keys.txt"
+    def file = new File(path)
+    if(file.isFile() && file.exists()){
+        delete(path)
+    }
+}
+
+private def copyFile(){
+    def moduleName = ":app"
+    String originProguiardDir = project(moduleName).projectDir.path + "/lwj_work_by_gradle/testpy/"
+    String proguiardTargetDir = System.getProperty("user.dir") + "/app"
+    copy (){
+        from originProguiardDir
+        into proguiardTargetDir
+        include '**/*.txt'
+    }
+}
+
+private def deleteSourceFiles() {
+    def root_dir = System.getProperty("user.dir") + "/app/lwj_work_by_gradle/"
+    def files = fileTree(root_dir)//获取所有的文件
+    files.each { itemsFile ->
+        if(itemsFile.name.endsWith('.png')){
+            delete(itemsFile.path)
+        }
+    }
+}
+
+/**
+ * @Param str1: 前缀
+ * @Param str2: 区分不同页面
+ * */
+private def movePic(String str1, String str2) {
+    isNeedRefreshCache = true
+    def str = str1+"_"+str2+"_"
+    def root_dir = System.getProperty("user.dir") + "/app/lwj_work_by_gradle/"
+    def files = fileTree(root_dir).include("**/*.png").sort()
+//    def files = fileTree(root_dir).include("**/*.png").sort{
+//        a.name <=> b.name
+//    }
+    def name = ""
+    def resultName2x = ""
+    def resultName3x = ""
+    files.each { itemsFile ->
+//        println("TAG-->>name foreach-->>>:  "+itemsFile.name)
+//        println("TAG-->>name path-->>>:  "+itemsFile.absolutePath)
+
+        def isCanCopy = false
+
+        println()
+        println()
+        def noSuffixName = (itemsFile.name).split("\\.")[0]
+        name = noSuffixName
+        println("TAG-->>@1x 1 -->>>:  "+name)
+
+        def name2x = noSuffixName + "@2x"
+        def path2x = itemsFile.absolutePath.replace(name + ".png", name2x + ".png")
+        def file2x = new File(path2x)
+        if(file2x.exists() && file2x.isFile()){
+            resultName2x = name2x
+            println("TAG-->>@2x 1 -->>>:  "+resultName2x)
+            isCanCopy = true
+
+//            def inputString = "这是一个(示例)字符串"
+//            def parts = inputString.tokenize('(')
+//            println "切割后的部分："
+//            parts.each { part ->
+//                println " - " + part
+//            }
+        }else{
+            if(noSuffixName.contains('(')){
+                def noSuffixName2x = (noSuffixName).split("\\(")
+//                println("TAG-->>name2x-->>>:  "+noSuffixName2x[0] + "\t" +noSuffixName2x[1])
+                name2x = noSuffixName2x[0] + "@2x" + "(" + noSuffixName2x[1]
+
+//                println("TAG-->>name2xdd-->>>:  "+name2x)
+                path2x = itemsFile.absolutePath.replace(name + ".png", name2x + ".png")
+                file2x = new File(path2x)
+                if(file2x.exists() && file2x.isFile()){
+                    resultName2x = name2x
+                    println("TAG-->>@2x 2 -->>>:  "+resultName2x)
+                    isCanCopy = true
+                }
+            }
+        }
+
+        def name3x = noSuffixName + "@3x"
+        def path3x = itemsFile.absolutePath.replace(name + ".png", name3x + ".png")
+        def file3x = new File(path3x)
+        if(file3x.exists() && file3x.isFile()){
+            resultName3x = name3x
+            println("TAG-->>@3x 1 -->>>:  "+resultName3x)
+            isCanCopy = true
+        }else{
+            if(noSuffixName.contains('(')){
+                def noSuffixName3x = (noSuffixName).split("\\(")
+                name3x = noSuffixName3x[0] + "@3x" + "(" + noSuffixName3x[1]
+                path3x = itemsFile.absolutePath.replace(name + ".png", name3x + ".png")
+                file3x = new File(path3x)
+                if(file3x.exists() && file3x.isFile()){
+//                    name3x = noSuffixName3x[0] + "@3x" + "\\(" + noSuffixName3x[1]
+//                    name3x = name3x.split("\\)")[0] + "\\)"
+                    resultName3x = name3x
+                    println("TAG-->>@3x 2 -->>>:  "+resultName3x)
+                    isCanCopy = true
+                }
+            }
+        }
+
+
+//        def randomStringPath = randomString(5)//防止无意义的字母被谷歌关联
+        def randomStringPath = randomWord()
+        def startName = noSuffixName
+        def endName = str+randomStringPath
+
+//        itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+        if(isCanCopy){
+
+            if(name.contains('(')){
+                def replaceName = ""
+                replaceName = name.replace('(','')
+                if(name.contains(')')){
+                    replaceName = replaceName.replace(')','')
+                }
+                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(name, replaceName)))
+                println("TAG-->>name1 -->>>:  "+replaceName + "\t" + endName)
+                copyAndRenameFile(1, replaceName, endName)
+            }else{
+                copyAndRenameFile(1, name, endName)
+            }
+
+
+
+            if(resultName2x != ""){
+                if(resultName2x.contains('(')){
+                    def replaceName2x = ""
+                    replaceName2x = resultName2x.replace('(','')
+                    if(resultName2x.contains(')')){
+                        replaceName2x = replaceName2x.replace(')','')
+                    }
+                    file2x.renameTo(new File(file2x.absolutePath.replace(resultName2x, replaceName2x)))
+                    println("TAG-->>name2 -->>>:  "+replaceName2x + "\t" + endName)
+                    copyAndRenameFile(2, replaceName2x, endName)
+
+                }else{
+                    copyAndRenameFile(2, resultName2x, endName)
+                }
+//            file2x.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+
+            }
+
+            if(resultName3x != ""){
+                if(resultName3x.contains('(')){
+                    def replaceName3x = ""
+                    replaceName3x = resultName3x.replace('(','')
+                    if(resultName3x.contains(')')){
+                        replaceName3x = replaceName3x.replace(')','')
+                    }
+
+                    file3x.renameTo(new File(file3x.absolutePath.replace(resultName3x, replaceName3x)))
+                    println("TAG-->>name3 -->>>:  "+replaceName3x + "\t" + endName)
+                    copyAndRenameFile(3, replaceName3x, endName)
+                }else{
+                    copyAndRenameFile(3, resultName3x, endName)
+                }
+
+//            file3x.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+
+            }
+        }
+
+    }
+}
+
+private def copyAndRenameFile(int type, String oldName, String newName){
+
+    println("TAG-->>move -->>>:  "+type + "\t" + oldName + "\t" + newName)
+    def moduleName = ":app"
+    String originFilesDir = project(moduleName).projectDir.path + "/lwj_work_by_gradle/ui/"
+    String targetDir = ""
+    if(type == 1){
+        targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-hdpi"
+    }else if(type == 2){
+        targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-xxhdpi"
+    }else if(type == 3){
+        targetDir = project(moduleName).projectDir.path + "/src/main/res/mipmap-xxxhdpi"
+    }
+    def newOldName1 = ""
+    def newOldName2 = ""
+    if(oldName.contains('(')){
+        newOldName1 = oldName.split("\\(")[0]
+        if(oldName.contains(')')){
+            newOldName2 = newOldName1.split("\\)")[0]
+        }
+    }
+
+//    if(newOldName1 != "" && newOldName2 != ""){
+//        copy (){
+//            from originFilesDir
+//            into targetDir
+////        exclude 'qd_work_tasks'
+////        exclude 'testpy'
+//            include '**/*'+oldName+'.png'
+//            rename newOldName1+'\\('+ newOldName2 + '\\)' +'.png', newName+'.png' // 重命名文件
+//        }
+//    }else{
+        copy (){
+            from originFilesDir
+            into targetDir
+//        exclude 'qd_work_tasks'
+//        exclude 'testpy'
+            include '**/*'+oldName+'.png'
+            rename oldName+'.png', newName+'.png' // 重命名文件
+        }
+//    }
+
+
+//    if(type == 1){
+//
+//    }else if(type == 2){
+//        resultName2x = ""
+//    }else if(type == 3){
+//        resultName3x = ""
+//    }
+}
+
+
+
+def fileReader(path, name, modifyName) {
+    def readerString = ""
+    def hasReplace = false
+
+    file(path).withReader('UTF-8') { reader ->
+        reader.eachLine {
+            if (it.find(name)) {
+                it = it.replace(name, modifyName)
+                hasReplace = true
+            }
+            readerString <<= it
+            readerString << '\n'
+        }
+
+        if (hasReplace) {
+            file(path).withWriter('UTF-8') {
+                within ->
+                    within.append(readerString)
+            }
+        }
+        return readerString
+    }
+}
+// 定义生成随机字符串的函数
+static def randomString(int length) {
+// 首先定义一个随机数生成器
+    SecureRandom secureRandom = new SecureRandom()
+    // 使用可打印的 ASCII 字符作为生成字符串的字符集合
+    String characters = ('abcdefghijklmnopqrstuvwxyz')//ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    // 用 StringBuilder 保存生成的字符串
+    StringBuilder sb = new StringBuilder()
+
+    // 循环生成指定长度的随机字符串
+    for (int i = 0; i < length; i++) {
+        // 从字符集合中随机选择一个字符
+        int randomIndex = secureRandom.nextInt(characters.length())
+        char randomChar = characters.charAt(randomIndex)
+        // 将选择的字符添加到字符串中
+        sb.append(randomChar)
+    }
+
+    // 返回生成的随机字符串
+    return sb.toString()
+}
+
+ext{
+//    words = [
+//            "apple", "banana"
+//    ]
+
+    words = [
+            "apple", "banana", "cherry", "date", "pig", "grade", "honey", "icon",
+            "what", "hello", "lemon", "mango", "nectarine", "orange", "panda",
+            "quince", "world", "sister", "tomato", "uberry", "water",
+            "ximenia", "yes", "no", "just", "foreach","tomato"
+    ]
+
+    idWords = [
+            "apple", "banana", "cherry", "date", "pig", "grade", "honey", "icon",
+            "what", "hello", "lemon", "mango", "nectarine", "orange", "panda",
+            "quince"
+    ]
+
+    isNeedRefreshCache = true
+    isNeedRefreshIdCache = true
+}
+def randomIdWord() {
+    if(isNeedRefreshIdCache){//每次转移文件都刷新一下缓存
+        idWords = [
+                "apple", "banana", "cherry", "date", "pig", "grade", "honey", "icon",
+                "what", "hello", "lemon", "mango", "nectarine", "orange", "panda",
+                "quince"
+        ]
+        isNeedRefreshIdCache = false
+    }
+    def random = new Random()
+    def index = random.nextInt(idWords.size())
+    def word = idWords[index]
+    idWords[index] = word + randomString(1)
+    idWords.each {
+        print("\t" + it)
+    }
+    return word
+}
+
+def randomWord() {
+    if(isNeedRefreshCache){//每次转移文件都刷新一下缓存
+        words = [
+                "apple", "banana", "cherry", "date", "pig", "grade", "honey", "icon",
+                "what", "hello", "lemon", "mango", "nectarine", "orange", "panda",
+                "quince", "world", "sister", "tomato", "uberry", "water",
+                "ximenia", "yes", "no", "just", "foreach","tomato"
+        ]
+        isNeedRefreshCache = false
+    }
+    def random = new Random()
+    def index = random.nextInt(words.size())
+    def word = words[index]
+    words[index] = word + randomString(1)
+    words.each {
+        print("\t" + it)
+    }
+    return word
+}

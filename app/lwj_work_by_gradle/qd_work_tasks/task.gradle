@@ -21,7 +21,7 @@ apply from: '../app/lwj_work_by_gradle/qd_work_tasks/gradle/renameDrawablesInMod
 task autoMovePicAndroid(){
     doLast {
 //        movePicAndroid("ic", "launcher")
-        movePicAndroid("tf_may", "ty_may_mine")
+        movePicAndroid("ic", "permission_notify")
         deleteSourceFiles()
 //        def dirsToCheck = file('src').listFiles({ File dir, String name -> new File(dir, name).isDirectory() } as FileFilter)
 
@@ -34,7 +34,7 @@ task autoMovePicAndroid(){
  * */
 task renameClassInModule(){
     doLast {
-        renameClassInModule("/base/src/main/java/")
+        renameClassInModule("/app/src/main/java/")
     }
 }
 
@@ -45,7 +45,7 @@ task renameClassInModule(){
  * */
 task renameClassFiles(){
     doLast {
-        renameClassFiles("/app/src/main/java/com/tfmayclean/test/")
+        renameClassFiles("/app/src/main/java/com/clean/february/")
     }
 }
 
