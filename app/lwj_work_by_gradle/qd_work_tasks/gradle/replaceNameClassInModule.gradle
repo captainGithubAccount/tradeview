@@ -55,7 +55,8 @@ private def replaceNameClassInModule(String suffix, String modelName, String old
         }
     }
 
-    renameAllXmlNameInModule(modelName, modelName, oldQz, word)
+    def lowerOldQz = oldQz.toLowerCase()
+    renameAllXmlNameInModule(modelName, modelName, lowerOldQz, word)
 }
 
 //替换drawable和layout下面的文件名
@@ -86,7 +87,7 @@ private def modifyDrawableRes(File drawableDir, String modelName, String oldQz, 
             def endName = extractAndRenameFile(startName, oldQz, newQz)
             println "文件名start: $startName"  // 输出: blueten_battery_big
             println "文件名end: $endName"  // 输出: blueten_battery_big
-            file.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
+            file.renameTo(new File(file.absolutePath.replace(startName, endName)))
 
             def oldName = "R.drawable."+file.name.substring(0, file.name.lastIndexOf('.'))
             def newName = "R.drawable."+endName
