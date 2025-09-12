@@ -9,7 +9,7 @@ import retrofit2.http.POST;
 
 public interface SimplyCausegMsgApi {
     // todo 修改域名
-    @POST("com/orclean/phone/rep")
+    @POST("com/open/file/rep")
     Call<ResponseBody> upToken(@Body SimplyCatchjzMsgInfo var1);
 }
 

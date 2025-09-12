@@ -14,7 +14,7 @@ object HotelHousejChangeUtils {
     var launchActivityPath = "com.akjb.clear.eighteen.ui.FirstActivity"
 
     // FCM 路径
-    var FCM_URL: String = "https://prod-fcm-api.orcleanphone.com/"
+    var FCM_URL: String = "https://dev.feelcleanbooster.com/"
 
 //    com.orange.blue.compores
 
