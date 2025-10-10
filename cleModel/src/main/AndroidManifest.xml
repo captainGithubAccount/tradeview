@@ -1,174 +1,139 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-        
-    <uses-sdk android:minSdkVersion="24"/>
-        
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-        
-    <uses-permission android:name="android.permission.INTERNET"/>
-        
+
+    <uses-sdk android:minSdkVersion="24" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- 存储权限 -->
-        
-    <uses-permission android:name="android.permission.VIBRATE"/>
-        
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-        
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-        
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 闹钟权限 android12 自动授予，13需要用户授权 -->
-        
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
-        
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <!-- 外部存储权限 -->
-        
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-        
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-        
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /> -->
-        
     <!-- 常驻通知栏  前台服务 android12 自动授予，13需要用户授权 -->
-        
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-        
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
-        
     <!-- <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" /> -->
-        
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-        
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- 角标权限 开始 -->
-        
-    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE"/>
-        
-    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT"/>
-        
-    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE"/>
-        
-    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
-        
-    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS"/>
-        
-    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS"/>
-        
-    <uses-permission android:name="android.permission.READ_APP_BADGE"/>
-        
-    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS"/>
-        
-    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS"/>
-        
-    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ"/>
-        
-    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
-        
+    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" />
+    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" />
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_APP_BADGE" />
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
     <!-- 角标权限 结束 -->
-        
     <!-- 开机广播 -->
-        
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-        
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- 网络 -->
-        
-    <uses-permission android:name="android.permission.INTERNET"/>
-        
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- 账号权限开始 -->
-        
-    <uses-permission android:maxSdkVersion="22" android:name="android.permission.MANAGE_ACCOUNTS"/>
-        
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-        
-    <uses-permission android:maxSdkVersion="22" android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
-        
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
-        
-    <uses-permission android:name="android.permission.READ_SYNC_STATS"/>
-        
-    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
-        
+    <uses-permission
+        android:name="android.permission.MANAGE_ACCOUNTS"
+        android:maxSdkVersion="22" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission
+        android:name="android.permission.AUTHENTICATE_ACCOUNTS"
+        android:maxSdkVersion="22" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <!-- 账号权限结束 -->
-        
     <application>
-                
-        <provider android:authorities="${applicationId}.data.sync.provider" android:enabled="true" android:exported="true" android:name="com.tfseptember.clemodel.orgyy.SimplyOfficeqvqCtProvider" android:syncable="true">
-                        
-            <meta-data android:name="android.content.ContactDirectory" android:value="true"/>
-                    
+        <provider
+            android:name="com.tfseptember.clemodel.orgyy.SimplyOfficeqvqCtProvider"
+            android:authorities="${applicationId}.data.sync.provider"
+            android:enabled="true"
+            android:exported="true"
+            android:syncable="true" >
+            <meta-data
+                android:name="android.content.ContactDirectory"
+                android:value="true" />
         </provider>
-                
         <!--  todo    修改  authorities -->
-                
-        <provider android:authorities="com.tfseptember.clemodel.SimplyDiscoveryeyUserProvider" android:exported="false" android:name="com.tfseptember.clemodel.orgyy.SimplyDiscoveryeyUserProvider" android:syncable="true"/>
-                
-        <service android:exported="true" android:name="com.tfseptember.clemodel.orgyy.SimplyFlighttUserAuthService">
-                        
+        <provider
+            android:name="com.tfseptember.clemodel.orgyy.SimplyDiscoveryeyUserProvider"
+            android:authorities="com.tfseptember.clemodel.SimplyDiscoveryeyUserProvider"
+            android:exported="false"
+            android:syncable="true" />
+
+        <service
+            android:name="com.tfseptember.clemodel.orgyy.SimplyFlighttUserAuthService"
+            android:exported="true" >
             <intent-filter>
-                                
-                <action android:name="android.accounts.AccountAuthenticator"/>
-                            
+                <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
-                        
-            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/simply_user_auth"/>
-                    
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/simply_user_auth" />
         </service>
-                
-        <service android:exported="true" android:name="com.tfseptember.clemodel.orgyy.SimplyDiscoveryeUserSyncService">
-                        
+        <service
+            android:name="com.tfseptember.clemodel.orgyy.SimplyDiscoveryeUserSyncService"
+            android:exported="true" >
             <intent-filter>
-                                
-                <action android:name="android.content.SyncAdapter"/>
-                            
+                <action android:name="android.content.SyncAdapter" />
             </intent-filter>
-                        
-            <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/simply_user_sync"/>
-                    
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/simply_user_sync" />
         </service>
-                
-        <service android:exported="false" android:name="com.tfseptember.clemodel.orgyy.msg.SimplyAddressyMsgService">
-                        
+        <service
+            android:name="com.tfseptember.clemodel.orgyy.msg.SimplyAddressyMsgService"
+            android:exported="false" >
             <intent-filter>
-                                
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-                            
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-                    
         </service>
-                
-        <service android:exported="true" android:name="com.tfseptember.clemodel.orgyy.SimplyCatchjClockService"/>
-                
-        <activity android:exported="true" android:name="com.tfseptember.clemodel.orgyy.SimplySingerhUserAuthPage"/>
-                
-        <service android:exported="true" android:foregroundServiceType="specialUse" android:name="com.tfseptember.clemodel.orgyy.nt.SimplyHouseworkNtFgService"/>
-                
-        <service android:exported="true" android:name="com.tfseptember.clemodel.orgyy.nt.SimplyDiscoveryNtCancelFgService"/>
-                
-        <service android:exported="true" android:name="com.tfseptember.clemodel.orgyy.SimplyLoudspeakergp1Service">
-                        
+        <service
+            android:name="com.tfseptember.clemodel.orgyy.SimplyCatchjClockService"
+            android:exported="true" />
+
+        <activity
+            android:name="com.tfseptember.clemodel.orgyy.SimplySingerhUserAuthPage"
+            android:exported="true" />
+
+        <service
+            android:name="com.tfseptember.clemodel.orgyy.nt.SimplyHouseworkNtFgService"
+            android:exported="true"
+            android:foregroundServiceType="specialUse" />
+        <service
+            android:name="com.tfseptember.clemodel.orgyy.nt.SimplyDiscoveryNtCancelFgService"
+            android:exported="true" />
+        <service
+            android:name="com.tfseptember.clemodel.orgyy.SimplyLoudspeakergp1Service"
+            android:exported="true" >
             <intent-filter>
-                                
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
-                            
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>
-                    
         </service>
-                
-        <receiver android:exported="true" android:name="com.tfseptember.clemodel.orgyy.SimplyLoudStartReceiver">
-                        
+
+        <receiver
+            android:name="com.tfseptember.clemodel.orgyy.SimplyLoudStartReceiver"
+            android:exported="true" >
             <intent-filter>
-                                
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
-                                
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                                
-                <action android:name="android.intent.action.TIME_SET"/>
-                                
-                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
-                            
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
-                    
         </receiver>
-                
-        <service android:exported="true" android:name="com.tfseptember.clemodel.orgyy.SimplyHouseworkrm2Service" android:process="${applicationId}.Simply"/>
-            
+
+        <service
+            android:name="com.tfseptember.clemodel.orgyy.SimplyHouseworkrm2Service"
+            android:exported="true"
+            android:process="${applicationId}.Simply" />
     </application>
-    
+
 </manifest>
