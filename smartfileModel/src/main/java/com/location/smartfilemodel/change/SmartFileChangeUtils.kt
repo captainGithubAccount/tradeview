@@ -8,10 +8,10 @@ object SmartFileChangeUtils {
     // 通知点击
     var noti_click_str = "smartFileClickStr"
 
-    var coolTimeStar = "notify_sleep_time"
+    var coolTimeStar = "smartfile_notify_sleep_time"
 
     // 启动页路径
-    var launchActivityPath = "com.deep.smartfile.compores.start.ApplemdrActivity"
+    var launchActivityPath = "com.finaltest.clean.ui22_page.splash.FlightfoxActivity"
 
     // FCM 路径
     var FCM_URL: String = "https://prod-fcm-api.orcleanphone.com/"
