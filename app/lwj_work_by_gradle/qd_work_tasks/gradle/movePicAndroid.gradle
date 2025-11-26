@@ -123,14 +123,14 @@ private def movePic(String str1, String str2) {
 
                     itemsFile.renameTo(new File(resultNameH.replace(name, replaceName)))
                     println("TAG-->>name1 -->>>:  " + replaceName + "\t" + endName)
-                    copyAndRenameFile(1, replaceName, endName)
+//                    copyAndRenameFile(1, replaceName, endName)
                 } else {
                     def replaceName = ""
                     replaceName = name
                     replaceName = replaceName.replace(' ', '')
                     itemsFile.renameTo(new File(resultNameH.replace(name, replaceName)))
                     println("TAG-->>name1re -->>>:  " + name + "\t" + endName)
-                    copyAndRenameFile(1, replaceName, endName)
+//                    copyAndRenameFile(1, replaceName, endName)
                 }
 
             }
@@ -147,14 +147,14 @@ private def movePic(String str1, String str2) {
 
                     filemx.renameTo(new File(resultNameM.replace(name, replaceName)))
                     println("TAG-->>namem -->>>:  " + replaceName + "\t" + endName)
-                    copyAndRenameFile(4, replaceName, endName)
+//                    copyAndRenameFile(4, replaceName, endName)
                 } else {
                     def replaceName = ""
                     replaceName = name
                     replaceName = replaceName.replace(' ', '')
                     filemx.renameTo(new File(resultNameM.replace(name, replaceName)))
                     println("TAG-->>namemre -->>>:  " + name + "\t" + endName)
-                    copyAndRenameFile(4, replaceName, endName)
+//                    copyAndRenameFile(4, replaceName, endName)
                 }
 
             }
@@ -171,14 +171,14 @@ private def movePic(String str1, String str2) {
 
                     file1x.renameTo(new File(resultName1x.replace(name, replaceName)))
                     println("TAG-->>name1x -->>>:  " + replaceName + "\t" + endName)
-                    copyAndRenameFile(5, replaceName, endName)
+//                    copyAndRenameFile(5, replaceName, endName)
                 } else {
                     def replaceName = ""
                     replaceName = name
                     replaceName = replaceName.replace(' ', '')
                     file1x.renameTo(new File(resultName1x.replace(name, replaceName)))
                     println("TAG-->>name1xre -->>>:  " + name + "\t" + endName)
-                    copyAndRenameFile(5, replaceName, endName)
+//                    copyAndRenameFile(5, replaceName, endName)
                 }
 
             }
@@ -223,14 +223,14 @@ private def movePic(String str1, String str2) {
 
                     file3x.renameTo(new File(resultName3x.replace(name, replaceName)))
                     println("TAG-->>name3 -->>>:  "+replaceName + "\t" + endName)
-                    copyAndRenameFile(3, replaceName, endName)
+//                    copyAndRenameFile(3, replaceName, endName)
                 }else{
                     def replaceName = ""
                     replaceName = name
                     replaceName = replaceName.replace(' ', '')
                     file3x.renameTo(new File(resultName3x.replace(name, replaceName)))
                     println("TAG-->>name3re -->>>:  " + name + "\t" + endName)
-                    copyAndRenameFile(3, replaceName, endName)
+//                    copyAndRenameFile(3, replaceName, endName)
                 }
 
 //            file3x.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
