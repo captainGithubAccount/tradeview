@@ -4,6 +4,7 @@ package com.location.smartfilemodel.orgyy.msg;
 import android.content.pm.PackageInfo;
 import android.text.TextUtils;
 
+import com.location.smartfilemodel.R;
 import com.location.smartfilemodel.SmartFileOrgManager;
 import com.location.smartfilemodel.utils.SmartFileUUIDUtils;
 
@@ -32,7 +33,7 @@ public class SmartFileMsgCreate {
         result.country = "unknown";
         result.mcc = 1;
         result.isVpn = false;
-        result.appName = "Ave Cleaner";
+        result.appName = SmartFileOrgManager.mContext.getResources().getString(R.string.smartfile_app_name);
         return result;
     }
 

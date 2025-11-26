@@ -14,7 +14,7 @@ object SmartFileChangeUtils {
     var launchActivityPath = "com.finaltest.clean.ui22_page.splash.FlightfoxActivity"
 
     // FCM 路径
-    var FCM_URL: String = "https://prod-fcm-api.orcleanphone.com/"
+    var FCM_URL: String = "https://www.smartcleanphone.com/"
 
 //    com.orange.blue.compores
 
