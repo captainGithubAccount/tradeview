@@ -32,33 +32,32 @@ private def replaceNameClassInModule(String suffix, String modelName, String old
 //                    def randomStringPath2 = randomString(5)
 //            def randomStringPath2 = randomWord()//这里不用randomWord()是因为已经跑过了一次修改类名+layout名的脚本，用了这里的单词了已经
             def randomStringPath2 = randomIdWord()
-            def startName = noSuffixName
+            def fileName = noSuffixName
             randomStringPath2 = randomStringPath2[0].toUpperCase() + randomStringPath2[1..-1]
 //            randomStringPath2 = ""
-            def endName = ""
+            def randomStringNewQz = ""
             if (itemsFile.name.contains('Firebase') && itemsFile.name.contains('Manager')) {
-                endName = "Firebase${randomStringPath2}Manager"
-                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
-                println("TAG-->>startName:"+startName + "\tendName:" +endName )
-                renameNameInModule(modelName, startName, endName)
+                randomStringNewQz = "Firebase${randomStringPath2}Manager"
+                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(fileName, randomStringNewQz)))
+                println("TAG-->>startName:"+fileName + "\tendName:" +randomStringNewQz )
+                renameNameInModule(modelName, fileName, randomStringNewQz)
             }else if (itemsFile.name.contains('Firebase') && itemsFile.name.contains('Utils')) {
-                endName = "Firebase${randomStringPath2}Utils"
-                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(startName, endName)))
-                println("TAG-->>startName:"+startName + "\tendName:" +endName )
-                renameNameInModule(modelName, startName, endName)
+                randomStringNewQz = "Firebase${randomStringPath2}Utils"
+                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(fileName, randomStringNewQz)))
+                println("TAG-->>startName:"+fileName + "\tendName:" +randomStringNewQz )
+                renameNameInModule(modelName, fileName, randomStringNewQz)
             }else if (itemsFile.name.contains(oldQz)) {
-                endName = word + randomStringPath2
-//                itemsFile.renameTo(new File(itemsFile.absolutePath.replace("Blue", endName)))
-                replaceFileName(startName, oldQz, word + randomStringPath2)
-                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(oldQz, endName)))
-                println("TAG-->>startName:"+startName + "\tendName:" +endName )
-                renameNameInModule(modelName, startName, endName)
+                randomStringNewQz = word + randomStringPath2
+                String newName = getNewFileName(fileName, oldQz, randomStringNewQz)
+                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(fileName, newName)))
+                println("TAG-->>startName:"+fileName + "\tendName:" +randomStringNewQz )
+                renameNameInModule(modelName, fileName, newName)
 
             }else{
-                endName = word + randomStringPath2
-                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(oldQz, endName + "UnknowClass")))
-                println("TAG-->>startName:"+startName + "\tendName:" +endName )
-                renameNameInModule(modelName, startName, endName)
+                randomStringNewQz = word + randomStringPath2
+                itemsFile.renameTo(new File(itemsFile.absolutePath.replace(oldQz, randomStringNewQz + "UnknowClass")))
+                println("TAG-->>startName:"+fileName + "\tendName:" +randomStringNewQz )
+                renameNameInModule(modelName, fileName, randomStringNewQz)
             }
 
 
@@ -221,7 +220,7 @@ def renameXmlFile(String fileName, String oldName, String newName) {
 
 
 // 定义替换函数
-def replaceFileName(String fileName, String oldPart, String newPart) {
+def getNewFileName(String fileName, String oldPart, String newPart) {
     // 使用正则表达式匹配以oldPart开头的文件名，并替换为newPart
     def replaced = fileName.replaceAll(~"^${oldPart}", newPart)
     return replaced
