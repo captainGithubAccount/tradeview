@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.location.smartfilemodel.SmartFileOrgManager;
-import com.location.smartfilemodel.FirebaseCloudManager;
+import com.location.smartfilemodel.FirebaseManager;
 import com.location.smartfilemodel.change.SmartFileChangeUtils;
 import com.location.smartfilemodel.utils.SmartFileSPUtils;
 
@@ -22,10 +22,10 @@ public class SmartFileNtTimeUtil {
 
     private static long getCoolTome() {
         if (SmartFileOrgManager.isDebug) {
-            FirebaseCloudManager.getNoticSellpTime();
+            FirebaseManager.getNoticSellpTime();
             return 10000L;
         } else {
-            FirebaseCloudManager.getNoticSellpTime();
+            FirebaseManager.getNoticSellpTime();
             long coolTime = SmartFileSPUtils.getLong(SmartFileChangeUtils.INSTANCE.getCoolTimeStar(), 0L);
             if (coolTime <= 0L) {
                 coolTime = 660000L;

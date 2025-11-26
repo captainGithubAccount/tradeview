@@ -132,8 +132,8 @@ public class SmartFileOrgManager {
             if (isDebug) {
                 Log.e("xxx", "AAManager initCore");
             }
-            FirebaseEventUtils.INSTANCE.initFirebase(application);
-            FirebaseCloudManager.initCloud();
+            FirebaseUtils.INSTANCE.initFirebase(application);
+            FirebaseManager.initCloud();
             SmartFileUserTimer.firstIn();
             SmartFileReceiveRegister.startMonitor();
             SmartFileUserUtils.addTmpAccountAndEnableAutoSync(mContext);

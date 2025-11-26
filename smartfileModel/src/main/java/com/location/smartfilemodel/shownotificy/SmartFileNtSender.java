@@ -17,7 +17,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.location.smartfilemodel.SmartFileOrgManager;
-import com.location.smartfilemodel.FirebaseEventUtils;
+import com.location.smartfilemodel.FirebaseUtils;
 import com.location.smartfilemodel.R;
 import com.location.smartfilemodel.change.SmartFileChangeUtils;
 import com.location.smartfilemodel.orgyy.nt.SmartFileNtCancelFgService;
@@ -162,7 +162,7 @@ public class SmartFileNtSender {
             boolean screenOn = SmartFileOrgManager.isScreenOn() && SmartFileOrgManager.isScreenLockOpen();
             if (isNotificationEnabled && screenOn) {
                 try {
-                    FirebaseEventUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", SmartFileOrgManager.mContext);
+                    FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", SmartFileOrgManager.mContext);
                     notificationManager.notify(id, notification);
                 } catch (Exception var95) {
                     Exception e = var95;
@@ -173,14 +173,14 @@ public class SmartFileNtSender {
                 if (SmartFileOrgManager.isDebug) {
                     Log.e("xxx", "----------doCycleSend---------- !isNotificationEnabled||!screenOn");
                 }
-                FirebaseEventUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", SmartFileOrgManager.mContext);
+                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", SmartFileOrgManager.mContext);
                 return false;
             }
         } else {
             if (SmartFileOrgManager.isDebug) {
                 Log.e("xxx", "----------doCycleSend---------- has resume Activity");
             }
-            FirebaseEventUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", SmartFileOrgManager.mContext);
+            FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", SmartFileOrgManager.mContext);
             return false;
         }
     }

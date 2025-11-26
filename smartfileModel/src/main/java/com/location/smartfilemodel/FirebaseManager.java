@@ -10,7 +10,7 @@ import com.location.smartfilemodel.utils.SmartFileSPUtils;
 /**
  * @author Admin
  */
-public class FirebaseCloudManager {
+public class FirebaseManager {
     private static boolean isInited = false;
     private static boolean isFetchSuccessful = false;
 
