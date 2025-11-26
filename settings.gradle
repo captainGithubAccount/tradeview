@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "TradingFinal"
 include ':app'
 include ':cleModel'
+include ':recoverModel'
+include ':smartfileModel'

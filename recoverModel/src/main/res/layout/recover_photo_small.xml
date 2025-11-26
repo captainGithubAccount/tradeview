@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/funType"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/recover_photos" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toRightOf="@id/funType"
+            android:layout_toLeftOf="@id/btn"
+            android:text="Discover you have recoverable photos, and you can recover with one click to avoid loss"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/recover_ntbtn"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:text="Recover"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

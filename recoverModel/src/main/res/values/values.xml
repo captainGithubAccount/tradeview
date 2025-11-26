@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recover_app_name" translatable="false">Redata</string>
+    <!-- todo 修改-->
+    <string name="recover_provider_auth" translatable="false">com.recover.redate.RecoverUserProvider</string>
+    <string name="recover_user_type" translatable="false">com.recover.redate.UserTypeRecover</string>
+</resources>
