@@ -12,7 +12,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/cleModel" />
             <option value="$PROJECT_DIR$/recoverModel" />
-            <option value="$PROJECT_DIR$/smartfileModel" />
+            <option value="$PROJECT_DIR$/speedModel" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
