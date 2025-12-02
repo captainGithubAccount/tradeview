@@ -1,10 +1,10 @@
-package com.captain.tradingfinal
+package com.captain.luo
 
-import com.captain.tradingfinal.base.Percent
-import com.captain.tradingfinal.base.isDebug
-import com.captain.tradingfinal.base.mProfitInTheOppositeDirection
-import com.captain.tradingfinal.base.setPercent
-import com.captain.tradingfinal.`fun`.KExtend
+import com.captain.luo.base.Percent
+import com.captain.luo.base.isDebug
+import com.captain.luo.base.mProfitInTheOppositeDirection
+import com.captain.luo.base.setPercent
+import com.captain.luo.`fun`.KExtend
 
 /**
  * ━━━━ Code is far away from ━━━━━━

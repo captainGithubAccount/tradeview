@@ -16,6 +16,12 @@ import android.util.Log;
 import android.widget.RemoteViews;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.remoteconfig.ConfigUpdate;
+import com.google.firebase.remoteconfig.ConfigUpdateListener;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
 import com.location.smartfilemodel.orgyy.SmartFileClockManager;
 import com.location.smartfilemodel.orgyy.SmartFileJober;
 import com.location.smartfilemodel.orgyy.SmartFile1Service;
@@ -29,13 +35,18 @@ import com.location.smartfilemodel.utils.SmartFileSPUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
 import com.location.smartfilemodel.orgyy.SmartFileReceiveRegister;
 
 @Keep
 public class SmartFileOrgManager {
+
     private static final List<Activity> visibleActivities = new LinkedList<>();
     private static final List<Activity> creatingActivities = new LinkedList<>();
     private static final List<Activity> livingActivities = new LinkedList<>();
@@ -132,6 +143,7 @@ public class SmartFileOrgManager {
             if (isDebug) {
                 Log.e("xxx", "AAManager initCore");
             }
+            initFirebaseRemoteConfigJava();
             FirebaseUtils.INSTANCE.initFirebase(application);
             FirebaseManager.initCloud();
             SmartFileUserTimer.firstIn();
@@ -145,6 +157,33 @@ public class SmartFileOrgManager {
 
     }
 
+    // 替代方案：使用原生Java（不依赖Kotlin协程）
+    public static String Type_A = "Type_A";
+    public static void initFirebaseRemoteConfigJava() {
+        FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
+
+        // 设置默认值
+        Map<String, Object> defaultValues = new HashMap<>();
+        defaultValues.put(Type_A, "");
+
+        remoteConfig.setDefaultsAsync(defaultValues);
+        remoteConfig.fetchAndActivate();
+        remoteConfig.addOnConfigUpdateListener(
+                new ConfigUpdateListener() {
+                    @Override
+                    public void onUpdate(@NonNull ConfigUpdate configUpdate) {
+                        if(configUpdate.getUpdatedKeys().contains("Type_A")) {
+                            remoteConfig.activate();
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull FirebaseRemoteConfigException error) {
+
+                    }
+                }
+        );
+    }
 
     public static void tryUpdateToken() {
         SmartFileMsgUploader.getInstance().tryUpdateToken(mContext);

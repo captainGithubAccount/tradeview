@@ -16,7 +16,7 @@ public class SmartFileNtTimeUtil {
 
     public static boolean isCoolTime() {
         boolean isCoolTime = System.currentTimeMillis() - SmartFileOrgManager.getLastShowPushTime() <= getCoolTome();
-        Log.i("xxx", "isCoolTime--------result=$isCoolTime");
+        Log.i("xxx", "isCoolTime--------result=$isCoolTime: " + isCoolTime);
         return isCoolTime;
     }
 
@@ -37,7 +37,7 @@ public class SmartFileNtTimeUtil {
 
     public static boolean isCoolTime2() {
         boolean isCoolTime = System.currentTimeMillis() - SmartFileOrgManager.getLastShowPushTime() <= getCoolTome2();
-        Log.i("xxx", "isCoolTime--------result=$isCoolTime");
+        Log.i("xxx", "isCoolTime2--------result=$isCoolTime: " + isCoolTime);
         return isCoolTime;
     }
 

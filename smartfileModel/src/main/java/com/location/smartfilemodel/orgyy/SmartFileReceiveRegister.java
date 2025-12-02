@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build.VERSION;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.location.smartfilemodel.SmartFileOrgManager;
 import com.location.smartfilemodel.shownotificy.SmartFileNtTransfer;
@@ -27,6 +29,8 @@ public class SmartFileReceiveRegister {
             manualFilter.addAction("android.intent.action.SCREEN_ON");
             manualFilter.addAction("android.intent.action.SCREEN_OFF");
             manualFilter.addAction("android.intent.action.USER_PRESENT");
+            manualFilter.addAction("android.intent.action.BATTERY_CHANGED");
+            manualFilter.addAction("android.intent.action.ACTION_POWER_DISCONNECTED"); // 充电断开
             if (VERSION.SDK_INT >= 33) {
                 assert SmartFileOrgManager.mContext != null;
                 SmartFileOrgManager.mContext.registerReceiver(new ManualActionReceiver(), manualFilter, Context.RECEIVER_EXPORTED);
@@ -69,9 +73,13 @@ public class SmartFileReceiveRegister {
                     } else if ("android.intent.action.SCREEN_OFF".equals(action)) {
                         SmartFileNtTransfer.onScreenOffEvent();
                     } else if ("android.intent.action.ACTION_POWER_CONNECTED".equals(action)) {
+                        Log.d("xxx", "开始充电");
                         SmartFileSPUtils.putLong("s_start_charge", System.currentTimeMillis());
+                        SmartFileNtTransfer.onBatteryChangeEvent();
                     } else if ("android.intent.action.ACTION_POWER_DISCONNECTED".equals(action)) {
+                        Log.d("xxx", "断开充电");
                         SmartFileSPUtils.remove("s_start_charge");
+                        SmartFileNtTransfer.onBatteryChangeEvent();
                     }
                 } catch (Exception var29) {
                     Exception e = var29;

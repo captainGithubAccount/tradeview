@@ -163,6 +163,37 @@ public class SmartFileNtSender {
             if (isNotificationEnabled && screenOn) {
                 try {
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", SmartFileOrgManager.mContext);
+
+                    int cleanNotiId = SmartFileNtSendTryer.getPushNotifyId(1);
+                    int processNotiId = SmartFileNtSendTryer.getPushNotifyId(2);
+                    int batteryNotiId = SmartFileNtSendTryer.getPushNotifyId(3);
+                    int deviceNotiId = SmartFileNtSendTryer.getPushNotifyId(4);
+                    int rewardNotiId = SmartFileNtSendTryer.getPushNotifyId(5);
+                    if(id == cleanNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileOrgManager.mContext);
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_file_show", "", SmartFileOrgManager.mContext);
+                    }
+
+                    if(id == processNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileOrgManager.mContext);
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_app_show", "", SmartFileOrgManager.mContext);
+
+                    }
+
+                    if(id == batteryNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileOrgManager.mContext);
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_photo_show", "", SmartFileOrgManager.mContext);
+                    }
+
+                    if(id == deviceNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileOrgManager.mContext);
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_device_show", "", SmartFileOrgManager.mContext);
+                    }
+
+                    if(id == rewardNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_reward_show", "", SmartFileOrgManager.mContext);
+                    }
+
                     notificationManager.notify(id, notification);
                 } catch (Exception var95) {
                     Exception e = var95;

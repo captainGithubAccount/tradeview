@@ -6,7 +6,7 @@ import android.os.Build
 object SmartFileChangeUtils {
     // todo 修改内容
     // 通知点击
-    var noti_click_str = "smartFileClickStr"
+    var noti_click_str = "sfClickStr"
 
     var coolTimeStar = "smartfile_notify_sleep_time"
 
