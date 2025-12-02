@@ -31,10 +31,12 @@ private def replaceNameClassInModule(String suffix, String modelName, String old
             println("TAG-->>name-->>>:  " + itemsFile.name)
 //                    def randomStringPath2 = randomString(5)
 //            def randomStringPath2 = randomWord()//这里不用randomWord()是因为已经跑过了一次修改类名+layout名的脚本，用了这里的单词了已经
+
+            
             def randomStringPath2 = randomIdWord()
             def fileName = noSuffixName
-            randomStringPath2 = randomStringPath2[0].toUpperCase() + randomStringPath2[1..-1]
-//            randomStringPath2 = ""
+//            randomStringPath2 = randomStringPath2[0].toUpperCase() + randomStringPath2[1..-1]
+            randomStringPath2 = ""
             def randomStringNewQz = ""
             if (itemsFile.name.contains('Firebase') && itemsFile.name.contains('Manager')) {
                 randomStringNewQz = "Firebase${randomStringPath2}Manager"

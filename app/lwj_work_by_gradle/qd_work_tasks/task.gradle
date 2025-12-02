@@ -45,7 +45,7 @@ task renameClassInModule(){
 task replaceNameClassInModule(){
     doLast {
 //        修改java和res目录下的前缀
-        replaceNameClassInModule("speedModel", "Speed", "SmartFile")//参数1模块名，参数2被修改的前缀名字， 新的前缀名字
+        replaceNameClassInModule("smartfileModel", "Speed", "SmartFile")//参数1模块名，参数2被修改的前缀名字， 新的前缀名字
     }
 }
 

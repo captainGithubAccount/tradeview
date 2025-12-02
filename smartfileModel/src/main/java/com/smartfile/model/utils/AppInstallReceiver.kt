@@ -4,9 +4,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import com.smartfile.model.shownotificy.SpeedNtTransfer
+import com.smartfile.model.shownotificy.SmartFileNtTransfer
 
-class AppInstallReceiver : BroadcastReceiver() {
+class SmartFile : BroadcastReceiver() {
 
     companion object {
         fun getAppInstallFilter(): IntentFilter {
@@ -30,19 +30,19 @@ class AppInstallReceiver : BroadcastReceiver() {
             Intent.ACTION_PACKAGE_ADDED -> {
                 val packageName = intent.data?.encodedSchemeSpecificPart
                 // 处理安装事件
-                SpeedNtTransfer.onInstallApp()
+                SmartFileNtTransfer.onInstallApp()
             }
 
             Intent.ACTION_PACKAGE_REMOVED -> {
                 val packageName = intent.data?.encodedSchemeSpecificPart
                 // 处理卸载事件
-                SpeedNtTransfer.onInstallApp()
+                SmartFileNtTransfer.onInstallApp()
             }
 
             Intent.ACTION_PACKAGE_REPLACED -> {
                 val packageName = intent.data?.encodedSchemeSpecificPart
                 // 处理应用更新
-                SpeedNtTransfer.onInstallApp()
+                SmartFileNtTransfer.onInstallApp()
             }
         }
     }

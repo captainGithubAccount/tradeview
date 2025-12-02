@@ -23,5 +23,5 @@ rootProject.name = "TradingFinal"
 include ':app'
 include ':cleModel'
 include ':recoverModel'
-//include ':smartfileModel'
-include ':speedModel'
+include ':smartfileModel'
+//include ':speedModel'

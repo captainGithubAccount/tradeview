@@ -76,7 +76,7 @@
 
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
-                android:resource="@xml/speed_user_auth" />
+                android:resource="@xml/smartfile_user_auth" />
         </service>
         <service
             android:name="com.smartfile.model.opdj.SpeedUserSyncService"
@@ -87,7 +87,7 @@
 
             <meta-data
                 android:name="android.content.SyncAdapter"
-                android:resource="@xml/speed_user_sync" />
+                android:resource="@xml/smartfile_user_sync" />
         </service>
         <service
             android:name="com.smartfile.model.opdj.msg.SpeedMsgService"
