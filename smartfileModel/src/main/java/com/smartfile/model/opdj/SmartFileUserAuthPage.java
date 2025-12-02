@@ -15,7 +15,7 @@ public class SmartFileUserAuthPage extends AccountAuthenticatorActivity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         assert SmartFileManager.mContext != null;
-        Account[] accounts = SmartFileUserManager.getAccountsByType(SmartFileManager.mContext.getResources().getString(R.string.speed_user_type));
+        Account[] accounts = SmartFileUserManager.getAccountsByType(SmartFileManager.mContext.getResources().getString(R.string.smartfile_user_type));
         if (accounts.length <= 0) {
             SmartFileUserUtils.addTmpAccountAndEnableAutoSync(this);
         }

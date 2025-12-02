@@ -19,7 +19,7 @@ public class SmartFileUserProvider extends ContentProvider {
     }
 
     public static String getAuthority() {
-        return SmartFileManager.getResString(R.string.speed_provider_auth);
+        return SmartFileManager.getResString(R.string.smartfile_provider_auth);
     }
 
     public boolean onCreate() {

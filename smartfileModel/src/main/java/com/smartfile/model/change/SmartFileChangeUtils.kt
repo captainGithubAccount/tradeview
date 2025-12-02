@@ -28,15 +28,15 @@ object SmartFileChangeUtils {
 
     // todo 修改内容
     // 通知点击
-    var noti_click_str = "speedaoos"
+    var noti_click_str = "sfClickStr"
 
-    var coolTimeStar = "speedaoos_noti_time"
+    var coolTimeStar = "smartfile_notify_sleep_time"
 
     // 启动页路径
-    var launchActivityPath = "com.speed.cleanner.oahdjk.start.IslandiqwActivity"
+    var launchActivityPath = "com.finaltest.clean.ui22_page.splash.FlightfoxActivity"
 
     // FCM 路径
-    var FCM_URL: String = "https://trashcleandevicetrashdeep.ghostproxyghost.com/"
+    var FCM_URL: String = "https://www.smartcleanphone.com/"
 
     var currentRandomClean = getRandom()
 

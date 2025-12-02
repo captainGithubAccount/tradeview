@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/funType"
-            android:layout_toRightOf="@id/funType"
+            android:layout_toEndOf="@+id/funType"
+            android:layout_toStartOf="@id/image"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:gravity="center_vertical">
@@ -53,6 +54,17 @@
                 android:textColor="#201F31"
                 android:textSize="14sp" />
         </RelativeLayout>
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/smartfile_go" />
     </RelativeLayout>
+
+
+
+
 
 </LinearLayout>

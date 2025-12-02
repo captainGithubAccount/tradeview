@@ -14,7 +14,7 @@ ext{
             "accident", "careful", "difficulty", "flag", "horse", "lock", "nut", "rain",
             "silk", "thirty", "accidental", "carrot", "flat", "hospital", "lonely",
             "rainy", "simple", "though", "ache", "carry", "dirty",
-            "flatten", "hotel", "loser", "offer", "simply", "thousand"
+            "flatten", "hotel", "loser", "offer", "smartfile", "thousand"
     ]
 
     idWords = [
@@ -33,7 +33,7 @@ public def randomWord() {
                 "accident", "careful", "difficulty", "flag", "horse", "lock", "nut", "rain",
                 "silk", "thirty", "accidental", "carrot", "flat", "hospital", "lonely",
                 "rainy", "simple", "though", "ache", "carry", "dirty",
-                "flatten", "hotel", "loser", "offer", "simply", "thousand"
+                "flatten", "hotel", "loser", "offer", "smartfile", "thousand"
         ]
         isNeedRefreshCache = false
     }

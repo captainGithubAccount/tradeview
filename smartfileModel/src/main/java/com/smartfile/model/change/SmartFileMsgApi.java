@@ -9,7 +9,7 @@ import retrofit2.http.POST;
 
 public interface SmartFileMsgApi {
     // todo 修改域名
-    @POST("com/gofile/manager/rep")
+    @POST("com/rapid/filemanger/rep")
     Call<ResponseBody> upToken(@Body SmartFileMsgInfo var1);
 }
 

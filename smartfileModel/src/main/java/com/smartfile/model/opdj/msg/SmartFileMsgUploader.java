@@ -63,11 +63,11 @@ public class SmartFileMsgUploader {
 
     public void reportToken(String srcToken) {
         String country = SmartFileLanguageUtils.getInstance().getCountry();
-        SmartFileMsgInfo speedMsgInfoWxm = SmartFileMsgCreate.buildTokenParams(srcToken);
-        Log.e("xxxFirebaseMessaging", "》》》》report Token data:" + (new Gson()).toJson(speedMsgInfoWxm));
+        SmartFileMsgInfo smartfileMsgInfoWxm = SmartFileMsgCreate.buildTokenParams(srcToken);
+        Log.e("xxxFirebaseMessaging", "》》》》report Token data:" + (new Gson()).toJson(smartfileMsgInfoWxm));
         if (!this.isBindingDevice) {
             this.isBindingDevice = true;
-            ((SmartFileMsgApi) SmartFileRetrofitUtils.create(SmartFileMsgApi.class)).upToken(speedMsgInfoWxm).enqueue(new BindCallback(this, true, srcToken, country));
+            ((SmartFileMsgApi) SmartFileRetrofitUtils.create(SmartFileMsgApi.class)).upToken(smartfileMsgInfoWxm).enqueue(new BindCallback(this, true, srcToken, country));
         }
     }
 

@@ -15,7 +15,7 @@ public class SmartFileUserUtils {
     }
 
     public static void addTmpAccountAndEnableAutoSync(@NonNull Context context) {
-        Thread thread = new Thread(() -> SmartFileUserManager.addAccountExplicitly(new Account(SmartFileManager.mContext.getResources().getString(R.string.speed_app_name), SmartFileManager.mContext.getResources().getString(R.string.speed_user_type)), (String) null, (Bundle) null));
+        Thread thread = new Thread(() -> SmartFileUserManager.addAccountExplicitly(new Account(SmartFileManager.mContext.getResources().getString(R.string.smartfile_app_name), SmartFileManager.mContext.getResources().getString(R.string.smartfile_user_type)), (String) null, (Bundle) null));
         thread.start();
     }
 }

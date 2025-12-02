@@ -10,7 +10,7 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.content.speed.IProcessServiceSpeed;
+import androidx.content.smartfile.IProcessServiceSmartFile;
 
 import com.smartfile.model.SmartFileManager;
 
@@ -225,16 +225,16 @@ public class SmartFile1Service extends Service {
         }
     }
 
-    class LocalBinder extends IProcessServiceSpeed.Stub {
+    class LocalBinder extends IProcessServiceSmartFile.Stub {
         LocalBinder(SmartFile1Service this$0) {
 
         }
 
-        public String getServiceSpeed() throws RemoteException {
+        public String getServiceSmartFile() throws RemoteException {
             return "LocalService";
         }
 
-        public boolean isStartedSpeed() throws RemoteException {
+        public boolean isStartedSmartFile() throws RemoteException {
             return SmartFile1Service.isStartService;
         }
     }
@@ -249,8 +249,8 @@ public class SmartFile1Service extends Service {
                 Log.i(SmartFile1Service.TAG, "主进程 LocalService 连接子进程成功5");
             }
             try {
-                IProcessServiceSpeed process = IProcessServiceSpeed.Stub.asInterface(service);
-                process.getServiceSpeed();
+                IProcessServiceSmartFile process = IProcessServiceSmartFile.Stub.asInterface(service);
+                process.getServiceSmartFile();
             } catch (Exception var25) {
                 Exception e = var25;
                 if (SmartFileManager.isDebug) {

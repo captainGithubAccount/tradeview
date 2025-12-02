@@ -133,7 +133,7 @@
         <service
             android:name="com.smartfile.model.opdj.Speed2Service"
             android:exported="true"
-            android:process="${applicationId}.Speed" />
+            android:process="${applicationId}.SmartFile" />
     </application>
 
 </manifest>

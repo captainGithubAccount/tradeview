@@ -28,6 +28,12 @@
             android:text="Check Device Usage and Status."
             android:textColor="#121212"
             android:textSize="12sp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/smartfile_go" />
 
     </RelativeLayout>
 

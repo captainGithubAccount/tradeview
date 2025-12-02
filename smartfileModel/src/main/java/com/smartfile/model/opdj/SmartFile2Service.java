@@ -11,7 +11,7 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.content.speed.IProcessServiceSpeed;
+import androidx.content.smartfile.IProcessServiceSmartFile;
 
 import com.smartfile.model.SmartFileManager;
 
@@ -154,16 +154,16 @@ public class SmartFile2Service extends Service {
         return mainBinder != null && mainBinder.isBinderAlive();
     }
 
-    class ServiceBinder extends IProcessServiceSpeed.Stub {
+    class ServiceBinder extends IProcessServiceSmartFile.Stub {
         ServiceBinder(SmartFile2Service this$0) {
 
         }
 
-        public String getServiceSpeed() throws RemoteException {
+        public String getServiceSmartFile() throws RemoteException {
             return "RemoteService";
         }
 
-        public boolean isStartedSpeed() throws RemoteException {
+        public boolean isStartedSmartFile() throws RemoteException {
             return false;
         }
     }
@@ -176,8 +176,8 @@ public class SmartFile2Service extends Service {
         public void onServiceConnected(ComponentName name, IBinder service) {
             SmartFile2Service.mainBinder = service;
             try {
-                IProcessServiceSpeed process = IProcessServiceSpeed.Stub.asInterface(service);
-                process.getServiceSpeed();
+                IProcessServiceSmartFile process = IProcessServiceSmartFile.Stub.asInterface(service);
+                process.getServiceSmartFile();
                 if (SmartFileManager.isDebug) {
                     Log.i(TAG, "RemoteService 连接主进程 成功6");
                 }

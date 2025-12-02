@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="140dp">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,11 +14,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
-            android:src="@mipmap/smartfile_device"
+            android:src="@mipmap/smartfile_gift"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
             android:layout_marginEnd="15dp"
             android:layout_toRightOf="@id/funType"
             android:gravity="center_vertical"
-            android:text="Check Mobile Device Information."
+            android:text="@string/str_gift"
             android:textColor="#201F31"
             android:textSize="14sp" />
 
@@ -43,7 +44,7 @@
             android:background="@drawable/smartfile_ntbtn"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Clean Now"
+            android:text="Get it Now"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
     </RelativeLayout>

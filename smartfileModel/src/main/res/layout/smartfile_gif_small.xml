@@ -12,7 +12,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/smartfile_device" />
+            android:src="@mipmap/smartfile_gift" />
 
         <TextView
             android:id="@+id/content"
@@ -24,7 +24,7 @@
             android:layout_marginEnd="10dp"
             android:layout_toRightOf="@id/funType"
             android:gravity="center_vertical"
-            android:text="Check Mobile Device Information."
+            android:text="@string/str_gift"
             android:textColor="#201F31"
             android:textSize="12sp" />
         <ImageView
