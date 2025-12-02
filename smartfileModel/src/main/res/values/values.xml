@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="speed_app_name" translatable="false">Go File</string>
+    <string name="speed_battery">Battery</string>
+    <string name="speed_clean">Clean</string>
+    <string name="speed_device">Device</string>
+    <!-- todo 修改-->
+    <string name="speed_provider_auth" translatable="false">com.smartfile.model.SpeedUserProvider</string>
+    <string name="speed_user_type" translatable="false">com.smartfile.model.UserTypeSpeed</string>
+</resources>
