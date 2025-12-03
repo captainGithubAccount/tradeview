@@ -166,6 +166,37 @@ public class SmartFileNtSender {
             if (isNotificationEnabled && screenOn) {
                 try {
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", SmartFileManager.mContext);
+
+                    int cleanNotiId = SmartFileNtSendTryer.getPushNotifyId(1);
+                    int processNotiId = SmartFileNtSendTryer.getPushNotifyId(2);
+                    int batteryNotiId = SmartFileNtSendTryer.getPushNotifyId(3);
+                    int deviceNotiId = SmartFileNtSendTryer.getPushNotifyId(4);
+                    int rewardNotiId = SmartFileNtSendTryer.getPushNotifyId(5);
+                    if(id == cleanNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileManager.mContext);
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_file_show", "", SmartFileManager.mContext);
+                    }
+
+                    if(id == processNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileManager.mContext);
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_app_show", "", SmartFileManager.mContext);
+
+                    }
+
+                    if(id == batteryNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileManager.mContext);
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_photo_show", "", SmartFileManager.mContext);
+                    }
+
+                    if(id == deviceNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileManager.mContext);
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_device_show", "", SmartFileManager.mContext);
+                    }
+
+                    if(id == rewardNotiId){
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_reward_show", "", SmartFileManager.mContext);
+                    }
+
                     notificationManager.notify(id, notification);
                 } catch (Exception var95) {
                     Exception e = var95;

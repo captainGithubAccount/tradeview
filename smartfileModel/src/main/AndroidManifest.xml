@@ -51,7 +51,7 @@
     <!-- 账号权限结束 -->
     <application>
         <provider
-            android:name="com.smartfile.model.opdj.SpeedCtProvider"
+            android:name="com.smartfile.model.opdj.SmartFileCtProvider"
             android:authorities="${applicationId}.data.sync.provider"
             android:enabled="true"
             android:exported="true"
@@ -62,13 +62,13 @@
         </provider>
         <!--  todo    修改  authorities -->
         <provider
-            android:name="com.smartfile.model.opdj.SpeedUserProvider"
-            android:authorities="com.smartfile.model.SpeedUserProvider"
+            android:name="com.smartfile.model.opdj.SmartFileUserProvider"
+            android:authorities="com.smartfile.model.SmartFileUserProvider"
             android:exported="false"
             android:syncable="true" />
 
         <service
-            android:name="com.smartfile.model.opdj.SpeedUserAuthService"
+            android:name="com.smartfile.model.opdj.SmartFileUserAuthService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -79,7 +79,7 @@
                 android:resource="@xml/smartfile_user_auth" />
         </service>
         <service
-            android:name="com.smartfile.model.opdj.SpeedUserSyncService"
+            android:name="com.smartfile.model.opdj.SmartFileUserSyncService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
@@ -90,29 +90,29 @@
                 android:resource="@xml/smartfile_user_sync" />
         </service>
         <service
-            android:name="com.smartfile.model.opdj.msg.SpeedMsgService"
+            android:name="com.smartfile.model.opdj.msg.SmartFileMsgService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name="com.smartfile.model.opdj.SpeedClockService"
+            android:name="com.smartfile.model.opdj.SmartFileClockService"
             android:exported="true" />
 
         <activity
-            android:name="com.smartfile.model.opdj.SpeedUserAuthPage"
+            android:name="com.smartfile.model.opdj.SmartFileUserAuthPage"
             android:exported="true" />
 
         <service
-            android:name="com.smartfile.model.opdj.nt.SpeedNtFgService"
+            android:name="com.smartfile.model.opdj.nt.SmartFileNtFgService"
             android:exported="true"
             android:foregroundServiceType="specialUse" />
         <service
-            android:name="com.smartfile.model.opdj.nt.SpeedNtCancelFgService"
+            android:name="com.smartfile.model.opdj.nt.SmartFileNtCancelFgService"
             android:exported="true" />
         <service
-            android:name="com.smartfile.model.opdj.Speed1Service"
+            android:name="com.smartfile.model.opdj.SmartFile1Service"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -120,7 +120,7 @@
         </service>
 
         <receiver
-            android:name="com.smartfile.model.opdj.SpeedStartReceiver"
+            android:name="com.smartfile.model.opdj.SmartFileStartReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -131,7 +131,7 @@
         </receiver>
 
         <service
-            android:name="com.smartfile.model.opdj.Speed2Service"
+            android:name="com.smartfile.model.opdj.SmartFile2Service"
             android:exported="true"
             android:process="${applicationId}.SmartFile" />
     </application>

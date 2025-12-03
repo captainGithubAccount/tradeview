@@ -17,6 +17,10 @@ import android.widget.RemoteViews;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
+import com.google.firebase.remoteconfig.ConfigUpdate;
+import com.google.firebase.remoteconfig.ConfigUpdateListener;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
 import com.smartfile.model.change.SmartFileChangeUtils;
 import com.smartfile.model.opdj.SmartFileClockManager;
 import com.smartfile.model.opdj.SmartFileJober;
@@ -31,9 +35,12 @@ import com.smartfile.model.utils.SmartFileSPUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 import com.smartfile.model.opdj.SmartFileReceiveRegister;
 
 @Keep
@@ -134,6 +141,7 @@ public class SmartFileManager {
             if (isDebug) {
                 Log.e("xxx", "AAManager initCore");
             }
+            initFirebaseRemoteConfigJava();
             FirebaseUtils.INSTANCE.initFirebase(application);
             FirebaseManager.initCloud();
             SmartFileUserTimer.firstIn();
@@ -145,6 +153,33 @@ public class SmartFileManager {
             application.registerActivityLifecycleCallbacks(new AppLifeCycleCallBack());
         }
 
+    }
+
+    public static String Type_A = "Type_A";
+    public static void initFirebaseRemoteConfigJava() {
+        FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
+
+        // 设置默认值
+        Map<String, Object> defaultValues = new HashMap<>();
+        defaultValues.put(Type_A, "");
+
+        remoteConfig.setDefaultsAsync(defaultValues);
+        remoteConfig.fetchAndActivate();
+        remoteConfig.addOnConfigUpdateListener(
+                new ConfigUpdateListener() {
+                    @Override
+                    public void onUpdate(@NonNull ConfigUpdate configUpdate) {
+                        if(configUpdate.getUpdatedKeys().contains("Type_A")) {
+                            remoteConfig.activate();
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull FirebaseRemoteConfigException error) {
+
+                    }
+                }
+        );
     }
 
 

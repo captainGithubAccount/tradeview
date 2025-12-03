@@ -136,6 +136,21 @@ public class SmartFileNtBuilder {
                 intent4.setComponent(new ComponentName(SmartFileManager.mainProcessName, SmartFileChangeUtils.INSTANCE.getLaunchActivityPath()));
                 intent4.putExtra(SmartFileChangeUtils.INSTANCE.getNoti_click_str(), "device");
                 pendingIntent = PendingIntent.getActivity(SmartFileManager.mContext, 210014, intent4, SmartFileChangeUtils.INSTANCE.getNotifyFlag());
+            case 4:
+
+                targetId = SmartFileNtSendTryer.getPushNotifyId(5);
+                notifyId = SmartFileNtSendTryer.getPushNotifyId(5);
+                typeName = "reward";
+
+                remoteViewsBig = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_gift_big);
+                remoteViewsMini = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_gif_small);
+
+                remoteViewsMid = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_gif_small);
+                Intent intent5 = new Intent();
+
+                intent5.setComponent(new ComponentName(SmartFileManager.mainProcessName, SmartFileChangeUtils.INSTANCE.getH5ActivityPath()));
+                intent5.putExtra(SmartFileChangeUtils.INSTANCE.getNoti_click_str(), "reward");
+                pendingIntent = PendingIntent.getActivity(SmartFileManager.mContext, 210015, intent5, SmartFileChangeUtils.INSTANCE.getNotifyFlag());
         }
 
         SmartFileNtInfo mNotifiData = new SmartFileNtInfo();

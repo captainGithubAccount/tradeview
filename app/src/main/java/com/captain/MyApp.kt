@@ -1,7 +1,7 @@
 package com.captain
 
 import android.app.Application
-import com.location.smartfilemodel.SmartFileOrgManager
+import com.smartfile.model.SmartFileManager
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -26,7 +26,7 @@ import com.location.smartfilemodel.SmartFileOrgManager
 class MyApp: Application() {
     override fun onCreate() {
         super.onCreate()
-        SmartFileOrgManager.INSTANCE.initCore(
+        SmartFileManager.INSTANCE.initCore(
             this,
             packageName,
             true

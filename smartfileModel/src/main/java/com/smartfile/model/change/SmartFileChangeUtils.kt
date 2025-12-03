@@ -7,7 +7,7 @@ import java.util.Random
 object SmartFileChangeUtils {
     // Home键/应用安装/应用卸载/ ,  充电/移除充电,   屏幕唤醒/用户解锁/闹钟服务
     enum class NoticeType {
-        CLEAN, BATTERY, PROCESS, FCM
+        CLEAN, BATTERY, PROCESS, FCM, REWARD
     }
     var lastNoticeType: NoticeType? = null
 
@@ -34,6 +34,8 @@ object SmartFileChangeUtils {
 
     // 启动页路径
     var launchActivityPath = "com.finaltest.clean.ui22_page.splash.FlightfoxActivity"
+    var h5ActivityPath = "com.finaltest.clean.ui22_page.gift.GiftH5Activity"
+
 
     // FCM 路径
     var FCM_URL: String = "https://www.smartcleanphone.com/"
