@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="75dp">
+    android:layout_height="75dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/photoLayout"
@@ -18,10 +19,12 @@
             android:src="@mipmap/recover_photos" />
 
         <TextView
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Recover Photos"
+            tools:text="Recover\n Photos"
             android:textColor="#2C2A29"
             android:textSize="13sp" />
     </LinearLayout>
@@ -41,9 +44,11 @@
             android:src="@mipmap/recover_video" />
 
         <TextView
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            tools:text="Recover\n Photos dwadwa"
             android:text="Recover Videos"
             android:textColor="#2C2A29"
             android:textSize="13sp" />
@@ -64,6 +69,8 @@
             android:src="@mipmap/recover_file" />
 
         <TextView
+            android:gravity="center"
+            tools:text="Recover\n Photos dwadwa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -135,6 +142,8 @@
             android:src="@mipmap/recover_compress" />
 
         <TextView
+            tools:text="Recover\n Photos dwadwa"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
