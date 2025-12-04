@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.recover.redate"
+    namespace = "com.recover.model"
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 23
+        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

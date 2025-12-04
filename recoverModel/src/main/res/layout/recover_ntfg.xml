@@ -4,7 +4,7 @@
     android:layout_height="64dp">
 
     <LinearLayout
-        android:id="@+id/photoLayout"
+        android:id="@+id/cleanLayout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -15,19 +15,19 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@mipmap/recover_photos" />
+            android:src="@mipmap/recover_clean" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Recover Photos"
+            android:text="Clean"
             android:textColor="#2C2A29"
             android:textSize="13sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/videoLayout"
+        android:id="@+id/processLayout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -38,19 +38,19 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@mipmap/recover_video" />
+            android:src="@mipmap/recover_apps" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Recover Videos"
+            android:text="Process"
             android:textColor="#2C2A29"
             android:textSize="13sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/fileLayout"
+        android:id="@+id/deviceLayout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -61,13 +61,36 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@mipmap/recover_file" />
+            android:src="@mipmap/recover_device" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Recover Files"
+            android:text="Device"
+            android:textColor="#2C2A29"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/batteryLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="2dp">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/recover_battery" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Battery"
             android:textColor="#2C2A29"
             android:textSize="13sp" />
     </LinearLayout>

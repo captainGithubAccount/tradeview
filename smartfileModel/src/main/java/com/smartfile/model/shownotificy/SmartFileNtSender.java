@@ -36,11 +36,11 @@ public class SmartFileNtSender {
         assert context != null;
         NotificationManager mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         cancelNotificationId(notifyId);
-        String channelId = "Sound_ChannelId_Speed" + SmartFileManager.code;
-        String channelName = "Sound_ChannelName_Speed" + SmartFileManager.code;
+        String channelId = "Sound_ChannelId_Recover" + SmartFileManager.code;
+        String channelName = "Sound_ChannelName_Recover" + SmartFileManager.code;
         if (isSilent) {
-            channelId = "SilentChannelId_Speed" + SmartFileManager.code;
-            channelName = "SilentChannelName_Speed" + SmartFileManager.code;
+            channelId = "SilentChannelId_Recover" + SmartFileManager.code;
+            channelName = "SilentChannelName_Recover" + SmartFileManager.code;
         }
 
         int smallIcon = R.mipmap.smartfile_logo;
@@ -52,14 +52,14 @@ public class SmartFileNtSender {
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
             channel.setLockscreenVisibility(1);
             if (isSilent) {
-                channel.setDescription("SilentSpeed");
+                channel.setDescription("SilentRecover");
                 channel.enableLights(false);
                 channel.enableVibration(false);
                 channel.setSound((Uri) null, (AudioAttributes) null);
                 channel.setLightColor(0);
                 channel.setVibrationPattern(new long[0]);
             } else {
-                channel.setDescription("SilentSpeed2");
+                channel.setDescription("SilentRecover2");
                 channel.enableLights(false);
                 channel.enableVibration(false);
                 channel.setLightColor(0);
