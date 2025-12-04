@@ -15,7 +15,7 @@ android {
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.finaltest.clean2.luo"
+        applicationId "com.finaltest.cover"
         minSdk 24
         targetSdk 35
         versionCode 11
@@ -41,8 +41,8 @@ android {
 
 dependencies {
 //    implementation project(":cleModel")
-//    implementation project(":recoverModel")
-    implementation project(':smartfileModel')
+    implementation project(":recoverModel")
+//    implementation project(':smartfileModel')
 
 
     implementation 'androidx.core:core-ktx:1.9.0'

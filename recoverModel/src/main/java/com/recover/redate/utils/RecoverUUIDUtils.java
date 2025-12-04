@@ -7,7 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 
 import java.util.UUID;
 import java.util.concurrent.locks.ReentrantLock;
@@ -35,7 +35,7 @@ public class RecoverUUIDUtils {
             if (this.deviceId == null || this.deviceId.isEmpty()) {
                 this.deviceId = this.createInstallationUUID();
             }
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e("xxx", "getDeviceId deviceId:" + this.deviceId);
             }
             return this.deviceId;

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build.VERSION;
 
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 import com.recover.redate.shownotificy.RecoverNtTransfer;
 import com.recover.redate.utils.RecoverSPUtils;
 
@@ -31,21 +31,21 @@ public class RecoverReceiveRegister {
             manualFilter.addAction("android.intent.action.ACTION_POWER_CONNECTED"); // 充电
             manualFilter.addAction("android.intent.action.ACTION_POWER_DISCONNECTED"); // 充电断开
             if (VERSION.SDK_INT >= 33) {
-                assert RecoverManager.mContext != null;
-                RecoverManager.mContext.registerReceiver(new ManualActionReceiver(), manualFilter, Context.RECEIVER_EXPORTED);
+                assert RecoverOrgManager.mContext != null;
+                RecoverOrgManager.mContext.registerReceiver(new ManualActionReceiver(), manualFilter, Context.RECEIVER_EXPORTED);
             } else {
-                assert RecoverManager.mContext != null;
-                RecoverManager.mContext.registerReceiver(new ManualActionReceiver(), manualFilter);
+                assert RecoverOrgManager.mContext != null;
+                RecoverOrgManager.mContext.registerReceiver(new ManualActionReceiver(), manualFilter);
             }
 
             IntentFilter filter = new IntentFilter();
-            RecoverManager.mContext.registerReceiver(new RecoverStartReceiver(), filter);
+            RecoverOrgManager.mContext.registerReceiver(new RecoverStartReceiver(), filter);
             IntentFilter intentFilter = new IntentFilter("android.intent.action.CLOSE_SYSTEM_DIALOGS");
             intentFilter.setPriority(1000);
             if (VERSION.SDK_INT >= 33) {
-                RecoverManager.mContext.registerReceiver(new HomeActionReceiver(), intentFilter, Context.RECEIVER_EXPORTED);
+                RecoverOrgManager.mContext.registerReceiver(new HomeActionReceiver(), intentFilter, Context.RECEIVER_EXPORTED);
             } else {
-                RecoverManager.mContext.registerReceiver(new HomeActionReceiver(), intentFilter);
+                RecoverOrgManager.mContext.registerReceiver(new HomeActionReceiver(), intentFilter);
             }
         }
     }
@@ -96,7 +96,7 @@ public class RecoverReceiveRegister {
                     String reason = intent.getStringExtra("reason");
                     if (reason != null) {
                         boolean isRecent = reason.contains("recent");
-                        RecoverManager.INSTANCE.getHandler().postDelayed(() -> {
+                        RecoverOrgManager.INSTANCE.getHandler().postDelayed(() -> {
                             try {
                                 RecoverNtTransfer.onHomeKeyPressEvent(isRecent);
                             } catch (Exception var2) {

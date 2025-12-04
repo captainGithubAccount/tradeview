@@ -3,7 +3,7 @@ package com.recover.redate.shownotificy;
 
 import android.util.Log;
 
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 import com.recover.redate.FirebaseUtils;
 import com.recover.redate.change.RecoverChangeUtils;
 import com.recover.redate.opdj.nt.RecoverNtBuilder;
@@ -18,14 +18,14 @@ public class RecoverNtSendTryer {
 
     public static void tryShowLocalNotifi(boolean isRecentTask, boolean isHomeKey, boolean isScreenOpen, boolean isFCM, RecoverChangeUtils.NoticeType noticeType) {
         Log.e("xxx", "----------tryShowLocalPush---------- isRecentTask=" + isRecentTask + ", isHomeKey=" + isHomeKey + ", isScreenOpen=" + isScreenOpen + ", isFCM=" + isFCM);
-        FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_count", "", RecoverManager.mContext);
-        if (!RecoverManager.INSTANCE.isForeground() && !RecoverManager.INSTANCE.hasCreatingActivity()) {
-            boolean screenOn = RecoverManager.isScreenOn() && RecoverManager.isScreenLockOpen();
+        FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_count", "", RecoverOrgManager.mContext);
+        if (!RecoverOrgManager.INSTANCE.isForeground() && !RecoverOrgManager.INSTANCE.hasCreatingActivity()) {
+            boolean screenOn = RecoverOrgManager.isScreenOn() && RecoverOrgManager.isScreenLockOpen();
             if (!screenOn) {
                 Log.e("xxx", "-------- screenOn=" + screenOn);
-                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_screenOn", "", RecoverManager.mContext);
+                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_screenOn", "", RecoverOrgManager.mContext);
             } else {
-                boolean isNotificationEnabled = RecoverManager.isNotificationEnabled();
+                boolean isNotificationEnabled = RecoverOrgManager.isNotificationEnabled();
                 Log.e("xxx", "-------- isNotificationEnabled=" + isNotificationEnabled);
                 Log.e("xxx", "-------- isCoolTime=" + RecoverNtTimeUtil.isCoolTime());
                 if (!RecoverNtTimeUtil.isCoolTime()) {
@@ -81,33 +81,33 @@ public class RecoverNtSendTryer {
                                 break;
                         }
                         Log.e("aaa", "tryShowLocalNotifi: -- 通知 type = " + dateBean.getTypedName());
-                        RecoverManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), true, false, currentNoticeType);
+                        RecoverOrgManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), true, false, currentNoticeType);
                     }else {
-                        FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_no_Permission", "", RecoverManager.mContext);
+                        FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_no_Permission", "", RecoverOrgManager.mContext);
                     }
                 } else {
-                    FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_isCoolTime", "", RecoverManager.mContext);
+                    FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_isCoolTime", "", RecoverOrgManager.mContext);
                 }
             }
         } else {
             Log.e("xxx", "----------tryShowLocalPush---------- has resume Activity");
-            FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_has_resume_Activity", "", RecoverManager.mContext);
+            FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_has_resume_Activity", "", RecoverOrgManager.mContext);
         }
     }
 
     public static int getPushNotifyId(int id) {
         if (id == 1) {
-            return '퀀' + RecoverManager.code;
+            return '퀀' + RecoverOrgManager.code;
         } else if (id == 2) {
-            return '퀁' + RecoverManager.code;
+            return '퀁' + RecoverOrgManager.code;
         } else {
             if (id == 3) {
-                return '퀂' + RecoverManager.code;
+                return '퀂' + RecoverOrgManager.code;
             } else {
                 if (id == 4) {
-                    return '퀃' + RecoverManager.code;
+                    return '퀃' + RecoverOrgManager.code;
                 } else {
-                    return '퀃' + RecoverManager.code;
+                    return '퀃' + RecoverOrgManager.code;
                 }
             }
         }

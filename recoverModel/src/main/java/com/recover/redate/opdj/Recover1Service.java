@@ -12,7 +12,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.content.recover.IProcessServiceRecover;
 
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 
 public class Recover1Service extends Service {
     public static long lastTime = 0L;
@@ -37,22 +37,22 @@ public class Recover1Service extends Service {
 
     public static void tryStartLaunchMainService() {
         if (isLiving) {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e("xxx", "****tryStartLaunchMainService, LocalService isLiving");
             }
         } else {
             if (!isStartService && System.currentTimeMillis() - lastTime > 10000L) {
-                if (RecoverManager.isDebug) {
+                if (RecoverOrgManager.isDebug) {
                     Log.e("xxx", "****tryStartLaunchMainService****5");
                 }
                 lastTime = System.currentTimeMillis();
-                startService(RecoverManager.mContext);
+                startService(RecoverOrgManager.mContext);
             }
         }
     }
 
     private static void startService(Context context) {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.i(TAG, "LocalService startService5");
         }
         if (!doStartMainService(context)) {
@@ -66,7 +66,7 @@ public class Recover1Service extends Service {
     public void onCreate() {
         isLiving = true;
         super.onCreate();
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e(TAG, "主进程 LocalService onCreate5");
         }
         this.mLocalBinder = new LocalBinder(this);
@@ -86,7 +86,7 @@ public class Recover1Service extends Service {
         if (intent != null && !isStartService) {
             isStartService = intent.getBooleanExtra("isStartService", false);
         }
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e(TAG, "主进程 LocalService onStartCommand isStartService5=" + isStartService);
         }
         return Service.START_STICKY;
@@ -94,7 +94,7 @@ public class Recover1Service extends Service {
 
     @Nullable
     public IBinder onBind(Intent intent) {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e(TAG, "主进程 LocalService onBind5");
         }
 
@@ -102,7 +102,7 @@ public class Recover1Service extends Service {
     }
 
     public void onDestroy() {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.i(TAG, "主进程 LocalService onDestroy5");
         }
         super.onDestroy();
@@ -112,7 +112,7 @@ public class Recover1Service extends Service {
     }
 
     public boolean onUnbind(Intent intent) {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e(TAG, "主进程 LocalService onUnbind5");
         }
         return super.onUnbind(intent);
@@ -123,7 +123,7 @@ public class Recover1Service extends Service {
     }
 
     public void onTaskRemoved(Intent rootIntent) {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.i(TAG, "主进程 LocalService onTaskRemoved5");
         }
         isStartService = false;
@@ -137,7 +137,7 @@ public class Recover1Service extends Service {
         if (this.isSubBinderAlive() && !onTaskRemoved) {
             isReTryBinding = false;
         } else {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e(TAG, "主进程 LocalService ------startSubService5-----");
             }
 
@@ -145,7 +145,7 @@ public class Recover1Service extends Service {
             this.bindSubService();
             this.nextNum = retryNum - 1;
             if (this.nextNum > 0) {
-                RecoverManager.INSTANCE.getHandler().postDelayed(this.run, 100L);
+                RecoverOrgManager.INSTANCE.getHandler().postDelayed(this.run, 100L);
             } else {
                 isReTryBinding = false;
             }
@@ -153,7 +153,7 @@ public class Recover1Service extends Service {
     }
 
     private void doStartSubService() {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.i(TAG, "主进程 doStartSubService5");
         }
         try {
@@ -163,7 +163,7 @@ public class Recover1Service extends Service {
             this.startService(intent);
         } catch (Exception var31) {
             Exception e = var31;
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.i(TAG, "LocalService startSubService start error5=" + e.getMessage());
             }
         }
@@ -174,7 +174,7 @@ public class Recover1Service extends Service {
             this.bindService(new Intent(this, Recover2Service.class), this.mLocalServiceConn, 1);
         } catch (Exception var9) {
             Exception e2 = var9;
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.i(TAG, "主进程 LocalService startSubService bind error5=" + e2.getMessage());
             }
         }
@@ -190,7 +190,7 @@ public class Recover1Service extends Service {
             return true;
         } catch (Exception var44) {
             Exception e = var44;
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.i(TAG, "主进程 LocalService startMainService start error5=" + e.getMessage());
             }
             return false;
@@ -199,7 +199,7 @@ public class Recover1Service extends Service {
 
 
     private static void doBindMainService(Context context) {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.i(TAG, "bindMainService5");
         }
         try {
@@ -219,7 +219,7 @@ public class Recover1Service extends Service {
             }, 1);
         } catch (Exception var36) {
             Exception e2 = var36;
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.i(TAG, "主进程 LocalService bindLocalService5" + e2.getMessage());
             }
         }
@@ -245,7 +245,7 @@ public class Recover1Service extends Service {
         }
 
         public void onServiceConnected(ComponentName name, IBinder service) {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.i(Recover1Service.TAG, "主进程 LocalService 连接子进程成功5");
             }
             try {
@@ -253,14 +253,14 @@ public class Recover1Service extends Service {
                 process.getServiceRecover();
             } catch (Exception var25) {
                 Exception e = var25;
-                if (RecoverManager.isDebug) {
+                if (RecoverOrgManager.isDebug) {
                     Log.e(Recover1Service.TAG, "主进程 LocalService 连接子进程 fail 5e=" + e.getMessage());
                 }
             }
         }
 
         public void onServiceDisconnected(ComponentName name) {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e(Recover1Service.TAG, "主进程 LocalService 子进程服务挂掉了 onServiceDisconnected5");
             }
             subBinder = null;
@@ -269,7 +269,7 @@ public class Recover1Service extends Service {
         }
 
         public void onBindingDied(ComponentName name) {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e(Recover1Service.TAG, "主进程 LocalService 子进程服务挂掉了 onBindingDied5");
             }
             this.onServiceDisconnected(name);

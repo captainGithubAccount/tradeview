@@ -16,9 +16,9 @@ import android.widget.RemoteViews;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.recover.redate.R;
+import com.recover.model.R;
 import com.recover.redate.FirebaseUtils;
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 import com.recover.redate.change.RecoverChangeUtils;
 import com.recover.redate.opdj.nt.RecoverNtCancelFgService;
 
@@ -30,24 +30,24 @@ public class RecoverNtSender {
 
     public static boolean showSceneNtOrg9hz(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, RecoverChangeUtils.NoticeType noticeType) {
         if (!isIgnoreLastPushTime) {
-            RecoverManager.saveLastPushTime();
+            RecoverOrgManager.saveLastPushTime();
         }
-        Context context = RecoverManager.mContext;
+        Context context = RecoverOrgManager.mContext;
         assert context != null;
         NotificationManager mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         cancelNotificationId(notifyId);
-        String channelId = "Sound_ChannelId_Recover" + RecoverManager.code;
-        String channelName = "Sound_ChannelName_Recover" + RecoverManager.code;
+        String channelId = "Sound_ChannelId_Recover" + RecoverOrgManager.code;
+        String channelName = "Sound_ChannelName_Recover" + RecoverOrgManager.code;
         if (isSilent) {
-            channelId = "SilentChannelId_Recover" + RecoverManager.code;
-            channelName = "SilentChannelName_Recover" + RecoverManager.code;
+            channelId = "SilentChannelId_Recover" + RecoverOrgManager.code;
+            channelName = "SilentChannelName_Recover" + RecoverOrgManager.code;
         }
 
         int smallIcon = R.mipmap.recover_logo;
-        Intent intent2 = new Intent(RecoverManager.mContext, RecoverNtCancelFgService.class);
-        intent2.setPackage(RecoverManager.mContext.getPackageName());
+        Intent intent2 = new Intent(RecoverOrgManager.mContext, RecoverNtCancelFgService.class);
+        intent2.setPackage(RecoverOrgManager.mContext.getPackageName());
         intent2.putExtra("notificationId", notifyId);
-        PendingIntent cancelPendingIntent = PendingIntent.getService(RecoverManager.mContext, 8652 + RecoverManager.code, intent2, RecoverChangeUtils.INSTANCE.getNotifyFlag());
+        PendingIntent cancelPendingIntent = PendingIntent.getService(RecoverOrgManager.mContext, 8652 + RecoverOrgManager.code, intent2, RecoverChangeUtils.INSTANCE.getNotifyFlag());
         if (VERSION.SDK_INT >= 26) {
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
             channel.setLockscreenVisibility(1);
@@ -89,21 +89,21 @@ public class RecoverNtSender {
             builder.setLights(0, 0, 0);
         }
         builder.setCategory("call");
-        RecoverManager.handler.postDelayed(new Runnable() {
+        RecoverOrgManager.handler.postDelayed(new Runnable() {
             @SuppressLint("MissingPermission")
             @Override
             public void run() {
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(RecoverManager.mContext);
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(RecoverOrgManager.mContext);
                 notificationManager.notify(notifyId, builder.build());
                 RecoverChangeUtils.INSTANCE.setLastNoticeType(noticeType);
                 Log.e("aaa", "showScenePushShare: 开始展示 通知 --  本次 -- " + RecoverChangeUtils.INSTANCE.getLastNoticeType());
-                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", RecoverManager.mContext);
+                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", RecoverOrgManager.mContext);
 //                Log.e("xxx", "----------doSendNotify---------- ");
 //                RecoverNtSender.doCycle(notificationManager, notifyId, builder.build());
             }
         }, 1200L);
         try {
-            RecoverManager.setCount();
+            RecoverOrgManager.setCount();
         } catch (Exception var318) {
             Exception e = var318;
             e.printStackTrace();
@@ -115,7 +115,7 @@ public class RecoverNtSender {
 
     public static void cancelNotificationId(int notificationId) {
         try {
-            NotificationManager mManager = (NotificationManager) RecoverManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager mManager = (NotificationManager) RecoverOrgManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationId < 0) {
                 mManager.cancelAll();
                 return;
@@ -130,7 +130,7 @@ public class RecoverNtSender {
 
     public static void cancelAll() {
         try {
-            NotificationManager mManager = (NotificationManager) RecoverManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager mManager = (NotificationManager) RecoverOrgManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
             mManager.cancelAll();
         } catch (Exception var14) {
             Exception e = var14;
@@ -140,12 +140,12 @@ public class RecoverNtSender {
 
 
     private static void doCycle(NotificationManagerCompat notificationManager, int id, Notification notification) {
-        RecoverManager.handler.postDelayed(new Runnable() {
+        RecoverOrgManager.handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 boolean isSendOk = RecoverNtSender.doCycleSend(notificationManager, id, notification);
                 if (isSendOk) {
-                    RecoverManager.handler.postDelayed(new Runnable() {
+                    RecoverOrgManager.handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             boolean isSendOk = RecoverNtSender.doCycleSend(notificationManager, id, notification);
@@ -160,12 +160,12 @@ public class RecoverNtSender {
     @SuppressLint({"MissingPermission"})
     private static boolean doCycleSend(NotificationManagerCompat notificationManager, int id, Notification notification) {
         Log.e("xxx", "----------doCycleSend---------- ");
-        if (!RecoverManager.INSTANCE.isForeground() && !RecoverManager.INSTANCE.hasCreatingActivity()) {
-            boolean isNotificationEnabled = RecoverManager.isNotificationEnabled();
-            boolean screenOn = RecoverManager.isScreenOn() && RecoverManager.isScreenLockOpen();
+        if (!RecoverOrgManager.INSTANCE.isForeground() && !RecoverOrgManager.INSTANCE.hasCreatingActivity()) {
+            boolean isNotificationEnabled = RecoverOrgManager.isNotificationEnabled();
+            boolean screenOn = RecoverOrgManager.isScreenOn() && RecoverOrgManager.isScreenLockOpen();
             if (isNotificationEnabled && screenOn) {
                 try {
-                    FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", RecoverManager.mContext);
+                    FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", RecoverOrgManager.mContext);
                     notificationManager.notify(id, notification);
                 } catch (Exception var95) {
                     Exception e = var95;
@@ -173,17 +173,17 @@ public class RecoverNtSender {
                 }
                 return true;
             } else {
-                if (RecoverManager.isDebug) {
+                if (RecoverOrgManager.isDebug) {
                     Log.e("xxx", "----------doCycleSend---------- !isNotificationEnabled||!screenOn");
                 }
-                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", RecoverManager.mContext);
+                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", RecoverOrgManager.mContext);
                 return false;
             }
         } else {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e("xxx", "----------doCycleSend---------- has resume Activity");
             }
-            FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", RecoverManager.mContext);
+            FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", RecoverOrgManager.mContext);
             return false;
         }
     }

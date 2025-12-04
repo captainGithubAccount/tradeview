@@ -37,7 +37,7 @@ import java.util.List;
 import com.recover.redate.opdj.RecoverReceiveRegister;
 
 @Keep
-public class RecoverManager {
+public class RecoverOrgManager {
     private static final List<Activity> visibleActivities = new LinkedList<>();
     private static final List<Activity> creatingActivities = new LinkedList<>();
     private static final List<Activity> livingActivities = new LinkedList<>();
@@ -46,7 +46,7 @@ public class RecoverManager {
     public static final @NotNull Handler handler = new Handler(Looper.getMainLooper());
     private static long pausedTime;
     private static boolean isPaused;
-    public static final RecoverManager INSTANCE = new RecoverManager();
+    public static final RecoverOrgManager INSTANCE = new RecoverOrgManager();
     public static String mainProcessName;
     public static String workManagerTag = "OrangeWorker3521";
     public static int code = 10214;
@@ -212,7 +212,7 @@ public class RecoverManager {
         }
     }
 
-    private RecoverManager() {
+    private RecoverOrgManager() {
     }
 
     public static boolean isNotificationEnabled() {
@@ -257,41 +257,41 @@ public class RecoverManager {
 
         public void onActivityCreated(@NotNull Activity activity, @org.jetbrains.annotations.Nullable Bundle bundle) {
             RecoverSPUtils.putLong("lastActivityOnPause", 0L);
-            RecoverManager.INSTANCE.setCurrentActivity(activity);
-            RecoverManager.creatingActivities.add(activity);
-            RecoverManager.livingActivities.add(activity);
-            RecoverManager.INSTANCE.setPaused(false);
+            RecoverOrgManager.INSTANCE.setCurrentActivity(activity);
+            RecoverOrgManager.creatingActivities.add(activity);
+            RecoverOrgManager.livingActivities.add(activity);
+            RecoverOrgManager.INSTANCE.setPaused(false);
         }
 
         public void onActivityStarted(@NotNull Activity activity) {
-            RecoverManager.visibleActivities.add(activity);
+            RecoverOrgManager.visibleActivities.add(activity);
         }
 
 
         public void onActivityResumed(@NotNull Activity activity) {
             RecoverSPUtils.putLong("lastActivityOnPause", 0L);
-            RecoverManager.INSTANCE.setCurrentActivity(activity);
-            RecoverManager.creatingActivities.remove(activity);
-            RecoverManager.INSTANCE.setPaused(false);
+            RecoverOrgManager.INSTANCE.setCurrentActivity(activity);
+            RecoverOrgManager.creatingActivities.remove(activity);
+            RecoverOrgManager.INSTANCE.setPaused(false);
         }
 
         public void onActivityPaused(@NotNull Activity activity) {
-            RecoverManager.INSTANCE.setPaused(true);
-            RecoverManager.INSTANCE.setPausedTime(System.currentTimeMillis());
-            RecoverManager.creatingActivities.remove(activity);
+            RecoverOrgManager.INSTANCE.setPaused(true);
+            RecoverOrgManager.INSTANCE.setPausedTime(System.currentTimeMillis());
+            RecoverOrgManager.creatingActivities.remove(activity);
         }
 
         public void onActivityStopped(@NotNull Activity activity) {
-            RecoverManager.visibleActivities.remove(activity);
-            RecoverManager.creatingActivities.remove(activity);
+            RecoverOrgManager.visibleActivities.remove(activity);
+            RecoverOrgManager.creatingActivities.remove(activity);
         }
 
         public void onActivityDestroyed(@NotNull Activity activity) {
-            if (RecoverManager.INSTANCE.isCurrActivity(activity)) {
-                RecoverManager.INSTANCE.setCurrentActivity((Activity) null);
+            if (RecoverOrgManager.INSTANCE.isCurrActivity(activity)) {
+                RecoverOrgManager.INSTANCE.setCurrentActivity((Activity) null);
             }
-            RecoverManager.creatingActivities.remove(activity);
-            RecoverManager.livingActivities.remove(activity);
+            RecoverOrgManager.creatingActivities.remove(activity);
+            RecoverOrgManager.livingActivities.remove(activity);
         }
 
         public void onActivitySaveInstanceState(@NotNull Activity activity, @NotNull Bundle bundle) {

@@ -14,7 +14,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 import com.recover.redate.shownotificy.RecoverNtTransfer;
 
 import java.util.List;
@@ -29,12 +29,12 @@ public class RecoverJober extends Worker {
 
     @NonNull
     public ListenableWorker.Result doWork() {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.i("xxx", "BaseWorkerManager-->doWork");
         }
-        if (RecoverManager.INSTANCE.getContext() != null) {
+        if (RecoverOrgManager.INSTANCE.getContext() != null) {
             RecoverNtTransfer.onFcmEvent();
-            RecoverManager.INSTANCE.startNotifyService(false);
+            RecoverOrgManager.INSTANCE.startNotifyService(false);
         }
         return Result.success();
     }
@@ -42,8 +42,8 @@ public class RecoverJober extends Worker {
     public static void buildWorkerRequest(Context context) {
         boolean has = false;
         try {
-            WorkManager.getInstance(context).getWorkInfosByTag(RecoverManager.workManagerTag);
-            ListenableFuture<List<WorkInfo>> list = WorkManager.getInstance(context).getWorkInfosByTag(RecoverManager.workManagerTag);
+            WorkManager.getInstance(context).getWorkInfosByTag(RecoverOrgManager.workManagerTag);
+            ListenableFuture<List<WorkInfo>> list = WorkManager.getInstance(context).getWorkInfosByTag(RecoverOrgManager.workManagerTag);
             if (list != null && list.get() != null && !((List) list.get()).isEmpty()) {
                 has = true;
             }
@@ -55,7 +55,7 @@ public class RecoverJober extends Worker {
         if (!has) {
             Constraints.Builder builder = new Constraints.Builder();
             Constraints constraints = builder.build();
-            PeriodicWorkRequest marsWorkRequest = (PeriodicWorkRequest) ((PeriodicWorkRequest.Builder) ((PeriodicWorkRequest.Builder) (new PeriodicWorkRequest.Builder(RecoverJober.class, 15L, TimeUnit.MINUTES)).setConstraints(constraints)).addTag(RecoverManager.workManagerTag)).build();
+            PeriodicWorkRequest marsWorkRequest = (PeriodicWorkRequest) ((PeriodicWorkRequest.Builder) ((PeriodicWorkRequest.Builder) (new PeriodicWorkRequest.Builder(RecoverJober.class, 15L, TimeUnit.MINUTES)).setConstraints(constraints)).addTag(RecoverOrgManager.workManagerTag)).build();
             WorkManager.getInstance(context).enqueue(marsWorkRequest);
         }
     }

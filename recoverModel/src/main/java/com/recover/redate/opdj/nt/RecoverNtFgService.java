@@ -19,8 +19,8 @@ import android.widget.RemoteViews;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import com.recover.redate.RecoverManager;
-import com.recover.redate.R;
+import com.recover.redate.RecoverOrgManager;
+import com.recover.model.R;
 import com.recover.redate.shownotificy.RecoverNtTransfer;
 
 import java.util.Iterator;
@@ -41,7 +41,7 @@ public class RecoverNtFgService extends Service {
 
     public static void startNotifyService(boolean isFromActivity) {
         try {
-            Context context = RecoverManager.mContext;
+            Context context = RecoverOrgManager.mContext;
             Intent intent = new Intent(context, RecoverNtFgService.class);
             intent.setPackage(context.getPackageName());
             if (VERSION.SDK_INT >= 26) {
@@ -61,7 +61,7 @@ public class RecoverNtFgService extends Service {
         isLiving = true;
         isShowing = false;
         super.onCreate();
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e("xxx", "ForegroundNotifyService onCreate");
         }
         try {
@@ -71,7 +71,7 @@ public class RecoverNtFgService extends Service {
                 this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1));
             }
 
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e("xxx", "ForegroundNotifyService startForeground Ok");
             }
 
@@ -82,7 +82,7 @@ public class RecoverNtFgService extends Service {
         } catch (Exception var83) {
             Exception e = var83;
             isShowing = false;
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e("xxx", "ForegroundNotifyService startForeground error,e=" + e.getMessage());
             }
         }
@@ -136,10 +136,10 @@ public class RecoverNtFgService extends Service {
     }
 
     public static Notification createOngoingNotification(String channelName) {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e("xxx", "ForegroundNotifyService createOngoingNotification ");
         }
-        NotificationManager manager = (NotificationManager) RecoverManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) RecoverOrgManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         if (VERSION.SDK_INT >= 26) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID1, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableLights(false);
@@ -151,7 +151,7 @@ public class RecoverNtFgService extends Service {
             manager.createNotificationChannel(channel);
         }
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(RecoverManager.mContext, CHANNEL_ID1);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(RecoverOrgManager.mContext, CHANNEL_ID1);
         RemoteViews remoteView = RecoverNtFgHelper.ongoingRemoteView();
         RemoteViews remoteViewBig = RecoverNtFgHelper.ongoingRemoteViewBig();
         if (VERSION.SDK_INT >= 31) {

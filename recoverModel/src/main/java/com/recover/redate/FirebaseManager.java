@@ -42,7 +42,7 @@ public class FirebaseManager {
                         isFetchSuccessful = true;
                         try {
                             String notify_sleep_time = getString(RecoverChangeUtils.INSTANCE.getCoolTimeStar(), "");
-                            if (RecoverManager.isDebug){
+                            if (RecoverOrgManager.isDebug){
                                 Log.e("aaa", "云端配置: 冷却时间："  + notify_sleep_time);
                             }
                             if (!TextUtils.isEmpty(notify_sleep_time)) {

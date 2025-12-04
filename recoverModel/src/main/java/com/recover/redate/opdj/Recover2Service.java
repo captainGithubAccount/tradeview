@@ -13,7 +13,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.content.recover.IProcessServiceRecover;
 
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 
 public class Recover2Service extends Service {
     String TAG = "xxx";
@@ -27,7 +27,7 @@ public class Recover2Service extends Service {
     private Runnable run = new Runnable() {
         @Override
         public void run() {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.i(TAG, "delay 监视 Runnable nextNum4=" + nextNum);
             }
             startMainService(nextNum, false);
@@ -43,7 +43,7 @@ public class Recover2Service extends Service {
     public void onCreate() {
         isLiving = true;
         super.onCreate();
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e(this.TAG, "子进程 RemoteService onCreate`");
         }
 
@@ -59,14 +59,14 @@ public class Recover2Service extends Service {
         if (intent != null) {
             isStartService = intent.getBooleanExtra("isStartService", false);
         }
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e(this.TAG, "子进程 RemoteService onStartCommand isStartService=2" + isStartService);
         }
         return Service.START_STICKY;
     }
 
     public boolean onUnbind(Intent intent) {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e(this.TAG, "子进程 RemoteService onUnbind3");
         }
 
@@ -75,7 +75,7 @@ public class Recover2Service extends Service {
 
     @Nullable
     public IBinder onBind(Intent intent) {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e(this.TAG, "子进程 RemoteService onBind4");
         }
         return this.mServiceBinder;
@@ -83,14 +83,14 @@ public class Recover2Service extends Service {
 
     public void startMainService(int retryNum, Boolean onTaskRemoved) {
         if (!this.isMainBinderAlive() || onTaskRemoved) {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e(this.TAG, "子进程 RemoteService------startMainService4-----");
             }
             this.doStartMainService();
             this.doBindMainService();
             this.nextNum = retryNum - 1;
             if (this.nextNum > 0) {
-                if (RecoverManager.isDebug) {
+                if (RecoverOrgManager.isDebug) {
                     Log.i(this.TAG, "RemoteService postDelayed nextNu4m=" + this.nextNum);
                 }
                 handler.postDelayed(this.run, 100L);
@@ -109,7 +109,7 @@ public class Recover2Service extends Service {
             this.startService(intent);
         } catch (Exception var16) {
             Exception e = var16;
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.i(this.TAG, "RemoteService startMainService start error4=" + e.getMessage());
             }
         }
@@ -117,14 +117,14 @@ public class Recover2Service extends Service {
     }
 
     private void doBindMainService() {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.i(this.TAG, "RemoteService bindMainService");
         }
         try {
             this.bindService(new Intent(this, Recover1Service.class), this.mRemoteServiceConn, 1);
         } catch (Exception var34) {
             Exception e2 = var34;
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.i(this.TAG, "RemoteService bindMainService bind error1=" + e2.getMessage());
             }
         }
@@ -134,7 +134,7 @@ public class Recover2Service extends Service {
 
     public void onTaskRemoved(Intent rootIntent) {
         mainBinder = null;
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.i(this.TAG, "子进程 RemoteService onTaskRemoved1");
         }
         isReTryBinding = true;
@@ -143,7 +143,7 @@ public class Recover2Service extends Service {
     }
 
     public void onDestroy() {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.i(this.TAG, "子进程 RemoteService onDestroy5");
         }
         super.onDestroy();
@@ -178,12 +178,12 @@ public class Recover2Service extends Service {
             try {
                 IProcessServiceRecover process = IProcessServiceRecover.Stub.asInterface(service);
                 process.getServiceRecover();
-                if (RecoverManager.isDebug) {
+                if (RecoverOrgManager.isDebug) {
                     Log.i(TAG, "RemoteService 连接主进程 成功6");
                 }
             } catch (Exception var33) {
                 Exception e = var33;
-                if (RecoverManager.isDebug) {
+                if (RecoverOrgManager.isDebug) {
                     Log.e(TAG, "RemoteService 连接主进程 fail e6=" + e.getMessage());
                 }
             }
@@ -191,7 +191,7 @@ public class Recover2Service extends Service {
         }
 
         public void onServiceDisconnected(ComponentName name) {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e(TAG, "RemoteService 主服务挂掉了 onServiceDisconnected5");
             }
             Recover2Service.mainBinder = null;
@@ -200,7 +200,7 @@ public class Recover2Service extends Service {
         }
 
         public void onBindingDied(ComponentName name) {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e(TAG, "RemoteService 主服务挂掉了 onBindingDied4");
             }
             this.onServiceDisconnected(name);

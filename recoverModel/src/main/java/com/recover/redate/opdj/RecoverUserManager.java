@@ -14,7 +14,7 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 
 public class RecoverUserManager {
 
@@ -29,7 +29,7 @@ public class RecoverUserManager {
 
         boolean isSuccess;
         try {
-            AccountManager accountManager = getAccountManager(RecoverManager.INSTANCE.getContext());
+            AccountManager accountManager = getAccountManager(RecoverOrgManager.INSTANCE.getContext());
             isSuccess = accountManager.addAccountExplicitly(account, password, userdata);
 
             ContentResolver.setIsSyncable(account, RecoverUserProvider.getAuthority(), 1);
@@ -50,22 +50,22 @@ public class RecoverUserManager {
      */
     @Deprecated
     public static AccountManagerFuture<Boolean> removeAccount(Account account, AccountManagerCallback<Boolean> callback, Handler handler) {
-        return getAccountManager(RecoverManager.INSTANCE.getContext()).removeAccount(account, callback, handler);
+        return getAccountManager(RecoverOrgManager.INSTANCE.getContext()).removeAccount(account, callback, handler);
     }
 
     @RequiresApi(api = 22)
     public static AccountManagerFuture<Bundle> removeAccount(Account account, Activity activity, AccountManagerCallback<Bundle> callback, Handler handler) {
-        return getAccountManager(RecoverManager.INSTANCE.getContext()).removeAccount(account, activity, callback, handler);
+        return getAccountManager(RecoverOrgManager.INSTANCE.getContext()).removeAccount(account, activity, callback, handler);
     }
 
     @RequiresPermission("android.permission.GET_ACCOUNTS")
     public static Account[] getAccounts() {
-        return getAccountManager(RecoverManager.INSTANCE.getContext()).getAccounts();
+        return getAccountManager(RecoverOrgManager.INSTANCE.getContext()).getAccounts();
     }
 
     @RequiresPermission("android.permission.GET_ACCOUNTS")
     public static Account[] getAccountsByType(String type) {
-        return getAccountManager(RecoverManager.INSTANCE.getContext()).getAccountsByType(type);
+        return getAccountManager(RecoverOrgManager.INSTANCE.getContext()).getAccountsByType(type);
     }
 }
 

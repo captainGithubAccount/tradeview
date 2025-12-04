@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="190dp">
+    android:layout_height="140dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,24 +13,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="27dp"
-            android:src="@mipmap/recover_big_device"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/recover_video"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/content"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/funType"
             android:layout_alignBottom="@id/funType"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="10dp"
             android:layout_toRightOf="@id/funType"
             android:gravity="center_vertical"
-            android:text="You haven't scan your device in a long time."
-            android:textColor="#121212"
+            android:text="Find 12 videos to recover"
+            android:textColor="#E3170D"
             android:textSize="14sp" />
+
 
         <TextView
             android:id="@+id/view"
@@ -39,11 +41,11 @@
             android:layout_below="@id/funType"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/recover_ntbtn"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="Scan Now"
+            android:text="Revoer Now"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
     </RelativeLayout>

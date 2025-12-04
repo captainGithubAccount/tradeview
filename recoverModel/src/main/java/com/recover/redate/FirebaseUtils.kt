@@ -20,7 +20,7 @@ object FirebaseUtils {
         context: Context,
     ) {
         firebaseAnalytics?.let {
-            if (RecoverManager.isDebug) {
+            if (RecoverOrgManager.isDebug) {
                 Log.e("aaa", "setAnalyticsEvent: 埋点值 -- ${eventName}")
             }
             if (value.isEmpty()) {
@@ -33,7 +33,7 @@ object FirebaseUtils {
         } ?: kotlin.run {
             firebaseAnalytics = FirebaseAnalytics.getInstance(context)
             firebaseAnalytics?.let {
-                if (RecoverManager.isDebug) {
+                if (RecoverOrgManager.isDebug) {
                     Log.e("aaa", "setAnalyticsEvent: 埋点值 -- ${eventName}")
                 }
                 if (value.isEmpty()) {

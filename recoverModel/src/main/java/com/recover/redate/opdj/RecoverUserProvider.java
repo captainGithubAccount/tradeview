@@ -9,8 +9,8 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.recover.redate.RecoverManager;
-import com.recover.redate.R;
+import com.recover.redate.RecoverOrgManager;
+import com.recover.model.R;
 
 @Keep
 public class RecoverUserProvider extends ContentProvider {
@@ -19,7 +19,7 @@ public class RecoverUserProvider extends ContentProvider {
     }
 
     public static String getAuthority() {
-        return RecoverManager.getResString(R.string.recover_provider_auth);
+        return RecoverOrgManager.getResString(R.string.recover_provider_auth);
     }
 
     public boolean onCreate() {

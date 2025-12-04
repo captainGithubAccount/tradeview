@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.SystemClock;
 
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 import com.recover.redate.change.RecoverChangeUtils;
 
 public class RecoverClockManager {
@@ -25,7 +25,7 @@ public class RecoverClockManager {
             hasPermission = true;
         }
 
-        PendingIntent pendingIntent = PendingIntent.getService(RecoverManager.INSTANCE.getContext(), 2023, new Intent(RecoverManager.mContext, RecoverClockService.class), RecoverChangeUtils.INSTANCE.getNotifyFlag());
+        PendingIntent pendingIntent = PendingIntent.getService(RecoverOrgManager.INSTANCE.getContext(), 2023, new Intent(RecoverOrgManager.mContext, RecoverClockService.class), RecoverChangeUtils.INSTANCE.getNotifyFlag());
         am.cancel(pendingIntent);
         long time = SystemClock.elapsedRealtime() + 177000L;
         if (hasPermission) {

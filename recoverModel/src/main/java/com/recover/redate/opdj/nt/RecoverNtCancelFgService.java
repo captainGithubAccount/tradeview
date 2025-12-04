@@ -6,7 +6,7 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 
 public class RecoverNtCancelFgService extends Service {
 
@@ -26,7 +26,7 @@ public class RecoverNtCancelFgService extends Service {
             notificationId = intent.getIntExtra("notificationId", -1);
         }
         RecoverNtUtils.cancelNotificationId(notificationId);
-        RecoverManager.INSTANCE.startNotifyService(false);
+        RecoverOrgManager.INSTANCE.startNotifyService(false);
         this.stopSelf();
         return super.onStartCommand(intent, flags, startId);
     }

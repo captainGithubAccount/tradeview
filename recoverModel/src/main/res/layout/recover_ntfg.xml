@@ -1,9 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="64dp">
+    android:layout_height="75dp">
 
     <LinearLayout
+        android:id="@+id/photoLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="2dp">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/recover_photos" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Recover Photos"
+            android:textColor="#2C2A29"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/videoLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="2dp">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/recover_video" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Recover Videos"
+            android:textColor="#2C2A29"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fileLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="2dp">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/recover_file" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Recover Files"
+            android:textColor="#2C2A29"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
         android:id="@+id/cleanLayout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -21,13 +91,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Clean"
+            android:text="Recover Files"
             android:textColor="#2C2A29"
             android:textSize="13sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/processLayout"
+        android:visibility="gone"
+        android:id="@+id/dupliLayout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -38,19 +109,19 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@mipmap/recover_apps" />
+            android:src="@mipmap/recover_dupli" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Process"
+            android:text="Recover Files"
             android:textColor="#2C2A29"
             android:textSize="13sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/deviceLayout"
+        android:id="@+id/compressLayout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -61,36 +132,13 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@mipmap/recover_device" />
+            android:src="@mipmap/recover_compress" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Device"
-            android:textColor="#2C2A29"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/batteryLayout"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="2dp">
-
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@mipmap/recover_battery" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Battery"
+            android:text="Compress Photo"
             android:textColor="#2C2A29"
             android:textSize="13sp" />
     </LinearLayout>

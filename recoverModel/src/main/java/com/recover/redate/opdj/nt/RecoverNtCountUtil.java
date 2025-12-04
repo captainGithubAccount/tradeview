@@ -16,7 +16,7 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -29,7 +29,7 @@ public class RecoverNtCountUtil {
     }
 
     public static boolean setCount() {
-        return setCount(1, RecoverManager.mContext);
+        return setCount(1, RecoverOrgManager.mContext);
     }
 
     public static boolean setCount(int count, Context context) {

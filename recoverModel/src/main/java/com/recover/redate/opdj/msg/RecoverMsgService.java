@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.recover.redate.RecoverManager;
+import com.recover.redate.RecoverOrgManager;
 import com.recover.redate.shownotificy.RecoverNtTransfer;
 
 public class RecoverMsgService extends FirebaseMessagingService {
@@ -16,7 +16,7 @@ public class RecoverMsgService extends FirebaseMessagingService {
 
     public void onNewToken(String token) {
         super.onNewToken(token);
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e("xxx", "MsgServiceOrg9hz onNewToken token=" + token);
         }
         try {
@@ -30,7 +30,7 @@ public class RecoverMsgService extends FirebaseMessagingService {
     }
 
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        if (RecoverManager.isDebug) {
+        if (RecoverOrgManager.isDebug) {
             Log.e("xxx", "MsgServiceOrg9hz onMessageReceived remoteMessage=" + remoteMessage.toString());
         }
         super.onMessageReceived(remoteMessage);

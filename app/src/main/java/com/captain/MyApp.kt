@@ -1,7 +1,7 @@
 package com.captain
 
 import android.app.Application
-import com.smartfile.model.SmartFileManager
+import com.recover.redate.RecoverOrgManager
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -26,7 +26,7 @@ import com.smartfile.model.SmartFileManager
 class MyApp: Application() {
     override fun onCreate() {
         super.onCreate()
-        SmartFileManager.INSTANCE.initCore(
+        RecoverOrgManager.INSTANCE.initCore(
             this,
             packageName,
             true
