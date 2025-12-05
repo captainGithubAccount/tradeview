@@ -23,10 +23,17 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="10dp"
             android:layout_toRightOf="@id/funType"
-            android:gravity="center_vertical"
-            android:text="You haven't scan your device in a long time."
-            android:textColor="#121212"
+            android:layout_marginTop="10dp"
+            android:text="Check Mobile Device Information."
+            android:textColor="#201F31"
             android:textSize="12sp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/whiter_go" />
+
     </RelativeLayout>
 
 </LinearLayout>

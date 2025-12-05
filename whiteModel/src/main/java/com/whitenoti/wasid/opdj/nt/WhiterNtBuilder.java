@@ -47,9 +47,9 @@ public class WhiterNtBuilder {
                 WhiterChangeUtils.INSTANCE.setCurrentRandomClean(number);
                 long randomNumber = (number) * 1024 * 1024;
                 String result = WhiterFormatterSize.formatFileSize(WhiterManager.mContext, randomNumber);
-                remoteViewsBig.setTextViewText(R.id.tvSize, result + " garbage,");
-                remoteViewsMini.setTextViewText(R.id.tvSize, result + " garbage,");
-                remoteViewsMid.setTextViewText(R.id.tvSize, result + " garbage,");
+//                remoteViewsBig.setTextViewText(R.id.tvSize, result + " garbage,");
+//                remoteViewsMini.setTextViewText(R.id.tvSize, result + " garbage,");
+//                remoteViewsMid.setTextViewText(R.id.tvSize, result + " garbage,");
 
 
                 Intent intent = new Intent();
