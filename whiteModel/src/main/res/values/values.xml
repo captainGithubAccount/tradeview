@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="whiter_app_name" translatable="false">Bx File Explorer</string>
+    <string name="whiter_battery">Battery</string>
+    <string name="whiter_clean">Clean</string>
+    <string name="whiter_device">Device</string>
+    <!-- todo 修改-->
+    <string name="whiter_provider_auth" translatable="false">com.whitenoti.wasid.WhiterUserProvider</string>
+    <string name="whiter_user_type" translatable="false">com.whitenoti.wasid.UserTypeWhiter</string>
+</resources>

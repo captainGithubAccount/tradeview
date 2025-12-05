@@ -1,7 +1,8 @@
 package com.captain
 
 import android.app.Application
-import com.pinkpur.sadklive.PinkpurManager
+import com.whitenoti.wasid.WhiterFirebaseCloudManager
+import com.whitenoti.wasid.WhiterManager
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -26,7 +27,7 @@ import com.pinkpur.sadklive.PinkpurManager
 class MyApp: Application() {
     override fun onCreate() {
         super.onCreate()
-        PinkpurManager.INSTANCE.initCore(
+        WhiterManager.INSTANCE.initCore(
             this,
             packageName,
             true

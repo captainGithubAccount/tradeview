@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accountType="@string/simply_user_type"
-    android:icon="@mipmap/simply_logo"
-    android:label="@string/simply_app_name"
-    android:smallIcon="@mipmap/simply_logo" />
