@@ -40,8 +40,8 @@ android {
 }
 
 dependencies {
-//    implementation project(":cleModel")
-    implementation project(":whiteModel")
+    implementation project(":cleModel")
+//    implementation project(":whiteModel")
 //    implementation project(':smartfileModel')
 
 

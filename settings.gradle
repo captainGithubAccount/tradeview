@@ -22,6 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "TradingFinal"
 include ':app'
 include ':cleModel'
-include ':recoverModel'
+include ':cleModel'
 include ':whiteModel'
 include ':pinkpurModel'

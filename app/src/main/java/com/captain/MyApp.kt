@@ -1,8 +1,7 @@
 package com.captain
 
 import android.app.Application
-import com.whitenoti.wasid.WhiterFirebaseCloudManager
-import com.whitenoti.wasid.WhiterManager
+import com.tfseptember.clemodel.SimplyManager
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -27,7 +26,7 @@ import com.whitenoti.wasid.WhiterManager
 class MyApp: Application() {
     override fun onCreate() {
         super.onCreate()
-        WhiterManager.INSTANCE.initCore(
+        SimplyManager.INSTANCE.initCore(
             this,
             packageName,
             true
