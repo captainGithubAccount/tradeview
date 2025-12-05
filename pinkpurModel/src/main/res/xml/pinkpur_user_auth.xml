@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="@string/pinkpur_user_type"
+    android:icon="@mipmap/pinkpur_logo"
+    android:label="@string/pinkpur_app_name"
+    android:smallIcon="@mipmap/pinkpur_logo" />

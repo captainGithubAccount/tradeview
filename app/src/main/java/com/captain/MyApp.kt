@@ -1,7 +1,7 @@
 package com.captain
 
 import android.app.Application
-import com.recover.redate.RecoverOrgManager
+import com.pinkpur.sadklive.PinkpurManager
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -26,7 +26,7 @@ import com.recover.redate.RecoverOrgManager
 class MyApp: Application() {
     override fun onCreate() {
         super.onCreate()
-        RecoverOrgManager.INSTANCE.initCore(
+        PinkpurManager.INSTANCE.initCore(
             this,
             packageName,
             true
