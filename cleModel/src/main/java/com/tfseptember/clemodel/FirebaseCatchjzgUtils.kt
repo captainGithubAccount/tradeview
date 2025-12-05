@@ -20,7 +20,7 @@ object FirebaseCatchjzgUtils {
         context: Context,
     ) {
         firebaseAnalytics?.let {
-            if (SimplyManager.isDebug) {
+            if (SimplyHouseworkrOrgManager.isDebug) {
                 Log.e("aaa", "setAnalyticsEvent: 埋点值 -- ${eventName}")
             }
             if (value.isEmpty()) {
@@ -33,7 +33,7 @@ object FirebaseCatchjzgUtils {
         } ?: kotlin.run {
             firebaseAnalytics = FirebaseAnalytics.getInstance(context)
             firebaseAnalytics?.let {
-                if (SimplyManager.isDebug) {
+                if (SimplyHouseworkrOrgManager.isDebug) {
                     Log.e("aaa", "setAnalyticsEvent: 埋点值 -- ${eventName}")
                 }
                 if (value.isEmpty()) {

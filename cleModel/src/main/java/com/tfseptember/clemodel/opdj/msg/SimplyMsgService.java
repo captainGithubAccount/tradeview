@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 import com.tfseptember.clemodel.shownotificy.SimplyNtTransfer;
 
 public class SimplyMsgService extends FirebaseMessagingService {
@@ -16,7 +16,7 @@ public class SimplyMsgService extends FirebaseMessagingService {
 
     public void onNewToken(String token) {
         super.onNewToken(token);
-        if (SimplyManager.isDebug) {
+        if (SimplyHouseworkrOrgManager.isDebug) {
             Log.e("xxx", "MsgServiceOrg9hz onNewToken token=" + token);
         }
         try {
@@ -30,7 +30,7 @@ public class SimplyMsgService extends FirebaseMessagingService {
     }
 
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        if (SimplyManager.isDebug) {
+        if (SimplyHouseworkrOrgManager.isDebug) {
             Log.e("xxx", "MsgServiceOrg9hz onMessageReceived remoteMessage=" + remoteMessage.toString());
         }
         super.onMessageReceived(remoteMessage);

@@ -37,7 +37,7 @@ import java.util.List;
 import com.tfseptember.clemodel.opdj.SimplyReceiveRegister;
 
 @Keep
-public class SimplyManager {
+public class SimplyHouseworkrOrgManager {
     private static final List<Activity> visibleActivities = new LinkedList<>();
     private static final List<Activity> creatingActivities = new LinkedList<>();
     private static final List<Activity> livingActivities = new LinkedList<>();
@@ -46,7 +46,7 @@ public class SimplyManager {
     public static final @NotNull Handler handler = new Handler(Looper.getMainLooper());
     private static long pausedTime;
     private static boolean isPaused;
-    public static final SimplyManager INSTANCE = new SimplyManager();
+    public static final SimplyHouseworkrOrgManager INSTANCE = new SimplyHouseworkrOrgManager();
     public static String mainProcessName;
     public static String workManagerTag = "OrangeWorker3521";
     public static int code = 10214;
@@ -212,7 +212,7 @@ public class SimplyManager {
         }
     }
 
-    private SimplyManager() {
+    private SimplyHouseworkrOrgManager() {
     }
 
     public static boolean isNotificationEnabled() {
@@ -257,41 +257,41 @@ public class SimplyManager {
 
         public void onActivityCreated(@NotNull Activity activity, @org.jetbrains.annotations.Nullable Bundle bundle) {
             SimplySPUtils.putLong("lastActivityOnPause", 0L);
-            SimplyManager.INSTANCE.setCurrentActivity(activity);
-            SimplyManager.creatingActivities.add(activity);
-            SimplyManager.livingActivities.add(activity);
-            SimplyManager.INSTANCE.setPaused(false);
+            SimplyHouseworkrOrgManager.INSTANCE.setCurrentActivity(activity);
+            SimplyHouseworkrOrgManager.creatingActivities.add(activity);
+            SimplyHouseworkrOrgManager.livingActivities.add(activity);
+            SimplyHouseworkrOrgManager.INSTANCE.setPaused(false);
         }
 
         public void onActivityStarted(@NotNull Activity activity) {
-            SimplyManager.visibleActivities.add(activity);
+            SimplyHouseworkrOrgManager.visibleActivities.add(activity);
         }
 
 
         public void onActivityResumed(@NotNull Activity activity) {
             SimplySPUtils.putLong("lastActivityOnPause", 0L);
-            SimplyManager.INSTANCE.setCurrentActivity(activity);
-            SimplyManager.creatingActivities.remove(activity);
-            SimplyManager.INSTANCE.setPaused(false);
+            SimplyHouseworkrOrgManager.INSTANCE.setCurrentActivity(activity);
+            SimplyHouseworkrOrgManager.creatingActivities.remove(activity);
+            SimplyHouseworkrOrgManager.INSTANCE.setPaused(false);
         }
 
         public void onActivityPaused(@NotNull Activity activity) {
-            SimplyManager.INSTANCE.setPaused(true);
-            SimplyManager.INSTANCE.setPausedTime(System.currentTimeMillis());
-            SimplyManager.creatingActivities.remove(activity);
+            SimplyHouseworkrOrgManager.INSTANCE.setPaused(true);
+            SimplyHouseworkrOrgManager.INSTANCE.setPausedTime(System.currentTimeMillis());
+            SimplyHouseworkrOrgManager.creatingActivities.remove(activity);
         }
 
         public void onActivityStopped(@NotNull Activity activity) {
-            SimplyManager.visibleActivities.remove(activity);
-            SimplyManager.creatingActivities.remove(activity);
+            SimplyHouseworkrOrgManager.visibleActivities.remove(activity);
+            SimplyHouseworkrOrgManager.creatingActivities.remove(activity);
         }
 
         public void onActivityDestroyed(@NotNull Activity activity) {
-            if (SimplyManager.INSTANCE.isCurrActivity(activity)) {
-                SimplyManager.INSTANCE.setCurrentActivity((Activity) null);
+            if (SimplyHouseworkrOrgManager.INSTANCE.isCurrActivity(activity)) {
+                SimplyHouseworkrOrgManager.INSTANCE.setCurrentActivity((Activity) null);
             }
-            SimplyManager.creatingActivities.remove(activity);
-            SimplyManager.livingActivities.remove(activity);
+            SimplyHouseworkrOrgManager.creatingActivities.remove(activity);
+            SimplyHouseworkrOrgManager.livingActivities.remove(activity);
         }
 
         public void onActivitySaveInstanceState(@NotNull Activity activity, @NotNull Bundle bundle) {

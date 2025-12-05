@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.widget.RemoteViews;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 import com.tfseptember.clemodel.R;
 import com.tfseptember.clemodel.change.SimplyChangeUtils;
 import com.tfseptember.clemodel.shownotificy.SimplyNtSendTryer;
@@ -35,9 +35,9 @@ public class SimplyNtBuilder {
                 typeName = "clean";
                 targetId = SimplyNtSendTryer.getPushNotifyId(1);
                 notifyId = SimplyNtSendTryer.getPushNotifyId(1);
-                remoteViewsBig = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_clean_big);
-                remoteViewsMini = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_clean_small);
-                remoteViewsMid = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_clean_small);
+                remoteViewsBig = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_clean_big);
+                remoteViewsMini = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_clean_small);
+                remoteViewsMid = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_clean_small);
 
                 Random random = new Random();
                 int min = 200;
@@ -46,7 +46,7 @@ public class SimplyNtBuilder {
                 int number = random.nextInt(max - min + 1) + min;
                 SimplyChangeUtils.INSTANCE.setCurrentRandomClean(number);
                 long randomNumber = (number) * 1024 * 1024;
-                String result = SimplyFormatterSize.formatFileSize(SimplyManager.mContext, randomNumber);
+                String result = SimplyFormatterSize.formatFileSize(SimplyHouseworkrOrgManager.mContext, randomNumber);
 //                remoteViewsBig.setTextViewText(R.id.tvSize, result + " garbage,");
 //                remoteViewsMini.setTextViewText(R.id.tvSize, result + " garbage,");
 //                remoteViewsMid.setTextViewText(R.id.tvSize, result + " garbage,");
@@ -54,21 +54,21 @@ public class SimplyNtBuilder {
 
                 Intent intent = new Intent();
 
-                intent.setComponent(new ComponentName(SimplyManager.mainProcessName, SimplyChangeUtils.INSTANCE.getLaunchActivityPath()));
+                intent.setComponent(new ComponentName(SimplyHouseworkrOrgManager.mainProcessName, SimplyChangeUtils.INSTANCE.getLaunchActivityPath()));
 
                 intent.putExtra(SimplyChangeUtils.INSTANCE.getNoti_click_str(), "clean");
                 intent.putExtra("cleanSize", number);
 
-                pendingIntent = PendingIntent.getActivity(SimplyManager.mContext, 210011, intent, SimplyChangeUtils.INSTANCE.getNotifyFlag());
+                pendingIntent = PendingIntent.getActivity(SimplyHouseworkrOrgManager.mContext, 210011, intent, SimplyChangeUtils.INSTANCE.getNotifyFlag());
                 break;
             case 1:
                 targetId = SimplyNtSendTryer.getPushNotifyId(2);
                 notifyId = SimplyNtSendTryer.getPushNotifyId(2);
 
                 typeName = "process";
-                remoteViewsBig = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_process_big);
-                remoteViewsMini = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_process_small);
-                remoteViewsMid = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_process_small);
+                remoteViewsBig = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_process_big);
+                remoteViewsMini = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_process_small);
+                remoteViewsMid = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_process_small);
 
                 remoteViewsBig.setTextViewText(R.id.content, SimplyChangeUtils.INSTANCE.getProcressContent());
                 remoteViewsMid.setTextViewText(R.id.content, SimplyChangeUtils.INSTANCE.getProcressContent());
@@ -76,23 +76,23 @@ public class SimplyNtBuilder {
 
 
                 Intent intent2 = new Intent();
-                intent2.setComponent(new ComponentName(SimplyManager.mainProcessName, SimplyChangeUtils.INSTANCE.getLaunchActivityPath()));
+                intent2.setComponent(new ComponentName(SimplyHouseworkrOrgManager.mainProcessName, SimplyChangeUtils.INSTANCE.getLaunchActivityPath()));
 
                 intent2.putExtra(SimplyChangeUtils.INSTANCE.getNoti_click_str(), "process");
-                pendingIntent = PendingIntent.getActivity(SimplyManager.mContext, 210012, intent2, SimplyChangeUtils.INSTANCE.getNotifyFlag());
+                pendingIntent = PendingIntent.getActivity(SimplyHouseworkrOrgManager.mContext, 210012, intent2, SimplyChangeUtils.INSTANCE.getNotifyFlag());
                 break;
             case 2:
                 typeName = "battery";
                 IntentFilter batterFilter = new IntentFilter("android.intent.action.BATTERY_CHANGED");
 
-                Intent batterIntent = SimplyManager.mContext.registerReceiver((BroadcastReceiver) null, batterFilter);
+                Intent batterIntent = SimplyHouseworkrOrgManager.mContext.registerReceiver((BroadcastReceiver) null, batterFilter);
                 int level = batterIntent.getIntExtra("level", 0);
                 int status = batterIntent.getIntExtra("status", -1);
 
                 targetId = SimplyNtSendTryer.getPushNotifyId(3);
                 notifyId = SimplyNtSendTryer.getPushNotifyId(3);
 
-                remoteViewsBig = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_battery_big);
+                remoteViewsBig = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_battery_big);
                 remoteViewsBig.setTextViewText(R.id.tvPower, level + "%");
                 if (status != 2 && status != 5) {
                     remoteViewsBig.setTextViewText(R.id.changeDua, "unknow");
@@ -106,8 +106,8 @@ public class SimplyNtBuilder {
                     }
                 }
 
-                remoteViewsMini = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_battery_small);
-                remoteViewsMid = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_battery_small);
+                remoteViewsMini = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_battery_small);
+                remoteViewsMid = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_battery_small);
 
                 remoteViewsBig.setTextViewText(R.id.content, SimplyChangeUtils.INSTANCE.getBatteryContent());
                 remoteViewsMid.setTextViewText(R.id.content, SimplyChangeUtils.INSTANCE.getBatteryContent());
@@ -115,10 +115,10 @@ public class SimplyNtBuilder {
 
                 Intent intent3 = new Intent();
 
-                intent3.setComponent(new ComponentName(SimplyManager.mainProcessName, SimplyChangeUtils.INSTANCE.getLaunchActivityPath()));
+                intent3.setComponent(new ComponentName(SimplyHouseworkrOrgManager.mainProcessName, SimplyChangeUtils.INSTANCE.getLaunchActivityPath()));
                 intent3.putExtra(SimplyChangeUtils.INSTANCE.getNoti_click_str(), "battery");
 
-                pendingIntent = PendingIntent.getActivity(SimplyManager.mContext, 210013, intent3, SimplyChangeUtils.INSTANCE.getNotifyFlag());
+                pendingIntent = PendingIntent.getActivity(SimplyHouseworkrOrgManager.mContext, 210013, intent3, SimplyChangeUtils.INSTANCE.getNotifyFlag());
 
                 break;
             case 3:
@@ -127,15 +127,15 @@ public class SimplyNtBuilder {
                 notifyId = SimplyNtSendTryer.getPushNotifyId(4);
                 typeName = "device";
 
-                remoteViewsBig = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_device_big);
-                remoteViewsMini = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_device_small);
+                remoteViewsBig = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_device_big);
+                remoteViewsMini = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_device_small);
 
-                remoteViewsMid = new RemoteViews(SimplyManager.mContext.getPackageName(), R.layout.simply_device_small);
+                remoteViewsMid = new RemoteViews(SimplyHouseworkrOrgManager.mContext.getPackageName(), R.layout.simply_device_small);
                 Intent intent4 = new Intent();
 
-                intent4.setComponent(new ComponentName(SimplyManager.mainProcessName, SimplyChangeUtils.INSTANCE.getLaunchActivityPath()));
+                intent4.setComponent(new ComponentName(SimplyHouseworkrOrgManager.mainProcessName, SimplyChangeUtils.INSTANCE.getLaunchActivityPath()));
                 intent4.putExtra(SimplyChangeUtils.INSTANCE.getNoti_click_str(), "device");
-                pendingIntent = PendingIntent.getActivity(SimplyManager.mContext, 210014, intent4, SimplyChangeUtils.INSTANCE.getNotifyFlag());
+                pendingIntent = PendingIntent.getActivity(SimplyHouseworkrOrgManager.mContext, 210014, intent4, SimplyChangeUtils.INSTANCE.getNotifyFlag());
         }
 
         SimplyNtInfo mNotifiData = new SimplyNtInfo();

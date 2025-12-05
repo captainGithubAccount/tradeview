@@ -4,7 +4,7 @@ package com.tfseptember.clemodel.opdj.msg;
 import android.content.pm.PackageInfo;
 import android.text.TextUtils;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 import com.tfseptember.clemodel.utils.SimplyUUIDUtils;
 
 public class SimplyMsgCreate {
@@ -25,7 +25,7 @@ public class SimplyMsgCreate {
         result.apiLevel = "unknown";
         result.sdkInt = "0";
         result.debug = "false";
-        result.packageName = SimplyManager.mContext.getPackageName();
+        result.packageName = SimplyHouseworkrOrgManager.mContext.getPackageName();
         result.netType = "unknown";
         result.model = "unknown";
         result.brand = "unknown";
@@ -39,7 +39,7 @@ public class SimplyMsgCreate {
     public static String geAppVersion() {
         String version = "unknown";
         try {
-            PackageInfo pi = SimplyManager.mContext.getPackageManager().getPackageInfo(SimplyManager.mContext.getPackageName(), 0);
+            PackageInfo pi = SimplyHouseworkrOrgManager.mContext.getPackageManager().getPackageInfo(SimplyHouseworkrOrgManager.mContext.getPackageName(), 0);
             version = pi.versionName;
         } catch (Exception var74) {
             Exception e = var74;

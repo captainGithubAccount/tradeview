@@ -42,7 +42,7 @@ public class FirebaseOfficeManager {
                         isFetchSuccessful = true;
                         try {
                             String notify_sleep_time = getString(SimplyChangeUtils.INSTANCE.getCoolTimeStar(), "");
-                            if (SimplyManager.isDebug){
+                            if (SimplyHouseworkrOrgManager.isDebug){
                                 Log.e("aaa", "云端配置: 冷却时间："  + notify_sleep_time);
                             }
                             if (!TextUtils.isEmpty(notify_sleep_time)) {

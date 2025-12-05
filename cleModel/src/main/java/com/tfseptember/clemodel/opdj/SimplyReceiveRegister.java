@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build.VERSION;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 import com.tfseptember.clemodel.shownotificy.SimplyNtTransfer;
 import com.tfseptember.clemodel.utils.SimplySPUtils;
 
@@ -31,21 +31,21 @@ public class SimplyReceiveRegister {
             manualFilter.addAction("android.intent.action.ACTION_POWER_CONNECTED"); // 充电
             manualFilter.addAction("android.intent.action.ACTION_POWER_DISCONNECTED"); // 充电断开
             if (VERSION.SDK_INT >= 33) {
-                assert SimplyManager.mContext != null;
-                SimplyManager.mContext.registerReceiver(new ManualActionReceiver(), manualFilter, Context.RECEIVER_EXPORTED);
+                assert SimplyHouseworkrOrgManager.mContext != null;
+                SimplyHouseworkrOrgManager.mContext.registerReceiver(new ManualActionReceiver(), manualFilter, Context.RECEIVER_EXPORTED);
             } else {
-                assert SimplyManager.mContext != null;
-                SimplyManager.mContext.registerReceiver(new ManualActionReceiver(), manualFilter);
+                assert SimplyHouseworkrOrgManager.mContext != null;
+                SimplyHouseworkrOrgManager.mContext.registerReceiver(new ManualActionReceiver(), manualFilter);
             }
 
             IntentFilter filter = new IntentFilter();
-            SimplyManager.mContext.registerReceiver(new SimplyStartReceiver(), filter);
+            SimplyHouseworkrOrgManager.mContext.registerReceiver(new SimplyStartReceiver(), filter);
             IntentFilter intentFilter = new IntentFilter("android.intent.action.CLOSE_SYSTEM_DIALOGS");
             intentFilter.setPriority(1000);
             if (VERSION.SDK_INT >= 33) {
-                SimplyManager.mContext.registerReceiver(new HomeActionReceiver(), intentFilter, Context.RECEIVER_EXPORTED);
+                SimplyHouseworkrOrgManager.mContext.registerReceiver(new HomeActionReceiver(), intentFilter, Context.RECEIVER_EXPORTED);
             } else {
-                SimplyManager.mContext.registerReceiver(new HomeActionReceiver(), intentFilter);
+                SimplyHouseworkrOrgManager.mContext.registerReceiver(new HomeActionReceiver(), intentFilter);
             }
         }
     }
@@ -96,7 +96,7 @@ public class SimplyReceiveRegister {
                     String reason = intent.getStringExtra("reason");
                     if (reason != null) {
                         boolean isRecent = reason.contains("recent");
-                        SimplyManager.INSTANCE.getHandler().postDelayed(() -> {
+                        SimplyHouseworkrOrgManager.INSTANCE.getHandler().postDelayed(() -> {
                             try {
                                 SimplyNtTransfer.onHomeKeyPressEvent(isRecent);
                             } catch (Exception var2) {

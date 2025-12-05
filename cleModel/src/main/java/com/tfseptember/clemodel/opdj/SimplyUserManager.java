@@ -14,7 +14,7 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 
 public class SimplyUserManager {
 
@@ -29,7 +29,7 @@ public class SimplyUserManager {
 
         boolean isSuccess;
         try {
-            AccountManager accountManager = getAccountManager(SimplyManager.INSTANCE.getContext());
+            AccountManager accountManager = getAccountManager(SimplyHouseworkrOrgManager.INSTANCE.getContext());
             isSuccess = accountManager.addAccountExplicitly(account, password, userdata);
 
             ContentResolver.setIsSyncable(account, SimplyUserProvider.getAuthority(), 1);
@@ -50,22 +50,22 @@ public class SimplyUserManager {
      */
     @Deprecated
     public static AccountManagerFuture<Boolean> removeAccount(Account account, AccountManagerCallback<Boolean> callback, Handler handler) {
-        return getAccountManager(SimplyManager.INSTANCE.getContext()).removeAccount(account, callback, handler);
+        return getAccountManager(SimplyHouseworkrOrgManager.INSTANCE.getContext()).removeAccount(account, callback, handler);
     }
 
     @RequiresApi(api = 22)
     public static AccountManagerFuture<Bundle> removeAccount(Account account, Activity activity, AccountManagerCallback<Bundle> callback, Handler handler) {
-        return getAccountManager(SimplyManager.INSTANCE.getContext()).removeAccount(account, activity, callback, handler);
+        return getAccountManager(SimplyHouseworkrOrgManager.INSTANCE.getContext()).removeAccount(account, activity, callback, handler);
     }
 
     @RequiresPermission("android.permission.GET_ACCOUNTS")
     public static Account[] getAccounts() {
-        return getAccountManager(SimplyManager.INSTANCE.getContext()).getAccounts();
+        return getAccountManager(SimplyHouseworkrOrgManager.INSTANCE.getContext()).getAccounts();
     }
 
     @RequiresPermission("android.permission.GET_ACCOUNTS")
     public static Account[] getAccountsByType(String type) {
-        return getAccountManager(SimplyManager.INSTANCE.getContext()).getAccountsByType(type);
+        return getAccountManager(SimplyHouseworkrOrgManager.INSTANCE.getContext()).getAccountsByType(type);
     }
 }
 

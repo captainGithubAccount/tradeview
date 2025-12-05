@@ -9,7 +9,7 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 import com.tfseptember.clemodel.R;
 
 @Keep
@@ -19,7 +19,7 @@ public class SimplyUserProvider extends ContentProvider {
     }
 
     public static String getAuthority() {
-        return SimplyManager.getResString(R.string.simply_provider_auth);
+        return SimplyHouseworkrOrgManager.getResString(R.string.simply_provider_auth);
     }
 
     public boolean onCreate() {

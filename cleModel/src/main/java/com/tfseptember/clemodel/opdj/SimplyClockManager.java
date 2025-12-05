@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.SystemClock;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 import com.tfseptember.clemodel.change.SimplyChangeUtils;
 
 public class SimplyClockManager {
@@ -25,7 +25,7 @@ public class SimplyClockManager {
             hasPermission = true;
         }
 
-        PendingIntent pendingIntent = PendingIntent.getService(SimplyManager.INSTANCE.getContext(), 2023, new Intent(SimplyManager.mContext, SimplyClockService.class), SimplyChangeUtils.INSTANCE.getNotifyFlag());
+        PendingIntent pendingIntent = PendingIntent.getService(SimplyHouseworkrOrgManager.INSTANCE.getContext(), 2023, new Intent(SimplyHouseworkrOrgManager.mContext, SimplyClockService.class), SimplyChangeUtils.INSTANCE.getNotifyFlag());
         am.cancel(pendingIntent);
         long time = SystemClock.elapsedRealtime() + 177000L;
         if (hasPermission) {

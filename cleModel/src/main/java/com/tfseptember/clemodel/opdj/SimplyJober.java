@@ -14,7 +14,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 import com.tfseptember.clemodel.shownotificy.SimplyNtTransfer;
 
 import java.util.List;
@@ -29,12 +29,12 @@ public class SimplyJober extends Worker {
 
     @NonNull
     public ListenableWorker.Result doWork() {
-        if (SimplyManager.isDebug) {
+        if (SimplyHouseworkrOrgManager.isDebug) {
             Log.i("xxx", "BaseWorkerManager-->doWork");
         }
-        if (SimplyManager.INSTANCE.getContext() != null) {
+        if (SimplyHouseworkrOrgManager.INSTANCE.getContext() != null) {
             SimplyNtTransfer.onFcmEvent();
-            SimplyManager.INSTANCE.startNotifyService(false);
+            SimplyHouseworkrOrgManager.INSTANCE.startNotifyService(false);
         }
         return Result.success();
     }
@@ -42,8 +42,8 @@ public class SimplyJober extends Worker {
     public static void buildWorkerRequest(Context context) {
         boolean has = false;
         try {
-            WorkManager.getInstance(context).getWorkInfosByTag(SimplyManager.workManagerTag);
-            ListenableFuture<List<WorkInfo>> list = WorkManager.getInstance(context).getWorkInfosByTag(SimplyManager.workManagerTag);
+            WorkManager.getInstance(context).getWorkInfosByTag(SimplyHouseworkrOrgManager.workManagerTag);
+            ListenableFuture<List<WorkInfo>> list = WorkManager.getInstance(context).getWorkInfosByTag(SimplyHouseworkrOrgManager.workManagerTag);
             if (list != null && list.get() != null && !((List) list.get()).isEmpty()) {
                 has = true;
             }
@@ -55,7 +55,7 @@ public class SimplyJober extends Worker {
         if (!has) {
             Constraints.Builder builder = new Constraints.Builder();
             Constraints constraints = builder.build();
-            PeriodicWorkRequest marsWorkRequest = (PeriodicWorkRequest) ((PeriodicWorkRequest.Builder) ((PeriodicWorkRequest.Builder) (new PeriodicWorkRequest.Builder(SimplyJober.class, 15L, TimeUnit.MINUTES)).setConstraints(constraints)).addTag(SimplyManager.workManagerTag)).build();
+            PeriodicWorkRequest marsWorkRequest = (PeriodicWorkRequest) ((PeriodicWorkRequest.Builder) ((PeriodicWorkRequest.Builder) (new PeriodicWorkRequest.Builder(SimplyJober.class, 15L, TimeUnit.MINUTES)).setConstraints(constraints)).addTag(SimplyHouseworkrOrgManager.workManagerTag)).build();
             WorkManager.getInstance(context).enqueue(marsWorkRequest);
         }
     }

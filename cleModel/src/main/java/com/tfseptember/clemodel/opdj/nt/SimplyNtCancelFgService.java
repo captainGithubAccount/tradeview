@@ -6,7 +6,7 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 
 public class SimplyNtCancelFgService extends Service {
 
@@ -26,7 +26,7 @@ public class SimplyNtCancelFgService extends Service {
             notificationId = intent.getIntExtra("notificationId", -1);
         }
         SimplyNtUtils.cancelNotificationId(notificationId);
-        SimplyManager.INSTANCE.startNotifyService(false);
+        SimplyHouseworkrOrgManager.INSTANCE.startNotifyService(false);
         this.stopSelf();
         return super.onStartCommand(intent, flags, startId);
     }

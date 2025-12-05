@@ -7,7 +7,7 @@ import android.content.pm.ApplicationInfo;
 import android.os.Build.VERSION;
 import android.service.notification.StatusBarNotification;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 
 import java.lang.reflect.Method;
 import java.util.Iterator;
@@ -23,7 +23,7 @@ public class SimplyNtUtils {
     public static boolean isNotificationEnabled() {
         boolean isEnable = true;
         if (VERSION.SDK_INT >= 26) {
-            if (isEnableV26(SimplyManager.mContext)) {
+            if (isEnableV26(SimplyHouseworkrOrgManager.mContext)) {
                 isEnable = true;
             } else {
                 isEnable = false;
@@ -68,7 +68,7 @@ public class SimplyNtUtils {
 
     public static void cancelNotificationId(int notificationId) {
         try {
-            NotificationManager mManager = (NotificationManager) SimplyManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager mManager = (NotificationManager) SimplyHouseworkrOrgManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
             if (notificationId < 0) {
                 mManager.cancelAll();
                 return;
@@ -84,7 +84,7 @@ public class SimplyNtUtils {
     public static boolean hasNotify(int nId) {
         boolean result = false;
         try {
-            NotificationManager mManager = (NotificationManager) SimplyManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager mManager = (NotificationManager) SimplyHouseworkrOrgManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
             if (VERSION.SDK_INT >= 23) {
                 StatusBarNotification[] var39 = mManager.getActiveNotifications();
                 int var40 = var39.length;
@@ -105,7 +105,7 @@ public class SimplyNtUtils {
     }
 
     public static boolean isOngoingServiceRunning(Class serviceClass) {
-        ActivityManager manager = (ActivityManager) SimplyManager.mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager manager = (ActivityManager) SimplyHouseworkrOrgManager.mContext.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningServiceInfo> runningServices = manager.getRunningServices(Integer.MAX_VALUE);
         Iterator var64 = runningServices.iterator();
 

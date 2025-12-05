@@ -7,7 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 
 import java.util.UUID;
 import java.util.concurrent.locks.ReentrantLock;
@@ -35,7 +35,7 @@ public class SimplyUUIDUtils {
             if (this.deviceId == null || this.deviceId.isEmpty()) {
                 this.deviceId = this.createInstallationUUID();
             }
-            if (SimplyManager.isDebug) {
+            if (SimplyHouseworkrOrgManager.isDebug) {
                 Log.e("xxx", "getDeviceId deviceId:" + this.deviceId);
             }
             return this.deviceId;

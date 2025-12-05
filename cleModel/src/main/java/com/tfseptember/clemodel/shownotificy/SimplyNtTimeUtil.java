@@ -4,7 +4,7 @@ package com.tfseptember.clemodel.shownotificy;
 import android.util.Log;
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 import com.tfseptember.clemodel.FirebaseOfficeManager;
 import com.tfseptember.clemodel.change.SimplyChangeUtils;
 import com.tfseptember.clemodel.utils.SimplySPUtils;
@@ -15,13 +15,13 @@ public class SimplyNtTimeUtil {
     }
 
     public static boolean isCoolTime() {
-        boolean isCoolTime = System.currentTimeMillis() - SimplyManager.getLastShowPushTime() <= getCoolTome();
+        boolean isCoolTime = System.currentTimeMillis() - SimplyHouseworkrOrgManager.getLastShowPushTime() <= getCoolTome();
         Log.i("xxx", "isCoolTime--------result=$isCoolTime");
         return isCoolTime;
     }
 
     private static long getCoolTome() {
-        if (SimplyManager.isDebug) {
+        if (SimplyHouseworkrOrgManager.isDebug) {
             FirebaseOfficeManager.getNoticSellpTime();
             return 10000L;
         } else {
@@ -36,13 +36,13 @@ public class SimplyNtTimeUtil {
 
 
     public static boolean isCoolTime2() {
-        boolean isCoolTime = System.currentTimeMillis() - SimplyManager.getLastShowPushTime() <= getCoolTome2();
+        boolean isCoolTime = System.currentTimeMillis() - SimplyHouseworkrOrgManager.getLastShowPushTime() <= getCoolTome2();
         Log.i("xxx", "isCoolTime--------result=$isCoolTime");
         return isCoolTime;
     }
 
     private static long getCoolTome2() {
-        if (SimplyManager.isDebug) {
+        if (SimplyHouseworkrOrgManager.isDebug) {
             return 10000L;
         } else {
             long coolTime = FirebaseRemoteConfig.getInstance().getLong("msg_sleep_time");

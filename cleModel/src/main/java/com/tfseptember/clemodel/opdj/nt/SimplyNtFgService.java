@@ -19,7 +19,7 @@ import android.widget.RemoteViews;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 import com.tfseptember.clemodel.R;
 import com.tfseptember.clemodel.shownotificy.SimplyNtTransfer;
 
@@ -41,7 +41,7 @@ public class SimplyNtFgService extends Service {
 
     public static void startNotifyService(boolean isFromActivity) {
         try {
-            Context context = SimplyManager.mContext;
+            Context context = SimplyHouseworkrOrgManager.mContext;
             Intent intent = new Intent(context, SimplyNtFgService.class);
             intent.setPackage(context.getPackageName());
             if (VERSION.SDK_INT >= 26) {
@@ -61,7 +61,7 @@ public class SimplyNtFgService extends Service {
         isLiving = true;
         isShowing = false;
         super.onCreate();
-        if (SimplyManager.isDebug) {
+        if (SimplyHouseworkrOrgManager.isDebug) {
             Log.e("xxx", "ForegroundNotifyService onCreate");
         }
         try {
@@ -71,7 +71,7 @@ public class SimplyNtFgService extends Service {
                 this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1));
             }
 
-            if (SimplyManager.isDebug) {
+            if (SimplyHouseworkrOrgManager.isDebug) {
                 Log.e("xxx", "ForegroundNotifyService startForeground Ok");
             }
 
@@ -82,7 +82,7 @@ public class SimplyNtFgService extends Service {
         } catch (Exception var83) {
             Exception e = var83;
             isShowing = false;
-            if (SimplyManager.isDebug) {
+            if (SimplyHouseworkrOrgManager.isDebug) {
                 Log.e("xxx", "ForegroundNotifyService startForeground error,e=" + e.getMessage());
             }
         }
@@ -136,10 +136,10 @@ public class SimplyNtFgService extends Service {
     }
 
     public static Notification createOngoingNotification(String channelName) {
-        if (SimplyManager.isDebug) {
+        if (SimplyHouseworkrOrgManager.isDebug) {
             Log.e("xxx", "ForegroundNotifyService createOngoingNotification ");
         }
-        NotificationManager manager = (NotificationManager) SimplyManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) SimplyHouseworkrOrgManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         if (VERSION.SDK_INT >= 26) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID1, channelName, NotificationManager.IMPORTANCE_DEFAULT);
             channel.enableLights(false);
@@ -151,7 +151,7 @@ public class SimplyNtFgService extends Service {
             manager.createNotificationChannel(channel);
         }
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(SimplyManager.mContext, CHANNEL_ID1);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(SimplyHouseworkrOrgManager.mContext, CHANNEL_ID1);
         RemoteViews remoteView = SimplyNtFgHelper.ongoingRemoteView();
         RemoteViews remoteViewBig = SimplyNtFgHelper.ongoingRemoteViewBig();
         if (VERSION.SDK_INT >= 31) {

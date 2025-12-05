@@ -16,7 +16,7 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -29,7 +29,7 @@ public class SimplyNtCountUtil {
     }
 
     public static boolean setCount() {
-        return setCount(1, SimplyManager.mContext);
+        return setCount(1, SimplyHouseworkrOrgManager.mContext);
     }
 
     public static boolean setCount(int count, Context context) {

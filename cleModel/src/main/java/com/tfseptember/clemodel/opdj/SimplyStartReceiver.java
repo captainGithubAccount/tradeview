@@ -6,13 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.tfseptember.clemodel.SimplyManager;
+import com.tfseptember.clemodel.SimplyHouseworkrOrgManager;
 
 public class SimplyStartReceiver extends BroadcastReceiver {
     public SimplyStartReceiver() {
     }
     public void onReceive(Context context, Intent intent) {
-        if (SimplyManager.isDebug) {
+        if (SimplyHouseworkrOrgManager.isDebug) {
             Log.e("xxx", "------BootCompletedReceiver-->onReceive ------");
         }
     }
