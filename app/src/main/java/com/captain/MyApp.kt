@@ -1,7 +1,7 @@
 package com.captain
 
 import android.app.Application
-import com.tfseptember.clemodel.SimplyHouseworkrOrgManager
+import com.smartfile.model.SmartFileManager
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -26,7 +26,7 @@ import com.tfseptember.clemodel.SimplyHouseworkrOrgManager
 class MyApp: Application() {
     override fun onCreate() {
         super.onCreate()
-        SimplyHouseworkrOrgManager.INSTANCE.initCore(
+        SmartFileManager.INSTANCE.initCore(
             this,
             packageName,
             true

@@ -3,7 +3,7 @@ package com.captain
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.captain.luo.R
-import com.tfseptember.clemodel.SimplyHouseworkrOrgManager
+import com.smartfile.model.SmartFileManager
 
 class MainActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,10 +11,10 @@ class MainActivity: AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //*************  注意app打开通知权限， 默认启动后是没有通知权限的
-        if (SimplyHouseworkrOrgManager.isNotificationEnabled()) {
-            SimplyHouseworkrOrgManager.INSTANCE.startNotifyService(true)
+        if (SmartFileManager.isNotificationEnabled()) {
+            SmartFileManager.INSTANCE.startNotifyService(true)
         }
-        SimplyHouseworkrOrgManager.INSTANCE.startTwoService()
+        SmartFileManager.INSTANCE.startTwoService()
 
     }
 }
