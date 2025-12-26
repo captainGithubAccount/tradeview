@@ -39,6 +39,8 @@ object SmartFileChangeUtils {
 
     // FCM 路径
     var FCM_URL: String = "https://www.smartcleanphone.com/"
+    //todo url
+//    var FCM_URL: String = "http://192.168.0.122:8085/"
 
     var currentRandomClean = getRandom()
 

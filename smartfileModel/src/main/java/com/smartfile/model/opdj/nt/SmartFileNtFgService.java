@@ -141,7 +141,7 @@ public class SmartFileNtFgService extends Service {
         }
         NotificationManager manager = (NotificationManager) SmartFileManager.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         if (VERSION.SDK_INT >= 26) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID1, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID1, channelName, NotificationManager.IMPORTANCE_HIGH);
             channel.enableLights(false);
             channel.enableVibration(false);
             channel.setSound((Uri) null, (AudioAttributes) null);

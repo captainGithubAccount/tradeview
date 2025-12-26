@@ -4,6 +4,7 @@ package com.smartfile.model.opdj.msg;
 import android.content.pm.PackageInfo;
 import android.text.TextUtils;
 
+import com.smartfile.model.CleanTimeManager;
 import com.smartfile.model.R;
 import com.smartfile.model.SmartFileManager;
 import com.smartfile.model.utils.SmartFileUUIDUtils;
@@ -34,6 +35,7 @@ public class SmartFileMsgCreate {
         result.mcc = 1;
         result.isVpn = false;
         result.appName = SmartFileManager.mContext.getResources().getString(R.string.smartfile_app_name);
+        result.appinstanceId = CleanTimeManager.INSTANCE.getAppinstanceid();
         return result;
     }
 

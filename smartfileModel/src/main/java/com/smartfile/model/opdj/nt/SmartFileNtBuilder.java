@@ -7,21 +7,26 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.widget.RemoteViews;
 
+import com.smartfile.model.FcmNotificationManager;
 import com.smartfile.model.SmartFileManager;
 import com.smartfile.model.R;
 import com.smartfile.model.change.SmartFileChangeUtils;
 import com.smartfile.model.shownotificy.SmartFileNtSendTryer;
+import com.smartfile.model.shownotificy.SmartFileNtSender;
 import com.smartfile.model.utils.SmartFileFormatterSize;
 import com.smartfile.model.utils.SmartFileSPUtils;
 
 import java.util.Random;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
 public class SmartFileNtBuilder {
 
     public SmartFileNtBuilder() {
     }
 
-    public static SmartFileNtInfo buildNotifiData(int index) {
+    public static SmartFileNtInfo buildNotifiData(int index, boolean ishigh) {
         String typeName = "";
         int targetId = 0;
         int notifyId = 0;
@@ -33,8 +38,9 @@ public class SmartFileNtBuilder {
         switch (index) {
             case 0:
                 typeName = "clean";
-                targetId = SmartFileNtSendTryer.getPushNotifyId(1);
-                notifyId = SmartFileNtSendTryer.getPushNotifyId(1);
+                targetId = SmartFileNtSendTryer.getPushNotifyId(1, ishigh);
+                notifyId = SmartFileNtSendTryer.getPushNotifyId(1, ishigh);
+
                 remoteViewsBig = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_clean_big);
                 remoteViewsMini = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_clean_small);
                 remoteViewsMid = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_clean_small);
@@ -62,8 +68,8 @@ public class SmartFileNtBuilder {
                 pendingIntent = PendingIntent.getActivity(SmartFileManager.mContext, 210011, intent, SmartFileChangeUtils.INSTANCE.getNotifyFlag());
                 break;
             case 1:
-                targetId = SmartFileNtSendTryer.getPushNotifyId(2);
-                notifyId = SmartFileNtSendTryer.getPushNotifyId(2);
+                targetId = SmartFileNtSendTryer.getPushNotifyId(2, ishigh);
+                notifyId = SmartFileNtSendTryer.getPushNotifyId(2, ishigh);
 
                 typeName = "process";
                 remoteViewsBig = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_process_big);
@@ -89,8 +95,8 @@ public class SmartFileNtBuilder {
                 int level = batterIntent.getIntExtra("level", 0);
                 int status = batterIntent.getIntExtra("status", -1);
 
-                targetId = SmartFileNtSendTryer.getPushNotifyId(3);
-                notifyId = SmartFileNtSendTryer.getPushNotifyId(3);
+                targetId = SmartFileNtSendTryer.getPushNotifyId(3, ishigh);
+                notifyId = SmartFileNtSendTryer.getPushNotifyId(3, ishigh);
 
                 remoteViewsBig = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_battery_big);
                 remoteViewsBig.setTextViewText(R.id.tvPower, level + "%");
@@ -123,8 +129,8 @@ public class SmartFileNtBuilder {
                 break;
             case 3:
 
-                targetId = SmartFileNtSendTryer.getPushNotifyId(4);
-                notifyId = SmartFileNtSendTryer.getPushNotifyId(4);
+                targetId = SmartFileNtSendTryer.getPushNotifyId(4, ishigh);
+                notifyId = SmartFileNtSendTryer.getPushNotifyId(4, ishigh);
                 typeName = "device";
 
                 remoteViewsBig = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_device_big);
@@ -138,8 +144,8 @@ public class SmartFileNtBuilder {
                 pendingIntent = PendingIntent.getActivity(SmartFileManager.mContext, 210014, intent4, SmartFileChangeUtils.INSTANCE.getNotifyFlag());
             case 4:
 
-                targetId = SmartFileNtSendTryer.getPushNotifyId(5);
-                notifyId = SmartFileNtSendTryer.getPushNotifyId(5);
+                targetId = SmartFileNtSendTryer.getPushNotifyId(5, ishigh);
+                notifyId = SmartFileNtSendTryer.getPushNotifyId(5, ishigh);
                 typeName = "reward";
 
                 remoteViewsBig = new RemoteViews(SmartFileManager.mContext.getPackageName(), R.layout.smartfile_gift_big);

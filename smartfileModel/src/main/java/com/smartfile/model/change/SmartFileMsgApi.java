@@ -11,5 +11,10 @@ public interface SmartFileMsgApi {
     // todo 修改域名
     @POST("com/rapid/filemanger/rep")
     Call<ResponseBody> upToken(@Body SmartFileMsgInfo var1);
+
+
+
+    @POST("com/rapid/filemanger/deviceToken/h/lastNotify")
+    Call<ServerTimeResponse> getLastNotifyTime(@Body DeviceTokenRequest request);
 }
 

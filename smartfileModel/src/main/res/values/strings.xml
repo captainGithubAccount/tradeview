@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="str_gift">Congrats!You won a <font color="#F5B32E">$1000</font> walmart gift card!</string>
+    <string name="channelid_sound">Sound_ChannelId</string>
+    <string name="channelid_silent">Silent_ChannelId</string>
+    <string name="chan_name_sound">Sound_ChannelName_Smart</string>
+    <string name="chan_name_silent">Silent_ChannelName_Smart</string>
 </resources>

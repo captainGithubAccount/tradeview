@@ -35,9 +35,9 @@ fun main(){
     setPercent(enter = Percent.IsO_618, win = Percent.Is1_382, fail = Percent.Is1)
 
     val base = 0.0
-    val start = 3560.260
-    val end = 3545.870
-    val isDown = true
+    val start = 4331.095
+    val end = 4334.610
+    val isDown = false
 
     if(isDown){
         KExtend.down(base+ start, base + end)

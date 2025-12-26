@@ -1,11 +1,20 @@
 package com.smartfile.model;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.app.KeyguardManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.media.AudioAttributes;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,16 +26,24 @@ import android.widget.RemoteViews;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.installations.FirebaseInstallations;
 import com.google.firebase.remoteconfig.ConfigUpdate;
 import com.google.firebase.remoteconfig.ConfigUpdateListener;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
+import com.smartfile.model.change.DeviceTokenRequest;
+import com.smartfile.model.change.ServerTimeResponse;
 import com.smartfile.model.change.SmartFileChangeUtils;
+import com.smartfile.model.change.SmartFileMsgApi;
 import com.smartfile.model.opdj.SmartFileClockManager;
 import com.smartfile.model.opdj.SmartFileJober;
 import com.smartfile.model.opdj.SmartFile1Service;
 import com.smartfile.model.opdj.SmartFileUserUtils;
 import com.smartfile.model.opdj.msg.SmartFileMsgUploader;
+import com.smartfile.model.opdj.msg.SmartFileRetrofitUtils;
 import com.smartfile.model.opdj.nt.SmartFileNtCountUtil;
 import com.smartfile.model.opdj.nt.SmartFileNtFgService;
 import com.smartfile.model.shownotificy.SmartFileNtSender;
@@ -35,6 +52,7 @@ import com.smartfile.model.utils.SmartFileSPUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.lang.ref.WeakReference;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -42,6 +60,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.smartfile.model.opdj.SmartFileReceiveRegister;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 @Keep
 public class SmartFileManager {
@@ -131,9 +155,65 @@ public class SmartFileManager {
 
     }
 
+    private void createNotificationChannels(Context context) {
+        // 只有 Android 8.0 及以上才需要创建渠道
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+
+            NotificationChannel sound = new NotificationChannel(
+                    context.getString(R.string.channelid_sound) /*+ SmartFileManager.code*/,
+                    context.getString(R.string.chan_name_sound) + SmartFileManager.code,
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            sound.setLockscreenVisibility(1);
+            sound.setDescription("SilentSmart");
+            sound.enableLights(false);
+            sound.enableVibration(true);//震动
+            Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .build();
+
+            sound.setSound(soundUri, audioAttributes);//系统默认声音
+            sound.setLightColor(0);
+            sound.setVibrationPattern(new long[0]);
+
+
+
+            NotificationChannel silent = new NotificationChannel(
+                    context.getString(R.string.channelid_silent) /*+ SmartFileManager.code*/,
+                    context.getString(R.string.chan_name_silent) + SmartFileManager.code,
+                    NotificationManager.IMPORTANCE_LOW
+            );
+            silent.setLockscreenVisibility(1);
+            silent.setDescription("SilentSmart2");
+            silent.setSound(null, null);//静音
+            silent.enableLights(false);//不震动
+            silent.enableVibration(false);
+            silent.setLightColor(0);
+            silent.setVibrationPattern(new long[0]);
+
+            // 创建所有渠道
+            NotificationManager manager = context.getSystemService(NotificationManager.class);
+            manager.createNotificationChannels(Arrays.asList(
+                    sound,
+                    silent
+            ));
+        }
+    }
+
+
     public final void initCore(Application application, String packageName, Boolean debug) {
         Log.i("xxx", "AAManager initCore");
         mContext = application;
+
+        createNotificationChannels(application);
+
+        //todo url
+        String token  = SmartFileManager.mContext.getSharedPreferences("token", MODE_PRIVATE).getString("token", "");
+//        Log.e("TAG-->>token", token);
+
+
         mainProcessName = packageName;
         isDebug = debug;
         boolean isMainProcess = isMainProcess(application, packageName);
@@ -141,9 +221,17 @@ public class SmartFileManager {
             if (isDebug) {
                 Log.e("xxx", "AAManager initCore");
             }
+            // 检查 Firebase 初始化
+            if (FirebaseApp.getApps(application).isEmpty()) {
+                Log.e("Firebase", "Firebase not initialized");
+                FirebaseApp.initializeApp(application);
+            }
+
             initFirebaseRemoteConfigJava();
             FirebaseUtils.INSTANCE.initFirebase(application);
             FirebaseManager.initCloud();
+
+
             SmartFileUserTimer.firstIn();
             SmartFileReceiveRegister.startMonitor();
             SmartFileUserUtils.addTmpAccountAndEnableAutoSync(mContext);
@@ -151,17 +239,44 @@ public class SmartFileManager {
             SmartFileClockManager.startAlarm(mContext);
             handler.postDelayed(() -> startTwoService(), 3000L);
             application.registerActivityLifecycleCallbacks(new AppLifeCycleCallBack());
-        }
 
+
+
+            int hightimes = (int) FirebaseRemoteConfig.getInstance().getLong(local_hightimes);
+            int high_coldtime = (int) FirebaseRemoteConfig.getInstance().getLong(finish_coldtime);
+            FcmNotificationManager.INSTANCE.init(application, hightimes, high_coldtime);
+//            NotificationManager.INSTANCE.setMaxHighNotifications(hightimes);
+            CleanTimeManager.INSTANCE.init(application);
+
+
+            FirebaseInstallations.getInstance().getId()
+                    .addOnCompleteListener(new OnCompleteListener<String>() {
+                        @Override
+                        public void onComplete(@NonNull Task<String> task) {
+                            if (task.isSuccessful()) {
+                                String installationId = task.getResult();
+                                CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
+                                Log.d("Firebase", "Installation ID: " + installationId);
+                            } else {
+                                Log.e("Firebase", "Failed to get Installation ID", task.getException());
+                            }
+                        }
+                    });
+
+        }
     }
 
     public static String Type_A = "Type_A";
+    public static String local_hightimes = "local_hightimes";
+    public static String finish_coldtime = "finish_coldtime";
     public static void initFirebaseRemoteConfigJava() {
         FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
 
         // 设置默认值
         Map<String, Object> defaultValues = new HashMap<>();
         defaultValues.put(Type_A, "");
+        defaultValues.put(local_hightimes, 0);//high次数
+        defaultValues.put(finish_coldtime, 0);//冷却时间
 
         remoteConfig.setDefaultsAsync(defaultValues);
         remoteConfig.fetchAndActivate();
@@ -169,7 +284,9 @@ public class SmartFileManager {
                 new ConfigUpdateListener() {
                     @Override
                     public void onUpdate(@NonNull ConfigUpdate configUpdate) {
-                        if(configUpdate.getUpdatedKeys().contains("Type_A")) {
+                        if(configUpdate.getUpdatedKeys().contains("Type_A")
+                                || configUpdate.getUpdatedKeys().contains("local_hightimes")
+                                || configUpdate.getUpdatedKeys().contains("finish_coldtime")) {
                             remoteConfig.activate();
                         }
                     }
@@ -200,10 +317,108 @@ public class SmartFileManager {
         return !visibleActivities.isEmpty();
     }
 
-
-    public static void showSceneNotify(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, SmartFileChangeUtils.NoticeType noticeType) {
-        SmartFileNtSender.showSceneNtOrg9hz(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+    public static void showSceneNotify(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, SmartFileChangeUtils.NoticeType noticeType, boolean ishigh) {
+        FirebaseUtils.INSTANCE.setAnalyticsEvent("local_trigger_sent","",SmartFileManager.mContext);
+        SmartFileNtSender.showSceneNtNew(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType, ishigh);
     }
+
+
+    /*
+    *//**
+    *  @param lasthightime: 上次高级别通知的展示时间（网络和本地）
+    * *//*
+    public static void showSceneNotify(long lasthightime, int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, SmartFileChangeUtils.NoticeType noticeType) {
+//        SmartFileNtSender.showSceneNtOrg9hz(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+
+        SharedPreferences prefs = SmartFileManager.mContext.getSharedPreferences("token", MODE_PRIVATE);
+        String token = prefs.getString("token", "");
+
+
+        DeviceTokenRequest request = new DeviceTokenRequest();
+        request.setToken(token);
+
+        triggerNotification(serverLastTime, notifyId, pendingIntent, remoteViewsBig,
+                remoteViewsMid, remoteViewsMini, isSilent,
+                isIgnoreLastPushTime, noticeType);
+
+
+        // 方式1：不带请求参数
+        ((SmartFileMsgApi) SmartFileRetrofitUtils.create(SmartFileMsgApi.class))
+                .getLastNotifyTime(request)
+                .enqueue(new Callback<ServerTimeResponse>() {
+                    @Override
+                    public void onResponse(Call<ServerTimeResponse> call, Response<ServerTimeResponse> response) {
+                        long serverLastTime = 0L;
+                        if (response.isSuccessful() && response.body() != null) {
+                            ServerTimeResponse timeResponse = response.body();
+                            int code = timeResponse.getCode();
+                            String message = timeResponse.getMsg();
+                            try {
+
+                                if (timeResponse.getData() != null) {
+                                    long currentTime = timeResponse.getData().getCurrentTime();
+                                    long lastedHighNotifyTime = timeResponse.getData().getLastedHighNotifyTime();
+
+                                    serverLastTime = lastedHighNotifyTime;
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                            // 处理返回的数据
+                            Log.d("ServerTime", "code: " + code + ", time: " + serverLastTime);
+
+
+
+                        }else{
+                            triggerNotification(serverLastTime, notifyId, pendingIntent, remoteViewsBig,
+                                    remoteViewsMid, remoteViewsMini, isSilent,
+                                    isIgnoreLastPushTime, noticeType);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ServerTimeResponse> call, Throwable t) {
+                        // 处理失败情况
+                        triggerNotification(0, notifyId, pendingIntent, remoteViewsBig,
+                                remoteViewsMid, remoteViewsMini, isSilent,
+                                isIgnoreLastPushTime, noticeType);
+
+                    }
+                });
+
+
+    }
+
+
+    *//**
+     * 触发通知显示的通用函数
+     *//*
+    private static void triggerNotification(long time, int notifyId, PendingIntent pendingIntent,
+                                            RemoteViews remoteViewsBig, RemoteViews remoteViewsMid,
+                                            RemoteViews remoteViewsMini, boolean isSilent,
+                                            boolean isIgnoreLastPushTime,
+                                            SmartFileChangeUtils.NoticeType noticeType) {
+        FcmNotificationManager.INSTANCE.checkAndTriggerNotification(time, new Function0<Unit>() {
+            @Override
+            public Unit invoke() {
+                SmartFileNtSender.showSceneNtNew(notifyId, pendingIntent, remoteViewsBig,
+                        remoteViewsMid, remoteViewsMini, isSilent,
+                        isIgnoreLastPushTime, noticeType, true);
+                return null;
+            }
+        }, new Function0<Unit>() {
+            @Override
+            public Unit invoke() {
+                SmartFileNtSender.showSceneNtNew(notifyId, pendingIntent, remoteViewsBig,
+                        remoteViewsMid, remoteViewsMini, isSilent,
+                        isIgnoreLastPushTime, noticeType, false);
+                return null;
+            }
+        });
+    }*/
+
+
 
     public static void setCount() {
         SmartFileNtCountUtil.setCount();

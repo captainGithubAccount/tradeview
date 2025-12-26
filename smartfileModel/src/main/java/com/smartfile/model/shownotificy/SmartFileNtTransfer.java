@@ -2,10 +2,34 @@ package com.smartfile.model.shownotificy;
 
 import android.util.Log;
 
+import androidx.annotation.Keep;
+
 import com.smartfile.model.SmartFileManager;
 import com.smartfile.model.change.SmartFileChangeUtils;
+import com.smartfile.model.opdj.nt.SmartFileNtBuilder;
+import com.smartfile.model.opdj.nt.SmartFileNtInfo;
 
+
+@Keep
 public class SmartFileNtTransfer {
+
+    public static void testNoti(boolean ishigh){
+        SmartFileNtSendTryer.tryShowLocalNotifi(false, false, false, false, SmartFileChangeUtils.NoticeType.BATTERY);
+
+
+        SmartFileNtInfo dateBean;
+        dateBean = SmartFileNtBuilder.buildNotifiData(0, ishigh);
+        SmartFileChangeUtils.NoticeType noticeType = SmartFileChangeUtils.NoticeType.CLEAN;
+        SmartFileNtSender.showSceneNtNew(dateBean.getNotId(),
+                dateBean.getPendingIntent(),
+                dateBean.getRemoteBig(),
+                dateBean.getRemoteMid(),
+                dateBean.getRemoteSmall(),
+                true,
+                false,
+                noticeType,
+                ishigh);
+    }
 
     public SmartFileNtTransfer() {
     }

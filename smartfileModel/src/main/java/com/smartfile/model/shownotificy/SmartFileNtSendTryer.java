@@ -1,23 +1,101 @@
 package com.smartfile.model.shownotificy;
 
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.smartfile.NoticeTypeRandomizer;
+import com.smartfile.model.CleanTimeManager;
+import com.smartfile.model.FcmNotificationManager;
 import com.smartfile.model.SmartFileManager;
 import com.smartfile.model.FirebaseUtils;
+import com.smartfile.model.change.DeviceTokenRequest;
+import com.smartfile.model.change.ServerTimeResponse;
 import com.smartfile.model.change.SmartFileChangeUtils;
+import com.smartfile.model.change.SmartFileMsgApi;
+import com.smartfile.model.opdj.msg.SmartFileRetrofitUtils;
 import com.smartfile.model.opdj.nt.SmartFileNtBuilder;
 import com.smartfile.model.opdj.nt.SmartFileNtInfo;
 
 import java.util.Random;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SmartFileNtSendTryer {
 
     public SmartFileNtSendTryer() {
     }
 
+    static long serverLastTime = 0;
     public static void tryShowLocalNotifi(boolean isRecentTask, boolean isHomeKey, boolean isScreenOpen, boolean isFCM, SmartFileChangeUtils.NoticeType noticeType) {
+        SharedPreferences prefs = SmartFileManager.mContext.getSharedPreferences("token", MODE_PRIVATE);
+        String token = prefs.getString("token", "");
+
+
+        DeviceTokenRequest request = new DeviceTokenRequest();
+        request.setToken(token);
+        serverLastTime = 0;
+
+
+        // 方式1：不带请求参数
+        ((SmartFileMsgApi) SmartFileRetrofitUtils.create(SmartFileMsgApi.class))
+                .getLastNotifyTime(request)
+                .enqueue(new Callback<ServerTimeResponse>() {
+                    @Override
+                    public void onResponse(Call<ServerTimeResponse> call, Response<ServerTimeResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            ServerTimeResponse timeResponse = response.body();
+                            int code = timeResponse.getCode();
+                            String message = timeResponse.getMsg();
+                            try {
+                                // 处理返回的数据
+                                Log.d("ServerTime", "code: " + code + ", time: " + serverLastTime);
+
+                                if (timeResponse.getData() != null) {
+                                    long currentTime = timeResponse.getData().getCurrentTime();
+                                    long lastedHighNotifyTime = timeResponse.getData().getLastedHighNotifyTime();
+                                    serverLastTime = lastedHighNotifyTime;
+
+                                    // 处理失败情况
+                                    tryShowLocalNotifiImpl(isRecentTask, isHomeKey, isScreenOpen, isFCM, noticeType);
+                                }
+                            }catch (Exception e){
+                                serverLastTime = 0;
+
+                                // 处理失败情况
+                                tryShowLocalNotifiImpl(isRecentTask, isHomeKey, isScreenOpen, isFCM, noticeType);
+                                e.printStackTrace();
+                            }
+
+
+
+                        }else{
+                            serverLastTime = 0;
+                            // 处理失败情况
+                            tryShowLocalNotifiImpl(isRecentTask, isHomeKey, isScreenOpen, isFCM, noticeType);
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ServerTimeResponse> call, Throwable t) {
+                        serverLastTime = 0;
+                        // 处理失败情况
+                        tryShowLocalNotifiImpl(isRecentTask, isHomeKey, isScreenOpen, isFCM, noticeType);
+
+                    }
+                });
+    }
+
+    //最终的发送通知的地方
+    public static void tryShowLocalNotifiImpl(boolean isRecentTask, boolean isHomeKey, boolean isScreenOpen, boolean isFCM, SmartFileChangeUtils.NoticeType noticeType) {
         Log.e("xxx", "----------tryShowLocalPush---------- isRecentTask=" + isRecentTask + ", isHomeKey=" + isHomeKey + ", isScreenOpen=" + isScreenOpen + ", isFCM=" + isFCM);
         FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_count", "", SmartFileManager.mContext);
         if (!SmartFileManager.INSTANCE.isForeground() && !SmartFileManager.INSTANCE.hasCreatingActivity()) {
@@ -30,7 +108,7 @@ public class SmartFileNtSendTryer {
                 Log.e("xxx", "-------- isNotificationEnabled=" + isNotificationEnabled);
                 Log.e("xxx", "-------- isCoolTime=" + SmartFileNtTimeUtil.isCoolTime());
                 if (!SmartFileNtTimeUtil.isCoolTime()) {
-                    SmartFileNtInfo dateBean;
+
                     Random random2 = new Random();
                     int randomValue = random2.nextInt(100); // 生成0-99的随机数
                     Log.d("xxx", "randomValue:  "+String.valueOf(randomValue));
@@ -40,62 +118,81 @@ public class SmartFileNtSendTryer {
                         if(randomValue < type_a){//走清理通知
 
                             SmartFileChangeUtils.NoticeType currentNoticeType = SmartFileChangeUtils.NoticeType.PROCESS;
-                            Random random = new Random();
-                            int result = random.nextInt(2); // 生成 0 或 1
-                            if (noticeType == SmartFileChangeUtils.NoticeType.FCM) {
-                                if (SmartFileChangeUtils.INSTANCE.getLastNoticeType() == null) {
-                                    // 上次为 null 本次随机  Process  or Clean
-                                    if (result == 0) {
-                                        currentNoticeType = SmartFileChangeUtils.NoticeType.PROCESS;
-                                    } else {
-                                        currentNoticeType = SmartFileChangeUtils.NoticeType.CLEAN;
-                                    }
-                                } else {
-                                    if (SmartFileChangeUtils.INSTANCE.getLastNoticeType() == SmartFileChangeUtils.NoticeType.PROCESS) {
-                                        currentNoticeType = SmartFileChangeUtils.NoticeType.CLEAN;
-                                    } else if (SmartFileChangeUtils.INSTANCE.getLastNoticeType() == SmartFileChangeUtils.NoticeType.CLEAN) {
-                                        currentNoticeType = SmartFileChangeUtils.NoticeType.PROCESS;
-                                    } else {
-                                        if (result == 0) {
-                                            currentNoticeType = SmartFileChangeUtils.NoticeType.PROCESS;
-                                        } else {
-                                            currentNoticeType = SmartFileChangeUtils.NoticeType.CLEAN;
-                                        }
-                                    }
-                                }
-                            } else {
-                                if (SmartFileChangeUtils.INSTANCE.getLastNoticeType() == noticeType) {
-                                    if (noticeType == SmartFileChangeUtils.NoticeType.PROCESS) {
-                                        currentNoticeType = SmartFileChangeUtils.NoticeType.CLEAN;
-                                    } else {
-                                        currentNoticeType = SmartFileChangeUtils.NoticeType.PROCESS;
-                                    }
-                                } else {
-                                    currentNoticeType = noticeType;
-                                }
-                            }
-                            switch (currentNoticeType.name()) {
-                                case "CLEAN":
-                                    dateBean = SmartFileNtBuilder.buildNotifiData(0);
-                                    break;
-                                case "PROCESS":
-                                    dateBean = SmartFileNtBuilder.buildNotifiData(1);
-                                    break;
-                                case "BATTERY":
-                                    dateBean = SmartFileNtBuilder.buildNotifiData(2);
-                                    break;
-                                default:
-                                    dateBean = SmartFileNtBuilder.buildNotifiData(0);
-                                    break;
-                            }
-                            Log.e("aaa", "tryShowLocalNotifi: -- 通知 type = " + dateBean.getTypedName());
-                            SmartFileManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), true, false, currentNoticeType);
 
+
+                            if (noticeType == SmartFileChangeUtils.NoticeType.FCM) {
+                                CleanTimeManager.INSTANCE.checkAndExecuteCleanup(new Function0<Unit>() {
+                                    //五分钟内
+                                    @Override
+                                    public Unit invoke() {
+                                        CleanTimeManager.INSTANCE.recordCleanupTime();
+                                        if(SmartFileChangeUtils.INSTANCE.getLastNoticeType() != null) {
+                                            Log.d("CleanupManager", "fcm五分钟内：上次类型--" + SmartFileChangeUtils.INSTANCE.getLastNoticeType().name());
+                                        }
+                                        if(SmartFileChangeUtils.INSTANCE.getLastNoticeType() != null){
+                                            SmartFileChangeUtils.NoticeType currentNoticeType = NoticeTypeRandomizer.getRandomNoticeType();
+                                        }else{
+                                            SmartFileChangeUtils.NoticeType currentNoticeType = NoticeTypeRandomizer.getRandomNoticeTypeNoLimit();
+                                        }
+
+                                        next(currentNoticeType);
+                                        Log.d("CleanupManager", "fcm五分钟内：这次类型--" + currentNoticeType.name());
+                                        return null;
+                                    }
+                                }, new Function0<Unit>() {
+                                    //五分钟外
+                                    @Override
+                                    public Unit invoke() {
+                                        if(SmartFileChangeUtils.INSTANCE.getLastNoticeType() != null){
+                                            Log.d("CleanupManager", "fcm五分钟外：上次类型--" + SmartFileChangeUtils.INSTANCE.getLastNoticeType().name());
+                                        }
+                                        SmartFileChangeUtils.NoticeType currentNoticeType = NoticeTypeRandomizer.getRandomNoticeTypeNoLimit();
+                                        next(currentNoticeType);
+                                        Log.d("CleanupManager", "fcm五分钟外：这次类型--" + currentNoticeType.name());
+                                        return null;
+                                    }
+                                });
+
+                            } else {
+                                CleanTimeManager.INSTANCE.checkAndExecuteCleanup(new Function0<Unit>() {
+                                    //五分钟内
+                                    @Override
+                                    public Unit invoke() {
+                                        if(SmartFileChangeUtils.INSTANCE.getLastNoticeType() != null) {
+                                            Log.d("CleanupManager", "local五分钟内：上次类型--" + SmartFileChangeUtils.INSTANCE.getLastNoticeType().name());
+                                        }
+
+                                        CleanTimeManager.INSTANCE.recordCleanupTime();
+                                        if(SmartFileChangeUtils.INSTANCE.getLastNoticeType() != null){
+                                            SmartFileChangeUtils.NoticeType currentNoticeType = NoticeTypeRandomizer.getRandomNoticeType();
+                                        }else{
+                                            SmartFileChangeUtils.NoticeType currentNoticeType = NoticeTypeRandomizer.getRandomNoticeTypeNoLimit();
+                                        }
+
+                                        next(currentNoticeType);
+                                        Log.d("CleanupManager", "local五分钟内：这次类型--" + currentNoticeType.name());
+                                        return null;
+                                    }
+                                }, new Function0<Unit>() {
+                                    //五分钟外
+                                    @Override
+                                    public Unit invoke() {
+                                        if(SmartFileChangeUtils.INSTANCE.getLastNoticeType() != null) {
+                                            Log.d("CleanupManager", "local五分钟外：上次类型--" + SmartFileChangeUtils.INSTANCE.getLastNoticeType().name());
+                                        }
+                                        SmartFileChangeUtils.NoticeType currentNoticeType = NoticeTypeRandomizer.getRandomNoticeTypeNoLimit();
+                                        next(currentNoticeType);
+                                        Log.d("CleanupManager", "local五分钟外：这次类型--" + currentNoticeType.name());
+                                        return null;
+                                    }
+                                });
+                            }
+                            Log.d("NotificationManager", "通知类型： " +noticeType.name());
 
                         }else{//走新奖励通知
                             Log.d("xxx", "reward noti");
-                            dateBean = SmartFileNtBuilder.buildNotifiData(4);
-                            SmartFileManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), true, false, SmartFileChangeUtils.NoticeType.REWARD);
+                            SmartFileNtInfo dateBean = SmartFileNtBuilder.buildNotifiData(4, false);
+                            SmartFileManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), true, false, SmartFileChangeUtils.NoticeType.REWARD, false);
                         }
 
 
@@ -112,8 +209,74 @@ public class SmartFileNtSendTryer {
         }
     }
 
-    public static int getPushNotifyId(int id) {
-        if (id == 1) {
+
+    public static void next(SmartFileChangeUtils.NoticeType currentNoticeType){
+        SmartFileChangeUtils.NoticeType finalCurrentNoticeType = currentNoticeType;
+        FcmNotificationManager.INSTANCE.checkAndTriggerNotification(serverLastTime, new Function0<Unit>() {
+            @Override
+            public Unit invoke() {
+                SmartFileNtInfo dateBean;
+                switch (finalCurrentNoticeType.name()) {
+                    case "CLEAN":
+                        dateBean = SmartFileNtBuilder.buildNotifiData(0, true);
+                        break;
+                    case "PROCESS":
+                        dateBean = SmartFileNtBuilder.buildNotifiData(1, true);
+                        break;
+                    case "BATTERY":
+                        dateBean = SmartFileNtBuilder.buildNotifiData(2, true);
+                        break;
+                    default:
+                        dateBean = SmartFileNtBuilder.buildNotifiData(0, true);
+                        break;
+                }
+                Log.e("aaa", "tryShowLocalNotifi: -- 通知 type = " + dateBean.getTypedName());
+                SmartFileManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), false, false, finalCurrentNoticeType, true);
+                return null;
+            }
+        }, new Function0<Unit>() {
+            @Override
+            public Unit invoke() {
+                SmartFileNtInfo dateBean;
+                switch (finalCurrentNoticeType.name()) {
+                    case "CLEAN":
+                        dateBean = SmartFileNtBuilder.buildNotifiData(0, false);
+                        break;
+                    case "PROCESS":
+                        dateBean = SmartFileNtBuilder.buildNotifiData(1, false);
+                        break;
+                    case "BATTERY":
+                        dateBean = SmartFileNtBuilder.buildNotifiData(2, false);
+                        break;
+                    default:
+                        dateBean = SmartFileNtBuilder.buildNotifiData(0, false);
+                        break;
+                }
+
+                SmartFileManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), true, false, finalCurrentNoticeType, false);
+                return null;
+            }
+        });
+    }
+
+
+    //为了预防以后要改回来，就只需要修改这个方法即可，避免多处修改
+
+    public static int getPushNotifyId(int id, boolean ishigh) {
+        if(id == 4){//礼物通知，单独展示
+            return '퀃' + SmartFileManager.code;//1027
+        }
+        if(ishigh){
+            return SmartFileNtSendTryer.getHighPushNotifyId(id);
+        }else{
+            return SmartFileNtSendTryer.getLowPushNotifyId(id);
+        }
+
+    }
+    public static int getHighPushNotifyId(int id) {
+        //为了实现覆盖效果所以使用同一个通知id
+        return '퀀' + SmartFileManager.code;//1024
+        /*if (id == 1) {
             return '퀀' + SmartFileManager.code;//1024
         } else if (id == 2) {
             return '퀁' + SmartFileManager.code;//1025
@@ -130,6 +293,11 @@ public class SmartFileNtSendTryer {
                     return '퀃' + SmartFileManager.code;
                 }
             }
-        }
+        }*/
+    }
+
+    public static int getLowPushNotifyId(int id) {
+        //为了实现覆盖效果所以使用同一个通知id
+        return '퀁' + SmartFileManager.code;//1025
     }
 }

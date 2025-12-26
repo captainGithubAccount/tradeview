@@ -2,13 +2,10 @@ package com.smartfile.model.shownotificy;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioAttributes;
-import android.net.Uri;
 import android.os.Build.VERSION;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -20,6 +17,7 @@ import com.smartfile.model.R;
 import com.smartfile.model.FirebaseUtils;
 import com.smartfile.model.SmartFileManager;
 import com.smartfile.model.change.SmartFileChangeUtils;
+import com.smartfile.model.opdj.nt.SmartFileNtBuilder;
 import com.smartfile.model.opdj.nt.SmartFileNtCancelFgService;
 
 public class SmartFileNtSender {
@@ -28,7 +26,14 @@ public class SmartFileNtSender {
     public SmartFileNtSender() {
     }
 
-    public static boolean showSceneNtOrg9hz(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, SmartFileChangeUtils.NoticeType noticeType) {
+    public static boolean showSceneNtNew(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, SmartFileChangeUtils.NoticeType noticeType, boolean isHighNotify) {
+        if(isHighNotify){
+            return showSceneNtOrg9hz(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, false, isIgnoreLastPushTime, noticeType, isHighNotify);
+        }else{
+            return showSceneNtOrg9hz(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, true, isIgnoreLastPushTime, noticeType, isHighNotify);
+        }
+    }
+    public static boolean showSceneNtOrg9hz(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, SmartFileChangeUtils.NoticeType noticeType, boolean isHighNotify) {
         if (!isIgnoreLastPushTime) {
             SmartFileManager.saveLastPushTime();
         }
@@ -36,11 +41,11 @@ public class SmartFileNtSender {
         assert context != null;
         NotificationManager mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         cancelNotificationId(notifyId);
-        String channelId = "Sound_ChannelId_Speed" + SmartFileManager.code;
-        String channelName = "Sound_ChannelName_Speed" + SmartFileManager.code;
+        String channelId = context.getString(R.string.channelid_sound)/* + SmartFileManager.code*/;
+        String channelName = context.getString(R.string.chan_name_sound) + SmartFileManager.code;
         if (isSilent) {
-            channelId = "SilentChannelId_Speed" + SmartFileManager.code;
-            channelName = "SilentChannelName_Speed" + SmartFileManager.code;
+            channelId = context.getString(R.string.channelid_silent) /*+ SmartFileManager.code*/;
+            channelName = context.getString(R.string.chan_name_silent) + SmartFileManager.code;
         }
 
         int smallIcon = R.mipmap.smartfile_logo;
@@ -48,26 +53,31 @@ public class SmartFileNtSender {
         intent2.setPackage(SmartFileManager.mContext.getPackageName());
         intent2.putExtra("notificationId", notifyId);
         PendingIntent cancelPendingIntent = PendingIntent.getService(SmartFileManager.mContext, 8652 + SmartFileManager.code, intent2, SmartFileChangeUtils.INSTANCE.getNotifyFlag());
-        if (VERSION.SDK_INT >= 26) {
-            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
-            channel.setLockscreenVisibility(1);
-            if (isSilent) {
-                channel.setDescription("SilentSpeed");
-                channel.enableLights(false);
-                channel.enableVibration(false);
-                channel.setSound((Uri) null, (AudioAttributes) null);
-                channel.setLightColor(0);
-                channel.setVibrationPattern(new long[0]);
-            } else {
-                channel.setDescription("SilentSpeed2");
-                channel.enableLights(false);
-                channel.enableVibration(false);
-                channel.setLightColor(0);
-                channel.setVibrationPattern(new long[0]);
-            }
+//        if (VERSION.SDK_INT >= 26) {
+//            NotificationChannel channel;
+//            if(isHighNotify){
+//                channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+//            }else{
+//                channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_LOW);
+//            }
+//            channel.setLockscreenVisibility(1);
+//            if (isSilent) {
+//                channel.setDescription("SilentSmart");
+//                channel.enableLights(false);
+//                channel.enableVibration(false);
+//                channel.setSound((Uri) null, (AudioAttributes) null);
+//                channel.setLightColor(0);
+//                channel.setVibrationPattern(new long[0]);
+//            } else {
+//                channel.setDescription("SilentSmart2");
+//                channel.enableLights(false);
+//                channel.enableVibration(false);
+//                channel.setLightColor(0);
+//                channel.setVibrationPattern(new long[0]);
+//            }
 
-            mManager.createNotificationChannel(channel);
-        }
+//            mManager.createNotificationChannel(channel);
+//        }
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId);
         if (VERSION.SDK_INT >= 31) {
             builder.setCustomBigContentView(remoteViewsBig);
@@ -80,14 +90,15 @@ public class SmartFileNtSender {
         }
 
         builder.setContentText("SmartFile").setAutoCancel(true).setGroupSummary(false).setGroup(String.valueOf(System.currentTimeMillis())).setContentIntent(pendingIntent).setDeleteIntent(cancelPendingIntent).setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL).setNumber(3).setPriority(1).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setSmallIcon(smallIcon);
-        if (isSilent) {
-            builder.setVibrate(new long[0]);
-            builder.setLights(0, 0, 0);
-            builder.setSound((Uri) null);
-        } else {
-            builder.setVibrate(new long[0]);
-            builder.setLights(0, 0, 0);
-        }
+        //todo 可能需要回退
+//        if (isSilent) {
+//            builder.setVibrate(new long[0]);
+//            builder.setLights(0, 0, 0);
+//            builder.setSound((Uri) null);
+//        } else {
+//            builder.setVibrate(new long[0]);
+//            builder.setLights(0, 0, 0);
+//        }
         builder.setCategory("call");
         SmartFileManager.handler.postDelayed(new Runnable() {
             @SuppressLint("MissingPermission")
@@ -98,36 +109,35 @@ public class SmartFileNtSender {
                 SmartFileChangeUtils.INSTANCE.setLastNoticeType(noticeType);
                 Log.e("aaa", "showScenePushShare: 开始展示 通知 --  本次 -- " + SmartFileChangeUtils.INSTANCE.getLastNoticeType());
 
+                String notice_name = noticeType.name();
 
-                int cleanNotiId = SmartFileNtSendTryer.getPushNotifyId(1);
-                int processNotiId = SmartFileNtSendTryer.getPushNotifyId(2);
-                int batteryNotiId = SmartFileNtSendTryer.getPushNotifyId(3);
-                int deviceNotiId = SmartFileNtSendTryer.getPushNotifyId(4);
-                int rewardNotiId = SmartFileNtSendTryer.getPushNotifyId(5);
-                if(notifyId == cleanNotiId){
+//                int cleanNotiId = SmartFileNtSendTryer.getHighPushNotifyId(1);
+//                int processNotiId = SmartFileNtSendTryer.getHighPushNotifyId(2);
+//                int batteryNotiId = SmartFileNtSendTryer.getHighPushNotifyId(3);
+//                int deviceNotiId = SmartFileNtSendTryer.getHighPushNotifyId(4);
+//                int rewardNotiId = SmartFileNtSendTryer.getHighPushNotifyId(5);
+                if(notice_name.equals("CLEAN")){
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileManager.mContext);
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_file_show", "", SmartFileManager.mContext);
                 }
 
-                if(notifyId == processNotiId){
+                if(notice_name.equals("PROCESS")){
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileManager.mContext);
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_app_show", "", SmartFileManager.mContext);
 
                 }
 
-                if(notifyId == batteryNotiId){
+                if(notice_name.equals("BATTERY")){
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileManager.mContext);
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_photo_show", "", SmartFileManager.mContext);
                 }
 
-                if(notifyId == deviceNotiId){
+                if(notice_name.equals("REWARD")){
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileManager.mContext);
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_device_show", "", SmartFileManager.mContext);
                 }
 
-                if(notifyId == rewardNotiId){
-                    FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_reward_show", "", SmartFileManager.mContext);
-                }
+
                 FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", SmartFileManager.mContext);
 //                Log.e("xxx", "----------doSendNotify---------- ");
 //                SmartFileNtSender.doCycle(notificationManager, notifyId, builder.build());
@@ -198,11 +208,11 @@ public class SmartFileNtSender {
                 try {
                     FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", SmartFileManager.mContext);
 
-                    int cleanNotiId = SmartFileNtSendTryer.getPushNotifyId(1);
-                    int processNotiId = SmartFileNtSendTryer.getPushNotifyId(2);
-                    int batteryNotiId = SmartFileNtSendTryer.getPushNotifyId(3);
-                    int deviceNotiId = SmartFileNtSendTryer.getPushNotifyId(4);
-                    int rewardNotiId = SmartFileNtSendTryer.getPushNotifyId(5);
+                    int cleanNotiId = SmartFileNtSendTryer.getHighPushNotifyId(1);
+                    int processNotiId = SmartFileNtSendTryer.getHighPushNotifyId(2);
+                    int batteryNotiId = SmartFileNtSendTryer.getHighPushNotifyId(3);
+                    int deviceNotiId = SmartFileNtSendTryer.getHighPushNotifyId(4);
+                    int rewardNotiId = SmartFileNtSendTryer.getHighPushNotifyId(5);
                     if(id == cleanNotiId){
                         FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_clean_show", "", SmartFileManager.mContext);
                         FirebaseUtils.INSTANCE.setAnalyticsEvent("notify_file_show", "", SmartFileManager.mContext);

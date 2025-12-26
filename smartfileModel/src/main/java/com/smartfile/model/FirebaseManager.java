@@ -2,6 +2,9 @@ package com.smartfile.model;
 
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.Keep;
+
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.smartfile.model.change.SmartFileChangeUtils;
@@ -10,6 +13,7 @@ import com.smartfile.model.utils.SmartFileSPUtils;
 /**
  * @author Admin
  */
+@Keep
 public class FirebaseManager {
     private static boolean isInited = false;
     private static boolean isFetchSuccessful = false;

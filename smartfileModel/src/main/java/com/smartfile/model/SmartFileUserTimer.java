@@ -1,5 +1,7 @@
 package com.smartfile.model;
 
+import androidx.annotation.Keep;
+
 import com.smartfile.model.utils.SmartFileSPUtils;
 
 import java.math.BigDecimal;
@@ -7,6 +9,7 @@ import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.Date;
 
+@Keep
 public class SmartFileUserTimer {
 
     public SmartFileUserTimer() {

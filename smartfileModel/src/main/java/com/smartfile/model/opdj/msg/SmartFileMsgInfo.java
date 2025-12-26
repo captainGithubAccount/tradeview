@@ -20,6 +20,7 @@ public class SmartFileMsgInfo {
     public String brand = "";
     public String country = "";
     public String apiLevel = "";
+    public String appinstanceId = "";
 
     public SmartFileMsgInfo() {
     }

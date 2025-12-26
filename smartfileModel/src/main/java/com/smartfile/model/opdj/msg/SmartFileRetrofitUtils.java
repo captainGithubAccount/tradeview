@@ -12,6 +12,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public abstract class SmartFileRetrofitUtils {
     private static volatile Retrofit INSTANCE;
+
     private static final Hashtable<Object, Object> hashtable;
 
     public SmartFileRetrofitUtils() {
