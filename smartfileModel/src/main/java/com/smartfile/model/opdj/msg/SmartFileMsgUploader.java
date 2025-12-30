@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.installations.FirebaseInstallations;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
@@ -71,9 +72,8 @@ public class SmartFileMsgUploader {
 
     public void reportToken(String srcToken) {
         try {
-            if(CleanTimeManager.INSTANCE.getAppinstanceid() == ""){
-                FirebaseInstallations.getInstance().getId()
-                        .addOnCompleteListener(new OnCompleteListener<String>() {
+            if(CleanTimeManager.INSTANCE.getAppinstanceid().equals("")){
+                FirebaseAnalytics.getInstance(SmartFileManager.mContext).getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
                             @Override
                             public void onComplete(@NonNull Task<String> task) {
                                 if (task.isSuccessful()) {

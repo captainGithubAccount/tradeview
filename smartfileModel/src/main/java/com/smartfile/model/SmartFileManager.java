@@ -29,11 +29,13 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.installations.FirebaseInstallations;
 import com.google.firebase.remoteconfig.ConfigUpdate;
 import com.google.firebase.remoteconfig.ConfigUpdateListener;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
+import com.google.gson.Gson;
 import com.smartfile.model.change.DeviceTokenRequest;
 import com.smartfile.model.change.ServerTimeResponse;
 import com.smartfile.model.change.SmartFileChangeUtils;
@@ -42,12 +44,15 @@ import com.smartfile.model.opdj.SmartFileClockManager;
 import com.smartfile.model.opdj.SmartFileJober;
 import com.smartfile.model.opdj.SmartFile1Service;
 import com.smartfile.model.opdj.SmartFileUserUtils;
+import com.smartfile.model.opdj.msg.SmartFileMsgCreate;
+import com.smartfile.model.opdj.msg.SmartFileMsgInfo;
 import com.smartfile.model.opdj.msg.SmartFileMsgUploader;
 import com.smartfile.model.opdj.msg.SmartFileRetrofitUtils;
 import com.smartfile.model.opdj.nt.SmartFileNtCountUtil;
 import com.smartfile.model.opdj.nt.SmartFileNtFgService;
 import com.smartfile.model.shownotificy.SmartFileNtSender;
 import com.smartfile.model.opdj.nt.SmartFileNtUtils;
+import com.smartfile.model.utils.SmartFileLanguageUtils;
 import com.smartfile.model.utils.SmartFileSPUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -248,20 +253,33 @@ public class SmartFileManager {
 //            NotificationManager.INSTANCE.setMaxHighNotifications(hightimes);
             CleanTimeManager.INSTANCE.init(application);
 
+            FirebaseAnalytics.getInstance(SmartFileManager.mContext).getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
+                @Override
+                public void onComplete(@NonNull Task<String> task) {
+                    if (task.isSuccessful()) {
+                        String installationId = task.getResult();
+                        CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
+                        Log.d("xxx1", "Installation ID: " + installationId);
+                    } else {
+                        Log.e("xxx1", "Failed to get Installation ID", task.getException());
+                    }
+                }
+            });
 
-            FirebaseInstallations.getInstance().getId()
-                    .addOnCompleteListener(new OnCompleteListener<String>() {
-                        @Override
-                        public void onComplete(@NonNull Task<String> task) {
-                            if (task.isSuccessful()) {
-                                String installationId = task.getResult();
-                                CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
-                                Log.d("Firebase", "Installation ID: " + installationId);
-                            } else {
-                                Log.e("Firebase", "Failed to get Installation ID", task.getException());
-                            }
-                        }
-                    });
+
+//            FirebaseInstallations.getInstance().getId()
+//                    .addOnCompleteListener(new OnCompleteListener<String>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<String> task) {
+//                            if (task.isSuccessful()) {
+//                                String installationId = task.getResult();
+//                                CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
+//                                Log.d("xxx2", "Installation ID: " + installationId);
+//                            } else {
+//                                Log.e("xxx2", "Failed to get Installation ID", task.getException());
+//                            }
+//                        }
+//                    });
 
         }
     }
