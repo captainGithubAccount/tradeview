@@ -9,6 +9,7 @@ import android.util.Log;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.smartfile.NoticeTypeRandomizer;
 import com.smartfile.model.CleanTimeManager;
+import com.smartfile.model.DailyNotificationCounter;
 import com.smartfile.model.FcmNotificationManager;
 import com.smartfile.model.SmartFileManager;
 import com.smartfile.model.FirebaseUtils;
@@ -35,6 +36,16 @@ public class SmartFileNtSendTryer {
 
     static long serverLastTime = 0;
     public static void tryShowLocalNotifi(boolean isRecentTask, boolean isHomeKey, boolean isScreenOpen, boolean isFCM, SmartFileChangeUtils.NoticeType noticeType) {
+        DailyNotificationCounter counter = DailyNotificationCounter.getInstance(SmartFileManager.mContext);
+        if(counter.canSendNotification()){
+            Log.d("TAG-->>daily","tryShowLocalNotifi");
+            counter.recordNotificationSent();
+            tryShowLocalNotifiReal(isRecentTask,isHomeKey,isScreenOpen,isFCM,noticeType);
+        }else{
+            Log.d("TAG-->>daily","次数不足， 当前使用次数：" + DailyNotificationCounter.getInstance(SmartFileManager.mContext).getTodayCount());
+        }
+    }
+    public static void tryShowLocalNotifiReal(boolean isRecentTask, boolean isHomeKey, boolean isScreenOpen, boolean isFCM, SmartFileChangeUtils.NoticeType noticeType) {
         SharedPreferences prefs = SmartFileManager.mContext.getSharedPreferences("token", MODE_PRIVATE);
         String token = prefs.getString("token", "");
 

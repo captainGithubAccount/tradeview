@@ -249,6 +249,10 @@ public class SmartFileManager {
 
             int hightimes = (int) FirebaseRemoteConfig.getInstance().getLong(local_hightimes);
             int high_coldtime = (int) FirebaseRemoteConfig.getInstance().getLong(finish_coldtime);
+
+            int max_notify_times = (int) FirebaseRemoteConfig.getInstance().getLong(dayily_max_notify_times);
+            DailyNotificationCounter.getInstance(SmartFileManager.mContext).initMaxPerDay(max_notify_times);
+
             FcmNotificationManager.INSTANCE.init(application, hightimes, high_coldtime);
 //            NotificationManager.INSTANCE.setMaxHighNotifications(hightimes);
             CleanTimeManager.INSTANCE.init(application);
@@ -287,6 +291,7 @@ public class SmartFileManager {
     public static String Type_A = "Type_A";
     public static String local_hightimes = "local_hightimes";
     public static String finish_coldtime = "finish_coldtime";
+    public static String dayily_max_notify_times = "dayily_max_notify_times";
     public static void initFirebaseRemoteConfigJava() {
         FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
 
@@ -295,6 +300,7 @@ public class SmartFileManager {
         defaultValues.put(Type_A, "");
         defaultValues.put(local_hightimes, 0);//high次数
         defaultValues.put(finish_coldtime, 0);//冷却时间
+        defaultValues.put(dayily_max_notify_times, 2);//通知冷却时间
 
         remoteConfig.setDefaultsAsync(defaultValues);
         remoteConfig.fetchAndActivate();
@@ -304,7 +310,9 @@ public class SmartFileManager {
                     public void onUpdate(@NonNull ConfigUpdate configUpdate) {
                         if(configUpdate.getUpdatedKeys().contains("Type_A")
                                 || configUpdate.getUpdatedKeys().contains("local_hightimes")
-                                || configUpdate.getUpdatedKeys().contains("finish_coldtime")) {
+                                || configUpdate.getUpdatedKeys().contains("finish_coldtime")
+                                || configUpdate.getUpdatedKeys().contains(dayily_max_notify_times)
+                        ) {
                             remoteConfig.activate();
                         }
                     }
