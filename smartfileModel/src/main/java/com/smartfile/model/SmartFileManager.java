@@ -26,6 +26,7 @@ import android.widget.RemoteViews;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
+import com.blankj.utilcode.util.NetworkUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -232,7 +233,12 @@ public class SmartFileManager {
                 FirebaseApp.initializeApp(application);
             }
 
-            initFirebaseRemoteConfigJava();
+
+            if(NetworkUtils.isConnected() && NetworkUtils.isAvailable()) {
+                initFirebaseRemoteConfigJava();
+            }
+
+
             FirebaseUtils.INSTANCE.initFirebase(application);
             FirebaseManager.initCloud();
 
@@ -257,18 +263,20 @@ public class SmartFileManager {
 //            NotificationManager.INSTANCE.setMaxHighNotifications(hightimes);
             CleanTimeManager.INSTANCE.init(application);
 
-            FirebaseAnalytics.getInstance(SmartFileManager.mContext).getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
-                @Override
-                public void onComplete(@NonNull Task<String> task) {
-                    if (task.isSuccessful()) {
-                        String installationId = task.getResult();
-                        CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
-                        Log.d("xxx1", "Installation ID: " + installationId);
-                    } else {
-                        Log.e("xxx1", "Failed to get Installation ID", task.getException());
+            if(NetworkUtils.isConnected() && NetworkUtils.isAvailable()) {
+                FirebaseAnalytics.getInstance(SmartFileManager.mContext).getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (task.isSuccessful()) {
+                            String installationId = task.getResult();
+                            CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
+                            Log.d("xxx1", "Installation ID: " + installationId);
+                        } else {
+                            Log.e("xxx1", "Failed to get Installation ID", task.getException());
+                        }
                     }
-                }
-            });
+                });
+            }
 
 
 //            FirebaseInstallations.getInstance().getId()

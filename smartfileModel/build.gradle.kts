@@ -52,6 +52,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation("com.blankj:utilcodex:1.31.1")
+
     // okhttp retrofit2
     api("com.google.code.gson:gson:2.11.0")
     api("com.squareup.okhttp3:okhttp:4.12.0")
