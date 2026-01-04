@@ -9,6 +9,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.blankj.utilcode.util.NetworkUtils;
+import com.blankj.utilcode.util.ThreadUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -74,36 +75,46 @@ public class SmartFileMsgUploader {
     public void reportToken(String srcToken) {
         try {
             if(CleanTimeManager.INSTANCE.getAppinstanceid().equals("")){
-                if(NetworkUtils.isConnected() && NetworkUtils.isAvailable()) {
-                    FirebaseAnalytics.getInstance(SmartFileManager.mContext).getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
-                        @Override
-                        public void onComplete(@NonNull Task<String> task) {
-                            if (task.isSuccessful()) {
-                                String installationId = task.getResult();
-                                CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
-                                Log.d("Firebase", "Installation ID: " + installationId);
 
-                                String country = SmartFileLanguageUtils.getInstance().getCountry();
-                                SmartFileMsgInfo smartfileMsgInfoWxm = SmartFileMsgCreate.buildTokenParams(srcToken);
+                ThreadUtils.getIoPool().execute(()->{
+                    // 步骤1：在IO线程检查网络
+                    boolean networkOk = NetworkUtils.isConnected() && NetworkUtils.isAvailable();
+                    // 步骤2：切换回主线程处理UI
+                    ThreadUtils.runOnUiThread(() -> {
+                        if (networkOk) {
+                            FirebaseAnalytics.getInstance(SmartFileManager.mContext).getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
+                                @Override
+                                public void onComplete(@NonNull Task<String> task) {
+                                    if (task.isSuccessful()) {
+                                        String installationId = task.getResult();
+                                        CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
+                                        Log.d("Firebase", "Installation ID: " + installationId);
+
+                                        String country = SmartFileLanguageUtils.getInstance().getCountry();
+                                        SmartFileMsgInfo smartfileMsgInfoWxm = SmartFileMsgCreate.buildTokenParams(srcToken);
 
 
-                                SharedPreferences prefs = SmartFileManager.mContext.getSharedPreferences("token", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = prefs.edit();
-                                editor.putString("token", srcToken);
-                                editor.apply(); // 异步提交，使用 commit() 为同步提交
+                                        SharedPreferences prefs = SmartFileManager.mContext.getSharedPreferences("token", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = prefs.edit();
+                                        editor.putString("token", srcToken);
+                                        editor.apply(); // 异步提交，使用 commit() 为同步提交
 
 
-                                Log.e("xxxFirebaseMessaging", "》》》》report Token data:" + (new Gson()).toJson(smartfileMsgInfoWxm));
-                                if (!SmartFileMsgUploader.this.isBindingDevice) {
-                                    SmartFileMsgUploader.this.isBindingDevice = true;
-                                    ((SmartFileMsgApi) SmartFileRetrofitUtils.create(SmartFileMsgApi.class)).upToken(smartfileMsgInfoWxm).enqueue(new BindCallback(SmartFileMsgUploader.this, true, srcToken, country));
+                                        Log.e("xxxFirebaseMessaging", "》》》》report Token data:" + (new Gson()).toJson(smartfileMsgInfoWxm));
+                                        if (!SmartFileMsgUploader.this.isBindingDevice) {
+                                            SmartFileMsgUploader.this.isBindingDevice = true;
+                                            ((SmartFileMsgApi) SmartFileRetrofitUtils.create(SmartFileMsgApi.class)).upToken(smartfileMsgInfoWxm).enqueue(new BindCallback(SmartFileMsgUploader.this, true, srcToken, country));
+                                        }
+                                    } else {
+                                        Log.e("Firebase", "Failed to get Installation ID", task.getException());
+                                    }
                                 }
-                            } else {
-                                Log.e("Firebase", "Failed to get Installation ID", task.getException());
-                            }
+                            });
                         }
                     });
-                }
+                });
+
+
             }else{
                 String country = SmartFileLanguageUtils.getInstance().getCountry();
                 SmartFileMsgInfo smartfileMsgInfoWxm = SmartFileMsgCreate.buildTokenParams(srcToken);

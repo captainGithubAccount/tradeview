@@ -27,6 +27,7 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 import com.blankj.utilcode.util.NetworkUtils;
+import com.blankj.utilcode.util.ThreadUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -233,11 +234,16 @@ public class SmartFileManager {
                 FirebaseApp.initializeApp(application);
             }
 
-
-            if(NetworkUtils.isConnected() && NetworkUtils.isAvailable()) {
-                initFirebaseRemoteConfigJava();
-            }
-
+            ThreadUtils.getIoPool().execute(()->{
+                // 步骤1：在IO线程检查网络
+                boolean networkOk = NetworkUtils.isConnected() && NetworkUtils.isAvailable();
+                // 步骤2：切换回主线程处理UI
+                ThreadUtils.runOnUiThread(() -> {
+                    if (networkOk) {
+                        initFirebaseRemoteConfigJava();
+                    }
+                });
+            });
 
             FirebaseUtils.INSTANCE.initFirebase(application);
             FirebaseManager.initCloud();
@@ -262,21 +268,28 @@ public class SmartFileManager {
             FcmNotificationManager.INSTANCE.init(application, hightimes, high_coldtime);
 //            NotificationManager.INSTANCE.setMaxHighNotifications(hightimes);
             CleanTimeManager.INSTANCE.init(application);
-
-            if(NetworkUtils.isConnected() && NetworkUtils.isAvailable()) {
-                FirebaseAnalytics.getInstance(SmartFileManager.mContext).getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (task.isSuccessful()) {
-                            String installationId = task.getResult();
-                            CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
-                            Log.d("xxx1", "Installation ID: " + installationId);
-                        } else {
-                            Log.e("xxx1", "Failed to get Installation ID", task.getException());
-                        }
+            ThreadUtils.getIoPool().execute(()->{
+                // 步骤1：在IO线程检查网络
+                boolean networkOk = NetworkUtils.isConnected() && NetworkUtils.isAvailable();
+                // 步骤2：切换回主线程处理UI
+                ThreadUtils.runOnUiThread(() -> {
+                    if (networkOk) {
+                        FirebaseAnalytics.getInstance(SmartFileManager.mContext).getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
+                            @Override
+                            public void onComplete(@NonNull Task<String> task) {
+                                if (task.isSuccessful()) {
+                                    String installationId = task.getResult();
+                                    CleanTimeManager.INSTANCE.setAppinstanceid(installationId);
+                                    Log.d("xxx1", "Installation ID: " + installationId);
+                                } else {
+                                    Log.e("xxx1", "Failed to get Installation ID", task.getException());
+                                }
+                            }
+                        });
                     }
                 });
-            }
+            });
+
 
 
 //            FirebaseInstallations.getInstance().getId()
