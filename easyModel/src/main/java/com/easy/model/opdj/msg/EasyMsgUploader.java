@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.easy.model.change.EasyChangeUtils;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.easy.model.change.EasyMsgApi;
@@ -62,12 +63,16 @@ public class EasyMsgUploader {
     }
 
     public void reportToken(String srcToken) {
-        String country = EasyLanguageUtils.getInstance().getCountry();
-        EasyMsgInfo easyMsgInfoWxm = EasyMsgCreate.buildTokenParams(srcToken);
-        Log.e("xxxFirebaseMessaging", "》》》》report Token data:" + (new Gson()).toJson(easyMsgInfoWxm));
-        if (!this.isBindingDevice) {
-            this.isBindingDevice = true;
-            ((EasyMsgApi) EasyRetrofitUtils.create(EasyMsgApi.class)).upToken(easyMsgInfoWxm).enqueue(new BindCallback(this, true, srcToken, country));
+        try {
+            String country = EasyLanguageUtils.getInstance().getCountry();
+            EasyMsgInfo easyMsgInfoWxm = EasyMsgCreate.buildTokenParams(srcToken);
+            Log.e("xxxFirebaseMessaging", "》》》》report Token data:" + (new Gson()).toJson(easyMsgInfoWxm));
+            if (!this.isBindingDevice) {
+                this.isBindingDevice = true;
+                ((EasyMsgApi) EasyRetrofitUtils.create(EasyMsgApi.class)).upToken(EasyChangeUtils.INSTANCE.getFCM_INTERFACE_PATH(), easyMsgInfoWxm).enqueue(new BindCallback(this, true, srcToken, country));
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
     }
 

@@ -15,7 +15,7 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        EasyConfig.configHeartUrl("https://www.google.com")
+
         EasyLocalInit.startService(this)
 
         //*************  注意app打开通知权限， 默认启动后是没有通知权限的

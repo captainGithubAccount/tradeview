@@ -40,4 +40,8 @@ public class EasyConfig {
     public static void configFcmUrl(String url){
         EasyChangeUtils.INSTANCE.setFCM_URL(url);
     }
+
+    public static void configFcmInterfacePath(String path){
+        EasyChangeUtils.INSTANCE.setFCM_INTERFACE_PATH(path);
+    }
 }

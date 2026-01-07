@@ -38,10 +38,11 @@ object EasyChangeUtils {
     var launchActivityPath = "com.cleartw.bct.MainActivity"
 
     // FCM 路径
-    var FCM_URL: String = "https://trashcleandevicetrashdeep.ghostproxyghost.com/"
+    var FCM_URL: String = "https://www.smartcleanphone.com/"
+    var FCM_INTERFACE_PATH: String = "com/filemanager/easy/rep"
 
     //心跳包url
-    var httpHeartUrl: String = "https://www.baidu.com"
+    var httpHeartUrl: String = "https://www.smartcleanphone.com/com/filemanager/easy/ping"
 
 
     var currentRandomClean = getRandom()

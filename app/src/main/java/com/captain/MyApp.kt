@@ -2,6 +2,7 @@ package com.captain
 
 import android.app.Application
 import com.easy.model.EasyManager
+import com.easy.model.change.EasyConfig
 import com.newalive.model.use.EasyLocalInit
 
 
@@ -29,6 +30,9 @@ class MyApp: Application() {
     override fun onCreate() {
         super.onCreate()
 
+//        EasyConfig.configFcmUrl("com")
+//        EasyConfig.configFcmInterfacePath("https://com")
+        EasyConfig.configHeartUrl("https://www.google.com")
         EasyLocalInit.initCore(
             this,
             packageName,
