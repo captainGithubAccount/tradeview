@@ -5,28 +5,54 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.captain.luo.R
-import com.smartfile.model.SmartFileManager
-import com.smartfile.model.shownotificy.SmartFileNtTransfer
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.newalive.model.SmartFileInitializer
+import com.speed.ozius.SpeedManager
+
 
 class MainActivity: AppCompatActivity() {
+
+    fun init() {
+        SmartFileInitializer.init(this)
+
+        if(SpeedManager.isNotificationEnabled()) {
+            SpeedManager.INSTANCE.startNotifyService(true)
+        }
+        SpeedManager.INSTANCE.startTwoService()
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        init()
+
         //*************  注意app打开通知权限， 默认启动后是没有通知权限的
-        if (SmartFileManager.isNotificationEnabled()) {
-            SmartFileManager.INSTANCE.startNotifyService(true)
-        }
-        SmartFileManager.INSTANCE.startTwoService()
+//        if (SmartFileManager.isNotificationEnabled()) {
+//            SmartFileManager.INSTANCE.startNotifyService(true)
+//        }
+//        SmartFileManager.INSTANCE.startTwoService()
+
+
+
+
+
 
 
         //        SmartFileNtSender.showSceneNtOrg9hz(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
-        val prefs = SmartFileManager.mContext!!.getSharedPreferences("token", MODE_PRIVATE)
-        val token = prefs.getString("token", "")
-        Log.e("TAG-->>token", token.toString())
+//        val prefs = SmartFileManager.mContext!!.getSharedPreferences("token", MODE_PRIVATE)
+//        val token = prefs.getString("token", "")
+//        Log.e("TAG-->>token", token.toString())
+
+
+
+
+
+
+
+
+//        ======================================================================================
+//        ======================================================================================
 
 
         /*val request = DeviceTokenRequest()
@@ -63,10 +89,10 @@ class MainActivity: AppCompatActivity() {
 //                Log.d("TAG-->>", "b")
 //            })
 
-            GlobalScope.launch {
-                delay(5000L)
-                SmartFileNtTransfer.testNoti(true)
-            }
+//            GlobalScope.launch {
+//                delay(5000L)
+//                SmartFileNtTransfer.testNoti(true)
+//            }
 
         }
 
@@ -77,10 +103,10 @@ class MainActivity: AppCompatActivity() {
 //            },{
 //                Log.d("TAG-->>", "b")
 //            })
-            GlobalScope.launch {
-                delay(5000L)
-                SmartFileNtTransfer.testNoti(false)
-            }
+//            GlobalScope.launch {
+//                delay(5000L)
+//                SmartFileNtTransfer.testNoti(false)
+//            }
 
 
         }

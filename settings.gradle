@@ -22,8 +22,10 @@ dependencyResolutionManagement {
 rootProject.name = "TradingFinal"
 include ':app'
 include ':cleModel'
+include ':speedModel'
 //include ':girlfriendModel'
 include ':smartfileModel'
 include ':cleModel'
 include ':whiteModel'
 include ':pinkpurModel'
+include ':newAliveModel'
