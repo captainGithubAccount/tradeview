@@ -7,15 +7,14 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.speed.ozius.use.StartOngoingNotifyHelper;
-import com.speed.ozius.use.StartOngoingServiceHelper;
+import com.speed.ozius.use.SpeedStartOngoingNotifyHelper;
 
 /**
  * 强化版前台服务：
  * 配合“强制点火”逻辑，实现图标的失而复得与实时刷新。
  */
 public class SmartFileAliveService extends Service {
-    StartOngoingNotifyHelper helper;
+    SpeedStartOngoingNotifyHelper helper;
     private static final String TAG = "ALIVE_TEST";
     // 定义通知被划掉的特殊动作
     public static final String ACTION_NOTIFY_REMOVED = "com.smartfile.NOTIFY_REMOVED";
@@ -23,7 +22,7 @@ public class SmartFileAliveService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        helper = new StartOngoingNotifyHelper(this);
+        helper = new SpeedStartOngoingNotifyHelper(this);
         helper.oncreate(this, this);
     }
 

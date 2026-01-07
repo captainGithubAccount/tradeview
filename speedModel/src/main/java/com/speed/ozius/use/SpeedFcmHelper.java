@@ -31,7 +31,7 @@ import com.speed.ozius.shownotificy.SpeedNtTransfer;
  */
 
 @Keep
-public class FcmHelper {
+public class SpeedFcmHelper {
     public static String mToken = "";
     private static long lastTime = 0L;
     public static void onNewToken(String token) {

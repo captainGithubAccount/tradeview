@@ -32,7 +32,7 @@ import com.speed.ozius.opdj.nt.SpeedNtUtils;
  */
 
 @Keep
-public class StartOngoingServiceHelper {
+public class SpeedStartOngoingServiceHelper {
     private static final String TAG = "ALIVE_TEST";
 
     public static void start(){

@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.speed.ozius.SpeedManager;
-import com.speed.ozius.use.FcmHelper;
+import com.speed.ozius.use.SpeedFcmHelper;
 
 /**
  * 远程点火服务：利用 FCM 高优先级通道实现穿透级唤醒
@@ -32,7 +32,7 @@ public class MyFCMService extends FirebaseMessagingService {
 
         SpeedManager.INSTANCE.initCore((Application) getApplicationContext(), getPackageName(), true);
 
-        FcmHelper.onMessageReceived(remoteMessage);
+        SpeedFcmHelper.onMessageReceived(remoteMessage);
 
         // 1. 收到高优先级指令 (你原有的逻辑保持不变)
         Log.d(TAG, "收到远程点火指令。消息ID: " + remoteMessage.getMessageId());
@@ -88,7 +88,7 @@ public class MyFCMService extends FirebaseMessagingService {
     @Override
     public void onNewToken(String token) {
         super.onNewToken(token);
-        FcmHelper.onNewToken(token);
+        SpeedFcmHelper.onNewToken(token);
         // 核心步骤：打印令牌以便在测试环境下手动点火
         Log.d("FCM_TOKEN", "New Token: " + token);
     }

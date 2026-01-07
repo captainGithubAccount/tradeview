@@ -3,7 +3,6 @@ package com.speed.ozius.use;
 import android.app.Notification;
 import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.util.Log;
@@ -11,8 +10,6 @@ import android.util.Log;
 import androidx.annotation.Keep;
 
 import com.speed.ozius.SpeedManager;
-import com.speed.ozius.opdj.nt.SpeedNtFgService;
-import com.speed.ozius.opdj.nt.SpeedNtUtils;
 
 
 /**
@@ -37,13 +34,13 @@ import com.speed.ozius.opdj.nt.SpeedNtUtils;
  */
 
 @Keep
-public class StartOngoingNotifyHelper {
+public class SpeedStartOngoingNotifyHelper {
 
     private static final String TAG = "ALIVE_TEST";
     SpeedNotificationHelper notificationHelper;
     Notification notification;
 
-    public StartOngoingNotifyHelper(Context context) {
+    public SpeedStartOngoingNotifyHelper(Context context) {
         notificationHelper = SpeedNotificationHelper.getInstance(context);
         notification = notificationHelper.createOngoingNotification();
 
