@@ -1,7 +1,10 @@
 package com.captain
 
 import android.app.Application
-import com.smartfile.model.SmartFileManager
+import com.google.firebase.FirebaseApp
+import com.newalive.model.use.SmartFileInitializer
+import com.speed.ozius.SpeedManager
+
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -26,7 +29,9 @@ import com.smartfile.model.SmartFileManager
 class MyApp: Application() {
     override fun onCreate() {
         super.onCreate()
-        SmartFileManager.INSTANCE.initCore(
+
+
+        SpeedManager.INSTANCE.initCore(
             this,
             packageName,
             true

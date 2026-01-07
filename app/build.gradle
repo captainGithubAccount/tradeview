@@ -40,10 +40,9 @@ android {
 }
 
 dependencies {
-//    implementation project(":cleModel")
-//    implementation project(":whiteModel")
+    api project(":newAliveModel")
 //    implementation project(':girlfriendModel')
-    implementation project(':smartfileModel')
+//    implementation project(':smartfileModel')
 
 
     implementation 'androidx.core:core-ktx:1.9.0'
