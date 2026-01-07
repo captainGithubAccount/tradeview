@@ -1,31 +1,22 @@
 package com.captain
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.captain.luo.R
-import com.newalive.model.SmartFileInitializer
-import com.speed.ozius.SpeedManager
+import com.easy.model.change.EasyConfig
+import com.newalive.model.use.EasyLocalInit
 
 
 class MainActivity: AppCompatActivity() {
 
-    fun init() {
-        SmartFileInitializer.init(this)
-
-        if(SpeedManager.isNotificationEnabled()) {
-            SpeedManager.INSTANCE.startNotifyService(true)
-        }
-        SpeedManager.INSTANCE.startTwoService()
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        init()
+        EasyConfig.configHeartUrl("https://www.google.com")
+        EasyLocalInit.startService(this)
 
         //*************  注意app打开通知权限， 默认启动后是没有通知权限的
 //        if (SmartFileManager.isNotificationEnabled()) {

@@ -42,7 +42,7 @@ android {
 dependencies {
     api project(":newAliveModel")
 //    implementation project(':girlfriendModel')
-//    implementation project(':speedModel')
+//    implementation project(':easyModel')
 
 
     implementation 'androidx.core:core-ktx:1.9.0'

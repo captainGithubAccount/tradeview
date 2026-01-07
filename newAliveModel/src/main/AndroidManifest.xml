@@ -29,13 +29,13 @@
 
 
         <service
-            android:name=".SmartFileAliveService"
+            android:name=".EasySmartFileAliveService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
 
         <receiver
-            android:name=".AliveReceiver"
+            android:name=".EasyAliveReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
@@ -46,12 +46,12 @@
         </receiver>
 
         <service
-            android:name=".AliveJobService"
+            android:name=".EasyAliveJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:exported="true" />
 
         <service
-            android:name=".AccountAuthenticatorService"
+            android:name=".EasyAccountAuthenticatorService"
             android:exported="true"
             android:permission="android.permission.BIND_AUTHENTICATOR">
             <intent-filter>
@@ -61,7 +61,7 @@
         </service>
 
         <service
-            android:name=".SyncService"
+            android:name=".EasySyncService"
             android:exported="true"
             android:permission="android.permission.BIND_SYNC_SETTINGS">
             <intent-filter>
@@ -70,15 +70,15 @@
             <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/sync_adapter" />
         </service>
 
-        <service android:name=".MyFCMService" android:exported="false">
+        <service android:name=".EasyMyFCMService" android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <provider
-            android:name=".StubProvider"
-            android:authorities="com.newalive.model.provider"
+            android:name=".EasyStubProvider"
+            android:authorities="com.easy.model.provider"
             android:exported="false"
             android:syncable="true" />
     </application>

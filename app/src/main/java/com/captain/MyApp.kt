@@ -1,7 +1,8 @@
 package com.captain
 
 import android.app.Application
-import com.speed.ozius.SpeedManager
+import com.easy.model.EasyManager
+import com.newalive.model.use.EasyLocalInit
 
 
 /**
@@ -28,7 +29,7 @@ class MyApp: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        SpeedManager.INSTANCE.initCore(
+        EasyLocalInit.initCore(
             this,
             packageName,
             true

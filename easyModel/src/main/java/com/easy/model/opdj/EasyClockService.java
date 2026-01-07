@@ -1,0 +1,41 @@
+package com.easy.model.opdj;
+
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.Build.VERSION;
+import android.os.IBinder;
+
+import androidx.annotation.Nullable;
+
+import com.easy.model.EasyManager;
+import com.easy.model.opdj.nt.EasyNtFgService;
+import com.easy.model.shownotificy.EasyNtTransfer;
+import com.easy.model.opdj.nt.EasyNtUtils;
+
+public class EasyClockService extends Service {
+
+    public EasyClockService() {
+    }
+
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        EasyNtTransfer.onTimeTickUpEvent();
+        EasyClockManager.startAlarm(this.getApplication());
+        EasyManager.INSTANCE.startTwoService();
+        if (!EasyNtFgService.getIsShowing()) {
+            if (VERSION.SDK_INT >= 33) {
+                if (!EasyNtUtils.isOngoingServiceRunning(EasyNtFgService.class)) {
+                    EasyManager.INSTANCE.startNotifyService(false);
+                }
+            } else if (EasyNtUtils.isNotificationEnabled() && !EasyNtUtils.isOngoingServiceRunning(EasyNtFgService.class)) {
+                EasyManager.INSTANCE.startNotifyService(false);
+            }
+        }
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Nullable
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+}

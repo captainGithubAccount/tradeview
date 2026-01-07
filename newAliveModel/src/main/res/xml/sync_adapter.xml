@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- todo 修改为 EasyLocalInit.EASY_ACCOUNT_TYPE (com.easy.model.provider) -->
 <sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
-    android:contentAuthority="com.newalive.model.provider"
-    android:accountType="com.smartfile.auth"
+    android:contentAuthority="com.easy.model.provider"
+    android:accountType="com.easy.model.auth"
     android:userVisible="true"
     android:supportsUploading="false"
     android:allowParallelSyncs="false"
