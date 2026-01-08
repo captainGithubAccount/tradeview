@@ -1,10 +1,4 @@
-package com.captain
-
-import android.app.Application
-import com.captain.a.AAA
-import com.easy.model.newest.use.EasyLocalInit
-import com.easy.model.old.change.EasyConfig
-
+package com.captain.a
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -24,20 +18,12 @@ import com.easy.model.old.change.EasyConfig
  *
  * @autor lwj
  * @version 1.0.0
- * Created by 2025年-12月
+ * Created by 2026年-01月
  */
-class MyApp: Application() {
-    override fun onCreate() {
-        super.onCreate()
+class AAA {
 
-        AAA()
-//        EasyConfig.configFcmUrl("com")
-//        EasyConfig.configFcmInterfacePath("https://com")
-        EasyConfig.configHeartUrl("https://www.google.com")
-        EasyLocalInit.initCore(
-            this,
-            packageName,
-            true
-        )
+    fun a(){
+        ATEST()
     }
 }
+

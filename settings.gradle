@@ -7,6 +7,7 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -28,4 +29,5 @@ include ':smartfileModel'
 include ':cleModel'
 include ':whiteModel'
 include ':pinkpurModel'
-include ':newAliveModel'
+//include ':newAliveModel'
+include ':oldkeepalive'

@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.captain.luo.R
-import com.easy.model.change.EasyConfig
-import com.newalive.model.use.EasyLocalInit
+import com.easy.model.newest.use.EasyLocalInit
 
 
 class MainActivity: AppCompatActivity() {

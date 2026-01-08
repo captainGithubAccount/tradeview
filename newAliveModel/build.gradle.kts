@@ -49,7 +49,7 @@ android {
 
 dependencies {
 
-    api(project(":easyModel"))
+//    api(project(":easyModel"))
 
     implementation("com.blankj:utilcodex:1.31.1")
 

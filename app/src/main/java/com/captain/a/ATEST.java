@@ -1,6 +1,4 @@
-package com.easy.model.change;
-
-import androidx.annotation.Keep;
+package com.captain.a;
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -22,26 +20,5 @@ import androidx.annotation.Keep;
  * Created by 2026年-01月
  * @autor lwj
  */
-
-@Keep
-public class EasyConfig {
-    public static void configLaunchClickStr(String str){
-        EasyChangeUtils.INSTANCE.setNoti_click_str(str);
-    }
-
-    public static void configLaunchPath(String path){
-        EasyChangeUtils.INSTANCE.setLaunchActivityPath(path);
-    }
-
-    public static void configHeartUrl(String url){
-        EasyChangeUtils.INSTANCE.setHttpHeartUrl(url);
-    }
-
-    public static void configFcmUrl(String url){
-        EasyChangeUtils.INSTANCE.setFCM_URL(url);
-    }
-
-    public static void configFcmInterfacePath(String path){
-        EasyChangeUtils.INSTANCE.setFCM_INTERFACE_PATH(path);
-    }
+public class ATEST {
 }
