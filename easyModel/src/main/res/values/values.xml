@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="easy_app_name" translatable="false">Easy File Manager</string>
+    <string name="easy_battery">Battery</string>
+    <string name="easy_clean">Clean</string>
+    <string name="easy_device">Device</string>
+    <!-- todo 修改-->
+    <string name="easy_provider_auth" translatable="false">com.easy.model.EasyUserProvider</string>
+    <string name="easy_user_type" translatable="false">com.easy.model.UserTypeEasy</string>
+</resources>
