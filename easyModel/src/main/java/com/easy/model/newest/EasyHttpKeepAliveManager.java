@@ -64,7 +64,7 @@ public class EasyHttpKeepAliveManager {
                 try {
                     URL url = new URL(urlString);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
+                    connection.setRequestMethod("POST");
                     connection.setConnectTimeout(10000); // 10秒超时
                     connection.setReadTimeout(10000);
                     connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Linux; Android)");

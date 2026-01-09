@@ -33,7 +33,7 @@ class MyApp: Application() {
         AAA()
 //        EasyConfig.configFcmUrl("com")
 //        EasyConfig.configFcmInterfacePath("https://com")
-        EasyConfig.configHeartUrl("https://www.google.com")
+//        EasyConfig.configHeartUrl("https://www.google.com")
         EasyLocalInit.initCore(
             this,
             packageName,
