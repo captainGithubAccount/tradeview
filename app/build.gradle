@@ -26,26 +26,26 @@ android {
 
 
 
-//    buildTypes {
-//        release {
-//            // 启用代码缩减、混淆及优化 (R8)
-//            minifyEnabled true
-//
-//            // 启用资源压缩（需配合 minifyEnabled 使用）
-//            shrinkResources true
-//
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//
-//            // 建议：在此处配置签名信息
-//            // signingConfig signingConfigs.release
-//        }
-//
-//        debug {
-//            // 开发阶段关闭混淆以提高编译速度
-//            minifyEnabled true
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//        }
-//    }
+   /* buildTypes {
+        release {
+            // 启用代码缩减、混淆及优化 (R8)
+            minifyEnabled true
+
+            // 启用资源压缩（需配合 minifyEnabled 使用）
+            shrinkResources true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // 建议：在此处配置签名信息
+            // signingConfig signingConfigs.release
+        }
+
+        debug {
+            // 开发阶段关闭混淆以提高编译速度
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }*/
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
