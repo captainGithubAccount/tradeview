@@ -143,11 +143,12 @@ public class EasyNotificationHelper {
             Notification notification = builder
                     .setWhen(System.currentTimeMillis())
                     .setOnlyAlertOnce(true)
-                    .setSmallIcon(R.mipmap.easy_logo)
+                    .setSmallIcon(R.drawable.easy_logo)
                     .setShowWhen(true)
                     .setOngoing(true)
                     .setSound(null)
-                    .setNumber(5)
+//                    .setColor(Color.TRANSPARENT) // 红色
+                    /*.setNumber(5)*/
                     .setVibrate(new long[]{0L})
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setSound(null, AudioManager.STREAM_NOTIFICATION)

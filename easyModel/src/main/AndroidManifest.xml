@@ -219,10 +219,18 @@
         </service>
 
         <service android:name="com.easy.model.newest.EasyMyFCMService" android:exported="false">
-            <intent-filter android:priority="1000">
+            <intent-filter >
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <!--<service
+            android:name="com.easy.model.old.opdj.msg.EasyMsgService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>-->
 
         <provider
             android:name="com.easy.model.newest.EasyStubProvider"

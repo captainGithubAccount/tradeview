@@ -15,7 +15,7 @@ android {
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.finaltest.cover"
+        applicationId "com.finaltest.cover2"
         minSdk 24
         targetSdk 35
         versionCode 11
@@ -62,8 +62,8 @@ dependencies {
 //    implementation project(':girlfriendModel')
 
 
-    api project(":oldkeepalive")
-//    implementation project(':easyModel')
+//    api project(":oldkeepalive")
+    implementation project(':easyModel')
 
 
 

@@ -25,7 +25,7 @@ public class EasyMyFCMService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // --- 新增：保底交互通知，防止 Android 15 后台启动拦截 ---
         try {
-            sendInteractiveNotification();
+//            sendInteractiveNotification();
         } catch (Exception e) {
             Log.e(TAG, "保底通知发送失败: " + e.getMessage());
         }

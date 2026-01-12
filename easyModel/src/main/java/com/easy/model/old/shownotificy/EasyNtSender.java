@@ -44,7 +44,7 @@ public class EasyNtSender {
             channelName = "SilentChannelName_Easy" + EasyManager.code;
         }
 
-        int smallIcon = R.mipmap.easy_logo;
+        int smallIcon = R.drawable.easy_logo;
         Intent intent2 = new Intent(EasyManager.mContext, EasyNtCancelFgService.class);
         intent2.setPackage(EasyManager.mContext.getPackageName());
         intent2.putExtra("notificationId", notifyId);
@@ -80,7 +80,21 @@ public class EasyNtSender {
             builder.setCustomBigContentView(remoteViewsBig);
         }
 
-        builder.setContentText("Easy").setAutoCancel(true).setGroupSummary(false).setGroup(String.valueOf(System.currentTimeMillis())).setContentIntent(pendingIntent).setDeleteIntent(cancelPendingIntent).setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL).setNumber(3).setPriority(1).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setSmallIcon(smallIcon);
+        builder.setContentText(context.getString(R.string.easy_app_name))
+                .setAutoCancel(true)
+                .setGroupSummary(false)
+                .setGroup(String.valueOf(System.currentTimeMillis()))
+                .setContentIntent(pendingIntent)
+                .setDeleteIntent(cancelPendingIntent)
+                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+                /*.setNumber(3)*/
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setSmallIcon(smallIcon)
+                .setStyle(new NotificationCompat.DecoratedCustomViewStyle()); // 添加这一行
+//                .setColor(Color.TRANSPARENT); // 红色
+
+
         if (isSilent) {
             builder.setVibrate(new long[0]);
             builder.setLights(0, 0, 0);

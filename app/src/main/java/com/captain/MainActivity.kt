@@ -1,18 +1,57 @@
 package com.captain
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.captain.luo.R
 import com.easy.model.newest.use.EasyLocalInit
 
 
 class MainActivity: AppCompatActivity() {
 
+    fun sendNotify(context: Context) {
+
+        // 1. 定义通知渠道 ID (Android 8.0+ 必须)
+        val CHANNEL_ID = "test_channel_id"
+
+
+        // 2. 创建通知渠道
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                CHANNEL_ID, "测试通知", NotificationManager.IMPORTANCE_DEFAULT
+            )
+            val manager: NotificationManager? = context.getSystemService(NotificationManager::class.java)
+            manager?.createNotificationChannel(channel)
+        }
+
+
+        // 3. 构建并发送通知
+        val builder = NotificationCompat.Builder(context, CHANNEL_ID) // 设置小图标：这是适配的关键，必须是透明背景的单色图
+            .setSmallIcon(R.drawable.ic_stat_name) // png图标，透明背景单色
+            .setContentTitle("图标适配测试")
+            .setContentText("如果你看到的是白块，说明图标没做透明处理") // 设置颜色（会影响小图标在下拉栏的底色或文字颜色）
+            .setColor(0x000000) // 红色
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+
+        val notificationManager = NotificationManagerCompat.from(context)
+
+        // 注意：2026年开发需确保已申请 POST_NOTIFICATIONS 权限
+        notificationManager.notify(1, builder.build())
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+//        sendNotify(this)
 
 
         EasyLocalInit.startService(this)

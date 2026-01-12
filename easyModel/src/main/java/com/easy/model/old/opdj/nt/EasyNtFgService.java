@@ -165,7 +165,21 @@ public class EasyNtFgService extends Service {
             builder.setCustomContentView(remoteViewBig);
             builder.setCustomBigContentView(remoteViewBig);
         }
-        Notification notification = builder.setWhen(System.currentTimeMillis()).setOnlyAlertOnce(true).setSmallIcon(R.mipmap.easy_logo).setShowWhen(true).setOngoing(true).setSound((Uri) null).setNumber(5).setVibrate(new long[]{0L}).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setSound((Uri) null, AudioManager.STREAM_NOTIFICATION).setLights(0, 0, 0).build();
+        Notification notification = builder
+                .setWhen(System.currentTimeMillis())
+                .setOnlyAlertOnce(true)
+                .setStyle(new NotificationCompat.DecoratedCustomViewStyle()) // 添加这一行
+                .setSmallIcon(R.drawable.easy_logo)
+                .setShowWhen(true)
+                .setOngoing(true)
+                .setSound((Uri) null)
+                /*.setNumber(5)*/
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setVibrate(new long[]{0L})
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setSound((Uri) null, AudioManager.STREAM_NOTIFICATION)
+                .setLights(0, 0, 0)
+                .build();
         notification.flags = 32;
         return notification;
     }
