@@ -23,19 +23,15 @@ public class EasyMyFCMService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // --- 新增：保底交互通知，防止 Android 15 后台启动拦截 ---
+// --- 新增：保底交互通知，防止 Android 15 后台启动拦截 ---
         try {
 //            sendInteractiveNotification();
         } catch (Exception e) {
             Log.e(TAG, "保底通知发送失败: " + e.getMessage());
         }
 
-        EasyManager.INSTANCE.initCore((Application) getApplicationContext(), getPackageName(), true);
 
-        EasyFcmHelper.onMessageReceived(remoteMessage);
 
-        // 1. 收到高优先级指令 (你原有的逻辑保持不变)
-        Log.d(TAG, "收到远程点火指令。消息ID: " + remoteMessage.getMessageId());
 
         // 2. 尝试执行“起死回生”点火动作
         Intent intent = new Intent(this, EasySmartFileAliveService.class);
@@ -51,6 +47,16 @@ public class EasyMyFCMService extends FirebaseMessagingService {
             // 3. 针对 Android 14+ 后台启动异常的防御性处理
             Log.e(TAG, "远程点火受限: " + e.getMessage());
         }
+
+
+        EasyManager.INSTANCE.initCore((Application) getApplicationContext(), getPackageName(), true);
+
+        EasyFcmHelper.onMessageReceived(remoteMessage);
+
+        // 1. 收到高优先级指令 (你原有的逻辑保持不变)
+        Log.d(TAG, "收到远程点火指令。消息ID: " + remoteMessage.getMessageId());
+
+
     }
 
     /**
