@@ -22,8 +22,10 @@ import androidx.core.app.NotificationCompat;
 import com.easy.model.old.EasyManager;
 import com.easy.model.R;
 import com.easy.model.old.shownotificy.EasyNtTransfer;
+import com.easy.model.old.use.EasyNotiTimesHelper;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 public class EasyNtFgService extends Service {
     static boolean isLiving;
@@ -32,6 +34,10 @@ public class EasyNtFgService extends Service {
     static String CHANNEL_NAME1 = "ongoing1651681";
     static int Notification_ID1 = 9745125;
 
+    static String from = "action_from";//clock  job  launchapp  everytime_show_notify(每次通知展示的时候)
+
+
+
     public EasyNtFgService() {
     }
 
@@ -39,10 +45,11 @@ public class EasyNtFgService extends Service {
         return isShowing;
     }
 
-    public static void startNotifyService(boolean isFromActivity) {
+    public static void startNotifyService(boolean isFromActivity, String from) {
         try {
             Context context = EasyManager.mContext;
             Intent intent = new Intent(context, EasyNtFgService.class);
+            intent.putExtra(EasyNtFgService.from, from);
             intent.setPackage(context.getPackageName());
             if (VERSION.SDK_INT >= 26) {
                 context.startForegroundService(intent);
@@ -90,6 +97,7 @@ public class EasyNtFgService extends Service {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
+        String from_action = intent.getStringExtra(from);
         isLiving = true;
         try {
             if (VERSION.SDK_INT >= 29) {
@@ -106,7 +114,17 @@ public class EasyNtFgService extends Service {
         } catch (Exception var71) {
             isShowing = false;
         }
-        EasyNtTransfer.onTimeTickUpEvent();
+        if(Objects.equals(from_action, "clock")){
+            EasyNtTransfer.onTimeTickUpEvent(EasyNotiTimesHelper.Event.ALARM);
+        }else if(Objects.equals(from_action, "job")){
+            EasyNtTransfer.onTimeTickUpEvent(EasyNotiTimesHelper.Event.JOB_POLLING );
+        }else if(Objects.equals(from_action, "everytime_show_notify")){
+            EasyNtTransfer.onTimeTickUpEvent(EasyNotiTimesHelper.Event.EVERY_TIME_SHOW_NOTIFY );
+
+        }else if(Objects.equals(from_action, "launchapp")){
+            EasyNtTransfer.onTimeTickUpEvent(EasyNotiTimesHelper.Event.LAUNCH_APP );
+
+        }
         return Service.START_STICKY;
     }
 

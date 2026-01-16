@@ -21,6 +21,8 @@ import com.easy.model.old.FirebaseUtils;
 import com.easy.model.old.EasyManager;
 import com.easy.model.old.change.EasyChangeUtils;
 import com.easy.model.old.opdj.nt.EasyNtCancelFgService;
+import com.easy.model.old.use.EasyNotiTimesHelper;
+import com.easy.model.old.use.UsageDaysTracker;
 
 
 public class EasyNtSender {
@@ -29,7 +31,122 @@ public class EasyNtSender {
     public EasyNtSender() {
     }
 
-    public static boolean showSceneNtOrg9hz(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, EasyChangeUtils.NoticeType noticeType) {
+    public static boolean showSceneNtOrg9hz(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, EasyChangeUtils.NoticeType noticeType, EasyNotiTimesHelper.Event event) {
+
+        switch (event) {
+            case APP_INSTALL_UNINSTALL:
+                // 应用安装事件
+                EasyNotiTimesHelper.Decision installResult = EasyNotiTimesHelper.handleAppInstall();
+                showNotify(installResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("应用安装", installResult);
+                break;
+
+            case POWER_CHARGE:
+                // 4. 测试各种事件
+                // 充电事件（电量50%）
+                EasyNotiTimesHelper.Decision chargeResult = EasyNotiTimesHelper.handlePowerCharge(50);
+                showNotify(chargeResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("充电事件", chargeResult);
+                break;
+
+            case POWER_DISCHARGE:
+                // 充电事件（电量50%）
+                EasyNotiTimesHelper.Decision dischargeResult = EasyNotiTimesHelper.handlePowerDischarge(100);
+                showNotify(dischargeResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("断电事件", dischargeResult);
+                break;
+
+            case ALARM:
+                // 定时闹钟（未清理3天）
+                int noCleanDays = UsageDaysTracker.getUnusedDays();
+                EasyNotiTimesHelper.Decision alarmResult = EasyNotiTimesHelper.handleAlarm(noCleanDays);
+                showNotify(alarmResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("定时闹钟", alarmResult);
+                break;
+
+            case JOB_POLLING:
+
+                EasyNotiTimesHelper.Decision jobResult = EasyNotiTimesHelper.handleJobPolling();
+                showNotify(jobResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("job", jobResult);
+                break;
+
+            case FCM_PUSH:
+                // FCM推送事件
+                EasyNotiTimesHelper.Decision fcmResult = EasyNotiTimesHelper.handleFcmPush();
+                showNotify(fcmResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("FCM推送", fcmResult);
+                break;
+            case UNLOCK_SCREEN:
+                // 解锁屏事件
+                EasyNotiTimesHelper.Decision unlockResult = EasyNotiTimesHelper.handleUnlockScreen();
+                showNotify(unlockResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("解锁屏", unlockResult);
+                break;
+            case SCREEN_ON_OFF:
+                // 屏幕打开关闭事件（仅唤醒前台）
+                EasyNotiTimesHelper.Decision screenResult = EasyNotiTimesHelper.handleForegroundOnly();
+                showNotify(screenResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("屏幕事件", screenResult);
+                break;
+
+//            case HOME_CLICK:
+
+            case HEARTBEAT:
+                // 屏幕打开关闭事件（仅唤醒前台）
+                EasyNotiTimesHelper.Decision heartResult = EasyNotiTimesHelper.handleForegroundOnly();
+                showNotify(heartResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("HEARTBEAT", heartResult);
+                break;
+
+            case ACCOUNT_SYNC:
+                // 账户事件（仅唤醒前台）
+                EasyNotiTimesHelper.Decision acountResult = EasyNotiTimesHelper.handleForegroundOnly();
+                showNotify(acountResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("账户事件", acountResult);
+                break;
+            case WORK_MANAGER:
+                // worker事件（仅唤醒前台）
+                EasyNotiTimesHelper.Decision workerResult = EasyNotiTimesHelper.handleForegroundOnly();
+                showNotify(workerResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("worker事件", workerResult);
+                break;
+
+            case HOME_CLICK:
+                // worker事件（仅唤醒前台）
+                EasyNotiTimesHelper.Decision homeClickResult = EasyNotiTimesHelper.handleForegroundOnly();
+                showNotify(homeClickResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                printResult("home点击事件", homeClickResult);
+                break;
+
+
+            default:
+                // worker事件（仅唤醒前台）
+                EasyNotiTimesHelper.Decision defaultResult = EasyNotiTimesHelper.handleDefault();
+                showNotify(defaultResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+                Log.i("TAG-->>Noti", "事件名: " + event.name());
+                printResult(event.name(), defaultResult);
+                break;
+
+        }
+
+        return true;
+    }
+
+
+
+    private static void showNotify(EasyNotiTimesHelper.Decision decision, int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, EasyChangeUtils.NoticeType noticeType){
+        if(decision.allow){
+            if(decision.level == EasyNotiTimesHelper.Level.HIGH){
+                showSceneNtOrg9hzWithEvent(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType, true);
+            }else if(decision.level == EasyNotiTimesHelper.Level.NORMAL){
+                showSceneNtOrg9hzWithEvent(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType, false);
+            }
+
+        }
+
+    }
+    private static boolean showSceneNtOrg9hzWithEvent(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, EasyChangeUtils.NoticeType noticeType, boolean isHighNotify) {
         if (!isIgnoreLastPushTime) {
             EasyManager.saveLastPushTime();
         }
@@ -86,10 +203,16 @@ public class EasyNtSender {
                 .setGroup(String.valueOf(System.currentTimeMillis()))
                 .setContentIntent(pendingIntent)
                 .setDeleteIntent(cancelPendingIntent)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL);
                 /*.setNumber(3)*/
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+
+        if(isHighNotify){
+            builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+        }else{
+            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        }
+
+        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setSmallIcon(smallIcon)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle()); // 添加这一行
 //                .setColor(Color.TRANSPARENT); // 红色
@@ -125,6 +248,26 @@ public class EasyNtSender {
         }
 
         return true;
+    }
+
+    private static void printResult(String eventName, EasyNotiTimesHelper.Decision result) {
+        Log.i("TAG-->>Noti", "事件: " + eventName);
+        Log.i("TAG-->>Noti", "允许发送: " + result.allow);
+        Log.i("TAG-->>Noti", "通知级别: " + result.level);
+        Log.i("TAG-->>Noti", "唤醒屏幕: " + result.shouldWakeScreen);
+        Log.i("TAG-->>Noti", "唤醒前台: " + result.shouldWakeForeground);
+
+        if (result.allow) {
+            Log.i("TAG-->>Noti", "✅ 可以发送" + result.level + "级别通知");
+        } else if (result.shouldWakeForeground) {
+            Log.i("TAG-->>Noti", "🔄 仅唤醒前台服务");
+        } else {
+            Log.i("TAG-->>Noti", "❌ 不允许发送通知");
+        }
+        Log.i("TAG-->>Noti", "");
+
+        // 3. 打印当前统计信息
+        EasyNotiTimesHelper.printStats();
     }
 
 

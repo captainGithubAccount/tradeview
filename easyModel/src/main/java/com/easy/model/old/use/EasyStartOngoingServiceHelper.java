@@ -36,18 +36,18 @@ public class EasyStartOngoingServiceHelper {
     private static final String TAG = "ALIVE_TEST";
 
     public static void start(){
-        if (!EasyNtFgService.getIsShowing()) {
-            if (Build.VERSION.SDK_INT >= 33) {
-                Log.d(TAG, "✅ ==============  旧保活前台通知服务启动1");
-                if (!EasyNtUtils.isOngoingServiceRunning(EasyNtFgService.class)) {
-                    Log.d(TAG, "✅ ==============  旧保活前台通知服务启动1  --- start service");
-                    EasyManager.INSTANCE.startNotifyService(false);
-                }
-            } else if (EasyNtUtils.isNotificationEnabled() && !EasyNtUtils.isOngoingServiceRunning(EasyNtFgService.class)) {
-                Log.d(TAG, "✅ ==============  旧保活前台通知服务启动2");
-                Log.d(TAG, "✅ ==============  旧保活前台通知服务启动2  --- start service");
-                EasyManager.INSTANCE.startNotifyService(false);
-            }
-        }
+//        if (!EasyNtFgService.getIsShowing()) {
+//            if (Build.VERSION.SDK_INT >= 33) {
+//                Log.d(TAG, "✅ ==============  旧保活前台通知服务启动1");
+//                if (!EasyNtUtils.isOngoingServiceRunning(EasyNtFgService.class)) {
+//                    Log.d(TAG, "✅ ==============  旧保活前台通知服务启动1  --- start service");
+//                    EasyManager.INSTANCE.startNotifyService(false, EasyActionConstant.launchapp);
+//                }
+//            } else if (EasyNtUtils.isNotificationEnabled() && !EasyNtUtils.isOngoingServiceRunning(EasyNtFgService.class)) {
+//                Log.d(TAG, "✅ ==============  旧保活前台通知服务启动2");
+//                Log.d(TAG, "✅ ==============  旧保活前台通知服务启动2  --- start service");
+//                EasyManager.INSTANCE.startNotifyService(false, EasyActionConstant.launchapp);
+//            }
+//        }
     }
 }

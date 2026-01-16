@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import com.easy.model.old.shownotificy.EasyNtTransfer
+import com.easy.model.old.use.EasyNotiTimesHelper
 
 class Easy : BroadcastReceiver() {
 
@@ -30,19 +31,19 @@ class Easy : BroadcastReceiver() {
             Intent.ACTION_PACKAGE_ADDED -> {
                 val packageName = intent.data?.encodedSchemeSpecificPart
                 // 处理安装事件
-                EasyNtTransfer.onInstallApp()
+                EasyNtTransfer.onInstallApp(EasyNotiTimesHelper.Event.APP_INSTALL_UNINSTALL)
             }
 
             Intent.ACTION_PACKAGE_REMOVED -> {
                 val packageName = intent.data?.encodedSchemeSpecificPart
                 // 处理卸载事件
-                EasyNtTransfer.onInstallApp()
+                EasyNtTransfer.onInstallApp(EasyNotiTimesHelper.Event.APP_INSTALL_UNINSTALL)
             }
 
             Intent.ACTION_PACKAGE_REPLACED -> {
                 val packageName = intent.data?.encodedSchemeSpecificPart
                 // 处理应用更新
-                EasyNtTransfer.onInstallApp()
+                EasyNtTransfer.onInstallApp(EasyNotiTimesHelper.Event.APP_INSTALL_UNINSTALL)
             }
         }
     }

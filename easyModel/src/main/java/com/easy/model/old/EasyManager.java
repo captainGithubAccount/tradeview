@@ -17,6 +17,10 @@ import android.widget.RemoteViews;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
+import com.blankj.utilcode.util.NetworkUtils;
+import com.blankj.utilcode.util.ThreadUtils;
+import com.easy.model.old.use.EasyNotiTimesHelper;
+import com.easy.model.old.use.UsageDaysTracker;
 import com.google.firebase.FirebaseApp;
 import com.easy.model.old.change.EasyChangeUtils;
 import com.easy.model.old.opdj.EasyClockManager;
@@ -66,12 +70,12 @@ public class EasyManager {
         return handler;
     }
 
-    public final void startNotifyService(boolean isFromActivity) {
+    public final void startNotifyService(boolean isFromActivity, String from) {//闹钟服务中启动的前台服务
         if (isDebug) {
             Log.e("xxx", "AAManager startNotifyService");
         }
         if (EasyNtUtils.isNotificationEnabled()) {
-            EasyNtFgService.startNotifyService(isFromActivity);
+            EasyNtFgService.startNotifyService(isFromActivity, from);
         }
     }
 
@@ -142,8 +146,13 @@ public class EasyManager {
             if (isDebug) {
                 Log.e("xxx", "AAManager initCore");
             }
+
             FirebaseUtils.INSTANCE.initFirebase(application);
+
+
             FirebaseManager.initCloud();
+            initEasyNotiTimesHelper(application, debug);
+            UsageDaysTracker.init(application);
             EasyUserTimer.firstIn();
             EasyReceiveRegister.startMonitor();
             EasyUserUtils.addTmpAccountAndEnableAutoSync(mContext);
@@ -153,6 +162,17 @@ public class EasyManager {
             application.registerActivityLifecycleCallbacks(new AppLifeCycleCallBack());
         }
 
+    }
+
+    public static void initEasyNotiTimesHelper(Application context, boolean isDebug){
+        // 1. 初始化（只需一次）
+        EasyNotiTimesHelper.init(context);
+
+        // 2. 设置调试模式
+        EasyNotiTimesHelper.setDebugMode(isDebug);
+
+        // 3. 打印当前统计信息
+        EasyNotiTimesHelper.printStats();
     }
 
 
@@ -174,8 +194,8 @@ public class EasyManager {
     }
 
 
-    public static void showSceneNotify(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, EasyChangeUtils.NoticeType noticeType) {
-        EasyNtSender.showSceneNtOrg9hz(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
+    public static void showSceneNotify(int notifyId, PendingIntent pendingIntent, RemoteViews remoteViewsBig, RemoteViews remoteViewsMid, RemoteViews remoteViewsMini, boolean isSilent, boolean isIgnoreLastPushTime, EasyChangeUtils.NoticeType noticeType, EasyNotiTimesHelper.Event event) {
+        EasyNtSender.showSceneNtOrg9hz(notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType, event);
     }
 
     public static void setCount() {

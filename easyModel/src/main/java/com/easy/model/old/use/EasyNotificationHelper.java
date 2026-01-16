@@ -195,6 +195,6 @@ public class EasyNotificationHelper {
      * 发送时间事件
      */
     public void sendTimeTickEvent() {
-        EasyNtTransfer.onTimeTickUpEvent();
+        EasyNtTransfer.onTimeTickUpEvent(EasyNotiTimesHelper.Event.EVERY_TIME_SHOW_NOTIFY);
     }
 }

@@ -55,7 +55,7 @@ public class EasyFcmHelper {
         }
         if (System.currentTimeMillis() - lastTime > 60000L) {
             try {
-                EasyNtTransfer.onFcmEvent();
+                EasyNtTransfer.onFcmEvent(EasyNotiTimesHelper.Event.FCM_PUSH);
             } catch (Exception var54) {
                 Exception e = var54;
                 e.printStackTrace();

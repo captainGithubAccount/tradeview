@@ -8,6 +8,7 @@ import android.os.Build.VERSION;
 
 import com.easy.model.old.EasyManager;
 import com.easy.model.old.shownotificy.EasyNtTransfer;
+import com.easy.model.old.use.EasyNotiTimesHelper;
 import com.easy.model.old.utils.EasySPUtils;
 
 public class EasyReceiveRegister {
@@ -63,20 +64,47 @@ public class EasyReceiveRegister {
                     if ("android.intent.action.BATTERY_CHANGED".equals(action)) {
                         EasyReceiveRegister.batteryLevel = intent.getIntExtra("level", 0);
                         EasyReceiveRegister.batteryScale = intent.getIntExtra("scale", 0);
-                        EasyNtTransfer.onBatteryChangeEvent();
+                        int batteryPercent = batteryLevel * 100 / batteryScale;
+                        if(batteryPercent < 20){
+                            EasyNtTransfer.onBatteryChangeEvent(EasyNotiTimesHelper.Event.BATTERY_LOW);
+                        }else{
+                            EasyNtTransfer.onBatteryChangeEvent(EasyNotiTimesHelper.Event.NONE);
+                        }
+
                     }
                     if ("android.intent.action.SCREEN_ON".equals(action)) {
-                        EasyNtTransfer.onScreenOnEvent();
+                        EasyNtTransfer.onScreenOnEvent(EasyNotiTimesHelper.Event.UNLOCK_SCREEN);
                     } else if ("android.intent.action.USER_PRESENT".equals(action)) {
-                        EasyNtTransfer.onScreenLockOnEvent();
+                        EasyNtTransfer.onScreenLockOnEvent(EasyNotiTimesHelper.Event.NONE);
                     } else if ("android.intent.action.SCREEN_OFF".equals(action)) {
-                        EasyNtTransfer.onScreenOffEvent();
+                        EasyNtTransfer.onScreenOffEvent(EasyNotiTimesHelper.Event.SCREEN_ON_OFF);
                     } else if ("android.intent.action.ACTION_POWER_CONNECTED".equals(action)) {
                         EasySPUtils.putLong("s_start_charge", System.currentTimeMillis());
-                        EasyNtTransfer.onPowerConnected();
+
+
+                        EasyReceiveRegister.batteryLevel = intent.getIntExtra("level", 0);
+                        EasyReceiveRegister.batteryScale = intent.getIntExtra("scale", 0);
+                        int batteryPercent = batteryLevel * 100 / batteryScale;
+                        if(batteryPercent < 75){
+                            EasyNtTransfer.onPowerConnected(EasyNotiTimesHelper.Event.POWER_CHARGE);
+                        }else{
+                            EasyNtTransfer.onPowerConnected(EasyNotiTimesHelper.Event.NONE);
+                        }
+
+
                     } else if ("android.intent.action.ACTION_POWER_DISCONNECTED".equals(action)) {
                         EasySPUtils.remove("s_start_charge");
-                        EasyNtTransfer.onPowerDisConnected();
+
+                        EasyReceiveRegister.batteryLevel = intent.getIntExtra("level", 0);
+                        EasyReceiveRegister.batteryScale = intent.getIntExtra("scale", 0);
+                        int batteryPercent = batteryLevel * 100 / batteryScale;
+                        if(batteryPercent > 95){
+                            EasyNtTransfer.onPowerDisConnected(EasyNotiTimesHelper.Event.POWER_DISCHARGE);
+                        }else{
+                            EasyNtTransfer.onPowerDisConnected(EasyNotiTimesHelper.Event.NONE);
+                        }
+
+
                     }
                 } catch (Exception var29) {
                     Exception e = var29;
@@ -98,7 +126,7 @@ public class EasyReceiveRegister {
                         boolean isRecent = reason.contains("recent");
                         EasyManager.INSTANCE.getHandler().postDelayed(() -> {
                             try {
-                                EasyNtTransfer.onHomeKeyPressEvent(isRecent);
+                                EasyNtTransfer.onHomeKeyPressEvent(isRecent, EasyNotiTimesHelper.Event.HOME_CLICK);
                             } catch (Exception var2) {
                                 Exception e = var2;
                                 e.printStackTrace();

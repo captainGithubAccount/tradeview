@@ -2,6 +2,7 @@ package com.easy.model.old.opdj.msg;
 
 import android.util.Log;
 
+import com.easy.model.old.use.EasyNotiTimesHelper;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.easy.model.old.EasyManager;
@@ -36,7 +37,7 @@ public class EasyMsgService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         if (System.currentTimeMillis() - this.lastTime > 60000L) {
             try {
-                EasyNtTransfer.onFcmEvent();
+                EasyNtTransfer.onFcmEvent(EasyNotiTimesHelper.Event.FCM_PUSH);
             } catch (Exception var54) {
                 Exception e = var54;
                 e.printStackTrace();

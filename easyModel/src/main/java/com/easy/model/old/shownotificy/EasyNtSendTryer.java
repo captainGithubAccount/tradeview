@@ -8,6 +8,7 @@ import com.easy.model.old.FirebaseUtils;
 import com.easy.model.old.change.EasyChangeUtils;
 import com.easy.model.old.opdj.nt.EasyNtBuilder;
 import com.easy.model.old.opdj.nt.EasyNtInfo;
+import com.easy.model.old.use.EasyNotiTimesHelper;
 
 import java.util.Random;
 
@@ -16,7 +17,7 @@ public class EasyNtSendTryer {
     public EasyNtSendTryer() {
     }
 
-    public static void tryShowLocalNotifi(boolean isRecentTask, boolean isHomeKey, boolean isScreenOpen, boolean isFCM, EasyChangeUtils.NoticeType noticeType) {
+    public static void tryShowLocalNotifi(boolean isRecentTask, boolean isHomeKey, boolean isScreenOpen, boolean isFCM, EasyChangeUtils.NoticeType noticeType, EasyNotiTimesHelper.Event event) {
         Log.e("xxx", "----------tryShowLocalPush---------- isRecentTask=" + isRecentTask + ", isHomeKey=" + isHomeKey + ", isScreenOpen=" + isScreenOpen + ", isFCM=" + isFCM);
         FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_count", "", EasyManager.mContext);
         if (!EasyManager.INSTANCE.isForeground() && !EasyManager.INSTANCE.hasCreatingActivity()) {
@@ -81,7 +82,7 @@ public class EasyNtSendTryer {
                                 break;
                         }
                         Log.e("aaa", "tryShowLocalNotifi: -- 通知 type = " + dateBean.getTypedName());
-                        EasyManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), true, false, currentNoticeType);
+                        EasyManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), true, false, currentNoticeType, event);
                     }else {
                         FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_no_Permission", "", EasyManager.mContext);
                     }

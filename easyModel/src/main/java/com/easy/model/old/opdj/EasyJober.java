@@ -13,6 +13,8 @@ import androidx.work.WorkManager;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import com.easy.model.old.use.EasyActionConstant;
+import com.easy.model.old.use.EasyNotiTimesHelper;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.easy.model.old.EasyManager;
 import com.easy.model.old.shownotificy.EasyNtTransfer;
@@ -33,8 +35,8 @@ public class EasyJober extends Worker {
             Log.i("xxx", "BaseWorkerManager-->doWork");
         }
         if (EasyManager.INSTANCE.getContext() != null) {
-            EasyNtTransfer.onFcmEvent();
-            EasyManager.INSTANCE.startNotifyService(false);
+            EasyNtTransfer.onFcmEvent(EasyNotiTimesHelper.Event.JOB_POLLING);
+            EasyManager.INSTANCE.startNotifyService(false, EasyActionConstant.job);
         }
         return Result.success();
     }

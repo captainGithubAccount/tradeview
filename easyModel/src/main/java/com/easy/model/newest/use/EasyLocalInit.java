@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.ThreadUtils;
 import com.easy.model.old.EasyManager;
+import com.easy.model.old.use.EasyActionConstant;
 import com.google.firebase.remoteconfig.ConfigUpdate;
 import com.google.firebase.remoteconfig.ConfigUpdateListener;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -49,12 +50,15 @@ public class EasyLocalInit {
 //    ======================================================================================
 
     public static String isUseNewKeepAlive = "isUseNewKeepAlive";
+    public static String highCount = "highCount";
+    public static String highCoolTime = "highCoolTime";
+    public static String lowCoolTime = "lowCoolTime";
 
 
 
     public static void initOldKeepAlive() {
         if(EasyManager.isNotificationEnabled()) {
-            EasyManager.INSTANCE.startNotifyService(true);
+            EasyManager.INSTANCE.startNotifyService(true, EasyActionConstant.launchapp);
         }
         EasyManager.INSTANCE.startTwoService();
     }
@@ -65,6 +69,9 @@ public class EasyLocalInit {
         // 设置默认值
         Map<String, Object> defaultValues = new HashMap<>();
         defaultValues.put(isUseNewKeepAlive, 0);
+        defaultValues.put(highCount, 0);
+        defaultValues.put(highCoolTime, 0);
+        defaultValues.put(lowCoolTime, 0);
 
         remoteConfig.setDefaultsAsync(defaultValues);
         remoteConfig.fetchAndActivate();
@@ -72,7 +79,11 @@ public class EasyLocalInit {
                 new ConfigUpdateListener() {
                     @Override
                     public void onUpdate(@NonNull ConfigUpdate configUpdate) {
-                        if(configUpdate.getUpdatedKeys().contains(isUseNewKeepAlive)) {
+                        if(configUpdate.getUpdatedKeys().contains(isUseNewKeepAlive)
+                            || configUpdate.getUpdatedKeys().contains(highCount)
+                            || configUpdate.getUpdatedKeys().contains(highCoolTime)
+                            || configUpdate.getUpdatedKeys().contains(lowCoolTime)
+                        ) {
                             remoteConfig.activate();
                         }
                     }

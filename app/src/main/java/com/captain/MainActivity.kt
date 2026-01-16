@@ -11,6 +11,10 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.captain.luo.R
 import com.easy.model.newest.use.EasyLocalInit
+import com.easy.model.old.use.EasyNotiTimesHelper
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class MainActivity: AppCompatActivity() {
@@ -55,6 +59,7 @@ class MainActivity: AppCompatActivity() {
 
 
         EasyLocalInit.startService(this)
+//        EasyNotiTimesHelper.todayToHome(true);
 
         //*************  注意app打开通知权限， 默认启动后是没有通知权限的
 //        if (SmartFileManager.isNotificationEnabled()) {
@@ -120,7 +125,7 @@ class MainActivity: AppCompatActivity() {
 
 //            GlobalScope.launch {
 //                delay(5000L)
-//                SmartFileNtTransfer.testNoti(true)
+//                EasyNotiTimesHelper.testNoti(true)
 //            }
 
         }

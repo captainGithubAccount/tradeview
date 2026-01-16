@@ -7,6 +7,7 @@ import android.os.IBinder;
 import androidx.annotation.Nullable;
 
 import com.easy.model.old.EasyManager;
+import com.easy.model.old.use.EasyActionConstant;
 
 public class EasyNtCancelFgService extends Service {
 
@@ -26,7 +27,7 @@ public class EasyNtCancelFgService extends Service {
             notificationId = intent.getIntExtra("notificationId", -1);
         }
         EasyNtUtils.cancelNotificationId(notificationId);
-        EasyManager.INSTANCE.startNotifyService(false);
+        EasyManager.INSTANCE.startNotifyService(false, EasyActionConstant.everytime_show_notify);
         this.stopSelf();
         return super.onStartCommand(intent, flags, startId);
     }
