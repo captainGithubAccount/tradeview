@@ -98,7 +98,7 @@
 
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
-                android:resource="@xml/easy_user_auth" />
+                android:resource="@xml/tidy_user_auth" />
         </service>
         <service
             android:name="com.tidy.file.old.opdj.EasyUserSyncService"
@@ -109,7 +109,7 @@
 
             <meta-data
                 android:name="android.content.SyncAdapter"
-                android:resource="@xml/easy_user_sync" />
+                android:resource="@xml/tidy_user_sync" />
         </service>
         <!--<service
             android:name="com.tidy.file.old.opdj.msg.EasyMsgService"
