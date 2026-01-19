@@ -14,7 +14,7 @@ import com.tidy.file.old.utils.EasySPUtils;
  * @author Admin
  */
 @Keep
-public class FirebaseManager {
+public class EasyFirebaseManager {
     private static boolean isInited = false;
     private static boolean isFetchSuccessful = false;
 

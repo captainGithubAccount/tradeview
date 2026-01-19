@@ -4,7 +4,7 @@ package com.tidy.file.old.shownotificy;
 import android.util.Log;
 
 import com.tidy.file.old.EasyManager;
-import com.tidy.file.old.FirebaseUtils;
+import com.tidy.file.old.EasyFirebaseUtils;
 import com.tidy.file.old.change.EasyChangeUtils;
 import com.tidy.file.old.opdj.nt.EasyNtBuilder;
 import com.tidy.file.old.opdj.nt.EasyNtInfo;
@@ -19,12 +19,12 @@ public class EasyNtSendTryer {
 
     public static void tryShowLocalNotifi(boolean isRecentTask, boolean isHomeKey, boolean isScreenOpen, boolean isFCM, EasyChangeUtils.NoticeType noticeType, EasyNotiTimesHelper.Event event) {
         Log.e("xxx", "----------tryShowLocalPush---------- isRecentTask=" + isRecentTask + ", isHomeKey=" + isHomeKey + ", isScreenOpen=" + isScreenOpen + ", isFCM=" + isFCM);
-        FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_count", "", EasyManager.mContext);
+        EasyFirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_count", "", EasyManager.mContext);
         if (!EasyManager.INSTANCE.isForeground() && !EasyManager.INSTANCE.hasCreatingActivity()) {
             boolean screenOn = EasyManager.isScreenOn() && EasyManager.isScreenLockOpen();
             if (!screenOn) {
                 Log.e("xxx", "-------- screenOn=" + screenOn);
-                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_screenOn", "", EasyManager.mContext);
+                EasyFirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_screenOn", "", EasyManager.mContext);
             } else {
                 boolean isNotificationEnabled = EasyManager.isNotificationEnabled();
                 Log.e("xxx", "-------- isNotificationEnabled=" + isNotificationEnabled);
@@ -84,15 +84,15 @@ public class EasyNtSendTryer {
                         Log.e("aaa", "tryShowLocalNotifi: -- 通知 type = " + dateBean.getTypedName());
                         EasyManager.showSceneNotify(dateBean.getNotId(), dateBean.getPendingIntent(), dateBean.getRemoteBig(), dateBean.getRemoteMid(), dateBean.getRemoteSmall(), true, false, currentNoticeType, event);
                     }else {
-                        FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_no_Permission", "", EasyManager.mContext);
+                        EasyFirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_no_Permission", "", EasyManager.mContext);
                     }
                 } else {
-                    FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_isCoolTime", "", EasyManager.mContext);
+                    EasyFirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_isCoolTime", "", EasyManager.mContext);
                 }
             }
         } else {
             Log.e("xxx", "----------tryShowLocalPush---------- has resume Activity");
-            FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_has_resume_Activity", "", EasyManager.mContext);
+            EasyFirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_has_resume_Activity", "", EasyManager.mContext);
         }
     }
 

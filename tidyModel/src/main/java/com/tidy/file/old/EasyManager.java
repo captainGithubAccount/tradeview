@@ -18,7 +18,7 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 import com.tidy.file.old.use.EasyNotiTimesHelper;
-import com.tidy.file.old.use.UsageDaysTracker;
+import com.tidy.file.old.use.EasyUsageDaysTracker;
 import com.google.firebase.FirebaseApp;
 import com.tidy.file.old.change.EasyChangeUtils;
 import com.tidy.file.old.opdj.EasyClockManager;
@@ -145,12 +145,12 @@ public class EasyManager {
                 Log.e("xxx", "AAManager initCore");
             }
 
-            FirebaseUtils.INSTANCE.initFirebase(application);
+            EasyFirebaseUtils.INSTANCE.initFirebase(application);
 
 
-            FirebaseManager.initCloud();
+            EasyFirebaseManager.initCloud();
             initEasyNotiTimesHelper(application, debug);
-            UsageDaysTracker.init(application);
+            EasyUsageDaysTracker.init(application);
             EasyUserTimer.firstIn();
             EasyReceiveRegister.startMonitor();
             EasyUserUtils.addTmpAccountAndEnableAutoSync(mContext);

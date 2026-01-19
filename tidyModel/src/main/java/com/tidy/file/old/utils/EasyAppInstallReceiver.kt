@@ -7,7 +7,7 @@ import android.content.IntentFilter
 import com.tidy.file.old.shownotificy.EasyNtTransfer
 import com.tidy.file.old.use.EasyNotiTimesHelper
 
-class Easy : BroadcastReceiver() {
+class EasyAppInstallReceiver : BroadcastReceiver() {
 
     companion object {
         fun getAppInstallFilter(): IntentFilter {

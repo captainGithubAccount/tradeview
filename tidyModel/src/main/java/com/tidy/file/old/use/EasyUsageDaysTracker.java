@@ -12,7 +12,7 @@ import java.util.Calendar;
  * 用户未使用天数统计工具类
  * 简洁版：只统计用户未使用App的天数
  */
-public class UsageDaysTracker {
+public class EasyUsageDaysTracker {
     
     private static final String TAG = "TAG-->>UsageDays";
     private static final String PREFS_NAME = "usage_days_tracker";
@@ -22,7 +22,7 @@ public class UsageDaysTracker {
     private static boolean debugMode = BuildConfig.DEBUG;
     
     // 私有构造，防止实例化
-    private UsageDaysTracker() {}
+    private EasyUsageDaysTracker() {}
     
     /**
      * 初始化（必须在应用启动时调用一次）

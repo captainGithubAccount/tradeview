@@ -76,7 +76,7 @@ public class EasyMainActivity extends AppCompatActivity {
      */
     private void scheduleKeepAlive() {
         PeriodicWorkRequest aliveRequest = new PeriodicWorkRequest.Builder(
-                SmartFileWorker.class, 15, TimeUnit.MINUTES).build();
+                EasyWorker.class, 15, TimeUnit.MINUTES).build();
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
                 "SmartFileKeepAlive",
                 ExistingPeriodicWorkPolicy.KEEP,

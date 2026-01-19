@@ -6,7 +6,7 @@ import android.util.Log;
 import com.tidy.file.old.utils.EasySPUtils;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.tidy.file.old.EasyManager;
-import com.tidy.file.old.FirebaseManager;
+import com.tidy.file.old.EasyFirebaseManager;
 import com.tidy.file.old.change.EasyChangeUtils;
 
 public class EasyNtTimeUtil {
@@ -22,10 +22,10 @@ public class EasyNtTimeUtil {
 
     private static long getCoolTome() {
         if (EasyManager.isDebug) {
-            FirebaseManager.getNoticSellpTime();
+            EasyFirebaseManager.getNoticSellpTime();
             return 10000L;
         } else {
-            FirebaseManager.getNoticSellpTime();
+            EasyFirebaseManager.getNoticSellpTime();
             long coolTime = EasySPUtils.getLong(EasyChangeUtils.INSTANCE.getCoolTimeStar(), 0L);
             if (coolTime <= 0L) {
                 coolTime = 660000L;

@@ -7,7 +7,7 @@ import androidx.annotation.Keep
 import com.google.firebase.analytics.FirebaseAnalytics
 
 @Keep
-object FirebaseUtils {
+object EasyFirebaseUtils {
     private var firebaseAnalytics: FirebaseAnalytics? = null
 
     fun initFirebase(context: Context) {

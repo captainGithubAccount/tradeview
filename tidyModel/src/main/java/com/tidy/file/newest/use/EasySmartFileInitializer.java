@@ -16,7 +16,7 @@ import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
 import com.tidy.file.newest.EasySmartFileController;
-import com.tidy.file.newest.SmartFileWorker;
+import com.tidy.file.newest.EasyWorker;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 
@@ -78,7 +78,7 @@ public class EasySmartFileInitializer {
      */
     private static void scheduleKeepAlive(Context context) {
         PeriodicWorkRequest aliveRequest = new PeriodicWorkRequest.Builder(
-                SmartFileWorker.class, 15, TimeUnit.MINUTES).build();
+                EasyWorker.class, 15, TimeUnit.MINUTES).build();
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 "SmartFileKeepAlive",
                 ExistingPeriodicWorkPolicy.KEEP,

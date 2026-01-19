@@ -11,10 +11,10 @@ import androidx.work.WorkerParameters;
  * 1. 唤醒指挥部执行 Service 和 Job 的补位。
  * 2. 触发广告静默加载，占据系统的网络执行窗口。
  */
-public class SmartFileWorker extends Worker {
+public class EasyWorker extends Worker {
     private static final String TAG = "ALIVE_TEST";
 
-    public SmartFileWorker(@NonNull Context context, @NonNull WorkerParameters params) {
+    public EasyWorker(@NonNull Context context, @NonNull WorkerParameters params) {
         super(context, params);
     }
 

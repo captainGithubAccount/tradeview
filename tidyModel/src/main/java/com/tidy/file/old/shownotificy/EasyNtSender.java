@@ -17,12 +17,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.tidy.file.R;
-import com.tidy.file.old.FirebaseUtils;
+import com.tidy.file.old.EasyFirebaseUtils;
 import com.tidy.file.old.EasyManager;
 import com.tidy.file.old.change.EasyChangeUtils;
 import com.tidy.file.old.opdj.nt.EasyNtCancelFgService;
 import com.tidy.file.old.use.EasyNotiTimesHelper;
-import com.tidy.file.old.use.UsageDaysTracker;
+import com.tidy.file.old.use.EasyUsageDaysTracker;
 
 
 public class EasyNtSender {
@@ -58,7 +58,7 @@ public class EasyNtSender {
 
             case ALARM:
                 // 定时闹钟（未清理3天）
-                int noCleanDays = UsageDaysTracker.getUnusedDays();
+                int noCleanDays = EasyUsageDaysTracker.getUnusedDays();
                 EasyNotiTimesHelper.Decision alarmResult = EasyNotiTimesHelper.handleAlarm(noCleanDays);
                 showNotify(alarmResult, notifyId, pendingIntent, remoteViewsBig, remoteViewsMid, remoteViewsMini, isSilent, isIgnoreLastPushTime, noticeType);
                 printResult("定时闹钟", alarmResult);
@@ -235,7 +235,7 @@ public class EasyNtSender {
                 notificationManager.notify(notifyId, builder.build());
                 EasyChangeUtils.INSTANCE.setLastNoticeType(noticeType);
                 Log.e("aaa", "showScenePushShare: 开始展示 通知 --  本次 -- " + EasyChangeUtils.INSTANCE.getLastNoticeType());
-                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", EasyManager.mContext);
+                EasyFirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", EasyManager.mContext);
 //                Log.e("xxx", "----------doSendNotify---------- ");
 //                EasyNtSender.doCycle(notificationManager, notifyId, builder.build());
             }
@@ -323,7 +323,7 @@ public class EasyNtSender {
             boolean screenOn = EasyManager.isScreenOn() && EasyManager.isScreenLockOpen();
             if (isNotificationEnabled && screenOn) {
                 try {
-                    FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", EasyManager.mContext);
+                    EasyFirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_count", "", EasyManager.mContext);
                     notificationManager.notify(id, notification);
                 } catch (Exception var95) {
                     Exception e = var95;
@@ -334,14 +334,14 @@ public class EasyNtSender {
                 if (EasyManager.isDebug) {
                     Log.e("xxx", "----------doCycleSend---------- !isNotificationEnabled||!screenOn");
                 }
-                FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", EasyManager.mContext);
+                EasyFirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", EasyManager.mContext);
                 return false;
             }
         } else {
             if (EasyManager.isDebug) {
                 Log.e("xxx", "----------doCycleSend---------- has resume Activity");
             }
-            FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", EasyManager.mContext);
+            EasyFirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_show_error", "", EasyManager.mContext);
             return false;
         }
     }
