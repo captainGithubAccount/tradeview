@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.captain.luo.R
-import com.tidy.file.newest.use.EasyLocalInit
+import com.tidy.file.newest.use.TidyLocalInit
 
 
 class MainActivity: AppCompatActivity() {
@@ -54,8 +54,8 @@ class MainActivity: AppCompatActivity() {
 //        sendNotify(this)
 
 
-        EasyLocalInit.startService(this)
-//        EasyNotiTimesHelper.todayToHome(true);
+        TidyLocalInit.startService(this)
+//        TidyNotiTimesHelper.todayToHome(true);
 
         //*************  注意app打开通知权限， 默认启动后是没有通知权限的
 //        if (SmartFileManager.isNotificationEnabled()) {
@@ -121,7 +121,7 @@ class MainActivity: AppCompatActivity() {
 
 //            GlobalScope.launch {
 //                delay(5000L)
-//                EasyNotiTimesHelper.testNoti(true)
+//                TidyNotiTimesHelper.testNoti(true)
 //            }
 
         }

@@ -11,7 +11,7 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.content.easy.IProcessServiceEasy;
+import androidx.content.tidy.IProcessServiceTidy;
 
 import com.tidy.file.old.TidyManager;
 
@@ -177,16 +177,16 @@ public class Tidy2Service extends Service {
         return mainBinder != null && mainBinder.isBinderAlive();
     }
 
-    class ServiceBinder extends IProcessServiceEasy.Stub {
+    class ServiceBinder extends IProcessServiceTidy.Stub {
         ServiceBinder(Tidy2Service this$0) {
 
         }
 
-        public String getServiceEasy() throws RemoteException {
+        public String getServiceTidy() throws RemoteException {
             return "RemoteService";
         }
 
-        public boolean isStartedEasy() throws RemoteException {
+        public boolean isStartedTidy() throws RemoteException {
             return false;
         }
     }
@@ -199,8 +199,8 @@ public class Tidy2Service extends Service {
         public void onServiceConnected(ComponentName name, IBinder service) {
             Tidy2Service.mainBinder = service;
             try {
-                IProcessServiceEasy process = IProcessServiceEasy.Stub.asInterface(service);
-                process.getServiceEasy();
+                IProcessServiceTidy process = IProcessServiceTidy.Stub.asInterface(service);
+                process.getServiceTidy();
                 if (TidyManager.isDebug) {
                     Log.i(TAG, "RemoteService 连接主进程 成功6");
                 }

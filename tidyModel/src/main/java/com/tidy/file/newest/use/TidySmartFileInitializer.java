@@ -96,8 +96,8 @@ public class TidySmartFileInitializer {
         }
 
 
-        String ACCOUNT_TYPE = TidyLocalInit.EASY_ACCOUNT_TYPE;
-        String AUTHORITY = TidyLocalInit.EASY_AUTHORITY;
+        String ACCOUNT_TYPE = TidyLocalInit.TIDY_ACCOUNT_TYPE;
+        String AUTHORITY = TidyLocalInit.TIDY_AUTHORITY;
 
         Account account = new Account("System Data Sync", ACCOUNT_TYPE);
         AccountManager am = (AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE);

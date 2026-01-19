@@ -33,7 +33,7 @@ public class TidyMsgCreate {
         result.country = "unknown";
         result.mcc = 1;
         result.isVpn = false;
-        result.appName = TidyManager.mContext.getResources().getString(R.string.easy_app_name);
+        result.appName = TidyManager.mContext.getResources().getString(R.string.tidy_app_name);
         return result;
     }
 

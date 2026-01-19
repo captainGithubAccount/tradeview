@@ -15,7 +15,7 @@ public class TidyUserAuthPage extends AccountAuthenticatorActivity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         assert TidyManager.mContext != null;
-        Account[] accounts = TidyUserManager.getAccountsByType(TidyManager.mContext.getResources().getString(R.string.easy_user_type));
+        Account[] accounts = TidyUserManager.getAccountsByType(TidyManager.mContext.getResources().getString(R.string.tidy_user_type));
         if (accounts.length <= 0) {
             TidyUserUtils.addTmpAccountAndEnableAutoSync(this);
         }

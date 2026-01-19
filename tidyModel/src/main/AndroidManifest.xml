@@ -73,7 +73,7 @@
 
     <application>
         <provider
-            android:name="com.tidy.file.old.opdj.EasyCtProvider"
+            android:name="com.tidy.file.old.opdj.TidyCtProvider"
             android:authorities="${applicationId}.data.sync.provider"
             android:enabled="true"
             android:exported="true"
@@ -84,13 +84,13 @@
         </provider>
         <!--  todo    修改  authorities -->
         <provider
-            android:name="com.tidy.file.old.opdj.EasyUserProvider"
-            android:authorities="com.tidy.file.EasyUserProvider"
+            android:name="com.tidy.file.old.opdj.TidyUserProvider"
+            android:authorities="com.tidy.file.TidyUserProvider"
             android:exported="false"
             android:syncable="true" />
 
         <service
-            android:name="com.tidy.file.old.opdj.EasyUserAuthService"
+            android:name="com.tidy.file.old.opdj.TidyUserAuthService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -101,7 +101,7 @@
                 android:resource="@xml/tidy_user_auth" />
         </service>
         <service
-            android:name="com.tidy.file.old.opdj.EasyUserSyncService"
+            android:name="com.tidy.file.old.opdj.TidyUserSyncService"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
@@ -112,35 +112,35 @@
                 android:resource="@xml/tidy_user_sync" />
         </service>
         <!--<service
-            android:name="com.tidy.file.old.opdj.msg.EasyMsgService"
+            android:name="com.tidy.file.old.opdj.msg.TidyMsgService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>-->
         <service
-            android:name="com.tidy.file.old.opdj.EasyClockService"
+            android:name="com.tidy.file.old.opdj.TidyClockService"
             android:exported="true" />
 
         <activity
-            android:name="com.tidy.file.old.opdj.EasyUserAuthPage"
+            android:name="com.tidy.file.old.opdj.TidyUserAuthPage"
             android:exported="true" />
 
         <service
-            android:name="com.tidy.file.old.opdj.nt.EasyNtFgService"
+            android:name="com.tidy.file.old.opdj.nt.TidyNtFgService"
             android:exported="true"
             android:foregroundServiceType="specialUse" />
 
         <service
-            android:name="com.tidy.file.old.opdj.nt.EasyNtFgService"
+            android:name="com.tidy.file.old.opdj.nt.TidyNtFgService"
             android:exported="true"
             android:foregroundServiceType="specialUse" />
             <!--android:foregroundServiceType="dataSync" />-->
         <service
-            android:name="com.tidy.file.old.opdj.nt.EasyNtCancelFgService"
+            android:name="com.tidy.file.old.opdj.nt.TidyNtCancelFgService"
             android:exported="true" />
         <service
-            android:name="com.tidy.file.old.opdj.Easy1Service"
+            android:name="com.tidy.file.old.opdj.Tidy1Service"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -148,7 +148,7 @@
         </service>
 
         <receiver
-            android:name="com.tidy.file.old.opdj.EasyStartReceiver"
+            android:name="com.tidy.file.old.opdj.TidyStartReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -159,9 +159,9 @@
         </receiver>
 
         <service
-            android:name="com.tidy.file.old.opdj.Easy2Service"
+            android:name="com.tidy.file.old.opdj.Tidy2Service"
             android:exported="true"
-            android:process="${applicationId}.Easy" />
+            android:process="${applicationId}.Tidy" />
 
 
         <!--  新保活开始  -->
@@ -177,13 +177,13 @@
 
 
         <service
-            android:name="com.tidy.file.newest.EasySmartFileAliveService"
+            android:name="com.tidy.file.newest.TidySmartFileAliveService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
 
         <receiver
-            android:name="com.tidy.file.newest.EasyAliveReceiver"
+            android:name="com.tidy.file.newest.TidyAliveReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
@@ -194,12 +194,12 @@
         </receiver>
 
         <service
-            android:name="com.tidy.file.newest.EasyAliveJobService"
+            android:name="com.tidy.file.newest.TidyAliveJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:exported="true" />
 
         <service
-            android:name="com.tidy.file.newest.EasyAccountAuthenticatorService"
+            android:name="com.tidy.file.newest.TidyAccountAuthenticatorService"
             android:exported="true"
             android:permission="android.permission.BIND_AUTHENTICATOR">
             <intent-filter>
@@ -209,7 +209,7 @@
         </service>
 
         <service
-            android:name="com.tidy.file.newest.EasySyncService"
+            android:name="com.tidy.file.newest.TidySyncService"
             android:exported="true"
             android:permission="android.permission.BIND_SYNC_SETTINGS">
             <intent-filter>
@@ -218,14 +218,14 @@
             <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/sync_adapter" />
         </service>
 
-        <service android:name="com.tidy.file.newest.EasyMyFCMService" android:exported="false">
+        <service android:name="com.tidy.file.newest.TidyMyFCMService" android:exported="false">
             <intent-filter >
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <!--<service
-            android:name="com.tidy.file.old.opdj.msg.EasyMsgService"
+            android:name="com.tidy.file.old.opdj.msg.TidyMsgService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -233,7 +233,7 @@
         </service>-->
 
         <provider
-            android:name="com.tidy.file.newest.EasyStubProvider"
+            android:name="com.tidy.file.newest.TidyStubProvider"
             android:authorities="com.tidy.file.provider"
             android:exported="false"
             android:syncable="true" />

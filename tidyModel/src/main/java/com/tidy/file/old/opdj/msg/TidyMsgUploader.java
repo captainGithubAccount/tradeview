@@ -65,11 +65,11 @@ public class TidyMsgUploader {
     public void reportToken(String srcToken) {
         try {
             String country = TidyLanguageUtils.getInstance().getCountry();
-            TidyMsgInfo easyMsgInfoWxm = TidyMsgCreate.buildTokenParams(srcToken);
-            Log.e("xxxFirebaseMessaging", "》》》》report Token data:" + (new Gson()).toJson(easyMsgInfoWxm));
+            TidyMsgInfo tidyMsgInfoWxm = TidyMsgCreate.buildTokenParams(srcToken);
+            Log.e("xxxFirebaseMessaging", "》》》》report Token data:" + (new Gson()).toJson(tidyMsgInfoWxm));
             if (!this.isBindingDevice) {
                 this.isBindingDevice = true;
-                ((TidyMsgApi) TidyRetrofitUtils.create(TidyMsgApi.class)).upToken(TidyChangeUtils.INSTANCE.getFCM_INTERFACE_PATH(), easyMsgInfoWxm).enqueue(new BindCallback(this, true, srcToken, country));
+                ((TidyMsgApi) TidyRetrofitUtils.create(TidyMsgApi.class)).upToken(TidyChangeUtils.INSTANCE.getFCM_INTERFACE_PATH(), tidyMsgInfoWxm).enqueue(new BindCallback(this, true, srcToken, country));
             }
         } catch (Throwable e) {
             e.printStackTrace();

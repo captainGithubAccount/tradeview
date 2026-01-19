@@ -2,7 +2,7 @@ package com.captain
 
 import android.app.Application
 import com.captain.a.AAA
-import com.tidy.file.newest.use.EasyLocalInit
+import com.tidy.file.newest.use.TidyLocalInit
 
 
 /**
@@ -30,10 +30,10 @@ class MyApp: Application() {
         super.onCreate()
 
         AAA()
-//        EasyConfig.configFcmUrl("com")
-//        EasyConfig.configFcmInterfacePath("https://com")
-//        EasyConfig.configHeartUrl("https://www.google.com")
-        EasyLocalInit.initCore(
+//        TidyConfig.configFcmUrl("com")
+//        TidyConfig.configFcmInterfacePath("https://com")
+//        TidyConfig.configHeartUrl("https://www.google.com")
+        TidyLocalInit.initCore(
             this,
             packageName,
             true

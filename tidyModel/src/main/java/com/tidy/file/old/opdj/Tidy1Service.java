@@ -10,7 +10,7 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.content.easy.IProcessServiceEasy;
+import androidx.content.tidy.IProcessServiceTidy;
 
 import com.tidy.file.old.TidyManager;
 
@@ -225,16 +225,16 @@ public class Tidy1Service extends Service {
         }
     }
 
-    class LocalBinder extends IProcessServiceEasy.Stub {
+    class LocalBinder extends IProcessServiceTidy.Stub {
         LocalBinder(Tidy1Service this$0) {
 
         }
 
-        public String getServiceEasy() throws RemoteException {
+        public String getServiceTidy() throws RemoteException {
             return "LocalService";
         }
 
-        public boolean isStartedEasy() throws RemoteException {
+        public boolean isStartedTidy() throws RemoteException {
             return Tidy1Service.isStartService;
         }
     }
@@ -249,8 +249,8 @@ public class Tidy1Service extends Service {
                 Log.i(Tidy1Service.TAG, "主进程 LocalService 连接子进程成功5");
             }
             try {
-                IProcessServiceEasy process = IProcessServiceEasy.Stub.asInterface(service);
-                process.getServiceEasy();
+                IProcessServiceTidy process = IProcessServiceTidy.Stub.asInterface(service);
+                process.getServiceTidy();
             } catch (Exception var25) {
                 Exception e = var25;
                 if (TidyManager.isDebug) {

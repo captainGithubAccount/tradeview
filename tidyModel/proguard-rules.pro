@@ -168,14 +168,14 @@
 
 #======================================= deepseek ======================
 
-# 保持 EasySmartFileInitializer 类及其所有 public/protected 方法和字段不被混淆
--keep class com.tidy.file.newest.use.EasySmartFileInitializer {
+# 保持 TidySmartFileInitializer 类及其所有 public/protected 方法和字段不被混淆
+-keep class com.tidy.file.newest.use.TidySmartFileInitializer {
     *;
 }
 
 
-# 保持 EasyLocalInit 类及其所有成员（字段和方法）不被混淆
--keep class com.tidy.file.newest.use.EasyLocalInit {
+# 保持 TidyLocalInit 类及其所有成员（字段和方法）不被混淆
+-keep class com.tidy.file.newest.use.TidyLocalInit {
     *;
     # 明确指定保留所有字段和方法
     <fields>;
@@ -193,26 +193,26 @@
 #-keep class com.tidy.file.newest.** extends android.accounts.AbstractAccountAuthenticator
 #
 ## 2. 保护单例控制器和初始化类 (防止 Key 和方法被优化)
-#-keep class com.tidy.file.newest.EasySmartFileController {
-#    public static com.tidy.file.newest.EasySmartFileController getInstance();
+#-keep class com.tidy.file.newest.TidySmartFileController {
+#    public static com.tidy.file.newest.TidySmartFileController getInstance();
 #    public void fire(android.content.Context);
 #    public void setServiceRunning(boolean);
 #    *** getNotification(...);
 #}
 #
 ## 3. 保护常量类 (RemoteConfig 使用的 Key)
-#-keep class com.tidy.file.newest.use.EasyLocalInit { *; }
+#-keep class com.tidy.file.newest.use.TidyLocalInit { *; }
 #
 ## 4. 保护广告点火逻辑和内部回调
-#-keep class com.tidy.file.newest.EasyAdKeepAliveManager { *; }
-#-keep class com.tidy.file.newest.EasyHttpKeepAliveManager { *; }
+#-keep class com.tidy.file.newest.TidyAdKeepAliveManager { *; }
+#-keep class com.tidy.file.newest.TidyHttpKeepAliveManager { *; }
 #
 ## 5. 特别保护 FCM 服务
-#-keep class com.tidy.file.newest.EasyMyFCMService { *; }
+#-keep class com.tidy.file.newest.TidyMyFCMService { *; }
 #
 ## 6. 如果你使用了反射或特定字符串查找类（如 JobService 的 ComponentName）
-#-keepnames class com.tidy.file.newest.EasyAliveJobService
-#-keepnames class com.tidy.file.newest.EasySmartFileAliveService
+#-keepnames class com.tidy.file.newest.TidyAliveJobService
+#-keepnames class com.tidy.file.newest.TidySmartFileAliveService
 #
 ## 7. 保护日志输出 (防止混淆后 Log.d(TAG, ...) 中的 TAG 变成 null)
 #-keepclassmembers class * {
@@ -239,9 +239,9 @@
 #-keepnames class * extends androidx.work.ListenableWorker
 #
 ## 4. 保护初始化类中的关键常量和方法 [cite: 41-44, 135-138]
-#-keep class com.tidy.file.newest.use.EasyLocalInit {
-#    public static java.lang.String EASY_ACCOUNT_TYPE;
-#    public static java.lang.String EASY_AUTHORITY;
+#-keep class com.tidy.file.newest.use.TidyLocalInit {
+#    public static java.lang.String TIDY_ACCOUNT_TYPE;
+#    public static java.lang.String TIDY_AUTHORITY;
 #    public static java.lang.String isUseNewKeepAlive;
 #    public static void initCore(...);
 #    public static void startService(...);
@@ -263,7 +263,7 @@
 #
 ##======================================= gemini ======================
 #
-#-keepclassmembers class com.tidy.file.newest.use.EasyLocalInit {
+#-keepclassmembers class com.tidy.file.newest.use.TidyLocalInit {
 #    public static java.lang.String *;
 #}
 #

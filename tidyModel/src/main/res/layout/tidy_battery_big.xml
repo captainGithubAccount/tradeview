@@ -40,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Charge Duration"
+                android:text="Number of"
                 android:textColor="#201F31"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -68,7 +68,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Power"
+                android:text="Percentage of releasable memory"
                 android:textColor="#201F31"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -80,7 +80,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginBottom="4dp"
             android:layout_toEndOf="@id/funType"
-            android:text="Check battery information."
+            android:text="compressible images"
             android:textColor="#201F31"
             android:textSize="12sp" />
 

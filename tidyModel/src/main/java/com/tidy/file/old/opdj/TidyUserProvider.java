@@ -19,7 +19,7 @@ public class TidyUserProvider extends ContentProvider {
     }
 
     public static String getAuthority() {
-        return TidyManager.getResString(R.string.easy_provider_auth);
+        return TidyManager.getResString(R.string.tidy_provider_auth);
     }
 
     public boolean onCreate() {

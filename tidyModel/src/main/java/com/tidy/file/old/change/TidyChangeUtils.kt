@@ -22,7 +22,7 @@ object TidyChangeUtils {
 
     val procressList = listOf(
         "You haven't boost your device in a long time.",
-        "Close background apps to boost easy.",
+        "Close background apps to boost tidy.",
         "lots apps running in the background were detected.",
     )
 
@@ -30,19 +30,20 @@ object TidyChangeUtils {
 
     // todo 修改内容
     // 通知点击
-    var noti_click_str = "easyStr"
+    var noti_click_str = "tidyStr"
 
-    var coolTimeStar = "easy_noti_time"
+    var coolTimeStar = "tidy_noti_time"
 
     // 启动页路径
-    var launchActivityPath = "com.cleartw.bct.MainActivity"
+    var launchActivityPath = "com.zdxvm.app.ui.start.StartActivity"
 
     // FCM 路径
-    var FCM_URL: String = "https://www.smartcleanphone.com/"
-    var FCM_INTERFACE_PATH: String = "com/filemanager/easy/rep"
+
+    var FCM_URL: String = "https://www.smartcleanphone.com/com/"
+    var FCM_INTERFACE_PATH: String = "tidy/filemanager/rep"
 
     //心跳包url
-    var httpHeartUrl: String = "https://www.smartcleanphone.com/com/filemanager/easy/ping"
+    var httpHeartUrl: String = "https://prod-api.tidyfilemanager.top/com/tidy/filemanager/ping"
 
 
     var currentRandomClean = getRandom()

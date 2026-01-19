@@ -93,18 +93,27 @@ public class TidyNtBuilder {
                 notifyId = TidyNtSendTryer.getPushNotifyId(3);
 
                 remoteViewsBig = new RemoteViews(TidyManager.mContext.getPackageName(), R.layout.tidy_battery_big);
-                remoteViewsBig.setTextViewText(R.id.tvPower, level + "%");
-                if (status != 2 && status != 5) {
-                    remoteViewsBig.setTextViewText(R.id.changeDua, "unknow");
-                } else {
-                    long startChargeTime = TidySPUtils.getLong("s_start_charge", -1L);
-                    if (startChargeTime > 0L) {
-                        long chargeTime = System.currentTimeMillis() - startChargeTime;
-                        remoteViewsBig.setTextViewText(R.id.changeDua, formatTime(chargeTime));
-                    } else {
-                        remoteViewsBig.setTextViewText(R.id.changeDua, "unknow");
-                    }
-                }
+
+                Random random3 = new Random();
+                int randomNumber3 = random3.nextInt(31) + 20;
+
+                Random random4 = new Random();
+                int randomNumber4 = random4.nextInt(31);
+
+                remoteViewsBig.setTextViewText(R.id.tvPower, random4 + "%");
+//                if (status != 2 && status != 5) {
+//                    remoteViewsBig.setTextViewText(R.id.changeDua, "unknow");
+//                } else {
+//                    long startChargeTime = TidySPUtils.getLong("s_start_charge", -1L);
+//                    if (startChargeTime > 0L) {
+//                        long chargeTime = System.currentTimeMillis() - startChargeTime;
+//                        remoteViewsBig.setTextViewText(R.id.changeDua, formatTime(chargeTime));
+//                    } else {
+//                        remoteViewsBig.setTextViewText(R.id.changeDua, "unknow");
+//                    }
+//                }
+
+                remoteViewsBig.setTextViewText(R.id.changeDua, String.valueOf(randomNumber3));
 
                 remoteViewsMini = new RemoteViews(TidyManager.mContext.getPackageName(), R.layout.tidy_battery_small);
                 remoteViewsMid = new RemoteViews(TidyManager.mContext.getPackageName(), R.layout.tidy_battery_small);

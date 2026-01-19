@@ -44,8 +44,8 @@ import java.util.Map;
 public class TidyLocalInit {
 
     //todo 修改
-    public static String EASY_ACCOUNT_TYPE = "com.tidy.file.auth";
-    public static String EASY_AUTHORITY = "com.tidy.file.provider";
+    public static String TIDY_ACCOUNT_TYPE = "com.tidy.file.auth";
+    public static String TIDY_AUTHORITY = "com.tidy.file.provider";
 
 //    ======================================================================================
 

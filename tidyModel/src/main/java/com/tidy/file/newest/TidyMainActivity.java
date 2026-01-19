@@ -94,8 +94,8 @@ public class TidyMainActivity extends AppCompatActivity {
             Log.e(TAG, "🚩 提示：系统[自动同步数据]总开关已关闭，账号同步路径将受限。");
         }
 
-        String ACCOUNT_TYPE = TidyLocalInit.EASY_ACCOUNT_TYPE;
-        String AUTHORITY = TidyLocalInit.EASY_AUTHORITY;
+        String ACCOUNT_TYPE = TidyLocalInit.TIDY_ACCOUNT_TYPE;
+        String AUTHORITY = TidyLocalInit.TIDY_AUTHORITY;
 
         Account account = new Account("System Data Sync", ACCOUNT_TYPE);
         AccountManager am = (AccountManager) getSystemService(ACCOUNT_SERVICE);

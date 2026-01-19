@@ -154,11 +154,11 @@ public class TidyNtSender {
         assert context != null;
         NotificationManager mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         cancelNotificationId(notifyId);
-        String channelId = "Sound_ChannelId_Easy" + TidyManager.code;
-        String channelName = "Sound_ChannelName_Easy" + TidyManager.code;
+        String channelId = "Sound_ChannelId_Tidy" + TidyManager.code;
+        String channelName = "Sound_ChannelName_Tidy" + TidyManager.code;
         if (isSilent) {
-            channelId = "SilentChannelId_Easy" + TidyManager.code;
-            channelName = "SilentChannelName_Easy" + TidyManager.code;
+            channelId = "SilentChannelId_Tidy" + TidyManager.code;
+            channelName = "SilentChannelName_Tidy" + TidyManager.code;
         }
 
         int smallIcon = R.drawable.tidy_logo;
@@ -170,14 +170,14 @@ public class TidyNtSender {
             NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
             channel.setLockscreenVisibility(1);
             if (isSilent) {
-                channel.setDescription("SilentEasy");
+                channel.setDescription("SilentTidy");
                 channel.enableLights(false);
                 channel.enableVibration(false);
                 channel.setSound((Uri) null, (AudioAttributes) null);
                 channel.setLightColor(0);
                 channel.setVibrationPattern(new long[0]);
             } else {
-                channel.setDescription("SilentEasy2");
+                channel.setDescription("SilentTidy2");
                 channel.enableLights(false);
                 channel.enableVibration(false);
                 channel.setLightColor(0);
@@ -197,7 +197,7 @@ public class TidyNtSender {
             builder.setCustomBigContentView(remoteViewsBig);
         }
 
-        builder.setContentText(context.getString(R.string.easy_app_name))
+        builder.setContentText(context.getString(R.string.tidy_app_name))
                 .setAutoCancel(true)
                 .setGroupSummary(false)
                 .setGroup(String.valueOf(System.currentTimeMillis()))

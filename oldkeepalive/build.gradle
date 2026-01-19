@@ -1,5 +1,5 @@
 configurations.maybeCreate("default")
-artifacts.add("default", file('easyModel-release.aar'))
+artifacts.add("default", file('tidyModel-release.aar'))
 
 //ktx
 //configurations.maybeCreate("default")
