@@ -63,7 +63,7 @@ dependencies {
 
 
 //    api project(":oldkeepalive")
-    implementation project(':easyModel')
+    implementation project(':tidyModel')
 
 
 

@@ -1,9 +1,6 @@
-package com.captain
+package com.tidy.file.old.use;
 
-import android.app.Application
-import com.captain.a.AAA
-import com.tidy.file.newest.use.EasyLocalInit
-
+import androidx.annotation.Keep;
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -21,22 +18,18 @@ import com.tidy.file.newest.use.EasyLocalInit
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━ bug with the more protecting ━━━
  *
- * @autor lwj
  * @version 1.0.0
- * Created by 2025年-12月
+ * Created by 2026年-01月
+ * @autor lwj
  */
-class MyApp: Application() {
-    override fun onCreate() {
-        super.onCreate()
 
-        AAA()
-//        EasyConfig.configFcmUrl("com")
-//        EasyConfig.configFcmInterfacePath("https://com")
-//        EasyConfig.configHeartUrl("https://www.google.com")
-        EasyLocalInit.initCore(
-            this,
-            packageName,
-            true
-        )
+@Keep
+public class EasyNotidyControll {
+
+    public static void onAppInstall(String token) {
+
+
     }
+
+
 }

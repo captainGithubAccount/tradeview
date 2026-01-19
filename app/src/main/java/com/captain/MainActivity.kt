@@ -10,11 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.captain.luo.R
-import com.easy.model.newest.use.EasyLocalInit
-import com.easy.model.old.use.EasyNotiTimesHelper
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.tidy.file.newest.use.EasyLocalInit
 
 
 class MainActivity: AppCompatActivity() {
