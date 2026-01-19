@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="64dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/cleanLayout"
@@ -13,6 +13,7 @@
         android:paddingTop="2dp">
 
         <ImageView
+            android:layout_marginTop="15dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@mipmap/tidy_clean" />
@@ -36,6 +37,7 @@
         android:paddingTop="2dp">
 
         <ImageView
+            android:layout_marginTop="15dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@mipmap/tidy_apps" />
@@ -59,6 +61,7 @@
         android:paddingTop="2dp">
 
         <ImageView
+            android:layout_marginTop="15dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@mipmap/tidy_device" />
@@ -82,15 +85,17 @@
         android:paddingTop="2dp">
 
         <ImageView
+            android:layout_marginTop="25dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@mipmap/tidy_battery" />
 
         <TextView
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Battery"
+            android:text="Compress\nPhoto"
             android:textColor="#2C2A29"
             android:textSize="13sp" />
     </LinearLayout>

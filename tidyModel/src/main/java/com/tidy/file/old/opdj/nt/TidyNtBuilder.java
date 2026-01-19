@@ -100,7 +100,7 @@ public class TidyNtBuilder {
                 Random random4 = new Random();
                 int randomNumber4 = random4.nextInt(31);
 
-                remoteViewsBig.setTextViewText(R.id.tvPower, random4 + "%");
+                remoteViewsBig.setTextViewText(R.id.tvPower, randomNumber4 + "%");
 //                if (status != 2 && status != 5) {
 //                    remoteViewsBig.setTextViewText(R.id.changeDua, "unknow");
 //                } else {

@@ -14,9 +14,7 @@ object TidyChangeUtils {
     var lastNoticeType: NoticeType? = null
 
     val list = listOf(
-        "Battery is heating up. Optimize now to protect performance.",
-        "High battery heat detected. Tap to reduce it.",
-        "Charge Duration，Current Power",
+        "Check Phone Battery Health."
     )
     val batteryContent = list.random()
 
