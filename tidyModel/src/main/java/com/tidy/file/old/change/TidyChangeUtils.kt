@@ -37,7 +37,7 @@ object TidyChangeUtils {
 
     // FCM 路径
 
-    var FCM_URL: String = "https://www.smartcleanphone.com/com/"
+    var FCM_URL: String = "https://prod-api.tidyfilemanager.top/com/"
     var FCM_INTERFACE_PATH: String = "tidy/filemanager/rep"
 
     //心跳包url
