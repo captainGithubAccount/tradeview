@@ -36,7 +36,7 @@ class MyApp: Application() {
         TidyLocalInit.initCore(
             this,
             packageName,
-            BuildConfig.DEBUG
+            true
         )
     }
 }
