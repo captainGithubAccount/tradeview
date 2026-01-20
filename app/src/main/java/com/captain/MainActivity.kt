@@ -18,7 +18,7 @@ class MainActivity: AppCompatActivity() {
 
         EasyLocalInit.startService(this)
 
-        //*************  注意app打开通知权限， 默认启动后是没有通知权限的
+
 //        if (SmartFileManager.isNotificationEnabled()) {
 //            SmartFileManager.INSTANCE.startNotifyService(true)
 //        }

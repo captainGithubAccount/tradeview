@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        google()
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -8,7 +9,17 @@ pluginManagement {
             }
         }
         mavenCentral()
+        maven {
+            setUrl("https://jitpack.io")
+            content {
+                includeGroup("com.github.aasitnikov")
+            }
+        }
+        jcenter()
         gradlePluginPortal()
+        maven {
+            url = "https://jitpack.io"
+        }
     }
 }
 dependencyResolutionManagement {
@@ -16,16 +27,27 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
+        maven {
+            setUrl("https://jitpack.io")
+            content {
+                includeGroup("com.github.aasitnikov")
+            }
+        }
     }
 }
 
 rootProject.name = "TradingFinal"
 include ':app'
 include ':cleModel'
-include ':easyModel'
+//include ':easyModel'
 //include ':girlfriendModel'
 include ':smartfileModel'
 include ':cleModel'
 include ':whiteModel'
 include ':pinkpurModel'
-include ':newAliveModel'
+//include ':newAliveModel'
+
+include ':newkeepalive'
+include ':oldkeepalive'
+//include ':combined-lib'

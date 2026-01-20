@@ -1,0 +1,14 @@
+plugins {
+    id 'com.android.fused-library'
+}
+
+//androidFusedLibrary {
+//    namespace 'com.example.myFusedLibrary'
+//    minSdk 23
+//}
+
+
+dependencies {
+    include project(':easyModel')
+    include project(':newAliveModel')
+}
