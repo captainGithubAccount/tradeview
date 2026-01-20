@@ -1,12 +1,15 @@
 package com.captain
 
+import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.captain.luo.R
@@ -42,7 +45,7 @@ class MainActivity: AppCompatActivity() {
 
         val notificationManager = NotificationManagerCompat.from(context)
 
-        // 注意：2026年开发需确保已申请 POST_NOTIFICATIONS 权限
+
         notificationManager.notify(1, builder.build())
     }
 

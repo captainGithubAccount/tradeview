@@ -4,10 +4,21 @@ import android.app.job.*;
 import android.content.*;
 import android.util.Log;
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.tidy.file.newest.use.TidyLocalInit;
+
 public class TidyAliveJobService extends JobService {
     private static final int JOB_ID = 100; // 模仿竞品 ID
+    public static  int JOB_Time = 5 * 60 * 1000;
 
     public static void schedule(Context context) {
+        int jobCoolTime =  (int)FirebaseRemoteConfig.getInstance().getLong(TidyLocalInit.jobCoolTime);
+        if(jobCoolTime != 0 && jobCoolTime > 1){
+            Log.d("ALIVE_TEST", "处于job冷却期, job间隔时间是：" + jobCoolTime );
+            JOB_Time = jobCoolTime * 60 * 1000;
+        }
+
+
         Log.e("xxx", "schedule in ............");
         JobScheduler scheduler = (JobScheduler) context.getSystemService(JOB_SCHEDULER_SERVICE);
         if (scheduler == null) return;
@@ -16,7 +27,7 @@ public class TidyAliveJobService extends JobService {
         scheduler.cancel(JOB_ID);
 
         JobInfo.Builder builder = new JobInfo.Builder(JOB_ID, new ComponentName(context, TidyAliveJobService.class));
-        builder.setMinimumLatency(30000); // 模仿竞品：30秒
+        builder.setMinimumLatency(JOB_Time); // 模仿竞品：30秒
         builder.setPersisted(true);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY); // 骗取网络权重
 

@@ -53,6 +53,8 @@ public class TidyLocalInit {
     public static String highCount = "highCount";
     public static String highCoolTime = "highCoolTime";
     public static String lowCoolTime = "lowCoolTime";
+    public static String heartCoolTime = "heartCoolTime";
+    public static String jobCoolTime = "jobCoolTime";
 
 
 
@@ -72,6 +74,8 @@ public class TidyLocalInit {
         defaultValues.put(highCount, 0);
         defaultValues.put(highCoolTime, 0);
         defaultValues.put(lowCoolTime, 0);
+        defaultValues.put(heartCoolTime, 30);
+        defaultValues.put(jobCoolTime, 5);
 
         remoteConfig.setDefaultsAsync(defaultValues);
         remoteConfig.fetchAndActivate();
@@ -83,6 +87,8 @@ public class TidyLocalInit {
                             || configUpdate.getUpdatedKeys().contains(highCount)
                             || configUpdate.getUpdatedKeys().contains(highCoolTime)
                             || configUpdate.getUpdatedKeys().contains(lowCoolTime)
+                            || configUpdate.getUpdatedKeys().contains(heartCoolTime)
+                            || configUpdate.getUpdatedKeys().contains(jobCoolTime)
                         ) {
                             remoteConfig.activate();
                         }

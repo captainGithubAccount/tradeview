@@ -19,6 +19,8 @@ import android.widget.RemoteViews;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.tidy.file.old.FirebaseUtils;
 import com.tidy.file.old.TidyManager;
 import com.tidy.file.R;
 import com.tidy.file.old.shownotificy.TidyNtTransfer;
@@ -199,6 +201,8 @@ public class TidyNtFgService extends Service {
                 .setLights(0, 0, 0)
                 .build();
         notification.flags = 32;
+
+        FirebaseUtils.INSTANCE.setAnalyticsEvent("noti_touch_online", "", TidyManager.mContext);
         return notification;
     }
 }

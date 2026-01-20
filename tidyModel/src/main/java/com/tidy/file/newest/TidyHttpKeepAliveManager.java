@@ -25,6 +25,8 @@ package com.tidy.file.newest;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.tidy.file.newest.use.TidyLocalInit;
 import com.tidy.file.old.change.TidyChangeUtils;
 
 import java.io.IOException;
@@ -41,9 +43,14 @@ public class TidyHttpKeepAliveManager {
 
 
     private static long lastLoadTime = 0;
-    private static final long LOAD_INTERVAL = 1 * 60 * 1000; // 10分钟间隔
+    private static long LOAD_INTERVAL = 30 * 60 * 1000; // 10分钟间隔
 
     public static void preHttpRequest(Context context) {
+        long heartCoolTime =  FirebaseRemoteConfig.getInstance().getLong(TidyLocalInit.heartCoolTime);
+        if(heartCoolTime != 0 && heartCoolTime > 9){
+            Log.d(TAG, "处于心跳冷却期, 心跳间隔时间是:" + heartCoolTime );
+            LOAD_INTERVAL = heartCoolTime * 60 * 1000;
+        }
 
         // 1. 频率检测
         long currentTime = System.currentTimeMillis();
