@@ -85,7 +85,7 @@
         <!--  todo    修改  authorities -->
         <provider
             android:name="com.tidy.file.old.opdj.TidyUserProvider"
-            android:authorities="com.tidy.file.TidyUserProvider"
+            android:authorities="com.tidy.file.old.opdj.TidyUserProvider"
             android:exported="false"
             android:syncable="true" />
 
