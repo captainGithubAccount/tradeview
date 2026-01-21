@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accountType="@string/tidy_user_type"
-    android:icon="@drawable/tidy_logo"
-    android:label="@string/tidy_app_name"
-    android:smallIcon="@drawable/tidy_logo" />

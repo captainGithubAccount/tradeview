@@ -9,6 +9,6 @@ plugins {
 
 
 dependencies {
-    include project(':tidyModel')
+    include project(':gatorModel')
     include project(':newAliveModel')
 }

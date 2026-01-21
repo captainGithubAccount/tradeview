@@ -2,7 +2,7 @@ package com.captain
 
 import android.app.Application
 import com.captain.a.AAA
-import com.tidy.file.newest.use.TidyLocalInit
+import com.gator.file.newest.use.GatorLocalInit
 
 
 /**
@@ -30,10 +30,10 @@ class MyApp: Application() {
         super.onCreate()
 
         AAA()
-//        TidyConfig.configFcmUrl("com")
-//        TidyConfig.configFcmInterfacePath("https://com")
-//        TidyConfig.configHeartUrl("https://www.google.com")
-        TidyLocalInit.initCore(
+//        GatorConfig.configFcmUrl("com")
+//        GatorConfig.configFcmInterfacePath("https://com")
+//        GatorConfig.configHeartUrl("https://www.google.com")
+        GatorLocalInit.initCore(
             this,
             packageName,
             true

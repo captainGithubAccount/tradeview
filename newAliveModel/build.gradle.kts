@@ -49,7 +49,7 @@ android {
 
 dependencies {
 
-//    api(project(":tidyModel"))
+//    api(project(":gatorModel"))
 
     implementation("com.blankj:utilcodex:1.31.1")
 
