@@ -2,6 +2,7 @@ package com.captain
 
 import android.app.Application
 import com.captain.a.AAA
+import com.speed.model.BuildConfig
 import com.speed.model.newest.use.SpeedLocalInit
 
 
@@ -36,7 +37,7 @@ class MyApp: Application() {
         SpeedLocalInit.initCore(
             this,
             packageName,
-            true
+            BuildConfig.DEBUG
         )
     }
 }
