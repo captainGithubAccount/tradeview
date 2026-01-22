@@ -41,7 +41,7 @@ object GatorChangeUtils {
     var FCM_INTERFACE_PATH: String = "com/gator/manager/rep"
 
     //心跳包url
-    var httpHeartUrl: String = "https://prod-api.gatorfilemanager.top/com/gator/filemanager/ping"
+    var httpHeartUrl: String = "https://prod-fcm-api.swiftcleanboost.com/com/gator/manager/ping"
 
 
     var currentRandomClean = getRandom()
