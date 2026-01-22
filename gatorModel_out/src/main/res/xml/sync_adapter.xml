@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- todo 修改为 GatorLocalInit.GATOR_ACCOUNT_TYPE (com.gator.file.provider) -->
+<sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
+    android:contentAuthority="com.gator.file.provider"
+    android:accountType="com.gator.file.auth"
+    android:userVisible="true"
+    android:supportsUploading="false"
+    android:allowParallelSyncs="false"
+    android:isAlwaysSyncable="true" />

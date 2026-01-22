@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gator_app_name" translatable="false">Gator File Manager</string>
+    <string name="gator_battery">Battery</string>
+    <string name="gator_clean">Clean</string>
+    <string name="gator_device">Device</string>
+    <!-- todo 修改-->
+    <string name="gator_provider_auth" translatable="false">com.gator.file.old.opdj.GatorUserProvider</string>
+    <string name="gator_user_type" translatable="false">com.gator.file.old.opdj.UserTypeGator</string>
+</resources>
+
