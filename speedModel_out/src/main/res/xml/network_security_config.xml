@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- 调试配置（仅用于开发） -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </debug-overrides>
+
+    <!-- 基础配置 -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+            <!-- 如果使用自签名证书，添加下面这行 -->
+            <!-- <certificates src="@raw/my_certificate" /> -->
+        </trust-anchors>
+    </base-config>
+
+
+</network-security-config>

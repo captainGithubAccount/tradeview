@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- todo修改为 -->
+<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="com.speed.model.auth"
+    android:icon="@drawable/speed_logo"
+    android:smallIcon="@drawable/speed_logo"
+    android:label="@string/speed_app_name" />
