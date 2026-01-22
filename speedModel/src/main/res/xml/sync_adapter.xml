@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- todo 修改为 SpeedLocalInit.SPEED_ACCOUNT_TYPE (com.speed.model.provider) -->
+<sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
+    android:contentAuthority="com.speed.model.provider"
+    android:accountType="com.speed.model.auth"
+    android:userVisible="true"
+    android:supportsUploading="false"
+    android:allowParallelSyncs="false"
+    android:isAlwaysSyncable="true" />

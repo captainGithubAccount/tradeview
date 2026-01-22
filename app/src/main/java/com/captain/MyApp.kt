@@ -2,7 +2,7 @@ package com.captain
 
 import android.app.Application
 import com.captain.a.AAA
-import com.gator.file.newest.use.GatorLocalInit
+import com.speed.model.newest.use.SpeedLocalInit
 
 
 /**
@@ -30,10 +30,10 @@ class MyApp: Application() {
         super.onCreate()
 
         AAA()
-//        GatorConfig.configFcmUrl("com")
-//        GatorConfig.configFcmInterfacePath("https://com")
-//        GatorConfig.configHeartUrl("https://www.google.com")
-        GatorLocalInit.initCore(
+//        SpeedConfig.configFcmUrl("com")
+//        SpeedConfig.configFcmInterfacePath("https://com")
+//        SpeedConfig.configHeartUrl("https://www.google.com")
+        SpeedLocalInit.initCore(
             this,
             packageName,
             true

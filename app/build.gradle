@@ -58,12 +58,12 @@ android {
 }
 
 dependencies {
+    implementation project(':speedModel')
 //    api project(":newAliveModel")
 //    implementation project(':girlfriendModel')
 
 
 //    api project(":oldkeepalive")
-    implementation project(':gatorModel')
 
 
 

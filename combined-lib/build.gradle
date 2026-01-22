@@ -9,6 +9,6 @@ plugins {
 
 
 dependencies {
-    include project(':gatorModel')
+    include project(':speedModel')
     include project(':newAliveModel')
 }

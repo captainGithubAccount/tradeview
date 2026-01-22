@@ -13,7 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.captain.luo.R
-import com.gator.file.newest.use.GatorLocalInit
+import com.speed.model.newest.use.SpeedLocalInit
 
 
 class MainActivity: AppCompatActivity() {
@@ -57,8 +57,8 @@ class MainActivity: AppCompatActivity() {
 //        sendNotify(this)
 
 
-        GatorLocalInit.startService(this)
-//        GatorNotiTimesHelper.todayToHome(true);
+        SpeedLocalInit.startService(this)
+//        SpeedNotiTimesHelper.todayToHome(true);
 
         //*************  注意app打开通知权限， 默认启动后是没有通知权限的
 //        if (SmartFileManager.isNotificationEnabled()) {
@@ -124,7 +124,7 @@ class MainActivity: AppCompatActivity() {
 
 //            GlobalScope.launch {
 //                delay(5000L)
-//                GatorNotiTimesHelper.testNoti(true)
+//                SpeedNotiTimesHelper.testNoti(true)
 //            }
 
         }
