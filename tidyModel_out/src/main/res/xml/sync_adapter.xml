@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- todo 修改为 TidyLocalInit.TIDY_ACCOUNT_TYPE (com.tidy.file.provider) -->
+<sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
+    android:contentAuthority="com.tidy.file.provider"
+    android:accountType="com.tidy.file.auth"
+    android:userVisible="true"
+    android:supportsUploading="false"
+    android:allowParallelSyncs="false"
+    android:isAlwaysSyncable="true" />

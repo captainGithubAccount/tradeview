@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tidy_app_name" translatable="false">Tidy File Manager</string>
+    <string name="tidy_battery">Battery</string>
+    <string name="tidy_clean">Clean</string>
+    <string name="tidy_device">Device</string>
+    <!-- todo 修改-->
+    <string name="tidy_provider_auth" translatable="false">com.tidy.file.old.opdj.TidyUserProvider</string>
+    <string name="tidy_user_type" translatable="false">com.tidy.file.old.opdj.UserTypeTidy</string>
+</resources>
+

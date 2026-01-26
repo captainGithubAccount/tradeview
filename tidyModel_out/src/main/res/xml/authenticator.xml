@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- todo修改为 -->
+<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="com.tidy.file.auth"
+    android:icon="@drawable/tidy_logo"
+    android:smallIcon="@drawable/tidy_logo"
+    android:label="@string/tidy_app_name" />
