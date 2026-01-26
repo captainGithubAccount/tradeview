@@ -669,87 +669,15 @@ public class SpeedNtFgService extends Service {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        long ujugkxamf2 = 75L;
-        short siycdmcj1 = 51;
-        int hpegrmdqx0 = 79;
-        short gltoqpuu4 = 48;
-        int iyelfet3 = 76;
-        int htkjnxe2 = 44;
-        long kyfburcpd1 = 75L;
-        float uyksnqa0 = 12.12f;
-        short apyxlvpbq1 = 31;
-        boolean quzamlzn0 = false;
-        short sdxhbdp3 = 27;
-        byte qbgzqas2 = 28;
-        byte mogjshi1 = 52;
-        double meaofchxjr0 = 16.16;
-        boolean gtcmuaia4 = true;
-        short vnrurxrt3 = 11;
-        short iwuihpl2 = 92;
-        boolean svznwqliyx1 = false;
-        long xpuhwlp0 = 7L;
-        short qqefhnl0 = 54;
-        float aqcmlrpkcr0 = 90.90f;
-        short ffyelegbk4 = 66;
-        float ualebat3 = 79.79f;
-        int qacqbajsf2 = 42;
-        float xjpasmiv1 = 74.74f;
-        int ramsftpn0 = 55;
-        long zqzcilvf0 = 82L;
-        char vjkvcjp1 = 63;
-        short ajfuyfkicx0 = 35;
-        int txnhyyk4 = 44;
-        byte zizwwcn3 = 19;
-        double fdiyvrn2 = 99.99;
-        byte ngtrikx1 = 92;
-        char euneqclww0 = 81;
-        long bllewwfotn3 = 8L;
-        double bhfprind2 = 81.81;
-        boolean lrmcsmm1 = false;
-        int mbazzhbl0 = 1;
-        double djahfev0 = 66.66;
-        double dvsgldswe1 = 18.18;
-        byte rvhdboy0 = 7;
-        long rribmbruvn2 = 12L;
-        boolean wyvyfnvg1 = true;
-        long pjxrrfxz0 = 73L;
-        char qeimuvgnn0 = 6;
-        float zhbplratc3 = 90.90f;
-        float fjwaxxe2 = 18.18f;
-        char cofzmsic1 = 36;
-        long ayqgzoran0 = 39L;
-        long mqecoozmf1 = 5L;
-        int phfhcje0 = 99;
-        byte ygtybxenbe3 = 73;
-        int tgwgdsbazy2 = 63;
-        boolean jhckifomt1 = true;
-        short gojiobhfzd0 = 95;
-        long ixgyzfbyez1 = 100L;
-        short dbnwvtwrh0 = 87;
-        String from_action = intent.getStringExtra(from);
-        isLiving = true;
-        nlhtxaxf(djahfev0);
-        kgCUCFqO(gojiobhfzd0, jhckifomt1, tgwgdsbazy2, ygtybxenbe3);
-        kwhOoSRp(ramsftpn0, xjpasmiv1, qacqbajsf2, ualebat3, ffyelegbk4);
-        kgCUCFqO(gojiobhfzd0, jhckifomt1, tgwgdsbazy2, ygtybxenbe3);
-        prJCKnmM(qeimuvgnn0);
-        AUJDbxvS(aqcmlrpkcr0);
-        EiwCEHkf(qqefhnl0);
+
         try {
-            sDyjOYLp(mbazzhbl0, lrmcsmm1, bhfprind2, bllewwfotn3);
-            nlhtxaxf(djahfev0);
-            DuFpUzAd(uyksnqa0, kyfburcpd1, htkjnxe2, iyelfet3, gltoqpuu4);
-            nlhtxaxf(djahfev0);
-            xyXrWvep(ajfuyfkicx0, vjkvcjp1);
-            EiwCEHkf(qqefhnl0);
-            mcFsuCoN(xpuhwlp0, svznwqliyx1, iwuihpl2, vnrurxrt3, gtcmuaia4);
-            LKuNYnRP(euneqclww0, ngtrikx1, fdiyvrn2, zizwwcn3, txnhyyk4);
             if (VERSION.SDK_INT >= 29) {
                 this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
-                //                this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1), ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+//                this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1), ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
             } else {
                 this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1));
             }
+
             isShowing = true;
             if (!SpeedNtUtils.isNotificationEnabled()) {
                 isShowing = false;
@@ -757,37 +685,24 @@ public class SpeedNtFgService extends Service {
         } catch (Exception var71) {
             isShowing = false;
         }
-        mcFsuCoN(xpuhwlp0, svznwqliyx1, iwuihpl2, vnrurxrt3, gtcmuaia4);
-        LKuNYnRP(euneqclww0, ngtrikx1, fdiyvrn2, zizwwcn3, txnhyyk4);
-        EByIjyLt(hpegrmdqx0, siycdmcj1, ujugkxamf2);
-        CsxBvIhD(phfhcje0, mqecoozmf1);
-        YbGLbksr(ayqgzoran0, cofzmsic1, fjwaxxe2, zhbplratc3);
-        NwYGTVno(quzamlzn0, apyxlvpbq1);
-        AjWLXbNA(rvhdboy0, dvsgldswe1);
-        YbGLbksr(ayqgzoran0, cofzmsic1, fjwaxxe2, zhbplratc3);
-        LKuNYnRP(euneqclww0, ngtrikx1, fdiyvrn2, zizwwcn3, txnhyyk4);
-        xyXrWvep(ajfuyfkicx0, vjkvcjp1);
-        if (Objects.equals(from_action, "clock")) {
-            kFjWwcrR(zqzcilvf0);
-            prJCKnmM(qeimuvgnn0);
-            AUJDbxvS(aqcmlrpkcr0);
-            sDyjOYLp(mbazzhbl0, lrmcsmm1, bhfprind2, bllewwfotn3);
-            xyXrWvep(ajfuyfkicx0, vjkvcjp1);
-            TpNKrHTz(meaofchxjr0, mogjshi1, qbgzqas2, sdxhbdp3);
-            prJCKnmM(qeimuvgnn0);
-            DuFpUzAd(uyksnqa0, kyfburcpd1, htkjnxe2, iyelfet3, gltoqpuu4);
-            SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.ALARM);
-        } else if (Objects.equals(from_action, "job")) {
-            SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.JOB_POLLING);
-        } else if (Objects.equals(from_action, "everytime_show_notify")) {
-            SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.EVERY_TIME_SHOW_NOTIFY);
-        } else if (Objects.equals(from_action, "launchapp")) {
-            SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.LAUNCH_APP);
+
+        if(intent != null){
+            String from_action = intent.getStringExtra(from);
+            isLiving = true;
+
+            if(Objects.equals(from_action, "clock")){
+                SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.ALARM);
+            }else if(Objects.equals(from_action, "job")){
+                SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.JOB_POLLING );
+            }else if(Objects.equals(from_action, "everytime_show_notify")){
+                SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.EVERY_TIME_SHOW_NOTIFY );
+
+            }else if(Objects.equals(from_action, "launchapp")){
+                SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.LAUNCH_APP );
+
+            }
         }
-        AUJDbxvS(aqcmlrpkcr0);
-        AjWLXbNA(rvhdboy0, dvsgldswe1);
-        mcFsuCoN(xpuhwlp0, svznwqliyx1, iwuihpl2, vnrurxrt3, gtcmuaia4);
-        sDyjOYLp(mbazzhbl0, lrmcsmm1, bhfprind2, bllewwfotn3);
+
         return Service.START_STICKY;
     }
 

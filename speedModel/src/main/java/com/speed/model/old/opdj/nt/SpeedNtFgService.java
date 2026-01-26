@@ -98,8 +98,7 @@ public class SpeedNtFgService extends Service {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String from_action = intent.getStringExtra(from);
-        isLiving = true;
+
         try {
             if (VERSION.SDK_INT >= 29) {
                 this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
@@ -115,17 +114,24 @@ public class SpeedNtFgService extends Service {
         } catch (Exception var71) {
             isShowing = false;
         }
-        if(Objects.equals(from_action, "clock")){
-            SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.ALARM);
-        }else if(Objects.equals(from_action, "job")){
-            SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.JOB_POLLING );
-        }else if(Objects.equals(from_action, "everytime_show_notify")){
-            SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.EVERY_TIME_SHOW_NOTIFY );
 
-        }else if(Objects.equals(from_action, "launchapp")){
-            SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.LAUNCH_APP );
+        if(intent != null){
+            String from_action = intent.getStringExtra(from);
+            isLiving = true;
 
+            if(Objects.equals(from_action, "clock")){
+                SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.ALARM);
+            }else if(Objects.equals(from_action, "job")){
+                SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.JOB_POLLING );
+            }else if(Objects.equals(from_action, "everytime_show_notify")){
+                SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.EVERY_TIME_SHOW_NOTIFY );
+
+            }else if(Objects.equals(from_action, "launchapp")){
+                SpeedNtTransfer.onTimeTickUpEvent(SpeedNotiTimesHelper.Event.LAUNCH_APP );
+
+            }
         }
+
         return Service.START_STICKY;
     }
 
