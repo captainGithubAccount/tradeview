@@ -24,6 +24,7 @@ rootProject.name = "TradingFinal"
 include ':app'
 include ':cleModel'
 include ':tidyModel'
+include ':tidyModel_out'
 //include ':girlfriendModel'
 include ':smartfileModel'
 include ':cleModel'
