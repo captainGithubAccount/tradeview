@@ -40,6 +40,7 @@ public class SpeedSmartFileAliveService extends Service {
 
     // 定义通知被划掉的特殊动作
     public static final String ACTION_NOTIFY_REMOVED = "com.smartfile.NOTIFY_REMOVED";
+    public static boolean isStopping = false;
 
     //垃圾方法
     private void eEYsExvd(char xnbavkoq0, float krurwwyfzb1, short jixtlds2, double xocwatvnou3, char roafmkom4) {
@@ -322,6 +323,12 @@ public class SpeedSmartFileAliveService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        // 检查是否正在停止过程中
+        if (isStopping) {
+            stopSelf();
+            return START_NOT_STICKY;
+        }
+
         long iuvyifkemf4 = 94L;
         byte mvammtnopy3 = 82;
         char uvsaozume2 = 91;
@@ -408,19 +415,28 @@ public class SpeedSmartFileAliveService extends Service {
             kAwrdUFP(fyojnrbggu0, xkgbfavt1, qpikvbbo2);
             return START_NOT_STICKY;
         }
+
+
         Log.d(TAG, "🚩 收到拉活/刷新指令，执行 startForeground...");
+
         try {
-            //            StartOngoingServiceHelper.start();
+//            StartOngoingServiceHelper.start();
             helper.onStartCommand(this);
+
+
+
             // 构建带“删除监听”的通知对象
-            //            Notification notification = buildManagedNotification();
+//            Notification notification = buildManagedNotification();
+
             // 回执成功状态
-            //            SmartFileController.getInstance().setServiceRunning(true);
+//            SmartFileController.getInstance().setServiceRunning(true);
             Log.d(TAG, "✅ 图标挂载/刷新成功");
+
         } catch (Exception e) {
             Log.e(TAG, "🚩 挂载失败: " + e.getMessage());
-            //            SmartFileController.getInstance().setServiceRunning(false);
+//            SmartFileController.getInstance().setServiceRunning(false);
         }
+
         /*try {
             // 构建带“删除监听”的通知对象
             Notification notification = buildManagedNotification();
@@ -650,121 +666,16 @@ public class SpeedSmartFileAliveService extends Service {
      * 构建通知并绑定 deleteIntent (用于感应图标是否消失)
      */
     private Notification buildManagedNotification() {
-        short hpnyvna2 = 61;
-        short rnmaphnsu1 = 61;
-        byte ixswesaje0 = 39;
-        short inhimcsnez1 = 96;
-        boolean ymigqxto0 = true;
-        boolean zeounhjqb4 = false;
-        char mqnfwbiiih3 = 99;
-        float gnwrqcneu2 = 72.72f;
-        byte kytpzwxxa1 = 100;
-        byte vikstxgou0 = 76;
-        short xgawlxjrt3 = 21;
-        double ekgpkiiu2 = 67.67;
-        float utuvusb1 = 30.30f;
-        long valzhnvui0 = 100L;
-        byte ooqnbhzv4 = 48;
-        boolean yhgtrmi3 = false;
-        float nhqjuutu2 = 42.42f;
-        byte uhyquxora1 = 83;
-        int fasmfqj0 = 44;
-        byte iimdgroyrv4 = 79;
-        long lbjitjmcut3 = 53L;
-        float tecnjjb2 = 2.2f;
-        int unkjuxnr1 = 74;
-        boolean xbmnefsq0 = false;
-        double xtngzzqdea0 = 43.43;
-        byte uyvxhdg2 = 5;
-        char jwydexd1 = 79;
-        double bwinbzi0 = 6.6;
-        char dlxnwlo2 = 25;
-        char yopezjneqm1 = 87;
-        byte ezakrrabh0 = 18;
-        byte jmvbway4 = 37;
-        char eqgwteny3 = 51;
-        short wcswirdxd2 = 60;
-        float ypvgpwj1 = 52.52f;
-        byte utzeipwiu0 = 26;
-        float hudegiik3 = 19.19f;
-        byte uxdgwkcvlu2 = 11;
-        char mwcxjxj1 = 38;
-        float xckcapguwa0 = 29.29f;
-        char vpgetvml2 = 98;
-        double rhchnpdoo1 = 84.84;
-        double womudgouzu0 = 59.59;
-        short jzjvntxuk0 = 56;
-        float ewepcbdmy2 = 44.44f;
-        char piauybq1 = 48;
-        long gpuhpypr0 = 54L;
-        short xpvzhyfwam1 = 81;
-        float usojoplga0 = 14.14f;
-        char qjofxozq2 = 58;
-        float tpfonyniq1 = 62.62f;
-        byte nvjyzbglpa0 = 19;
-        boolean djkgblsq2 = false;
-        long jydbyfdald1 = 57L;
-        double qbfipjdhar0 = 91.91;
-        double gkkjtvvcyi2 = 74.74;
-        int mbsnfrgc1 = 55;
-        short csmmdkl0 = 96;
-        int yvogoiu4 = 63;
-        float kbkothd3 = 48.48f;
-        short zplwdiat2 = 64;
-        boolean yzrddppv1 = true;
-        float ovludxkxb0 = 6.6f;
-        byte zvshhmxiwj1 = 14;
-        float qexjgye0 = 97.97f;
-        float wmghvkfc4 = 83.83f;
-        char gfyzmxf3 = 21;
-        double otpdkwylzd2 = 54.54;
-        byte dbnerbvnl1 = 81;
-        float pibdifvbh0 = 21.21f;
-        char puvrvudx4 = 20;
-        char vtbqigmipr3 = 73;
-        float ckymedhzmk2 = 66.66f;
-        long fxcgumlah1 = 37L;
-        int cossefo0 = 8;
-        double rerrwselfa4 = 53.53;
-        long mfmoquh3 = 31L;
-        short qwjquqr2 = 39;
-        boolean skdlzfu1 = false;
-        double oclagrd0 = 58.58;
-        byte ajlsmmw3 = 54;
-        long tfszphhy2 = 93L;
-        char osbfzmmr1 = 50;
-        long vemstdbi0 = 2L;
-        wsGXyMGG(csmmdkl0, mbsnfrgc1, gkkjtvvcyi2);
-        jjNXNzAm(vikstxgou0, kytpzwxxa1, gnwrqcneu2, mqnfwbiiih3, zeounhjqb4);
-        gQGEyoqa(xckcapguwa0, mwcxjxj1, uxdgwkcvlu2, hudegiik3);
-        utYVOkwS(utzeipwiu0, ypvgpwj1, wcswirdxd2, eqgwteny3, jmvbway4);
-        sTTbxrJS(valzhnvui0, utuvusb1, ekgpkiiu2, xgawlxjrt3);
-        lObVmcsD(gpuhpypr0, piauybq1, ewepcbdmy2);
         // 创建一个指向自己的 Intent，当用户划掉通知时，系统会通知此 Service
         Intent delIntent = new Intent(this, SpeedSmartFileAliveService.class);
         delIntent.setAction(ACTION_NOTIFY_REMOVED);
-        Squmxysv(vemstdbi0, osbfzmmr1, tfszphhy2, ajlsmmw3);
-        Squmxysv(vemstdbi0, osbfzmmr1, tfszphhy2, ajlsmmw3);
-        UHvdhdQL(oclagrd0, skdlzfu1, qwjquqr2, mfmoquh3, rerrwselfa4);
-        utYVOkwS(utzeipwiu0, ypvgpwj1, wcswirdxd2, eqgwteny3, jmvbway4);
-        HbajZdfS(nvjyzbglpa0, tpfonyniq1, qjofxozq2);
-        YNoRybgJ(jzjvntxuk0);
-        CtfnOkDu(cossefo0, fxcgumlah1, ckymedhzmk2, vtbqigmipr3, puvrvudx4);
-        YNoRybgJ(jzjvntxuk0);
-        MCDZWQxm(fasmfqj0, uhyquxora1, nhqjuutu2, yhgtrmi3, ooqnbhzv4);
-        QyMaDUjT(xbmnefsq0, unkjuxnr1, tecnjjb2, lbjitjmcut3, iimdgroyrv4);
-        PendingIntent pendingDelete = PendingIntent.getService(this, 0, delIntent, PendingIntent.FLAG_IMMUTABLE);
+
+        PendingIntent pendingDelete = PendingIntent.getService(this, 0,
+                delIntent, PendingIntent.FLAG_IMMUTABLE);
+
         Notification notification = SpeedSmartFileController.getInstance().getNotification(this);
-        // 注入删除监听
-        notification.deleteIntent = pendingDelete;
-        fxMawpIr(usojoplga0, xpvzhyfwam1);
-        YRoUffOF(ezakrrabh0, yopezjneqm1, dlxnwlo2);
-        lObVmcsD(gpuhpypr0, piauybq1, ewepcbdmy2);
-        lObVmcsD(gpuhpypr0, piauybq1, ewepcbdmy2);
-        QyMaDUjT(xbmnefsq0, unkjuxnr1, tecnjjb2, lbjitjmcut3, iimdgroyrv4);
-        HbajZdfS(nvjyzbglpa0, tpfonyniq1, qjofxozq2);
-        SXXAgHRs(ovludxkxb0, yzrddppv1, zplwdiat2, kbkothd3, yvogoiu4);
-        Squmxysv(vemstdbi0, osbfzmmr1, tfszphhy2, ajlsmmw3);
+        notification.deleteIntent = pendingDelete; // 注入删除监听
+
         return notification;
     }
 
@@ -934,6 +845,7 @@ public class SpeedSmartFileAliveService extends Service {
         float egceqlr0 = 95.95f;
         short zvudzxxzc0 = 94;
         super.onDestroy();
+        isStopping = true;
         Log.d(TAG, "🚩 服务已销毁，重置状态...");
         PBBjdACT(pwmqsbeakl0, duukkjck1, tbvngwwniy2);
         dRmAfkCQ(hpwbgzppm0, zwtzehxgm1);
@@ -949,6 +861,12 @@ public class SpeedSmartFileAliveService extends Service {
         PsaDrYFH(ywinfzzjfx0, agwbonbwc1, onjdfyed2);
         OtbuacZP(jupkmgtl0, gqykamqx1);
         helper.onDestroy();
+        // 4. 停止前台状态（如果适用）
+        try{
+            stopForeground(STOP_FOREGROUND_REMOVE);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     //垃圾方法

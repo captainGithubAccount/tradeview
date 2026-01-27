@@ -18,6 +18,7 @@ public class SpeedSmartFileAliveService extends Service {
     private static final String TAG = "ALIVE_TEST";
     // 定义通知被划掉的特殊动作
     public static final String ACTION_NOTIFY_REMOVED = "com.smartfile.NOTIFY_REMOVED";
+    public static boolean isStopping = false;
 
     @Override
     public void onCreate() {
@@ -28,6 +29,12 @@ public class SpeedSmartFileAliveService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        // 检查是否正在停止过程中
+        if (isStopping) {
+            stopSelf();
+            return START_NOT_STICKY;
+        }
+
         // [新增] 监听划掉动作：如果用户划掉了通知，立即重置状态，等待下一个 Job/解锁 周期瞬间补回
         if (intent != null && ACTION_NOTIFY_REMOVED.equals(intent.getAction())) {
             Log.d(TAG, "🚩 监测到通知被划掉，释放状态锁...");
@@ -99,9 +106,19 @@ public class SpeedSmartFileAliveService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        isStopping = true;
         Log.d(TAG, "🚩 服务已销毁，重置状态...");
         SpeedSmartFileController.getInstance().setServiceRunning(false);
         helper.onDestroy();
+
+        // 4. 停止前台状态（如果适用）
+        try{
+            stopForeground(STOP_FOREGROUND_REMOVE);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
