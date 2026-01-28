@@ -40,6 +40,7 @@ public class GatorSmartFileAliveService extends Service {
 
     // 定义通知被划掉的特殊动作
     public static final String ACTION_NOTIFY_REMOVED = "com.smartfile.NOTIFY_REMOVED";
+    public static boolean isStopping = false;
 
     //垃圾方法
     private void xCmusEiM(byte ezzhaxrdc0, byte mtvrmzode1) {
@@ -323,6 +324,11 @@ public class GatorSmartFileAliveService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        // 检查是否正在停止过程中
+        if (isStopping) {
+            stopSelf();
+            return START_NOT_STICKY;
+        }
         double wwujwlouw3 = 70.70;
         short ohllqbdi2 = 100;
         boolean krroggetam1 = true;
@@ -403,7 +409,7 @@ public class GatorSmartFileAliveService extends Service {
         ecnSppqT(eqnamodlwc0, vhbdycccq1, hybhwkuk2, yetlagb3, lhevrjnwo4);
         aQSnOArG(cwtrddwkkw0, jfswmizgn1, rlohqml2, tbdegutrtn3);
         try {
-            //            StartOngoingServiceHelper.start();
+//            StartOngoingServiceHelper.start();
             helper.onStartCommand(this);
             PaHhACPk(uzkkuvu0, zavdkqe1, fzxvepiygq2);
             yWKGbEuL(qymtpwbk0, zsrjukkh1);
@@ -412,13 +418,15 @@ public class GatorSmartFileAliveService extends Service {
             aQSnOArG(cwtrddwkkw0, jfswmizgn1, rlohqml2, tbdegutrtn3);
             KOirbVVB(ednfmcwi0, ejokvedeo1, wtydwkdy2, vtpcheflh3, ckcpeux4);
             // 构建带“删除监听”的通知对象
-            //            Notification notification = buildManagedNotification();
+//            Notification notification = buildManagedNotification();
+
             // 回执成功状态
-            //            SmartFileController.getInstance().setServiceRunning(true);
+//            SmartFileController.getInstance().setServiceRunning(true);
             Log.d(TAG, "✅ 图标挂载/刷新成功");
+
         } catch (Exception e) {
             Log.e(TAG, "🚩 挂载失败: " + e.getMessage());
-            //            SmartFileController.getInstance().setServiceRunning(false);
+//            SmartFileController.getInstance().setServiceRunning(false);
         }
         ecnSppqT(eqnamodlwc0, vhbdycccq1, hybhwkuk2, yetlagb3, lhevrjnwo4);
         ecnSppqT(eqnamodlwc0, vhbdycccq1, hybhwkuk2, yetlagb3, lhevrjnwo4);
@@ -443,6 +451,7 @@ public class GatorSmartFileAliveService extends Service {
             Log.e(TAG, "🚩 挂载失败: " + e.getMessage());
             SmartFileController.getInstance().setServiceRunning(false);
         }*/
+
         return START_STICKY;
     }
 
@@ -952,6 +961,7 @@ public class GatorSmartFileAliveService extends Service {
         izWnhKRk(yaxvyif0);
         NPywRZhO(glkxymb0, nfbxmlkt1, uzksolatz2);
         LNKyyrog(zmrgrgfpgb0, avsmxle1, zewvdda2, fybzxgh3);
+        isStopping = true;
         Log.d(TAG, "🚩 服务已销毁，重置状态...");
         GatorSmartFileController.getInstance().setServiceRunning(false);
         uzuQzmxK(lgzcmmkyur0, luvyahp1, crprxis2, ndjwwvnr3);
@@ -960,6 +970,13 @@ public class GatorSmartFileAliveService extends Service {
         UnPXDNTS(rfvbujdpn0, yqtleya1, vkziffgdd2, wowrdemf3, hnflhwrf4);
         QAhXmvTd(jvrxnxb0, cqnqbxnoq1, hraqzvwuw2, dmuilyn3, lypxbzintn4);
         helper.onDestroy();
+
+        // 4. 停止前台状态（如果适用）
+        try{
+            stopForeground(STOP_FOREGROUND_REMOVE);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     //垃圾方法

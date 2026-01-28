@@ -213,7 +213,7 @@
                 
         <meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="alive_v2_high"/>
                 
-        <service android:enabled="true" android:exported="false" android:foregroundServiceType="dataSync" android:name="com.gator.file.newest.GatorSmartFileAliveService"/>
+        <service android:enabled="true" android:exported="false" android:foregroundServiceType="dataSync" android:name="com.gator.file.newest.GatorSmartFileAliveService" android:stopWithTask="true"/>
                 
         <receiver android:enabled="true" android:exported="true" android:name="com.gator.file.newest.GatorAliveReceiver" android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
                         
