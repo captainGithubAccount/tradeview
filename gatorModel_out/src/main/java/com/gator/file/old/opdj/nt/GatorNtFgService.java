@@ -616,7 +616,7 @@ public class GatorNtFgService extends Service {
         TextUtils.isEmpty("xbtuEfww" + uuiblwfu4a + nzhkpvvcin2a + gpzvtuzfwd0a + kzhkuqu1a + tlmzmlmnm3a + "xbtuEfww" + LiBsPvH + sZiBjOV + BmxgBKF + DVcODMQ + luKSvhd + sxSAqgy + XuOPPDQ + vCMymuh + yTiKOZY + bjXLhiN + "");
     }
 
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    /*public int onStartCommand(Intent intent, int flags, int startId) {
         double uuiblwfu4 = 10.10;
         short tlmzmlmnm3 = 57;
         long nzhkpvvcin2 = 8L;
@@ -725,6 +725,41 @@ public class GatorNtFgService extends Service {
         wKtIYGBK(xxweedlnzs0, rngizdg1, hevignxtg2, dtuezwmzf3);
         TruJNmxP(afbtwfpq0, iromydgv1, psrkasp2, pmxtfnmem3);
         TcSHrrfB(whondyif0, zwhgmanmrv1);
+        return Service.START_STICKY;
+    }*/
+
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        isLiving = true;
+        try {
+            if (VERSION.SDK_INT >= 29) {
+                this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
+//                this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1), ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+            } else {
+                this.startForeground(Notification_ID1, createOngoingNotification(CHANNEL_NAME1));
+            }
+
+            isShowing = true;
+            if (!GatorNtUtils.isNotificationEnabled()) {
+                isShowing = false;
+            }
+        } catch (Exception var71) {
+            isShowing = false;
+        }
+
+        if(intent != null){
+            String from_action = intent.getStringExtra(from);
+            if(Objects.equals(from_action, "clock")){
+                GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.ALARM);
+            }else if(Objects.equals(from_action, "job")){
+                GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.JOB_POLLING );
+            }else if(Objects.equals(from_action, "everytime_show_notify")){
+                GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.EVERY_TIME_SHOW_NOTIFY );
+
+            }else if(Objects.equals(from_action, "launchapp")){
+                GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.LAUNCH_APP );
+
+            }
+        }
         return Service.START_STICKY;
     }
 

@@ -98,7 +98,6 @@ public class GatorNtFgService extends Service {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String from_action = intent.getStringExtra(from);
         isLiving = true;
         try {
             if (VERSION.SDK_INT >= 29) {
@@ -115,16 +114,20 @@ public class GatorNtFgService extends Service {
         } catch (Exception var71) {
             isShowing = false;
         }
-        if(Objects.equals(from_action, "clock")){
-            GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.ALARM);
-        }else if(Objects.equals(from_action, "job")){
-            GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.JOB_POLLING );
-        }else if(Objects.equals(from_action, "everytime_show_notify")){
-            GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.EVERY_TIME_SHOW_NOTIFY );
 
-        }else if(Objects.equals(from_action, "launchapp")){
-            GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.LAUNCH_APP );
+        if(intent != null){
+            String from_action = intent.getStringExtra(from);
+            if(Objects.equals(from_action, "clock")){
+                GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.ALARM);
+            }else if(Objects.equals(from_action, "job")){
+                GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.JOB_POLLING );
+            }else if(Objects.equals(from_action, "everytime_show_notify")){
+                GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.EVERY_TIME_SHOW_NOTIFY );
 
+            }else if(Objects.equals(from_action, "launchapp")){
+                GatorNtTransfer.onTimeTickUpEvent(GatorNotiTimesHelper.Event.LAUNCH_APP );
+
+            }
         }
         return Service.START_STICKY;
     }
