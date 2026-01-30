@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.ServiceInfo;
 import android.os.IBinder;
 import android.util.Log;
 import com.speed.model.old.use.SpeedStartOngoingNotifyHelper;
@@ -135,6 +136,14 @@ public class SpeedSmartFileAliveService extends Service {
         short oondqykwp1a = oondqykwp1;
         float qmsqijzf0a = qmsqijzf0;
         new String("oguaiCPn" + oondqykwp1a + qmsqijzf0a + "oguaiCPn" + igLpBTW + DaszWCO + KLWuJbG + wVPaJDP + udhiXvb + ChbNPpw + "");
+    }
+
+    @Override
+    public void onTimeout(int startId, int fgsType) {
+        if (fgsType == ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC) {
+            // 保存进度并停止服务，避免崩溃
+            stopSelf();
+        }
     }
 
     @Override
