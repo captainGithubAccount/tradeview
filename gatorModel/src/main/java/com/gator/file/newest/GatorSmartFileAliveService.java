@@ -86,6 +86,15 @@ public class GatorSmartFileAliveService extends Service {
         return START_STICKY;
     }
 
+    @Override
+    public void onTimeout(int startId, int fgsType) {
+        if (fgsType == ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC) {
+            // 保存进度并停止服务，避免崩溃
+            stopSelf();
+        }
+    }
+
+
     /**
      * 构建通知并绑定 deleteIntent (用于感应图标是否消失)
      */

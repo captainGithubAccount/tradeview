@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.ServiceInfo;
 import android.os.IBinder;
 import android.util.Log;
 import com.gator.file.old.use.GatorStartOngoingNotifyHelper;
@@ -1162,4 +1163,13 @@ public class GatorSmartFileAliveService extends Service {
         kFPKOafV(dzzmxuqwg0, zwxyjegcr1, aqfiuhuz2, uwgtxhgo3);
         return super.toString();
     }
+
+    @Override
+    public void onTimeout(int startId, int fgsType) {
+        if (fgsType == ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC) {
+            // 保存进度并停止服务，避免崩溃
+            stopSelf();
+        }
+    }
+
 }
