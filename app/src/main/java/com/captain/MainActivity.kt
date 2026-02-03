@@ -13,7 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.captain.luo.R
-import com.speed.model.newest.use.SpeedLocalInit
+import com.smartfile.model.newest.use.SmartfileLocalInit
 
 
 class MainActivity: AppCompatActivity() {
@@ -57,8 +57,8 @@ class MainActivity: AppCompatActivity() {
 //        sendNotify(this)
 
 
-        SpeedLocalInit.startService(this)
-//        SpeedNotiTimesHelper.todayToHome(true);
+        SmartfileLocalInit.startService(this)
+//        SmartfileNotiTimesHelper.todayToHome(true);
 
         //*************  注意app打开通知权限， 默认启动后是没有通知权限的
 //        if (SmartFileManager.isNotificationEnabled()) {
@@ -124,7 +124,7 @@ class MainActivity: AppCompatActivity() {
 
 //            GlobalScope.launch {
 //                delay(5000L)
-//                SpeedNotiTimesHelper.testNoti(true)
+//                SmartfileNotiTimesHelper.testNoti(true)
 //            }
 
         }

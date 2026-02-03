@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- todo 修改为 SmartfileLocalInit.SMARTFILE_ACCOUNT_TYPE (com.smartfile.model.provider) -->
+<sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
+    android:contentAuthority="com.smartfile.model.provider"
+    android:accountType="com.smartfile.model.auth"
+    android:userVisible="true"
+    android:supportsUploading="false"
+    android:allowParallelSyncs="false"
+    android:isAlwaysSyncable="true" />

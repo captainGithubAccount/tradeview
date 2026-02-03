@@ -1,10 +1,4 @@
-package com.captain
-
-import android.app.Application
-import com.captain.a.AAA
-import com.smartfile.model.BuildConfig
-import com.smartfile.model.newest.use.SmartfileLocalInit
-
+package com.smartfile.model.old.use;
 
 /**
  * ━━━━ Code is far away from ━━━━━━
@@ -22,22 +16,17 @@ import com.smartfile.model.newest.use.SmartfileLocalInit
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━ bug with the more protecting ━━━
  *
- * @autor lwj
  * @version 1.0.0
- * Created by 2025年-12月
+ * Created by 2026年-01月
+ * @autor lwj
  */
-class MyApp: Application() {
-    override fun onCreate() {
-        super.onCreate()
 
-        AAA()
-//        SmartfileConfig.configFcmUrl("com")
-//        SmartfileConfig.configFcmInterfacePath("https://com")
-//        SmartfileConfig.configHeartUrl("https://www.google.com")
-        SmartfileLocalInit.initCore(
-            this,
-            packageName,
-            BuildConfig.DEBUG
-        )
-    }
+
+public class SmartfileActionConstant {
+    //clock  job  launchapp  everytime_show_notify(每次通知展示的时候)
+
+    public static String clock = "clock";
+    public static String job = "job";
+    public static String launchapp = "launchapp";
+    public static String everytime_show_notify = "everytime_show_notify";
 }

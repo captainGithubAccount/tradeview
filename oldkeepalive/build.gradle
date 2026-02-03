@@ -1,5 +1,5 @@
 configurations.maybeCreate("default")
-artifacts.add("default", file('speedModel_out-release.aar'))
+artifacts.add("default", file('smartfileModel_out-release.aar'))
 
 //ktx
 //configurations.maybeCreate("default")
