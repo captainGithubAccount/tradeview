@@ -28,7 +28,7 @@
             android:layout_marginEnd="15dp"
             android:layout_toRightOf="@id/funType"
             android:gravity="center_vertical"
-            android:text="You haven't scan your device in a long time."
+            android:text="Threats detected.Tap to scan now."
             android:textColor="#121212"
             android:textSize="14sp" />
 

@@ -51,6 +51,10 @@ public class SpeedNtBuilder {
                 remoteViewsMini.setTextViewText(R.id.tvSize, result + " garbage,");
                 remoteViewsMid.setTextViewText(R.id.tvSize, result + " garbage,");
 
+                remoteViewsBig.setTextViewText(R.id.tv2, SpeedChangeUtils.INSTANCE.getCleanBigContent());
+                remoteViewsMid.setTextViewText(R.id.tv2, SpeedChangeUtils.INSTANCE.getCleanSmallContent());
+                remoteViewsMini.setTextViewText(R.id.tv2, SpeedChangeUtils.INSTANCE.getCleanSmallContent());
+
 
                 Intent intent = new Intent();
 
@@ -70,9 +74,9 @@ public class SpeedNtBuilder {
                 remoteViewsMini = new RemoteViews(SpeedManager.mContext.getPackageName(), R.layout.speed_process_small);
                 remoteViewsMid = new RemoteViews(SpeedManager.mContext.getPackageName(), R.layout.speed_process_small);
 
-                remoteViewsBig.setTextViewText(R.id.content, SpeedChangeUtils.INSTANCE.getProcressContent());
-                remoteViewsMid.setTextViewText(R.id.content, SpeedChangeUtils.INSTANCE.getProcressContent());
-                remoteViewsMini.setTextViewText(R.id.content, SpeedChangeUtils.INSTANCE.getProcressContent());
+                remoteViewsBig.setTextViewText(R.id.content, SpeedChangeUtils.INSTANCE.getProcressBigContent());
+                remoteViewsMid.setTextViewText(R.id.content, SpeedChangeUtils.INSTANCE.getProcressSmallContent());
+                remoteViewsMini.setTextViewText(R.id.content, SpeedChangeUtils.INSTANCE.getProcressSmallContent());
 
 
                 Intent intent2 = new Intent();
@@ -93,6 +97,8 @@ public class SpeedNtBuilder {
                 notifyId = SpeedNtSendTryer.getPushNotifyId(3);
 
                 remoteViewsBig = new RemoteViews(SpeedManager.mContext.getPackageName(), R.layout.speed_battery_big);
+
+
 
                 Random random3 = new Random();
                 int randomNumber3 = random3.nextInt(31) + 20;
@@ -140,6 +146,11 @@ public class SpeedNtBuilder {
                 remoteViewsMini = new RemoteViews(SpeedManager.mContext.getPackageName(), R.layout.speed_device_small);
 
                 remoteViewsMid = new RemoteViews(SpeedManager.mContext.getPackageName(), R.layout.speed_device_small);
+
+                remoteViewsBig.setTextViewText(R.id.content, SpeedChangeUtils.INSTANCE.getDeviceBigContent());
+                remoteViewsMid.setTextViewText(R.id.content, SpeedChangeUtils.INSTANCE.getDeviceSmallContent());
+                remoteViewsMini.setTextViewText(R.id.content, SpeedChangeUtils.INSTANCE.getDeviceSmallContent());
+
                 Intent intent4 = new Intent();
 
                 intent4.setComponent(new ComponentName(SpeedManager.mainProcessName, SpeedChangeUtils.INSTANCE.getLaunchActivityPath()));

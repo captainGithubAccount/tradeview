@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="storage_almost_full"><font size="20">🧹</font> Storage Almost Full</string>
+    <string name="security_risk_alert"><font size="20">📱</font> Security Risk Alert</string>
+    <string name="cool_down_phone"><font size="20">🔋</font> Cool Down Phone</string>
+    <string name="severe_lag_detected"><font size="20">⚠️</font> Severe Lag Detected!</string>
+</resources>

@@ -24,7 +24,7 @@
             android:layout_marginEnd="10dp"
             android:layout_toRightOf="@id/funType"
             android:gravity="center_vertical"
-            android:text="You haven't scan your device in a long time."
+            android:text="@string/security_risk_alert"
             android:textColor="#121212"
             android:textSize="12sp" />
     </RelativeLayout>

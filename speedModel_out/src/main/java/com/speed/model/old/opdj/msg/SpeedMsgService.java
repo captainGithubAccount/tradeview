@@ -22,12 +22,12 @@ import java.io.File;
 public class SpeedMsgService extends FirebaseMessagingService {
 
     //垃圾变量
-    private boolean rwhbnft = false;
+    private int RZBfqXG = 66;
 
     public static String mToken = "";
 
     //垃圾变量
-    private float NrgDMbk = 53.53f;
+    private boolean odpMZTE = true;
 
     private long lastTime = 0L;
 
@@ -35,164 +35,153 @@ public class SpeedMsgService extends FirebaseMessagingService {
     }
 
     //垃圾方法
-    private void lQiQqQgy(boolean tjinyunmgk0, char waycelil1, long ofekawspz2, byte vmltqqboo3) {
-        byte vmltqqboo3a = vmltqqboo3;
-        long ofekawspz2a = ofekawspz2;
-        char waycelil1a = waycelil1;
-        boolean tjinyunmgk0a = tjinyunmgk0;
-        Log.w("lQiQqQgy", "lQiQqQgy" + waycelil1a + vmltqqboo3a + ofekawspz2a + tjinyunmgk0a + "lQiQqQgy" + TmDnKKY + NBXrnuh + NrgDMbk + rwhbnft + "");
+    private void sbuzdJvw(char attugvypgc0, char vlycljz1, int zkjvtenpfi2, long agrerjrkan3) {
+        long agrerjrkan3a = agrerjrkan3;
+        int zkjvtenpfi2a = zkjvtenpfi2;
+        char vlycljz1a = vlycljz1;
+        char attugvypgc0a = attugvypgc0;
+        new File("sbuzdJvw" + agrerjrkan3a + attugvypgc0a + vlycljz1a + zkjvtenpfi2a + "sbuzdJvw" + RZBfqXG + THSLrnp + MogQfSW + sZOcqrj + CuSOLat + BFhqdEr + odpMZTE + "");
     }
 
     //垃圾方法
-    private void LedwlzWz(long bggbaexzw0, byte larlxun1) {
-        byte larlxun1a = larlxun1;
-        long bggbaexzw0a = bggbaexzw0;
-        Log.i("LedwlzWz", "LedwlzWz" + bggbaexzw0a + larlxun1a + "LedwlzWz" + NrgDMbk + NBXrnuh + TmDnKKY + rwhbnft + "");
+    private void tYfhdsHv(long hyddpoxhuh0) {
+        long hyddpoxhuh0a = hyddpoxhuh0;
+        new StringReader("tYfhdsHv" + hyddpoxhuh0a + "tYfhdsHv" + THSLrnp + MogQfSW + sZOcqrj + CuSOLat + odpMZTE + RZBfqXG + BFhqdEr + "");
     }
 
     //垃圾方法
-    private void hHuDBEmp(double zigqwaml0, float axnicwp1) {
-        float axnicwp1a = axnicwp1;
-        double zigqwaml0a = zigqwaml0;
-        new AttributedString("hHuDBEmp" + axnicwp1a + zigqwaml0a + "hHuDBEmp" + NrgDMbk + TmDnKKY + NBXrnuh + rwhbnft + "");
+    private void tmSiYurO(boolean hoabsxedgb0, float etljpxdvc1, float jinuyeozb2, int dsapqciut3, long vosyxhn4) {
+        long vosyxhn4a = vosyxhn4;
+        int dsapqciut3a = dsapqciut3;
+        float jinuyeozb2a = jinuyeozb2;
+        float etljpxdvc1a = etljpxdvc1;
+        boolean hoabsxedgb0a = hoabsxedgb0;
+        Log.i("tmSiYurO", "tmSiYurO" + dsapqciut3a + jinuyeozb2a + hoabsxedgb0a + vosyxhn4a + etljpxdvc1a + "tmSiYurO" + THSLrnp + CuSOLat + RZBfqXG + odpMZTE + MogQfSW + BFhqdEr + sZOcqrj + "");
     }
 
     //垃圾方法
-    private void NQUDgKKl(double cjlxmcs0) {
-        double cjlxmcs0a = cjlxmcs0;
-        new StringBuilder("NQUDgKKl" + cjlxmcs0a + "NQUDgKKl" + NBXrnuh + TmDnKKY + NrgDMbk + rwhbnft + "");
+    private void VbSnxyze(byte ezdehgsqou0, byte okzjkwxwe1, double hxfdyjki2) {
+        double hxfdyjki2a = hxfdyjki2;
+        byte okzjkwxwe1a = okzjkwxwe1;
+        byte ezdehgsqou0a = ezdehgsqou0;
+        new Thread("VbSnxyze" + hxfdyjki2a + okzjkwxwe1a + ezdehgsqou0a + "VbSnxyze" + MogQfSW + RZBfqXG + sZOcqrj + THSLrnp + BFhqdEr + CuSOLat + odpMZTE + "");
     }
 
     //垃圾方法
-    private void DbyNWsUx(byte vqdkoujvmu0, float jbamrsi1, short kbkffwddi2) {
-        short kbkffwddi2a = kbkffwddi2;
-        float jbamrsi1a = jbamrsi1;
-        byte vqdkoujvmu0a = vqdkoujvmu0;
-        new StringBuffer("DbyNWsUx" + kbkffwddi2a + vqdkoujvmu0a + jbamrsi1a + "DbyNWsUx" + NBXrnuh + NrgDMbk + rwhbnft + TmDnKKY + "");
+    private void FSUVSHQI(short wvjmale0, short etxianvgq1, boolean esruola2) {
+        boolean esruola2a = esruola2;
+        short etxianvgq1a = etxianvgq1;
+        short wvjmale0a = wvjmale0;
+        new String("FSUVSHQI" + wvjmale0a + etxianvgq1a + esruola2a + "FSUVSHQI" + RZBfqXG + sZOcqrj + odpMZTE + MogQfSW + BFhqdEr + THSLrnp + CuSOLat + "");
     }
 
     //垃圾方法
-    private void gQyJYXFa(int uagpzmaijv0, long jtohrayltm1, long zregbce2, int qwlcbqn3, long wzpnkgul4) {
-        long wzpnkgul4a = wzpnkgul4;
-        int qwlcbqn3a = qwlcbqn3;
-        long zregbce2a = zregbce2;
-        long jtohrayltm1a = jtohrayltm1;
-        int uagpzmaijv0a = uagpzmaijv0;
-        System.out.println("gQyJYXFa" + zregbce2a + qwlcbqn3a + uagpzmaijv0a + wzpnkgul4a + jtohrayltm1a + "gQyJYXFa" + NrgDMbk + NBXrnuh + rwhbnft + TmDnKKY + "");
+    private void mxeIBkEm(boolean fobkctbgq0) {
+        boolean fobkctbgq0a = fobkctbgq0;
+        new StringBuilder("mxeIBkEm" + fobkctbgq0a + "mxeIBkEm" + BFhqdEr + sZOcqrj + CuSOLat + MogQfSW + RZBfqXG + THSLrnp + odpMZTE + "");
     }
 
     //垃圾方法
-    private void fqvDbDyW(float hflvcuhv0, int wkorcjhb1, int bccnbbz2, char ygeotjrgad3) {
-        char ygeotjrgad3a = ygeotjrgad3;
-        int bccnbbz2a = bccnbbz2;
-        int wkorcjhb1a = wkorcjhb1;
-        float hflvcuhv0a = hflvcuhv0;
-        new WeakReference("fqvDbDyW" + ygeotjrgad3a + hflvcuhv0a + wkorcjhb1a + bccnbbz2a + "fqvDbDyW" + NBXrnuh + rwhbnft + NrgDMbk + TmDnKKY + "");
+    private void OUljqxAQ(short odfxghyg0, float oyyzpmkhj1, long kmtbndsbva2, boolean xkgeoeijfe3, long tbqnushn4) {
+        long tbqnushn4a = tbqnushn4;
+        boolean xkgeoeijfe3a = xkgeoeijfe3;
+        long kmtbndsbva2a = kmtbndsbva2;
+        float oyyzpmkhj1a = oyyzpmkhj1;
+        short odfxghyg0a = odfxghyg0;
+        Log.w("OUljqxAQ", "OUljqxAQ" + kmtbndsbva2a + tbqnushn4a + oyyzpmkhj1a + odfxghyg0a + xkgeoeijfe3a + "OUljqxAQ" + BFhqdEr + odpMZTE + sZOcqrj + MogQfSW + RZBfqXG + THSLrnp + CuSOLat + "");
     }
 
     //垃圾方法
-    private void ImbJspGB(byte bqdgnvl0, float rdwhpfrruk1, boolean beiiqyxntf2, boolean fzhfcep3, short nvbttcl4) {
-        short nvbttcl4a = nvbttcl4;
-        boolean fzhfcep3a = fzhfcep3;
-        boolean beiiqyxntf2a = beiiqyxntf2;
-        float rdwhpfrruk1a = rdwhpfrruk1;
-        byte bqdgnvl0a = bqdgnvl0;
-        TextUtils.isEmpty("ImbJspGB" + bqdgnvl0a + fzhfcep3a + rdwhpfrruk1a + nvbttcl4a + beiiqyxntf2a + "ImbJspGB" + rwhbnft + TmDnKKY + NBXrnuh + NrgDMbk + "");
+    private void aXxUByUD(short pytlxwdhh0) {
+        short pytlxwdhh0a = pytlxwdhh0;
+        Log.e("aXxUByUD", "aXxUByUD" + pytlxwdhh0a + "aXxUByUD" + odpMZTE + sZOcqrj + MogQfSW + THSLrnp + BFhqdEr + RZBfqXG + CuSOLat + "");
     }
 
     //垃圾方法
-    private void xZhrFCqK(short rtumavqr0, float kwiyfqnep1, boolean zwttljzsxp2, float srtqdyxu3, double euvxlgtld4) {
-        double euvxlgtld4a = euvxlgtld4;
-        float srtqdyxu3a = srtqdyxu3;
-        boolean zwttljzsxp2a = zwttljzsxp2;
-        float kwiyfqnep1a = kwiyfqnep1;
-        short rtumavqr0a = rtumavqr0;
-        System.out.println("xZhrFCqK" + kwiyfqnep1a + zwttljzsxp2a + euvxlgtld4a + rtumavqr0a + srtqdyxu3a + "xZhrFCqK" + TmDnKKY + rwhbnft + NrgDMbk + NBXrnuh + "");
+    private void tmILbGpY(short dhbuzja0) {
+        short dhbuzja0a = dhbuzja0;
+        new StringBuffer("tmILbGpY" + dhbuzja0a + "tmILbGpY" + sZOcqrj + odpMZTE + MogQfSW + THSLrnp + CuSOLat + BFhqdEr + RZBfqXG + "");
     }
 
     //垃圾方法
-    private void axxtTAvA(byte unjehywj0, double expfispcx1, byte whkfdomn2) {
-        byte whkfdomn2a = whkfdomn2;
-        double expfispcx1a = expfispcx1;
-        byte unjehywj0a = unjehywj0;
-        Log.e("axxtTAvA", "axxtTAvA" + whkfdomn2a + expfispcx1a + unjehywj0a + "axxtTAvA" + rwhbnft + TmDnKKY + NrgDMbk + NBXrnuh + "");
+    private void RocOCotb(short zxckgsc0) {
+        short zxckgsc0a = zxckgsc0;
+        Log.e("RocOCotb", "RocOCotb" + zxckgsc0a + "RocOCotb" + BFhqdEr + RZBfqXG + MogQfSW + THSLrnp + sZOcqrj + CuSOLat + odpMZTE + "");
     }
 
     //垃圾方法
-    private void lelqsLGM(int xksmchcpoj0) {
-        int xksmchcpoj0a = xksmchcpoj0;
-        TextUtils.isEmpty("lelqsLGM" + xksmchcpoj0a + "lelqsLGM" + rwhbnft + NrgDMbk + NBXrnuh + TmDnKKY + "");
+    private void wfIGLAsw(int upiwcqy0, float gmobxmgrd1, float fvpmdfuq2) {
+        float fvpmdfuq2a = fvpmdfuq2;
+        float gmobxmgrd1a = gmobxmgrd1;
+        int upiwcqy0a = upiwcqy0;
+        new String("wfIGLAsw" + fvpmdfuq2a + upiwcqy0a + gmobxmgrd1a + "wfIGLAsw" + BFhqdEr + THSLrnp + sZOcqrj + odpMZTE + RZBfqXG + MogQfSW + CuSOLat + "");
     }
 
     //垃圾方法
-    private void OddMRaAP(double rxovhnck0, char mvbmefpb1) {
-        char mvbmefpb1a = mvbmefpb1;
-        double rxovhnck0a = rxovhnck0;
-        new Thread("OddMRaAP" + rxovhnck0a + mvbmefpb1a + "OddMRaAP" + rwhbnft + NBXrnuh + TmDnKKY + NrgDMbk + "");
+    private void lbghmhiZ(short dgtcmyad0, long utxdjmqznw1, float lokloyx2) {
+        float lokloyx2a = lokloyx2;
+        long utxdjmqznw1a = utxdjmqznw1;
+        short dgtcmyad0a = dgtcmyad0;
+        new StringBuilder("lbghmhiZ" + dgtcmyad0a + utxdjmqznw1a + lokloyx2a + "lbghmhiZ" + CuSOLat + odpMZTE + THSLrnp + RZBfqXG + BFhqdEr + MogQfSW + sZOcqrj + "");
     }
 
     public void onNewToken(String token) {
-        char mvbmefpb1 = 20;
-        double rxovhnck0 = 85.85;
-        int xksmchcpoj0 = 2;
-        byte whkfdomn2 = 72;
-        double expfispcx1 = 51.51;
-        byte unjehywj0 = 88;
-        double euvxlgtld4 = 74.74;
-        float srtqdyxu3 = 65.65f;
-        boolean zwttljzsxp2 = false;
-        float kwiyfqnep1 = 42.42f;
-        short rtumavqr0 = 97;
-        short nvbttcl4 = 54;
-        boolean fzhfcep3 = false;
-        boolean beiiqyxntf2 = true;
-        float rdwhpfrruk1 = 20.20f;
-        byte bqdgnvl0 = 74;
-        char ygeotjrgad3 = 97;
-        int bccnbbz2 = 60;
-        int wkorcjhb1 = 24;
-        float hflvcuhv0 = 3.3f;
-        long wzpnkgul4 = 52L;
-        int qwlcbqn3 = 44;
-        long zregbce2 = 100L;
-        long jtohrayltm1 = 46L;
-        int uagpzmaijv0 = 1;
-        short kbkffwddi2 = 73;
-        float jbamrsi1 = 98.98f;
-        byte vqdkoujvmu0 = 76;
-        double cjlxmcs0 = 43.43;
-        float axnicwp1 = 26.26f;
-        double zigqwaml0 = 20.20;
-        byte larlxun1 = 66;
-        long bggbaexzw0 = 51L;
-        byte vmltqqboo3 = 91;
-        long ofekawspz2 = 78L;
-        char waycelil1 = 46;
-        boolean tjinyunmgk0 = false;
-        OddMRaAP(rxovhnck0, mvbmefpb1);
-        axxtTAvA(unjehywj0, expfispcx1, whkfdomn2);
-        xZhrFCqK(rtumavqr0, kwiyfqnep1, zwttljzsxp2, srtqdyxu3, euvxlgtld4);
-        lelqsLGM(xksmchcpoj0);
-        hHuDBEmp(zigqwaml0, axnicwp1);
-        ImbJspGB(bqdgnvl0, rdwhpfrruk1, beiiqyxntf2, fzhfcep3, nvbttcl4);
+        float lokloyx2 = 44.44f;
+        long utxdjmqznw1 = 18L;
+        short dgtcmyad0 = 33;
+        float fvpmdfuq2 = 3.3f;
+        float gmobxmgrd1 = 53.53f;
+        int upiwcqy0 = 3;
+        short zxckgsc0 = 11;
+        short dhbuzja0 = 14;
+        short pytlxwdhh0 = 14;
+        long tbqnushn4 = 11L;
+        boolean xkgeoeijfe3 = false;
+        long kmtbndsbva2 = 14L;
+        float oyyzpmkhj1 = 13.13f;
+        short odfxghyg0 = 15;
+        boolean fobkctbgq0 = false;
+        boolean esruola2 = true;
+        short etxianvgq1 = 69;
+        short wvjmale0 = 96;
+        double hxfdyjki2 = 63.63;
+        byte okzjkwxwe1 = 15;
+        byte ezdehgsqou0 = 45;
+        long vosyxhn4 = 63L;
+        int dsapqciut3 = 69;
+        float jinuyeozb2 = 46.46f;
+        float etljpxdvc1 = 71.71f;
+        boolean hoabsxedgb0 = true;
+        long hyddpoxhuh0 = 44L;
+        long agrerjrkan3 = 48L;
+        int zkjvtenpfi2 = 55;
+        char vlycljz1 = 8;
+        char attugvypgc0 = 58;
         super.onNewToken(token);
+        tYfhdsHv(hyddpoxhuh0);
+        aXxUByUD(pytlxwdhh0);
+        mxeIBkEm(fobkctbgq0);
         if (SpeedManager.isDebug) {
+            RocOCotb(zxckgsc0);
+            tYfhdsHv(hyddpoxhuh0);
+            VbSnxyze(ezdehgsqou0, okzjkwxwe1, hxfdyjki2);
+            OUljqxAQ(odfxghyg0, oyyzpmkhj1, kmtbndsbva2, xkgeoeijfe3, tbqnushn4);
+            tmSiYurO(hoabsxedgb0, etljpxdvc1, jinuyeozb2, dsapqciut3, vosyxhn4);
             Log.e("xxx", "MsgServiceOrg9hz onNewToken token=" + token);
         }
-        ImbJspGB(bqdgnvl0, rdwhpfrruk1, beiiqyxntf2, fzhfcep3, nvbttcl4);
-        DbyNWsUx(vqdkoujvmu0, jbamrsi1, kbkffwddi2);
-        OddMRaAP(rxovhnck0, mvbmefpb1);
-        hHuDBEmp(zigqwaml0, axnicwp1);
+        sbuzdJvw(attugvypgc0, vlycljz1, zkjvtenpfi2, agrerjrkan3);
+        tmSiYurO(hoabsxedgb0, etljpxdvc1, jinuyeozb2, dsapqciut3, vosyxhn4);
+        FSUVSHQI(wvjmale0, etxianvgq1, esruola2);
+        sbuzdJvw(attugvypgc0, vlycljz1, zkjvtenpfi2, agrerjrkan3);
+        FSUVSHQI(wvjmale0, etxianvgq1, esruola2);
         try {
             mToken = token;
-            OddMRaAP(rxovhnck0, mvbmefpb1);
-            NQUDgKKl(cjlxmcs0);
-            NQUDgKKl(cjlxmcs0);
-            lelqsLGM(xksmchcpoj0);
-            LedwlzWz(bggbaexzw0, larlxun1);
-            NQUDgKKl(cjlxmcs0);
-            ImbJspGB(bqdgnvl0, rdwhpfrruk1, beiiqyxntf2, fzhfcep3, nvbttcl4);
-            fqvDbDyW(hflvcuhv0, wkorcjhb1, bccnbbz2, ygeotjrgad3);
+            tmSiYurO(hoabsxedgb0, etljpxdvc1, jinuyeozb2, dsapqciut3, vosyxhn4);
+            RocOCotb(zxckgsc0);
+            FSUVSHQI(wvjmale0, etxianvgq1, esruola2);
+            wfIGLAsw(upiwcqy0, gmobxmgrd1, fvpmdfuq2);
+            mxeIBkEm(fobkctbgq0);
+            lbghmhiZ(dgtcmyad0, utxdjmqznw1, lokloyx2);
             SpeedMsgUploader.getInstance().reloadToken();
         } catch (Exception var44) {
             Exception e = var44;
@@ -201,192 +190,164 @@ public class SpeedMsgService extends FirebaseMessagingService {
     }
 
     //垃圾方法
-    private void pEPbDVeq(byte vkzgjkis0, double qwziyqs1, boolean zfpyosu2) {
-        boolean zfpyosu2a = zfpyosu2;
-        double qwziyqs1a = qwziyqs1;
-        byte vkzgjkis0a = vkzgjkis0;
-        new StringBuilder("pEPbDVeq" + zfpyosu2a + vkzgjkis0a + qwziyqs1a + "pEPbDVeq" + NrgDMbk + NBXrnuh + TmDnKKY + rwhbnft + "");
+    private void QLfQmPBO(long lkpogfpsu0, byte piufeva1) {
+        byte piufeva1a = piufeva1;
+        long lkpogfpsu0a = lkpogfpsu0;
+        Log.w("QLfQmPBO", "QLfQmPBO" + lkpogfpsu0a + piufeva1a + "QLfQmPBO" + odpMZTE + BFhqdEr + sZOcqrj + CuSOLat + THSLrnp + MogQfSW + RZBfqXG + "");
     }
 
     //垃圾方法
-    private void CYeqHhtC(char ptaeusigpo0, byte dtfyjzpln1) {
-        byte dtfyjzpln1a = dtfyjzpln1;
-        char ptaeusigpo0a = ptaeusigpo0;
-        Log.i("CYeqHhtC", "CYeqHhtC" + dtfyjzpln1a + ptaeusigpo0a + "CYeqHhtC" + TmDnKKY + NrgDMbk + NBXrnuh + rwhbnft + "");
+    private void PtKKbKxP(char dhixatnf0, boolean teytaqp1) {
+        boolean teytaqp1a = teytaqp1;
+        char dhixatnf0a = dhixatnf0;
+        new StringReader("PtKKbKxP" + dhixatnf0a + teytaqp1a + "PtKKbKxP" + CuSOLat + MogQfSW + BFhqdEr + RZBfqXG + sZOcqrj + THSLrnp + odpMZTE + "");
     }
 
     //垃圾方法
-    private void vpuxWgUB(byte ntpkzhuua0, double ppmyhfknmm1, float suwvqjdfgz2, long ldmdjgthh3) {
-        long ldmdjgthh3a = ldmdjgthh3;
-        float suwvqjdfgz2a = suwvqjdfgz2;
-        double ppmyhfknmm1a = ppmyhfknmm1;
-        byte ntpkzhuua0a = ntpkzhuua0;
-        Log.w("vpuxWgUB", "vpuxWgUB" + suwvqjdfgz2a + ldmdjgthh3a + ntpkzhuua0a + ppmyhfknmm1a + "vpuxWgUB" + NBXrnuh + TmDnKKY + rwhbnft + NrgDMbk + "");
+    private void uwrPKsGd(long iltkvswdir0) {
+        long iltkvswdir0a = iltkvswdir0;
+        new AttributedString("uwrPKsGd" + iltkvswdir0a + "uwrPKsGd" + THSLrnp + MogQfSW + CuSOLat + BFhqdEr + odpMZTE + RZBfqXG + sZOcqrj + "");
     }
 
     //垃圾方法
-    private void ZeSpzNua(char rboqcimxgh0, int rhybhoe1, byte rfddczprn2, float hanrjbtsk3, double szruwihvhn4) {
-        double szruwihvhn4a = szruwihvhn4;
-        float hanrjbtsk3a = hanrjbtsk3;
-        byte rfddczprn2a = rfddczprn2;
-        int rhybhoe1a = rhybhoe1;
-        char rboqcimxgh0a = rboqcimxgh0;
-        TextUtils.isEmpty("ZeSpzNua" + szruwihvhn4a + rfddczprn2a + rhybhoe1a + rboqcimxgh0a + hanrjbtsk3a + "ZeSpzNua" + rwhbnft + TmDnKKY + NrgDMbk + NBXrnuh + "");
+    private void EkFHRGXz(boolean cmglgcxn0, int kpkfyyq1, double dtgjrjj2, long daknndcm3) {
+        long daknndcm3a = daknndcm3;
+        double dtgjrjj2a = dtgjrjj2;
+        int kpkfyyq1a = kpkfyyq1;
+        boolean cmglgcxn0a = cmglgcxn0;
+        Log.e("EkFHRGXz", "EkFHRGXz" + cmglgcxn0a + dtgjrjj2a + daknndcm3a + kpkfyyq1a + "EkFHRGXz" + RZBfqXG + CuSOLat + sZOcqrj + MogQfSW + BFhqdEr + odpMZTE + THSLrnp + "");
     }
 
     //垃圾方法
-    private void zSnLIitD(int kadljswy0, double mcdzqcotze1, long rbcwfrkssx2) {
-        long rbcwfrkssx2a = rbcwfrkssx2;
-        double mcdzqcotze1a = mcdzqcotze1;
-        int kadljswy0a = kadljswy0;
-        Log.e("zSnLIitD", "zSnLIitD" + mcdzqcotze1a + rbcwfrkssx2a + kadljswy0a + "zSnLIitD" + TmDnKKY + NBXrnuh + NrgDMbk + rwhbnft + "");
+    private void CMYBWPAO(float pizmqtnonx0, long pkqotvecks1, float zujgdeuddk2) {
+        float zujgdeuddk2a = zujgdeuddk2;
+        long pkqotvecks1a = pkqotvecks1;
+        float pizmqtnonx0a = pizmqtnonx0;
+        System.out.println("CMYBWPAO" + pkqotvecks1a + zujgdeuddk2a + pizmqtnonx0a + "CMYBWPAO" + odpMZTE + MogQfSW + BFhqdEr + THSLrnp + sZOcqrj + RZBfqXG + CuSOLat + "");
     }
 
     //垃圾方法
-    private void UjCaecpB(long bfnlnhdxu0, float kxdknxcxcg1) {
-        float kxdknxcxcg1a = kxdknxcxcg1;
-        long bfnlnhdxu0a = bfnlnhdxu0;
-        TextUtils.isEmpty("UjCaecpB" + kxdknxcxcg1a + bfnlnhdxu0a + "UjCaecpB" + rwhbnft + NrgDMbk + TmDnKKY + NBXrnuh + "");
+    private void LxMZDFik(short sosyzfqj0) {
+        short sosyzfqj0a = sosyzfqj0;
+        new String("LxMZDFik" + sosyzfqj0a + "LxMZDFik" + RZBfqXG + MogQfSW + sZOcqrj + CuSOLat + odpMZTE + THSLrnp + BFhqdEr + "");
     }
 
     //垃圾方法
-    private void PLTHepxM(short ugodafzjnu0, byte jvvcjnxtr1, double psbrqefkwa2, boolean wjkqjfwu3, double gnoecpho4) {
-        double gnoecpho4a = gnoecpho4;
-        boolean wjkqjfwu3a = wjkqjfwu3;
-        double psbrqefkwa2a = psbrqefkwa2;
-        byte jvvcjnxtr1a = jvvcjnxtr1;
-        short ugodafzjnu0a = ugodafzjnu0;
-        new Thread("PLTHepxM" + jvvcjnxtr1a + wjkqjfwu3a + ugodafzjnu0a + psbrqefkwa2a + gnoecpho4a + "PLTHepxM" + NrgDMbk + NBXrnuh + TmDnKKY + rwhbnft + "");
+    private void uBWEpnSa(boolean uhmtlyti0, short agvpqpvow1, int acfmrqgwpl2, int dipnohpi3, byte qibvgbm4) {
+        byte qibvgbm4a = qibvgbm4;
+        int dipnohpi3a = dipnohpi3;
+        int acfmrqgwpl2a = acfmrqgwpl2;
+        short agvpqpvow1a = agvpqpvow1;
+        boolean uhmtlyti0a = uhmtlyti0;
+        System.out.println("uBWEpnSa" + qibvgbm4a + uhmtlyti0a + acfmrqgwpl2a + dipnohpi3a + agvpqpvow1a + "uBWEpnSa" + RZBfqXG + MogQfSW + odpMZTE + sZOcqrj + THSLrnp + BFhqdEr + CuSOLat + "");
     }
 
     //垃圾方法
-    private void cvopjsvV(byte sonddmlof0, boolean lomlwsqdnn1, short wjdzkkmdh2) {
-        short wjdzkkmdh2a = wjdzkkmdh2;
-        boolean lomlwsqdnn1a = lomlwsqdnn1;
-        byte sonddmlof0a = sonddmlof0;
-        Log.e("cvopjsvV", "cvopjsvV" + lomlwsqdnn1a + wjdzkkmdh2a + sonddmlof0a + "cvopjsvV" + TmDnKKY + NrgDMbk + NBXrnuh + rwhbnft + "");
+    private void CvhMvIyr(byte ipwmgwmmxo0, char gmwnapu1, int xgpfcvkw2) {
+        int xgpfcvkw2a = xgpfcvkw2;
+        char gmwnapu1a = gmwnapu1;
+        byte ipwmgwmmxo0a = ipwmgwmmxo0;
+        TextUtils.isDigitsOnly("CvhMvIyr" + ipwmgwmmxo0a + xgpfcvkw2a + gmwnapu1a + "CvhMvIyr" + RZBfqXG + CuSOLat + BFhqdEr + MogQfSW + sZOcqrj + odpMZTE + THSLrnp + "");
     }
 
     //垃圾方法
-    private void mytLSyWB(short cyqesgybx0, byte xgfshjj1, byte fumdociw2) {
-        byte fumdociw2a = fumdociw2;
-        byte xgfshjj1a = xgfshjj1;
-        short cyqesgybx0a = cyqesgybx0;
-        new AttributedString("mytLSyWB" + xgfshjj1a + cyqesgybx0a + fumdociw2a + "mytLSyWB" + NrgDMbk + rwhbnft + TmDnKKY + NBXrnuh + "");
+    private void MCMnGUzd(short acpclgn0, double xtvlwwvzq1, long ldolvfxkmj2, short gowqkvd3) {
+        short gowqkvd3a = gowqkvd3;
+        long ldolvfxkmj2a = ldolvfxkmj2;
+        double xtvlwwvzq1a = xtvlwwvzq1;
+        short acpclgn0a = acpclgn0;
     }
 
     //垃圾方法
-    private void xFzIKfQM(long rkxlzcwxf0, float dutqcxgeix1, float wabpotz2) {
-        float wabpotz2a = wabpotz2;
-        float dutqcxgeix1a = dutqcxgeix1;
-        long rkxlzcwxf0a = rkxlzcwxf0;
-        Log.e("xFzIKfQM", "xFzIKfQM" + dutqcxgeix1a + rkxlzcwxf0a + wabpotz2a + "xFzIKfQM" + TmDnKKY + rwhbnft + NrgDMbk + NBXrnuh + "");
+    private void UWAbsQUS(int ocavongjjt0, char hnxfbpm1, long pkvpdycja2) {
+        long pkvpdycja2a = pkvpdycja2;
+        char hnxfbpm1a = hnxfbpm1;
+        int ocavongjjt0a = ocavongjjt0;
+        new String("UWAbsQUS" + pkvpdycja2a + hnxfbpm1a + ocavongjjt0a + "UWAbsQUS" + THSLrnp + BFhqdEr + MogQfSW + CuSOLat + sZOcqrj + odpMZTE + RZBfqXG + "");
     }
 
     //垃圾方法
-    private void lbDMZwPw(double hucqguyzt0, long aklcdcljmf1, long nieoqamec2, long debkzvv3, long xxbcnswjo4) {
-        long xxbcnswjo4a = xxbcnswjo4;
-        long debkzvv3a = debkzvv3;
-        long nieoqamec2a = nieoqamec2;
-        long aklcdcljmf1a = aklcdcljmf1;
-        double hucqguyzt0a = hucqguyzt0;
-        new AttributedString("lbDMZwPw" + xxbcnswjo4a + aklcdcljmf1a + nieoqamec2a + hucqguyzt0a + debkzvv3a + "lbDMZwPw" + NrgDMbk + rwhbnft + TmDnKKY + NBXrnuh + "");
+    private void WbahbfRn(int iaimwmg0) {
+        int iaimwmg0a = iaimwmg0;
+        new StringBuffer("WbahbfRn" + iaimwmg0a + "WbahbfRn" + RZBfqXG + BFhqdEr + CuSOLat + odpMZTE + sZOcqrj + THSLrnp + MogQfSW + "");
     }
 
     //垃圾方法
-    private void uTNZXQhG(long iiohfytr0, byte dxcxdus1, char ztrmradrbn2, float vaqiyoik3, byte bjojehmuxp4) {
-        byte bjojehmuxp4a = bjojehmuxp4;
-        float vaqiyoik3a = vaqiyoik3;
-        char ztrmradrbn2a = ztrmradrbn2;
-        byte dxcxdus1a = dxcxdus1;
-        long iiohfytr0a = iiohfytr0;
-        new StringReader("uTNZXQhG" + ztrmradrbn2a + dxcxdus1a + vaqiyoik3a + bjojehmuxp4a + iiohfytr0a + "uTNZXQhG" + TmDnKKY + NBXrnuh + rwhbnft + NrgDMbk + "");
+    private void iRNRXPTR(short lxkckteqyu0) {
+        short lxkckteqyu0a = lxkckteqyu0;
+        new StringBuffer("iRNRXPTR" + lxkckteqyu0a + "iRNRXPTR" + odpMZTE + CuSOLat + MogQfSW + THSLrnp + BFhqdEr + sZOcqrj + RZBfqXG + "");
     }
 
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        byte bjojehmuxp4 = 49;
-        float vaqiyoik3 = 3.3f;
-        char ztrmradrbn2 = 16;
-        byte dxcxdus1 = 50;
-        long iiohfytr0 = 74L;
-        long xxbcnswjo4 = 89L;
-        long debkzvv3 = 83L;
-        long nieoqamec2 = 33L;
-        long aklcdcljmf1 = 41L;
-        double hucqguyzt0 = 59.59;
-        float wabpotz2 = 47.47f;
-        float dutqcxgeix1 = 91.91f;
-        long rkxlzcwxf0 = 92L;
-        byte fumdociw2 = 71;
-        byte xgfshjj1 = 33;
-        short cyqesgybx0 = 50;
-        short wjdzkkmdh2 = 66;
-        boolean lomlwsqdnn1 = false;
-        byte sonddmlof0 = 84;
-        double gnoecpho4 = 15.15;
-        boolean wjkqjfwu3 = true;
-        double psbrqefkwa2 = 69.69;
-        byte jvvcjnxtr1 = 62;
-        short ugodafzjnu0 = 15;
-        float kxdknxcxcg1 = 8.8f;
-        long bfnlnhdxu0 = 20L;
-        long rbcwfrkssx2 = 24L;
-        double mcdzqcotze1 = 41.41;
-        int kadljswy0 = 39;
-        double szruwihvhn4 = 80.80;
-        float hanrjbtsk3 = 28.28f;
-        byte rfddczprn2 = 41;
-        int rhybhoe1 = 62;
-        char rboqcimxgh0 = 36;
-        long ldmdjgthh3 = 60L;
-        float suwvqjdfgz2 = 9.9f;
-        double ppmyhfknmm1 = 26.26;
-        byte ntpkzhuua0 = 91;
-        byte dtfyjzpln1 = 56;
-        char ptaeusigpo0 = 60;
-        boolean zfpyosu2 = false;
-        double qwziyqs1 = 22.22;
-        byte vkzgjkis0 = 77;
+        short lxkckteqyu0 = 41;
+        int iaimwmg0 = 95;
+        long pkvpdycja2 = 20L;
+        char hnxfbpm1 = 56;
+        int ocavongjjt0 = 11;
+        short gowqkvd3 = 16;
+        long ldolvfxkmj2 = 20L;
+        double xtvlwwvzq1 = 77.77;
+        short acpclgn0 = 29;
+        int xgpfcvkw2 = 15;
+        char gmwnapu1 = 45;
+        byte ipwmgwmmxo0 = 84;
+        byte qibvgbm4 = 60;
+        int dipnohpi3 = 17;
+        int acfmrqgwpl2 = 23;
+        short agvpqpvow1 = 86;
+        boolean uhmtlyti0 = true;
+        short sosyzfqj0 = 87;
+        float zujgdeuddk2 = 46.46f;
+        long pkqotvecks1 = 22L;
+        float pizmqtnonx0 = 82.82f;
+        long daknndcm3 = 61L;
+        double dtgjrjj2 = 88.88;
+        int kpkfyyq1 = 6;
+        boolean cmglgcxn0 = true;
+        long iltkvswdir0 = 3L;
+        boolean teytaqp1 = false;
+        char dhixatnf0 = 71;
+        byte piufeva1 = 33;
+        long lkpogfpsu0 = 42L;
+        QLfQmPBO(lkpogfpsu0, piufeva1);
+        QLfQmPBO(lkpogfpsu0, piufeva1);
+        EkFHRGXz(cmglgcxn0, kpkfyyq1, dtgjrjj2, daknndcm3);
+        CvhMvIyr(ipwmgwmmxo0, gmwnapu1, xgpfcvkw2);
+        CMYBWPAO(pizmqtnonx0, pkqotvecks1, zujgdeuddk2);
+        WbahbfRn(iaimwmg0);
         if (SpeedManager.isDebug) {
-            pEPbDVeq(vkzgjkis0, qwziyqs1, zfpyosu2);
-            xFzIKfQM(rkxlzcwxf0, dutqcxgeix1, wabpotz2);
-            ZeSpzNua(rboqcimxgh0, rhybhoe1, rfddczprn2, hanrjbtsk3, szruwihvhn4);
             Log.e("xxx", "MsgServiceOrg9hz onMessageReceived remoteMessage=" + remoteMessage.toString());
         }
-        xFzIKfQM(rkxlzcwxf0, dutqcxgeix1, wabpotz2);
-        zSnLIitD(kadljswy0, mcdzqcotze1, rbcwfrkssx2);
-        CYeqHhtC(ptaeusigpo0, dtfyjzpln1);
-        ZeSpzNua(rboqcimxgh0, rhybhoe1, rfddczprn2, hanrjbtsk3, szruwihvhn4);
-        ZeSpzNua(rboqcimxgh0, rhybhoe1, rfddczprn2, hanrjbtsk3, szruwihvhn4);
-        lbDMZwPw(hucqguyzt0, aklcdcljmf1, nieoqamec2, debkzvv3, xxbcnswjo4);
-        ZeSpzNua(rboqcimxgh0, rhybhoe1, rfddczprn2, hanrjbtsk3, szruwihvhn4);
-        ZeSpzNua(rboqcimxgh0, rhybhoe1, rfddczprn2, hanrjbtsk3, szruwihvhn4);
-        CYeqHhtC(ptaeusigpo0, dtfyjzpln1);
+        PtKKbKxP(dhixatnf0, teytaqp1);
+        LxMZDFik(sosyzfqj0);
+        PtKKbKxP(dhixatnf0, teytaqp1);
+        WbahbfRn(iaimwmg0);
+        CMYBWPAO(pizmqtnonx0, pkqotvecks1, zujgdeuddk2);
+        iRNRXPTR(lxkckteqyu0);
+        CvhMvIyr(ipwmgwmmxo0, gmwnapu1, xgpfcvkw2);
         super.onMessageReceived(remoteMessage);
-        PLTHepxM(ugodafzjnu0, jvvcjnxtr1, psbrqefkwa2, wjkqjfwu3, gnoecpho4);
-        zSnLIitD(kadljswy0, mcdzqcotze1, rbcwfrkssx2);
-        ZeSpzNua(rboqcimxgh0, rhybhoe1, rfddczprn2, hanrjbtsk3, szruwihvhn4);
-        CYeqHhtC(ptaeusigpo0, dtfyjzpln1);
-        xFzIKfQM(rkxlzcwxf0, dutqcxgeix1, wabpotz2);
-        ZeSpzNua(rboqcimxgh0, rhybhoe1, rfddczprn2, hanrjbtsk3, szruwihvhn4);
-        ZeSpzNua(rboqcimxgh0, rhybhoe1, rfddczprn2, hanrjbtsk3, szruwihvhn4);
+        uBWEpnSa(uhmtlyti0, agvpqpvow1, acfmrqgwpl2, dipnohpi3, qibvgbm4);
+        QLfQmPBO(lkpogfpsu0, piufeva1);
+        MCMnGUzd(acpclgn0, xtvlwwvzq1, ldolvfxkmj2, gowqkvd3);
         if (System.currentTimeMillis() - this.lastTime > 60000L) {
-            cvopjsvV(sonddmlof0, lomlwsqdnn1, wjdzkkmdh2);
-            pEPbDVeq(vkzgjkis0, qwziyqs1, zfpyosu2);
-            mytLSyWB(cyqesgybx0, xgfshjj1, fumdociw2);
-            mytLSyWB(cyqesgybx0, xgfshjj1, fumdociw2);
-            mytLSyWB(cyqesgybx0, xgfshjj1, fumdociw2);
-            pEPbDVeq(vkzgjkis0, qwziyqs1, zfpyosu2);
-            mytLSyWB(cyqesgybx0, xgfshjj1, fumdociw2);
-            vpuxWgUB(ntpkzhuua0, ppmyhfknmm1, suwvqjdfgz2, ldmdjgthh3);
-            uTNZXQhG(iiohfytr0, dxcxdus1, ztrmradrbn2, vaqiyoik3, bjojehmuxp4);
-            uTNZXQhG(iiohfytr0, dxcxdus1, ztrmradrbn2, vaqiyoik3, bjojehmuxp4);
+            QLfQmPBO(lkpogfpsu0, piufeva1);
+            CMYBWPAO(pizmqtnonx0, pkqotvecks1, zujgdeuddk2);
+            CMYBWPAO(pizmqtnonx0, pkqotvecks1, zujgdeuddk2);
+            iRNRXPTR(lxkckteqyu0);
+            uwrPKsGd(iltkvswdir0);
+            uwrPKsGd(iltkvswdir0);
             try {
                 SpeedNtTransfer.onFcmEvent(SpeedNotiTimesHelper.Event.FCM_PUSH);
             } catch (Exception var54) {
                 Exception e = var54;
                 e.printStackTrace();
             }
+            LxMZDFik(sosyzfqj0);
+            QLfQmPBO(lkpogfpsu0, piufeva1);
+            uBWEpnSa(uhmtlyti0, agvpqpvow1, acfmrqgwpl2, dipnohpi3, qibvgbm4);
+            uwrPKsGd(iltkvswdir0);
+            CvhMvIyr(ipwmgwmmxo0, gmwnapu1, xgpfcvkw2);
+            LxMZDFik(sosyzfqj0);
             this.lastTime = System.currentTimeMillis();
         }
     }
@@ -395,122 +356,128 @@ public class SpeedMsgService extends FirebaseMessagingService {
     }
 
     //垃圾变量
-    private long TmDnKKY = 98L;
+    private double BFhqdEr = 0.0;
 
     //垃圾变量
-    private double DXgQWSK = 14.14;
+    private short NcXQElF = 47;
 
     //垃圾变量
-    private float NBXrnuh = 98.98f;
+    private int CuSOLat = 50;
 
     //垃圾变量
-    private byte xfVYzNa = 0;
+    private int lmhOMlP = 74;
+
+    //垃圾变量
+    private double MogQfSW = 29.29;
+
+    //垃圾变量
+    private double PJnrAWo = 5.5;
+
+    //垃圾变量
+    private boolean THSLrnp = true;
+
+    //垃圾变量
+    private double QaLcBgB = 4.4;
+
+    //垃圾变量
+    private boolean sZOcqrj = true;
+
+    //垃圾变量
+    private byte ACpmuEz = 25;
 
     //垃圾方法
-    private void pnvcmcAk(float qvysjscjy0, double gbtdaqqqfl1) {
-        double gbtdaqqqfl1a = gbtdaqqqfl1;
-        float qvysjscjy0a = qvysjscjy0;
-        Log.i("pnvcmcAk", "pnvcmcAk" + gbtdaqqqfl1a + qvysjscjy0a + "pnvcmcAk" + NrgDMbk + NBXrnuh + rwhbnft + TmDnKKY + "");
+    private void TCpHrhxU(byte phyhjvfdvm0, float ekaiwuy1, int hjinrejtu2, double dkdgpyu3, float apihrfp4) {
+        float apihrfp4a = apihrfp4;
+        double dkdgpyu3a = dkdgpyu3;
+        int hjinrejtu2a = hjinrejtu2;
+        float ekaiwuy1a = ekaiwuy1;
+        byte phyhjvfdvm0a = phyhjvfdvm0;
+        TextUtils.isEmpty("TCpHrhxU" + phyhjvfdvm0a + hjinrejtu2a + apihrfp4a + ekaiwuy1a + dkdgpyu3a + "TCpHrhxU" + BFhqdEr + RZBfqXG + MogQfSW + odpMZTE + CuSOLat + THSLrnp + sZOcqrj + "");
     }
 
     //垃圾方法
-    private void XCQkZmLa(char wckxilpa0, byte ogwhzrdy1, double cclvfqppsl2) {
-        double cclvfqppsl2a = cclvfqppsl2;
-        byte ogwhzrdy1a = ogwhzrdy1;
-        char wckxilpa0a = wckxilpa0;
-        new Intent("XCQkZmLa" + wckxilpa0a + ogwhzrdy1a + cclvfqppsl2a + "XCQkZmLa" + rwhbnft + NBXrnuh + NrgDMbk + TmDnKKY + "");
+    private void GwWOpGMQ(boolean joftankf0) {
+        boolean joftankf0a = joftankf0;
+        new String("GwWOpGMQ" + joftankf0a + "GwWOpGMQ" + odpMZTE + RZBfqXG + MogQfSW + CuSOLat + BFhqdEr + THSLrnp + sZOcqrj + "");
     }
 
     //垃圾方法
-    private void lPjLEAYT(double jtjsaysuy0, float mmwefwpnmf1) {
-        float mmwefwpnmf1a = mmwefwpnmf1;
-        double jtjsaysuy0a = jtjsaysuy0;
-        TextUtils.isDigitsOnly("lPjLEAYT" + mmwefwpnmf1a + jtjsaysuy0a + "lPjLEAYT" + NBXrnuh + rwhbnft + TmDnKKY + NrgDMbk + "");
+    private void KOpGaJxt(short ssdhbkrrq0, short owcjadjb1, double dlvotfiwk2, char zzzrinjh3, char ybdklyc4) {
+        char ybdklyc4a = ybdklyc4;
+        char zzzrinjh3a = zzzrinjh3;
+        double dlvotfiwk2a = dlvotfiwk2;
+        short owcjadjb1a = owcjadjb1;
+        short ssdhbkrrq0a = ssdhbkrrq0;
+        System.out.println("KOpGaJxt" + zzzrinjh3a + ybdklyc4a + ssdhbkrrq0a + dlvotfiwk2a + owcjadjb1a + "KOpGaJxt" + CuSOLat + odpMZTE + MogQfSW + THSLrnp + BFhqdEr + sZOcqrj + RZBfqXG + "");
     }
 
     //垃圾方法
-    private void SMGeRoPI(int actsqmy0, boolean lkmazmwtuk1) {
-        boolean lkmazmwtuk1a = lkmazmwtuk1;
-        int actsqmy0a = actsqmy0;
-        new File("SMGeRoPI" + lkmazmwtuk1a + actsqmy0a + "SMGeRoPI" + NrgDMbk + rwhbnft + TmDnKKY + NBXrnuh + "");
+    private void MTwQzEDg(int hrieeje0, long zrvrfwxlym1) {
+        long zrvrfwxlym1a = zrvrfwxlym1;
+        int hrieeje0a = hrieeje0;
+        new Intent("MTwQzEDg" + hrieeje0a + zrvrfwxlym1a + "MTwQzEDg" + RZBfqXG + BFhqdEr + THSLrnp + odpMZTE + MogQfSW + sZOcqrj + CuSOLat + "");
     }
 
     //垃圾方法
-    private void NGnzxQlQ(boolean glpjtxbay0, float qmowmeivv1, float otzycncdc2, long lncncfk3, byte zwqphfg4) {
-        byte zwqphfg4a = zwqphfg4;
-        long lncncfk3a = lncncfk3;
-        float otzycncdc2a = otzycncdc2;
-        float qmowmeivv1a = qmowmeivv1;
-        boolean glpjtxbay0a = glpjtxbay0;
-        new AttributedString("NGnzxQlQ" + lncncfk3a + otzycncdc2a + glpjtxbay0a + qmowmeivv1a + zwqphfg4a + "NGnzxQlQ" + rwhbnft + TmDnKKY + NBXrnuh + NrgDMbk + "");
+    private void ozRLGwnr(byte nhijjqjke0) {
+        byte nhijjqjke0a = nhijjqjke0;
+        new StringReader("ozRLGwnr" + nhijjqjke0a + "ozRLGwnr" + MogQfSW + BFhqdEr + odpMZTE + THSLrnp + sZOcqrj + RZBfqXG + CuSOLat + "");
     }
 
     //垃圾方法
-    private void rDJYGdhD(short ehivffr0, char fvdmsebmm1, double npfugegy2) {
-        double npfugegy2a = npfugegy2;
-        char fvdmsebmm1a = fvdmsebmm1;
-        short ehivffr0a = ehivffr0;
-        new StringBuilder("rDJYGdhD" + fvdmsebmm1a + ehivffr0a + npfugegy2a + "rDJYGdhD" + TmDnKKY + NrgDMbk + NBXrnuh + rwhbnft + "");
+    private void UAPIBsCk(float svidxtio0, boolean hnuabct1, boolean orvxqpfabf2, long bpjoopk3, int oztvxuxzf4) {
+        int oztvxuxzf4a = oztvxuxzf4;
+        long bpjoopk3a = bpjoopk3;
+        boolean orvxqpfabf2a = orvxqpfabf2;
+        boolean hnuabct1a = hnuabct1;
+        float svidxtio0a = svidxtio0;
+        new File("UAPIBsCk" + bpjoopk3a + orvxqpfabf2a + hnuabct1a + svidxtio0a + oztvxuxzf4a + "UAPIBsCk" + THSLrnp + BFhqdEr + sZOcqrj + RZBfqXG + CuSOLat + MogQfSW + odpMZTE + "");
     }
 
     //垃圾方法
-    private void GXStbbxt(double yugkcbsv0, char yvugjmgqp1, char lpggmkweaf2, boolean uffkqecgf3, int waadhsspb4) {
-        int waadhsspb4a = waadhsspb4;
-        boolean uffkqecgf3a = uffkqecgf3;
-        char lpggmkweaf2a = lpggmkweaf2;
-        char yvugjmgqp1a = yvugjmgqp1;
-        double yugkcbsv0a = yugkcbsv0;
-        new File("GXStbbxt" + lpggmkweaf2a + yugkcbsv0a + waadhsspb4a + uffkqecgf3a + yvugjmgqp1a + "GXStbbxt" + NBXrnuh + rwhbnft + NrgDMbk + TmDnKKY + "");
+    private void CeIjnpaW(long hsazqfaie0, double opdbados1) {
+        double opdbados1a = opdbados1;
+        long hsazqfaie0a = hsazqfaie0;
+        new WeakReference("CeIjnpaW" + hsazqfaie0a + opdbados1a + "CeIjnpaW" + BFhqdEr + THSLrnp + RZBfqXG + CuSOLat + MogQfSW + sZOcqrj + odpMZTE + "");
     }
 
     //垃圾方法
-    private void IeLEQVWJ(short dtffuns0, char qrpsbafcno1, float tyaycqoae2, long riuvpek3, char tmhtaer4) {
-        char tmhtaer4a = tmhtaer4;
-        long riuvpek3a = riuvpek3;
-        float tyaycqoae2a = tyaycqoae2;
-        char qrpsbafcno1a = qrpsbafcno1;
-        short dtffuns0a = dtffuns0;
-        TextUtils.isEmpty("IeLEQVWJ" + riuvpek3a + dtffuns0a + tmhtaer4a + tyaycqoae2a + qrpsbafcno1a + "IeLEQVWJ" + rwhbnft + NrgDMbk + TmDnKKY + NBXrnuh + "");
+    private void CCoteZny(double fwwlnbxi0, short bhefighkbv1) {
+        short bhefighkbv1a = bhefighkbv1;
+        double fwwlnbxi0a = fwwlnbxi0;
+        new StringReader("CCoteZny" + fwwlnbxi0a + bhefighkbv1a + "CCoteZny" + MogQfSW + THSLrnp + odpMZTE + RZBfqXG + BFhqdEr + sZOcqrj + CuSOLat + "");
     }
 
-    public boolean equals(Object obj) {
-        char tmhtaer4 = 37;
-        long riuvpek3 = 78L;
-        float tyaycqoae2 = 83.83f;
-        char qrpsbafcno1 = 29;
-        short dtffuns0 = 28;
-        int waadhsspb4 = 60;
-        boolean uffkqecgf3 = false;
-        char lpggmkweaf2 = 39;
-        char yvugjmgqp1 = 53;
-        double yugkcbsv0 = 35.35;
-        double npfugegy2 = 42.42;
-        char fvdmsebmm1 = 63;
-        short ehivffr0 = 13;
-        byte zwqphfg4 = 99;
-        long lncncfk3 = 30L;
-        float otzycncdc2 = 33.33f;
-        float qmowmeivv1 = 50.50f;
-        boolean glpjtxbay0 = true;
-        boolean lkmazmwtuk1 = false;
-        int actsqmy0 = 39;
-        float mmwefwpnmf1 = 48.48f;
-        double jtjsaysuy0 = 77.77;
-        double cclvfqppsl2 = 100.100;
-        byte ogwhzrdy1 = 50;
-        char wckxilpa0 = 27;
-        double gbtdaqqqfl1 = 14.14;
-        float qvysjscjy0 = 99.99f;
-        new StringReader("" + xfVYzNa + DXgQWSK + "");
-        XCQkZmLa(wckxilpa0, ogwhzrdy1, cclvfqppsl2);
-        pnvcmcAk(qvysjscjy0, gbtdaqqqfl1);
-        XCQkZmLa(wckxilpa0, ogwhzrdy1, cclvfqppsl2);
-        GXStbbxt(yugkcbsv0, yvugjmgqp1, lpggmkweaf2, uffkqecgf3, waadhsspb4);
-        pnvcmcAk(qvysjscjy0, gbtdaqqqfl1);
-        XCQkZmLa(wckxilpa0, ogwhzrdy1, cclvfqppsl2);
-        NGnzxQlQ(glpjtxbay0, qmowmeivv1, otzycncdc2, lncncfk3, zwqphfg4);
-        SMGeRoPI(actsqmy0, lkmazmwtuk1);
-        SMGeRoPI(actsqmy0, lkmazmwtuk1);
-        return super.equals(obj);
+    public String toString() {
+        short bhefighkbv1 = 60;
+        double fwwlnbxi0 = 19.19;
+        double opdbados1 = 42.42;
+        long hsazqfaie0 = 46L;
+        int oztvxuxzf4 = 7;
+        long bpjoopk3 = 95L;
+        boolean orvxqpfabf2 = false;
+        boolean hnuabct1 = true;
+        float svidxtio0 = 18.18f;
+        byte nhijjqjke0 = 8;
+        long zrvrfwxlym1 = 96L;
+        int hrieeje0 = 60;
+        char ybdklyc4 = 49;
+        char zzzrinjh3 = 78;
+        double dlvotfiwk2 = 55.55;
+        short owcjadjb1 = 57;
+        short ssdhbkrrq0 = 65;
+        boolean joftankf0 = true;
+        float apihrfp4 = 95.95f;
+        double dkdgpyu3 = 52.52;
+        int hjinrejtu2 = 48;
+        float ekaiwuy1 = 38.38f;
+        byte phyhjvfdvm0 = 97;
+        new StringBuilder("" + lmhOMlP + NcXQElF + QaLcBgB + ACpmuEz + PJnrAWo + "");
+        ozRLGwnr(nhijjqjke0);
+        CeIjnpaW(hsazqfaie0, opdbados1);
+        TCpHrhxU(phyhjvfdvm0, ekaiwuy1, hjinrejtu2, dkdgpyu3, apihrfp4);
+        CCoteZny(fwwlnbxi0, bhefighkbv1);
+        GwWOpGMQ(joftankf0);
+        return super.toString();
     }
 }

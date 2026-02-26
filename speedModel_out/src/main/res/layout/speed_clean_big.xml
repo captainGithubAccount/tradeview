@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Your phone has "
+                android:text="Less than "
                 android:textColor="#201F31"
                 android:textSize="14sp" />
 
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv1"
-                android:text=" garbage,clean it up now！"
+                android:text=" left.Clean up needed."
                 android:textColor="#201F31"
                 android:textSize="14sp" />
         </RelativeLayout>

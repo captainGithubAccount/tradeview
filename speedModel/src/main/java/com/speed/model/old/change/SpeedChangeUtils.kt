@@ -2,6 +2,7 @@ package com.speed.model.old.change
 
 import android.app.PendingIntent
 import android.os.Build
+import android.text.Html
 import androidx.annotation.Keep
 import java.util.Random
 
@@ -18,13 +19,71 @@ object SpeedChangeUtils {
     )
     val batteryContent = list.random()
 
-    val procressList = listOf(
-        "You haven't boost your device in a long time.",
-        "Close background apps to boost speed.",
-        "lots apps running in the background were detected.",
+    val procressSmallList = listOf(
+        "<font size=\"20\">⚠</font> Severe Lag Detected!",
+        "<font size=\"20\">🔴</font> Phone Slowing Down?",
+        "<font size=\"20\">🚀</font> Phone Feel Slow?",
+        "<font size=\"20\">💤</font> Smart Sleep Mode",
     )
 
-    val procressContent = procressList.random()
+    val procressBigList = listOf(
+        "Optimize for better standby tonight.",
+        "One-tap to release RAM and boost speed",
+        "14 apps draining background. Stop them.",
+        "Critical RAM usage (92%). Boost NOW.",
+    )
+
+    val batterySmallList = listOf(
+        "<font size=\"20\"🔋</font> Extend Battery Life",
+        "<font size=\"20\">🌡️</font> Cool Down Phone",
+        "<font size=\"20\">🔥</font> Phone Overheating!",
+    )
+
+    val batteryBigList = listOf(
+        "Temp is too high! Cool down immediately.",
+        "Device warm? gently optimize CPU usage",
+        "Stop draining apps to get +2 hours.",
+    )
+
+    val deviceSmallList = listOf(
+        "<font size=\"20\"📱</font> Daily Status Check",
+        "<font size=\"20\">⚠️</font> Malware Threat!",
+        "<font size=\"20\">🚫</font> Security Risk Alert",
+    )
+
+    val deviceBigList = listOf(
+        "Your phone is in good shape. See score.",
+        "Privacy at risk. Run deep scan now.",
+        "Threats detected. Tap to scan now.",
+    )
+
+    val cleanSmallList = listOf(
+        "<font size=\"20\"🧹</font> Storage Almost Full",
+        "<font size=\"20\">🗂️</font> 2.3GB Junk Found",
+        "<font size=\"20\">✨</font> Running Out of Space?",
+    )
+
+    val cleanBigList = listOf(
+        "Find and delete large files easily.",
+        "Clear chat cache to free up huge space.",
+        "Found new cache files. Clear them out.",
+    )
+
+    val procressSmallContent = Html.fromHtml(procressSmallList.random(), Html.FROM_HTML_MODE_LEGACY)
+    val procressBigContent = procressBigList.random()
+
+
+    val batterySmallContent = Html.fromHtml(batterySmallList.random(), Html.FROM_HTML_MODE_LEGACY)
+    val batteryBigContent = batteryBigList.random()
+
+    val deviceSmallContent = Html.fromHtml(deviceSmallList.random(), Html.FROM_HTML_MODE_LEGACY)
+    val deviceBigContent = deviceBigList.random()
+
+    val cleanSmallContent = Html.fromHtml(deviceSmallList.random(), Html.FROM_HTML_MODE_LEGACY)
+    val cleanBigContent = deviceBigList.random()
+
+
+
 
     // todo 修改内容
     // 通知点击

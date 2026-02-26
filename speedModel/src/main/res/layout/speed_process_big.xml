@@ -28,7 +28,7 @@
             android:layout_marginEnd="10dp"
             android:layout_toRightOf="@id/funType"
             android:gravity="center_vertical"
-            android:text="Check Device Usage and Status."
+            android:text="Critical RAM usage(92%).Boost NOW."
             android:textColor="#121212"
             android:textSize="14sp" />
 
