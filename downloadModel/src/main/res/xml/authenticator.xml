@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- todo修改为 -->
+<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="com.download.model.auth"
+    android:icon="@drawable/download_logo"
+    android:smallIcon="@drawable/download_logo"
+    android:label="@string/download_app_name" />

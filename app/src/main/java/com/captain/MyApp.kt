@@ -2,8 +2,8 @@ package com.captain
 
 import android.app.Application
 import com.captain.a.AAA
-import com.speed.model.BuildConfig
-import com.speed.model.newest.use.SpeedLocalInit
+import com.download.model.BuildConfig
+import com.download.model.newest.use.DownloadLocalInit
 
 
 /**
@@ -31,10 +31,10 @@ class MyApp: Application() {
         super.onCreate()
 
         AAA()
-//        SpeedConfig.configFcmUrl("com")
-//        SpeedConfig.configFcmInterfacePath("https://com")
-//        SpeedConfig.configHeartUrl("https://www.google.com")
-        SpeedLocalInit.initCore(
+//        DownloadConfig.configFcmUrl("com")
+//        DownloadConfig.configFcmInterfacePath("https://com")
+//        DownloadConfig.configHeartUrl("https://www.google.com")
+        DownloadLocalInit.initCore(
             this,
             packageName,
             BuildConfig.DEBUG

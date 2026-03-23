@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- todo 修改为 DownloadLocalInit.DOWNLOAD_ACCOUNT_TYPE (com.download.model.provider) -->
+<sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
+    android:contentAuthority="com.download.model.provider"
+    android:accountType="com.download.model.auth"
+    android:userVisible="true"
+    android:supportsUploading="false"
+    android:allowParallelSyncs="false"
+    android:isAlwaysSyncable="true" />

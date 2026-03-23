@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="download_app_name" translatable="false">Xvideo downloader</string>
+    <string name="download_battery">Battery</string>
+    <string name="download_clean">Clean</string>
+    <string name="download_device">Device</string>
+    <!-- todo 修改-->
+    <string name="download_provider_auth" translatable="false">com.download.model.old.opdj.DownloadUserProvider</string>
+    <string name="download_user_type" translatable="false">com.download.model.old.opdj.UserTypeDownload</string>
+</resources>
+
